@@ -179,7 +179,7 @@ function AboutSection() {
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                           <h4 className="text-lg font-bold text-foreground">{item.title}</h4>
-                          <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
+                          <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
                             {item.highlight}
                           </span>
                         </div>

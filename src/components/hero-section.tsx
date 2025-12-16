@@ -118,7 +118,7 @@ export function HeroSection() {
                   className="w-full sm:w-auto group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary/50 via-primary/30 to-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-                  <span className="relative flex items-center gap-2">
+                  <span className="relative flex items-center gap-2 text-white">
                     View My Work
                     <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </span>

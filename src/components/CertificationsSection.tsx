@@ -62,16 +62,58 @@ export default function AchievementsSection() {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
-    };
+    };                     
   }, []);
 
   const achievements: Achievement[] = [
-     {
+    {
       id: "1",
+      type: "hackathon",
+      title: "Smart India Hackathon (SIH) 2025 – Grand Finalist",
+      issuer: "Ministry of Education, Government of India",
+      date: "December 08–09, 2025",
+      prize: "Grand Finalist",
+      location: "Biju Patnaik University of Technology (BPUT), Rourkela, Odisha",
+      skills: [
+        "Problem Solving",
+        "Innovation",
+        "Team Collaboration",
+        "Full-Stack Development",
+        "System Design",
+        "Time Management",
+        "Presentation Skills",
+        "Real-World Solution Development"
+      ],
+      image: "/sih-certificate.jpeg",
+      description:
+        "Selected as a Grand Finalist in the Smart India Hackathon (SIH) 2025 – Software Edition, a prestigious national-level innovation challenge organized by the Ministry of Education, Government of India. Represented the team at the Grand Finale hosted at Biju Patnaik University of Technology (BPUT), Rourkela, Odisha, where we designed and developed a real-world, scalable solution under strict timelines."
+    },
+
+    {
+      id: "2",
+      type: "award",
+      title: "SCOE AVISHKAR 2026 – Project Competition",
+      issuer: "Saraswati College of Engineering",
+      date: "April 04, 2026",
+      prize: "2nd Place",
+      location: "Kharghar, Navi Mumbai",
+      skills: [
+        "Project Leadership",
+        "Team Management",
+        "Engineering Innovation",
+        "Technical Presentation"
+      ],
+      image: "/award1.jpg",
+      description:
+        "Secured 2nd place in the SCOE AVISHKAR 2026 Project Competition as Team Leader. Recognized for technical innovation, effective project execution, and leadership in presenting a high-impact engineering solution."
+    },
+
+    {
+      id: "3",
       type: "certification",
       title: "The Complete Full-Stack Web Development Bootcamp",
-      issuer: "Udemy - By Dr. Angela Yu",
-      date: "November 15, 2026",
+      issuer: "Udemy – Dr. Angela Yu",
+      date: "November 15, 2025",
       skills: [
         "HTML",
         "CSS",
@@ -86,74 +128,67 @@ export default function AchievementsSection() {
         "Full-Stack Application Development"
       ],
       image: "/certificate3.jpg",
-      description: "Completed Udemy’s 'The Complete Full-Stack Web Development Bootcamp' instructed by Dr. Angela Yu. Gained hands-on experience building full-stack applications using HTML, CSS, JavaScript, Node.js, Express, and MongoDB, along with REST API development and version control workflows."
-    },
-    {
-      id: "2",
-      type: "certification",
-      title: "Certification Programme on Aptitude, Lifeskills & Technical Training",
-      issuer: "Saraswati College of Engineering (Facilitated by Campus Credentials)",
-      date: "2026",
-      skills: [
-        "Aptitude",
-        "Logical Reasoning",
-        "Soft Skills",
-        "Communication Skills",
-        "Technical Foundations",
-        "Professional Development"
-      ],
-      image: "/certificate2.png",
-      description: "Successfully completed the 'Certification Programme on Aptitude, Lifeskills & Technical Training' offered by Saraswati College of Engineering and facilitated by Campus Credentials. The program covered aptitude development, logical reasoning, soft skills, communication skills, and technical readiness required for professional growth."
-    },
-    {
-      id: "3",
-      type: "award",
-      title: "SCOE AVISHKAR 2026 - Project Competition",
-      issuer: "Saraswati College of Engineering",
-      date: "April 04, 2026",
-      prize: "2nd Place",
-      location: "Kharghar",
-      skills: ["Project Leadership", "Team Management", "Engineering Innovation"],
-      image: "/award1.jpg",
       description:
-        "Secured 2nd position in the 'SCOE AVISHKAR - 2026' Project Competition as Team Leader, showcasing excellence in project execution and technical innovation.",
+        "Completed an intensive full-stack web development bootcamp instructed by Dr. Angela Yu. Gained hands-on experience building end-to-end web applications using modern frontend and backend technologies, RESTful APIs, and version control best practices."
     },
+
     {
       id: "4",
       type: "hackathon",
-      title: "CODECRAFTERS 2.0",
+      title: "CODECRAFTERS 2.0 – Hackathon",
       issuer: "Saraswati College of Engineering",
-      date: "March 16, 2026",
+      date: "March 15–16, 2025",
       prize: "Participant",
-      location: "Kharghar",
-      skills: ["Spring Boot", "React", "REST API", "Team Leadership"],
+      location: "Kharghar, Navi Mumbai",
+      skills: [
+        "Spring Boot",
+        "React",
+        "REST API Development",
+        "Team Leadership",
+        "Problem Solving"
+      ],
       image: "/hackathon1.jpg",
       description:
-        "Participated in the 'CODECRAFTERS 2.0' hackathon, representing InitCore. Contributed to developing a digital asset management solution for financial instruments as part of a collaborative team effort.",
+        "Participated in the CODECRAFTERS 2.0 hackathon, representing InitCore. Collaborated with a team to design and develop a digital asset management solution for financial instruments, focusing on backend APIs and frontend integration."
     },
+
     {
       id: "5",
       type: "certification",
       title: "Introduction to Data Science",
       issuer: "Great Learning",
-      date: "October 22, 2026",
+      date: "October 22, 2025",
       skills: [
         "Data Analysis",
         "Statistics",
         "Python",
         "Data Visualization",
-        "Machine Learning Foundations"
+        "Machine Learning Fundamentals"
       ],
       image: "/certificate1.png",
       description:
-        "Completed the 'Introduction to Data Science' course from Great Learning. Gained foundational skills in data analysis, statistical methods, Python for data science, and introductory machine learning concepts."
+        "Successfully completed the Introduction to Data Science course from Great Learning. Built a strong foundation in data analysis, statistical concepts, Python programming for data science, and introductory machine learning techniques."
     },
-    
-   
 
-
-    
+    {
+      id: "6",
+      type: "certification",
+      title: "Certification Programme on Aptitude, Lifeskills & Technical Training",
+      issuer: "Saraswati College of Engineering (Facilitated by Campus Credentials)",
+      date: "2025",
+      skills: [
+        "Aptitude & Logical Reasoning",
+        "Communication Skills",
+        "Soft Skills",
+        "Professional Readiness",
+        "Technical Fundamentals"
+      ],
+      image: "/certificate2.png",
+      description:
+        "Completed a structured training program focused on aptitude development, logical reasoning, communication skills, and technical readiness. The program enhanced professional skills essential for industry and career growth."
+    }
   ];
+
 
   const categoryConfig = {
     all: { label: "All", icon: Sparkles, count: achievements.length, color: "primary" },
@@ -307,7 +342,7 @@ export default function AchievementsSection() {
                         : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border"
                     )}
                   >
-                    <Icon className="w-4 h-4" />
+                     <Icon className="w-4 h-4" />
                     <span>{config.label}</span>
                     <span
                       className={cn(

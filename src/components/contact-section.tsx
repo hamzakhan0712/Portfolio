@@ -155,7 +155,7 @@ function ContactSection() {
       value: "+91 91379 66960",
       href: "tel:+919137966960",
       copyable: true,
-      gradient: "from-green-500/10 to-emerald-500/10",
+      gradient: "from-blue-500/10 to-cyan-500/10",
     },
     {
       icon: MapPin,
@@ -163,7 +163,7 @@ function ContactSection() {
       value: "Mumbai, Maharashtra, India",
       href: "https://maps.google.com?q=Mumbai,India",
       copyable: false,
-      gradient: "from-purple-500/10 to-pink-500/10",
+      gradient: "from-blue-500/10 to-cyan-500/10",
     },
     {
       icon: Calendar,
@@ -171,7 +171,7 @@ function ContactSection() {
       value: "Open to opportunities",
       href: "#",
       copyable: false,
-      gradient: "from-orange-500/10 to-yellow-500/10",
+      gradient: "from-blue-500/10 to-cyan-500/10",
     },
   ];
 
@@ -403,7 +403,7 @@ function ContactSection() {
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full sm:w-auto px-8 h-11"
+                        className="w-full sm:w-auto px-8 h-11 text-white"
                         disabled={isSubmitting}
                         aria-disabled={isSubmitting}
                       >

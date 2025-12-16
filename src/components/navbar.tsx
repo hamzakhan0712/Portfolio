@@ -134,7 +134,7 @@ export function Navbar({ className }: NavbarProps) {
                     className={cn(
                       "relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
                       isActive
-                        ? "text-primary-foreground"
+                        ? "text-white"
                         : "text-foreground/70 hover:text-foreground hover:bg-background/50"
                     )}
                   >

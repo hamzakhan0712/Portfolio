@@ -288,8 +288,8 @@ function ProjectsSection() {
                   `}
                 >
                   <span className="flex items-center gap-2">
-                    <Icon className="w-4 h-4" />
-                    <span>{config.label}</span>
+                    <Icon className="w-4 h-4 " />
+                    <span >{config.label}</span>
                     <span className={`
                       ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold
                       ${isActive ? 'bg-primary-foreground/20' : 'bg-muted'}

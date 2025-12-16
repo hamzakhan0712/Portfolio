@@ -62,35 +62,6 @@ function Footer() {
 
   return (
     <footer className="relative bg-background border-t border-border/50 overflow-hidden">
-      {/* Decorative Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.03, 0.06, 0.03],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4,
-          }}
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-        />
-      </div>
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16">
