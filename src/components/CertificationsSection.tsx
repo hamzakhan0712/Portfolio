@@ -92,9 +92,9 @@ export default function AchievementsSection() {
     {
       id: "2",
       type: "award",
-      title: "SCOE AVISHKAR 2026 – Project Competition",
+      title: "SCOE AVISHKAR 2024 – Project Competition",
       issuer: "Saraswati College of Engineering",
-      date: "April 04, 2026",
+      date: "April 04, 2024",
       prize: "2nd Place",
       location: "Kharghar, Navi Mumbai",
       skills: [
@@ -105,7 +105,7 @@ export default function AchievementsSection() {
       ],
       image: "/award1.jpg",
       description:
-        "Secured 2nd place in the SCOE AVISHKAR 2026 Project Competition as Team Leader. Recognized for technical innovation, effective project execution, and leadership in presenting a high-impact engineering solution."
+        "Secured 2nd place in the SCOE AVISHKAR 2024 Project Competition as Team Leader. Recognized for technical innovation, effective project execution, and leadership in presenting a high-impact engineering solution."
     },
 
     {
@@ -186,6 +186,28 @@ export default function AchievementsSection() {
       image: "/certificate2.png",
       description:
         "Completed a structured training program focused on aptitude development, logical reasoning, communication skills, and technical readiness. The program enhanced professional skills essential for industry and career growth."
+    },
+    {
+      id: "7",
+      type: "certification",
+      title: "Complete Data Analyst Bootcamp: From Basics to Advanced",
+      issuer: "Udemy – Krish Naik, Jayant Topnani (KRISHAI Technologies Pvt. Ltd.)",
+      date: "December 17, 2025",
+      skills: [
+        "Data Analysis",
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Data Cleaning",
+        "Exploratory Data Analysis (EDA)",
+        "Statistics",
+        "Data Visualization",
+        "SQL",
+        "Analytical Thinking"
+      ],
+      image: "/certificate4.jpg",
+      description:
+        "Completed an 89-hour comprehensive Data Analyst bootcamp covering the complete data analysis lifecycle. Developed hands-on proficiency in data cleaning, exploratory data analysis, statistical methods, Python-based analytics, SQL querying, and data visualization techniques for real-world datasets."
     }
   ];
 

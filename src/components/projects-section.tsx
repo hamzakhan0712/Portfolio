@@ -96,22 +96,22 @@ function ProjectsSection() {
       urltext: "Enterprise Solution (On-premise Deployment)"
     },
     {
-      title: "ICTMT Conference 2026",
+      title: "ICTMT Conference 2024",
       description: "Modern conference website for International Conference on Technology, Mathematics, and Teaching built with React 19 and Vite 6. Features smooth Framer Motion animations, Swiper carousels, Radix UI components, and comprehensive event information with responsive design.",
       tags: ["React 19", "Vite 6", "Framer Motion", "Radix UI", "Swiper"],
       category: "static",
       imageUrl: "/ictmt.png",
-      githubUrl: "https://github.com/hamzakhan0712/ICTMT2026-Conference.git",
+      githubUrl: "https://github.com/hamzakhan0712/ICTMT2024-Conference.git",
       liveUrl: "",
       urltext: "Conference Website (Source Code Available)"
     },
     {
-      title: "Sustainable Technology Conference 2026",
-      description: "Comprehensive digital platform for SUSTECH 2026 conference focusing on green technology, AI for sustainability, and sustainable mobility. Built with React and modern web technologies featuring elegant animations and responsive design for academia and industry collaboration.",
+      title: "Sustainable Technology Conference 2024",
+      description: "Comprehensive digital platform for SUSTECH 2024 conference focusing on green technology, AI for sustainability, and sustainable mobility. Built with React and modern web technologies featuring elegant animations and responsive design for academia and industry collaboration.",
       tags: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Radix UI"],
       category: "static",
       imageUrl: "/sustech.jpg",
-      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2026-Conference.git",
+      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2024-Conference.git",
       liveUrl: "",
       urltext: "Academic Conference Platform (Open Source)"
     },

@@ -29,14 +29,14 @@ function AboutSection() {
 
   const journey = [
     {
-      year: "2021-2026",
+      year: "2021-2024",
       title: "Full Stack Developer",
       icon: Code,
       description: "Built scalable web applications using Django, React, and modern JavaScript frameworks. Delivered 10+ production-ready projects.",
       highlight: "3 Years Experience",
     },
     {
-      year: "2026-Present",
+      year: "2025-Present",
       title: "Transitioning to Data Science",
       icon: Brain,
       description: "Expanding expertise into machine learning, data analysis, and AI. Building intelligent solutions that combine development with data science.",
