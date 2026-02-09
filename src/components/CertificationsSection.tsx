@@ -67,26 +67,77 @@ export default function AchievementsSection() {
 
   const achievements: Achievement[] = [
     {
-      id: "1",
+      id: "8",
+      type: "certification",
+      title: "Excel Basics for Data Analysis",
+      issuer: "IBM (Coursera)",
+      date: "Jan 14, 2026",
+      skills: ["Excel", "Data Cleaning", "Data Analysis", "Spreadsheets"],
+      image: "/ibm-excel.png",
+      description:
+        "Gained hands-on experience using Excel for data cleaning, analysis, and basic analytics workflows as part of IBM’s data analytics curriculum."
+    },
+
+    {
+      id: "7",
+      type: "certification",
+      title: "Introduction to Data Analytics",
+      issuer: "IBM (Coursera)",
+      date: "Dec 31, 2025",
+      skills: ["Data Analytics", "Analytical Thinking", "Data Interpretation", "Business Insights"],
+      image: "/ibm-data-analytics.png",
+      description:
+        "Completed IBM’s Introduction to Data Analytics course, focusing on analytical thinking, data-driven decision making, and real-world analytics use cases."
+    },
+
+    {
+      id: "6",
+      type: "certification",
+      title: "Complete Data Analyst Bootcamp: From Basics to Advanced",
+      issuer: "Udemy – Krish Naik, Jayant Topnani",
+      date: "Dec 17, 2025",
+      skills: ["Python", "Pandas", "NumPy", "SQL", "EDA", "Statistics", "Data Visualization"],
+      image: "/certificate4.jpg",
+      description:
+        "Completed an 89-hour intensive data analyst bootcamp covering the full analytics lifecycle, from data cleaning and EDA to SQL-based analysis and visualization."
+    },
+
+    {
+      id: "5",
       type: "hackathon",
       title: "Smart India Hackathon (SIH) 2025 – Grand Finalist",
       issuer: "Ministry of Education, Government of India",
-      date: "December 08–09, 2025",
+      date: "Dec 08–09, 2025",
       prize: "Grand Finalist",
-      location: "Biju Patnaik University of Technology (BPUT), Rourkela, Odisha",
-      skills: [
-        "Problem Solving",
-        "Innovation",
-        "Team Collaboration",
-        "Full-Stack Development",
-        "System Design",
-        "Time Management",
-        "Presentation Skills",
-        "Real-World Solution Development"
-      ],
+      location: "BPUT, Rourkela, Odisha",
+      skills: ["System Design", "Full-Stack Development", "API Development", "Scalable Architecture"],
       image: "/sih-certificate.jpeg",
       description:
-        "Selected as a Grand Finalist in the Smart India Hackathon (SIH) 2025 – Software Edition, a prestigious national-level innovation challenge organized by the Ministry of Education, Government of India. Represented the team at the Grand Finale hosted at Biju Patnaik University of Technology (BPUT), Rourkela, Odisha, where we designed and developed a real-world, scalable solution under strict timelines."
+        "Selected as a Grand Finalist in the national-level Smart India Hackathon 2025. Built and presented a scalable real-world solution under extreme time constraints."
+    },
+
+    {
+      id: "4",
+      type: "certification",
+      title: "The Complete Full-Stack Web Development Bootcamp",
+      issuer: "Udemy – Dr. Angela Yu",
+      date: "Nov 15, 2025",
+      skills: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB", "REST APIs"],
+      image: "/certificate3.jpg",
+      description:
+        "Completed a comprehensive full-stack bootcamp covering modern frontend, backend, REST APIs, and deployment fundamentals through hands-on projects."
+    },
+
+    {
+      id: "3",
+      type: "certification",
+      title: "Introduction to Data Science",
+      issuer: "Great Learning",
+      date: "Oct 22, 2025",
+      skills: ["Python", "Statistics", "Data Science Fundamentals", "Machine Learning Basics"],
+      image: "/certificate1.png",
+      description:
+        "Built a strong foundation in data science concepts including Python, statistics, and introductory machine learning techniques."
     },
 
     {
@@ -94,122 +145,30 @@ export default function AchievementsSection() {
       type: "award",
       title: "SCOE AVISHKAR 2024 – Project Competition",
       issuer: "Saraswati College of Engineering",
-      date: "April 04, 2024",
+      date: "Apr 04, 2025",
       prize: "2nd Place",
-      location: "Kharghar, Navi Mumbai",
-      skills: [
-        "Project Leadership",
-        "Team Management",
-        "Engineering Innovation",
-        "Technical Presentation"
-      ],
+      location: "Navi Mumbai, India",
+      skills: ["Project Leadership", "Engineering Design", "Technical Presentation"],
       image: "/award1.jpg",
       description:
-        "Secured 2nd place in the SCOE AVISHKAR 2024 Project Competition as Team Leader. Recognized for technical innovation, effective project execution, and leadership in presenting a high-impact engineering solution."
+        "Secured 2nd place in a college-wide engineering project competition for delivering a high-impact technical solution and leading the team."
     },
 
     {
-      id: "3",
-      type: "certification",
-      title: "The Complete Full-Stack Web Development Bootcamp",
-      issuer: "Udemy – Dr. Angela Yu",
-      date: "November 15, 2025",
-      skills: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "REST APIs",
-        "Git & GitHub",
-        "Frontend Development",
-        "Backend Development",
-        "Full-Stack Application Development"
-      ],
-      image: "/certificate3.jpg",
-      description:
-        "Completed an intensive full-stack web development bootcamp instructed by Dr. Angela Yu. Gained hands-on experience building end-to-end web applications using modern frontend and backend technologies, RESTful APIs, and version control best practices."
-    },
-
-    {
-      id: "4",
+      id: "1",
       type: "hackathon",
-      title: "CODECRAFTERS 2.0 – Hackathon",
-      issuer: "Saraswati College of Engineering",
-      date: "March 15–16, 2025",
+      title: "CODECRAFTERS 2.0 Hackathon",
+      issuer: "Coding Club SCOE",
+      date: "Mar 15–16, 2025",
       prize: "Participant",
-      location: "Kharghar, Navi Mumbai",
-      skills: [
-        "Spring Boot",
-        "React",
-        "REST API Development",
-        "Team Leadership",
-        "Problem Solving"
-      ],
+      location: "Navi Mumbai, India",
+      skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
       image: "/hackathon1.jpg",
       description:
-        "Participated in the CODECRAFTERS 2.0 hackathon, representing InitCore. Collaborated with a team to design and develop a digital asset management solution for financial instruments, focusing on backend APIs and frontend integration."
-    },
-
-    {
-      id: "5",
-      type: "certification",
-      title: "Introduction to Data Science",
-      issuer: "Great Learning",
-      date: "October 22, 2025",
-      skills: [
-        "Data Analysis",
-        "Statistics",
-        "Python",
-        "Data Visualization",
-        "Machine Learning Fundamentals"
-      ],
-      image: "/certificate1.png",
-      description:
-        "Successfully completed the Introduction to Data Science course from Great Learning. Built a strong foundation in data analysis, statistical concepts, Python programming for data science, and introductory machine learning techniques."
-    },
-
-    {
-      id: "6",
-      type: "certification",
-      title: "Certification Programme on Aptitude, Lifeskills & Technical Training",
-      issuer: "Saraswati College of Engineering (Facilitated by Campus Credentials)",
-      date: "2025",
-      skills: [
-        "Aptitude & Logical Reasoning",
-        "Communication Skills",
-        "Soft Skills",
-        "Professional Readiness",
-        "Technical Fundamentals"
-      ],
-      image: "/certificate2.png",
-      description:
-        "Completed a structured training program focused on aptitude development, logical reasoning, communication skills, and technical readiness. The program enhanced professional skills essential for industry and career growth."
-    },
-    {
-      id: "7",
-      type: "certification",
-      title: "Complete Data Analyst Bootcamp: From Basics to Advanced",
-      issuer: "Udemy – Krish Naik, Jayant Topnani (KRISHAI Technologies Pvt. Ltd.)",
-      date: "December 17, 2025",
-      skills: [
-        "Data Analysis",
-        "Python",
-        "Pandas",
-        "NumPy",
-        "Data Cleaning",
-        "Exploratory Data Analysis (EDA)",
-        "Statistics",
-        "Data Visualization",
-        "SQL",
-        "Analytical Thinking"
-      ],
-      image: "/certificate4.jpg",
-      description:
-        "Completed an 89-hour comprehensive Data Analyst bootcamp covering the complete data analysis lifecycle. Developed hands-on proficiency in data cleaning, exploratory data analysis, statistical methods, Python-based analytics, SQL querying, and data visualization techniques for real-world datasets."
+        "Participated in a 24-hour hackathon focused on building a digital asset management system with emphasis on backend APIs and frontend integration."
     }
   ];
+
 
 
   const categoryConfig = {
