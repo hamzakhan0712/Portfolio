@@ -37,7 +37,9 @@ interface Achievement {
 
 export default function AchievementsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeFilter, setActiveFilter] = useState<AchievementType | "all">("all");
+  const [activeFilter, setActiveFilter] = useState<AchievementType | "all">(
+    "all",
+  );
   const [fullScreenImage, setFullScreenImage] = useState<{
     url: string;
     title: string;
@@ -51,7 +53,7 @@ export default function AchievementsSection() {
           entry.target.classList.add("reveal-active");
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -62,46 +64,10 @@ export default function AchievementsSection() {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
-    };                     
+    };
   }, []);
 
   const achievements: Achievement[] = [
-    {
-      id: "8",
-      type: "certification",
-      title: "Excel Basics for Data Analysis",
-      issuer: "IBM (Coursera)",
-      date: "Jan 14, 2026",
-      skills: ["Excel", "Data Cleaning", "Data Analysis", "Spreadsheets"],
-      image: "/ibm-excel.png",
-      description:
-        "Gained hands-on experience using Excel for data cleaning, analysis, and basic analytics workflows as part of IBM’s data analytics curriculum."
-    },
-
-    {
-      id: "7",
-      type: "certification",
-      title: "Introduction to Data Analytics",
-      issuer: "IBM (Coursera)",
-      date: "Dec 31, 2025",
-      skills: ["Data Analytics", "Analytical Thinking", "Data Interpretation", "Business Insights"],
-      image: "/ibm-data-analytics.png",
-      description:
-        "Completed IBM’s Introduction to Data Analytics course, focusing on analytical thinking, data-driven decision making, and real-world analytics use cases."
-    },
-
-    {
-      id: "6",
-      type: "certification",
-      title: "Complete Data Analyst Bootcamp: From Basics to Advanced",
-      issuer: "Udemy – Krish Naik, Jayant Topnani",
-      date: "Dec 17, 2025",
-      skills: ["Python", "Pandas", "NumPy", "SQL", "EDA", "Statistics", "Data Visualization"],
-      image: "/certificate4.jpg",
-      description:
-        "Completed an 89-hour intensive data analyst bootcamp covering the full analytics lifecycle, from data cleaning and EDA to SQL-based analysis and visualization."
-    },
-
     {
       id: "5",
       type: "hackathon",
@@ -110,10 +76,15 @@ export default function AchievementsSection() {
       date: "Dec 08–09, 2025",
       prize: "Grand Finalist",
       location: "BPUT, Rourkela, Odisha",
-      skills: ["System Design", "Full-Stack Development", "API Development", "Scalable Architecture"],
+      skills: [
+        "System Design",
+        "Full-Stack Development",
+        "API Development",
+        "Scalable Architecture",
+      ],
       image: "/sih-certificate.jpeg",
       description:
-        "Selected as a Grand Finalist in the national-level Smart India Hackathon 2025. Built and presented a scalable real-world solution under extreme time constraints."
+        "Selected as a Grand Finalist in the national-level Smart India Hackathon 2025. Built and presented a scalable real-world solution under extreme time constraints.",
     },
 
     {
@@ -122,24 +93,19 @@ export default function AchievementsSection() {
       title: "The Complete Full-Stack Web Development Bootcamp",
       issuer: "Udemy – Dr. Angela Yu",
       date: "Nov 15, 2025",
-      skills: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB", "REST APIs"],
+      skills: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "REST APIs",
+      ],
       image: "/certificate3.jpg",
       description:
-        "Completed a comprehensive full-stack bootcamp covering modern frontend, backend, REST APIs, and deployment fundamentals through hands-on projects."
+        "Completed a comprehensive full-stack bootcamp covering modern frontend, backend, REST APIs, and deployment fundamentals through hands-on projects.",
     },
-
-    {
-      id: "3",
-      type: "certification",
-      title: "Introduction to Data Science",
-      issuer: "Great Learning",
-      date: "Oct 22, 2025",
-      skills: ["Python", "Statistics", "Data Science Fundamentals", "Machine Learning Basics"],
-      image: "/certificate1.png",
-      description:
-        "Built a strong foundation in data science concepts including Python, statistics, and introductory machine learning techniques."
-    },
-
     {
       id: "2",
       type: "award",
@@ -148,12 +114,15 @@ export default function AchievementsSection() {
       date: "Apr 04, 2025",
       prize: "2nd Place",
       location: "Navi Mumbai, India",
-      skills: ["Project Leadership", "Engineering Design", "Technical Presentation"],
+      skills: [
+        "Project Leadership",
+        "Engineering Design",
+        "Technical Presentation",
+      ],
       image: "/award1.jpg",
       description:
-        "Secured 2nd place in a college-wide engineering project competition for delivering a high-impact technical solution and leading the team."
+        "Secured 2nd place in a college-wide engineering project competition for delivering a high-impact technical solution and leading the team.",
     },
-
     {
       id: "1",
       type: "hackathon",
@@ -165,14 +134,17 @@ export default function AchievementsSection() {
       skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
       image: "/hackathon1.jpg",
       description:
-        "Participated in a 24-hour hackathon focused on building a digital asset management system with emphasis on backend APIs and frontend integration."
-    }
+        "Participated in a 24-hour hackathon focused on building a digital asset management system with emphasis on backend APIs and frontend integration.",
+    },
   ];
 
-
-
   const categoryConfig = {
-    all: { label: "All", icon: Sparkles, count: achievements.length, color: "primary" },
+    all: {
+      label: "All",
+      icon: Sparkles,
+      count: achievements.length,
+      color: "primary",
+    },
     certification: {
       label: "Certifications",
       icon: Award,
@@ -289,8 +261,8 @@ export default function AchievementsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            Recognitions, certifications, and experiences that demonstrate my skills and
-            dedication to continuous learning.
+            Certifications, hackathons, and recognitions that reflect continuous
+            professional development.
           </motion.p>
         </div>
 
@@ -303,40 +275,40 @@ export default function AchievementsSection() {
           className="mb-12"
         >
           <div className="flex flex-wrap justify-center gap-3">
-            {(Object.keys(categoryConfig) as Array<keyof typeof categoryConfig>).map(
-              (category) => {
-                const config = categoryConfig[category];
-                const Icon = config.icon;
-                const isActive = activeFilter === category;
+            {(
+              Object.keys(categoryConfig) as Array<keyof typeof categoryConfig>
+            ).map((category) => {
+              const config = categoryConfig[category];
+              const Icon = config.icon;
+              const isActive = activeFilter === category;
 
-                return (
-                  <motion.button
-                    key={category}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setActiveFilter(category)}
+              return (
+                <motion.button
+                  key={category}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveFilter(category)}
+                  className={cn(
+                    "relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+                    "flex items-center gap-2",
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                      : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border",
+                  )}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{config.label}</span>
+                  <span
                     className={cn(
-                      "relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
-                      "flex items-center gap-2",
-                      isActive
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                        : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border"
+                      "ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold",
+                      isActive ? "bg-primary-foreground/20" : "bg-muted",
                     )}
                   >
-                     <Icon className="w-4 h-4" />
-                    <span>{config.label}</span>
-                    <span
-                      className={cn(
-                        "ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold",
-                        isActive ? "bg-primary-foreground/20" : "bg-muted"
-                      )}
-                    >
-                      {config.count}
-                    </span>
-                  </motion.button>
-                );
-              }
-            )}
+                    {config.count}
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -370,7 +342,7 @@ export default function AchievementsSection() {
                       "group relative overflow-hidden h-full flex flex-col",
                       "bg-card/50 backdrop-blur-sm rounded-2xl border transition-all duration-300",
                       "hover:shadow-xl hover:shadow-primary/5",
-                      typeConfig.borderColor
+                      typeConfig.borderColor,
                     )}
                   >
                     {/* Image Section */}
@@ -408,11 +380,14 @@ export default function AchievementsSection() {
                           className={cn(
                             "w-full h-full flex items-center justify-center",
                             "bg-gradient-to-br",
-                            typeConfig.gradient
+                            typeConfig.gradient,
                           )}
                         >
                           <TypeIcon
-                            className={cn("w-16 h-16 opacity-30", typeConfig.iconColor)}
+                            className={cn(
+                              "w-16 h-16 opacity-30",
+                              typeConfig.iconColor,
+                            )}
                           />
                         </div>
                       )}
@@ -424,7 +399,7 @@ export default function AchievementsSection() {
                             "backdrop-blur-md border flex items-center gap-1.5 shadow-lg",
                             typeConfig.bgColor,
                             typeConfig.iconColor,
-                            typeConfig.borderColor
+                            typeConfig.borderColor,
                           )}
                         >
                           <TypeIcon className="w-3.5 h-3.5" />
@@ -531,10 +506,14 @@ export default function AchievementsSection() {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
               <Award className="w-10 h-10 text-muted-foreground/50" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">No Achievements Found</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              No Achievements Found
+            </h3>
             <p className="text-muted-foreground mb-6">
-              No {activeFilter !== "all" && categoryConfig[activeFilter].label.toLowerCase()} to
-              display yet.
+              No{" "}
+              {activeFilter !== "all" &&
+                categoryConfig[activeFilter].label.toLowerCase()}{" "}
+              to display yet.
             </p>
             <Button variant="outline" onClick={() => setActiveFilter("all")}>
               View All Achievements
@@ -542,7 +521,6 @@ export default function AchievementsSection() {
           </motion.div>
         )}
       </div>
-
 
       {/* Full Screen Image Dialog */}
       <Dialog
@@ -552,8 +530,6 @@ export default function AchievementsSection() {
         <DialogContent className="max-w-none w-screen h-screen p-0 bg-black/95 backdrop-blur-xl border-none overflow-hidden">
           {fullScreenImage && (
             <div className="relative w-full h-full flex items-center justify-center">
-             
-
               {/* Image Container - Centered */}
               <div className="flex flex-col items-center justify-center gap-6 px-4 py-8 md:px-8 md:py-12 w-full h-full">
                 {/* Image Wrapper with proper constraints */}
@@ -578,8 +554,6 @@ export default function AchievementsSection() {
           )}
         </DialogContent>
       </Dialog>
-
-
     </section>
   );
 }

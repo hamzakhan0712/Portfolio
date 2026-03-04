@@ -1,10 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Folder, Filter, Layout, Server, Search, Smartphone, Monitor, Github, Lock, ImageIcon, X } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  ExternalLink,
+  Folder,
+  Filter,
+  Server,
+  Search,
+  Monitor,
+  Github,
+  Lock,
+  ImageIcon,
+  X,
+  Globe,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-type ProjectCategory = "static" | "fullstack" | "mobile" | "desktop" | "all";
+type ProjectCategory = "backend" | "frontend" | "mobile" | "all";
 
 type Project = {
   title: string;
@@ -30,7 +47,7 @@ function ProjectsSection() {
           entry.target.classList.add("reveal-active");
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -44,158 +61,204 @@ function ProjectsSection() {
     };
   }, []);
 
-
   const projects: Project[] = [
     {
-      title: "Key2YourHome",
-      description: "A comprehensive full-stack real estate platform built with Django that connects property buyers, sellers, and renters. Features intuitive interface, powerful search capabilities, OAuth authentication, and robust property management tools with Grappelli admin interface.",
-      tags: ["Django 5.2.1", "PostgreSQL", "Tailwind CSS", "OAuth", "Grappelli"],
-      category: "fullstack",
+      title: "InitCore CRM — Call Center Platform",
+      description:
+        "Enterprise CRM engineered for a real call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard. Processing 1,000+ transactions daily across concurrent users.",
+      tags: [
+        "Django",
+        "PostgreSQL",
+        "Django Channels",
+        "WebSockets",
+        "REST API",
+        "Python",
+      ],
+      category: "backend",
+      imageUrl: "/crm.png",
+      githubUrl: "https://github.com/hamzakhan0712/InitCore-CRM-CallCenter",
+      liveUrl: "",
+      urltext: "Enterprise Solution (On-premise Deployment)",
+      featured: true,
+    },
+    {
+      title: "Key2YourHome — Real Estate Platform",
+      description:
+        "Backend for a live property listing marketplace. Built the REST API layer, search/filter system, and database schema for 500+ active listings. Query optimization brought API response times down by 45%. OAuth authentication and Grappelli admin interface.",
+      tags: ["Django", "PostgreSQL", "REST API", "OAuth", "Python"],
+      category: "backend",
       imageUrl: "/key2yourhome.png",
       liveUrl: "https://www.key2yourhome.co.in",
       urltext: "www.key2yourhome.co.in",
-      featured: true
-    },
-    {
-      title: "SK Trading Co.",
-      description: "A modern, high-performance import/export trading website built with Next.js 15 and Turbopack. Features comprehensive SEO optimization, secure reCAPTCHA-protected contact forms, Google Sheets integration, and seamless email handling with Nodemailer.",
-      tags: ["Next.js 15", "Turbopack", "Tailwind CSS", "Framer Motion", "Nodemailer", "reCAPTCHA"],
-      category: "static",
-      imageUrl: "/sktrading.png",
-      liveUrl: "https://www.sktradings.in",
-      urltext: "www.sktradings.in",
-      featured: true
-    },
-    {
-      title: "InitCore",
-      description: "A cutting-edge digital solutions company website featuring modern UI/UX design principles. Implemented with performance optimization techniques and smooth animations for enhanced user engagement.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SSR"],
-      category: "static",
-      imageUrl: "/initcore.png",
-      liveUrl: "https://initcore.in",
-      urltext: "www.initcore.in"
-    },
-    {
-      title: "QSync Queue Management",
-      description: "Modern responsive queue management SPA with real-time WebSocket updates. Built with React 19 and Vite, featuring Shadcn UI components, React Query for efficient data fetching, and Zustand for state management. Seamlessly integrates with Java Spring Boot backend.",
-      tags: ["React 19", "Vite", "WebSocket", "React Query", "Zustand", "Shadcn UI"],
-      category: "fullstack",
-      imageUrl: "/qsync.png",
-      githubUrl: "",
-      liveUrl: "",
-      urltext: "Full Stack Application (Backend: Java Spring Boot)"
-    },
-    {
-      title: "InitCore CRM CallCenter",
-      description: "Production-ready CRM system engineered for call centers with Django Channels for real-time WebSocket communication. Features multi-role access, lead management, payment processing, PDF invoice generation, attendance tracking, and comprehensive analytics dashboard.",
-      tags: ["Django", "PostgreSQL", "Django Channels", "WebSocket", "PDF Generation"],
-      category: "fullstack",
-      imageUrl: "/crm.png",
-      githubUrl: "",
-      liveUrl: "",
-      urltext: "Enterprise Solution (On-premise Deployment)"
-    },
-    {
-      title: "ICTMT Conference 2024",
-      description: "Modern conference website for International Conference on Technology, Mathematics, and Teaching built with React 19 and Vite 6. Features smooth Framer Motion animations, Swiper carousels, Radix UI components, and comprehensive event information with responsive design.",
-      tags: ["React 19", "Vite 6", "Framer Motion", "Radix UI", "Swiper"],
-      category: "static",
-      imageUrl: "/ictmt.png",
-      githubUrl: "https://github.com/hamzakhan0712/ICTMT2024-Conference.git",
-      liveUrl: "",
-      urltext: "Conference Website (Source Code Available)"
-    },
-    {
-      title: "Sustainable Technology Conference 2024",
-      description: "Comprehensive digital platform for SUSTECH 2024 conference focusing on green technology, AI for sustainability, and sustainable mobility. Built with React and modern web technologies featuring elegant animations and responsive design for academia and industry collaboration.",
-      tags: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Radix UI"],
-      category: "static",
-      imageUrl: "/sustech.jpg",
-      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2024-Conference.git",
-      liveUrl: "",
-      urltext: "Academic Conference Platform (Open Source)"
-    },
-    {
-      title: "FaceTrack Attendance",
-      description: "Cutting-edge Android application leveraging facial recognition with TensorFlow for contactless student attendance tracking. Built with Kotlin for native performance and Django backend, offering both online and offline functionality with ML-powered accurate identification.",
-      tags: ["Kotlin", "Django", "TensorFlow", "ML Kit", "Android"],
-      category: "mobile",
-      imageUrl: "",
-      githubUrl: "https://github.com/hamzakhan0712/Face_Recognition_attendance_App.git",
-      liveUrl: "",
-      urltext: "Enterprise Mobile Application"
-    },
-    {
-      title: "Tariq Perfumes E-Commerce",
-      description: "Full-stack perfume retail and wholesale platform with dual pricing models, dynamic product catalog, shopping cart, and order processing. Built with Django and AdminLTE, featuring comprehensive inventory management and responsive design optimized for the fragrance industry.",
-      tags: ["Django", "PostgreSQL", "AdminLTE", "JavaScript", "Inventory Management"],
-      category: "fullstack",
-      imageUrl: "/ecommerce.png",
-      githubUrl: "https://github.com/hamzakhan0712/tariq_perfumes.git",
-      liveUrl: "",
-      urltext: "E-Commerce Platform (Source Code Available)"
+      featured: true,
     },
     {
       title: "FlaskSearch API",
-      description: "Production-ready RESTful API integrating Flask with Elasticsearch for powerful full-text search through Shakespeare plays. Demonstrates best practices with lightning-fast search results, flexible query options, and scalable architecture for handling large datasets and high-traffic scenarios.",
-      tags: ["Python 3", "Flask", "Elasticsearch", "REST API", "NoSQL"],
-      category: "fullstack",
+      description:
+        "RESTful search service using Flask and Elasticsearch. Supports full-text search, pagination, and filtering over large document datasets. Designed as a production-deployable standalone microservice with scalable architecture.",
+      tags: ["Flask", "Elasticsearch", "Python", "REST API", "NoSQL"],
+      category: "backend",
       imageUrl: "/flaskapi.png",
-      githubUrl: "https://github.com/hamzakhan0712/FlaskSearch-API.git",
+      githubUrl: "https://github.com/hamzakhan0712/FlaskSearch-API",
       liveUrl: "",
-      urltext: "RESTful Search API"
-    }
+      urltext: "RESTful Search Microservice",
+      featured: true,
+    },
+    {
+      title: "Tariq Perfumes — E-Commerce Backend",
+      description:
+        "Full e-commerce backend for a retail/wholesale perfume business. Product catalog, shopping cart, order management, dual pricing models, and an AdminLTE-based dashboard for store operations.",
+      tags: [
+        "Django",
+        "PostgreSQL",
+        "JavaScript",
+        "Inventory Management",
+        "Python",
+      ],
+      category: "backend",
+      imageUrl: "/ecommerce.png",
+      githubUrl: "https://github.com/hamzakhan0712/TariqPerfumes-Ecommerce",
+      liveUrl: "",
+      urltext: "E-Commerce Platform",
+    },
+    {
+      title: "QSync Queue Management",
+      description:
+        "Queue management system with real-time WebSocket updates. React 19 frontend integrating with a Java Spring Boot backend via React Query. Zustand for state management and Shadcn UI components.",
+      tags: [
+        "React 19",
+        "WebSocket",
+        "React Query",
+        "Zustand",
+        "Spring Boot Integration",
+      ],
+      category: "backend",
+      imageUrl: "/qsync.png",
+      githubUrl: "",
+      liveUrl: "",
+      urltext: "Full Stack Application (Backend: Java Spring Boot)",
+    },
+    {
+      title: "FaceTrack — Attendance System",
+      description:
+        "Android attendance app with facial recognition. Python ML models run on-device for offline processing, synced to a Django backend. Built for student attendance management in institutional settings.",
+      tags: ["Kotlin", "Django", "TensorFlow", "Python", "Android"],
+      category: "mobile",
+      imageUrl: "",
+      githubUrl: "https://github.com/hamzakhan0712/FaceTrack-Attendance",
+      liveUrl: "",
+      urltext: "Mobile App with Django Backend",
+    },
+    {
+      title: "SK Trading Co.",
+      description:
+        "Production website for an import/export business. Next.js 15 with Turbopack, SEO optimization, reCAPTCHA-protected contact forms, Google Sheets integration, and automated email handling with Nodemailer.",
+      tags: [
+        "Next.js 15",
+        "Turbopack",
+        "Tailwind CSS",
+        "Nodemailer",
+        "reCAPTCHA",
+      ],
+      category: "frontend",
+      imageUrl: "/sktrading.png",
+      liveUrl: "https://www.sktradings.in",
+      urltext: "www.sktradings.in",
+    },
+    {
+      title: "InitCore",
+      description:
+        "Digital solutions company website with modern UI/UX design. Implemented with SSR, performance optimization techniques, and smooth animations for enhanced user engagement.",
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SSR"],
+      category: "frontend",
+      imageUrl: "/initcore.png",
+      liveUrl: "https://initcore.in",
+      urltext: "www.initcore.in",
+    },
+    {
+      title: "ICTMT Conference 2024",
+      description:
+        "Conference website for International Conference on Technology, Mathematics, and Teaching. React 19, Vite 6, smooth animations, and responsive design for comprehensive event information.",
+      tags: ["React 19", "Vite 6", "Framer Motion", "Radix UI"],
+      category: "frontend",
+      imageUrl: "/ictmt.png",
+      githubUrl: "https://github.com/hamzakhan0712/ICTMT2024-Conference.git",
+      liveUrl: "",
+      urltext: "Conference Website",
+    },
+    {
+      title: "SUSTECH Conference 2024",
+      description:
+        "Digital platform for SUSTECH 2024 conference on green technology and sustainable mobility. Responsive design with elegant animations for academia and industry collaboration.",
+      tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+      category: "frontend",
+      imageUrl: "/sustech.jpg",
+      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2024-Conference.git",
+      liveUrl: "",
+      urltext: "Academic Conference Platform",
+    },
   ];
 
-
   // Filter projects based on category and search query
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects.filter((project) => {
     const matchesCategory = filter === "all" || project.category === filter;
-    const matchesSearch = searchQuery === "" ||
+    const matchesSearch =
+      searchQuery === "" ||
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      project.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
 
     return matchesCategory && matchesSearch;
   });
 
   const categoryConfig = {
     all: { label: "All Projects", icon: Filter, count: projects.length },
-    static: { label: "Static Websites", icon: Layout, count: projects.filter(p => p.category === "static").length },
-    fullstack: { label: "Full Stack", icon: Server, count: projects.filter(p => p.category === "fullstack").length },
-    mobile: { label: "Mobile Apps", icon: Smartphone, count: projects.filter(p => p.category === "mobile").length },
-    desktop: { label: "Desktop Apps", icon: Monitor, count: projects.filter(p => p.category === "desktop").length },
+    backend: {
+      label: "Backend & APIs",
+      icon: Server,
+      count: projects.filter((p) => p.category === "backend").length,
+    },
+    frontend: {
+      label: "Frontend & Sites",
+      icon: Globe,
+      count: projects.filter((p) => p.category === "frontend").length,
+    },
+    mobile: {
+      label: "Mobile Apps",
+      icon: Monitor,
+      count: projects.filter((p) => p.category === "mobile").length,
+    },
   };
 
   const categoryStyles = {
-    static: {
-      bg: 'bg-blue-500 dark:bg-blue-500',
-      text: 'text-white',
-      border: 'border-blue-500/20',
-      icon: Layout
+    backend: {
+      bg: "bg-green-500 dark:bg-green-500",
+      text: "text-white",
+      border: "border-green-500/20",
+      icon: Server,
     },
-    fullstack: {
-      bg: 'bg-green-500 dark:bg-green-500',
-      text: 'text-white',
-      border: 'border-green-500/20',
-      icon: Server
+    frontend: {
+      bg: "bg-blue-500 dark:bg-blue-500",
+      text: "text-white",
+      border: "border-blue-500/20",
+      icon: Globe,
     },
     mobile: {
-      bg: 'bg-purple-500 dark:bg-purple-500',
-      text: 'text-white',
-      border: 'border-purple-500/20',
-      icon: Smartphone
+      bg: "bg-purple-500 dark:bg-purple-500",
+      text: "text-white",
+      border: "border-purple-500/20",
+      icon: Monitor,
     },
-    desktop: {
-      bg: 'bg-orange-500 dark:bg-orange-500',
-      text: 'text-white',
-      border: 'border-orange-500/20',
-      icon: Monitor
-    }
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="relative py-2 overflow-hidden reveal-container">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="relative py-2 overflow-hidden reveal-container"
+    >
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -254,7 +317,9 @@ function ProjectsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            A showcase of my work across web development, mobile apps, and enterprise solutions built with modern technologies and best practices.
+            Production systems built for real clients — from enterprise CRMs
+            processing 1,000+ daily transactions to REST APIs serving live
+            traffic.
           </motion.p>
         </div>
 
@@ -268,38 +333,43 @@ function ProjectsSection() {
         >
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            {(Object.keys(categoryConfig) as ProjectCategory[]).map((category) => {
-              const config = categoryConfig[category];
-              const Icon = config.icon;
-              const isActive = filter === category;
+            {(Object.keys(categoryConfig) as ProjectCategory[]).map(
+              (category) => {
+                const config = categoryConfig[category];
+                const Icon = config.icon;
+                const isActive = filter === category;
 
-              return (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setFilter(category)}
-                  className={`
+                return (
+                  <motion.button
+                    key={category}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setFilter(category)}
+                    className={`
                     relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300
-                    ${isActive 
-                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25' 
-                      : 'bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border'
+                    ${
+                      isActive
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                        : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border"
                     }
                   `}
-                >
-                  <span className="flex items-center gap-2">
-                    <Icon className="w-4 h-4 " />
-                    <span >{config.label}</span>
-                    <span className={`
+                  >
+                    <span className="flex items-center gap-2">
+                      <Icon className="w-4 h-4 " />
+                      <span>{config.label}</span>
+                      <span
+                        className={`
                       ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold
-                      ${isActive ? 'bg-primary-foreground/20' : 'bg-muted'}
-                    `}>
-                      {config.count}
+                      ${isActive ? "bg-primary-foreground/20" : "bg-muted"}
+                    `}
+                      >
+                        {config.count}
+                      </span>
                     </span>
-                  </span>
-                </motion.button>
-              );
-            })}
+                  </motion.button>
+                );
+              },
+            )}
           </div>
 
           {/* Search Bar */}
@@ -347,7 +417,10 @@ function ProjectsSection() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             >
               {filteredProjects.map((project, index) => {
-                const categoryStyle = categoryStyles[project.category as keyof typeof categoryStyles];
+                const categoryStyle =
+                  categoryStyles[
+                    project.category as keyof typeof categoryStyles
+                  ];
                 const CategoryIcon = categoryStyle.icon;
 
                 return (
@@ -366,11 +439,14 @@ function ProjectsSection() {
                         <motion.div
                           initial={{ scale: 0, rotate: -45 }}
                           animate={{ scale: 1, rotate: 0 }}
-                          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 200,
+                            delay: 0.2,
+                          }}
                           className="absolute top-4 left-4 z-20"
                         >
                           <span className="px-3 py-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-semibold rounded-full shadow-lg flex items-center gap-1">
-                            <span className="animate-pulse">⭐</span>
                             Featured
                           </span>
                         </motion.div>
@@ -393,24 +469,29 @@ function ProjectsSection() {
                               <ImageIcon className="w-8 h-8 text-primary/50" />
                             </div>
                             <div>
-                              <p className="text-sm font-medium text-foreground/70">Preview Coming Soon</p>
-                              <p className="text-xs text-muted-foreground mt-1">{project.title}</p>
+                              <p className="text-sm font-medium text-foreground/70">
+                                Preview Coming Soon
+                              </p>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {project.title}
+                              </p>
                             </div>
                           </div>
                         )}
 
                         {/* Category Badge Overlay */}
                         <div className="absolute top-4 right-4 z-10">
-                          <span className={`
+                          <span
+                            className={`
                             px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md border
                             flex items-center gap-1.5 shadow-lg
                             ${categoryStyle.bg} ${categoryStyle.text} ${categoryStyle.border}
-                          `}>
+                          `}
+                          >
                             <CategoryIcon className="w-3.5 h-3.5" />
-                            {project.category === 'static' && 'Static Site'}
-                            {project.category === 'fullstack' && 'Full Stack'}
-                            {project.category === 'mobile' && 'Mobile'}
-                            {project.category === 'desktop' && 'Desktop'}
+                            {project.category === "backend" && "Backend & API"}
+                            {project.category === "frontend" && "Frontend"}
+                            {project.category === "mobile" && "Mobile"}
                           </span>
                         </div>
                       </CardHeader>
@@ -444,8 +525,17 @@ function ProjectsSection() {
                         {/* Action Buttons */}
                         <div className="flex gap-2 w-full">
                           {project.liveUrl ? (
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                              <Button variant="default" size="sm" className="w-full group/btn">
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <Button
+                                variant="default"
+                                size="sm"
+                                className="w-full group/btn"
+                              >
                                 <span className="flex items-center gap-2">
                                   View Live
                                   <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
@@ -453,8 +543,17 @@ function ProjectsSection() {
                               </Button>
                             </a>
                           ) : project.githubUrl ? (
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                              <Button variant="outline" size="sm" className="w-full group/btn">
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="w-full group/btn"
+                              >
                                 <span className="flex items-center gap-2">
                                   <Github className="w-3.5 h-3.5" />
                                   View Code
@@ -462,7 +561,12 @@ function ProjectsSection() {
                               </Button>
                             </a>
                           ) : (
-                            <Button variant="outline" size="sm" className="flex-1" disabled>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="flex-1"
+                              disabled
+                            >
                               <span className="flex items-center gap-2">
                                 <Lock className="w-3.5 h-3.5" />
                                 Private
@@ -471,8 +575,16 @@ function ProjectsSection() {
                           )}
 
                           {project.githubUrl && project.liveUrl && (
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Button variant="ghost" size="sm" className="aspect-square p-0 w-9">
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="aspect-square p-0 w-9"
+                              >
                                 <Github className="w-4 h-4" />
                               </Button>
                             </a>

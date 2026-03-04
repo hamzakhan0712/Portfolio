@@ -2,7 +2,17 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
-import { Menu, X, User, Code, Briefcase, Mail, Home, ChevronRight,  Award } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  Server,
+  Briefcase,
+  Mail,
+  Home,
+  ChevronRight,
+  Award,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,14 +30,24 @@ export function Navbar({ className }: NavbarProps) {
       setIsScrolled(window.scrollY > 20);
 
       // Determine which section is currently in view with improved detection
-      const sections = ["hero", "about", "projects", "skills","achievements", "contact"];
+      const sections = [
+        "hero",
+        "about",
+        "projects",
+        "skills",
+        "achievements",
+        "contact",
+      ];
       const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
             break;
           }
@@ -68,12 +88,15 @@ export function Navbar({ className }: NavbarProps) {
     { name: "Home", href: "#hero", icon: Home },
     { name: "About", href: "#about", icon: User },
     { name: "Projects", href: "#projects", icon: Briefcase },
-    { name: "Skills", href: "#skills", icon: Code },
+    { name: "Skills", href: "#skills", icon: Server },
     { name: "Achievements", href: "#achievements", icon: Award },
     { name: "Contact", href: "#contact", icon: Mail },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
@@ -100,7 +123,7 @@ export function Navbar({ className }: NavbarProps) {
           isScrolled
             ? "bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm py-3"
             : "bg-transparent py-4",
-          className
+          className,
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6">
@@ -110,9 +133,9 @@ export function Navbar({ className }: NavbarProps) {
             className="group flex items-center gap-2.5 text-xl md:text-2xl font-bold font-serif transition-all duration-300 hover:scale-105"
           >
             <div className="relative w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center transition-all duration-300 group-hover:from-primary/30 group-hover:to-primary/20">
-              <img 
-                src="/me.jpg" 
-                alt="Hamza Khan Logo" 
+              <img
+                src="/me.jpg"
+                alt="Hamza Khan Logo"
                 className="w-full h-full object-cover object-top"
               />
             </div>
@@ -135,14 +158,18 @@ export function Navbar({ className }: NavbarProps) {
                       "relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
                       isActive
                         ? "text-white"
-                        : "text-foreground/70 hover:text-foreground hover:bg-background/50"
+                        : "text-foreground/70 hover:text-foreground hover:bg-background/50",
                     )}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="navbar-active"
                         className="absolute inset-0 bg-primary rounded-full"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        transition={{
+                          type: "spring",
+                          bounce: 0.2,
+                          duration: 0.6,
+                        }}
                       />
                     )}
                     <link.icon className="h-4 w-4 relative z-10" />
@@ -219,7 +246,9 @@ export function Navbar({ className }: NavbarProps) {
               <div className="flex flex-col h-full">
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between p-6 border-b border-border">
-                  <span className="text-lg font-semibold text-foreground">Menu</span>
+                  <span className="text-lg font-semibold text-foreground">
+                    Menu
+                  </span>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -247,16 +276,22 @@ export function Navbar({ className }: NavbarProps) {
                             "flex items-center gap-3 px-4 py-3.5 rounded-lg transition-all duration-200 group",
                             isActive
                               ? "bg-primary text-primary-foreground shadow-md"
-                              : "text-foreground/70 hover:text-foreground hover:bg-secondary"
+                              : "text-foreground/70 hover:text-foreground hover:bg-secondary",
                           )}
                         >
                           <link.icon className="h-5 w-5 transition-transform group-hover:scale-110" />
-                          <span className="font-medium flex-1">{link.name}</span>
+                          <span className="font-medium flex-1">
+                            {link.name}
+                          </span>
                           {isActive && (
                             <motion.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 30,
+                              }}
                             >
                               <ChevronRight className="h-4 w-4" />
                             </motion.div>

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Code, Database, Brain, ExternalLink, ArrowDown, Sparkles } from "lucide-react";
+import {
+  Server,
+  Database,
+  Terminal,
+  ExternalLink,
+  ArrowDown,
+} from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
 
@@ -35,9 +41,10 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20">
-      
-
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20"
+    >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Content */}
@@ -48,24 +55,26 @@ export function HeroSection() {
             className="space-y-6 md:space-y-8 text-center lg:text-left"
           >
             {/* Status Badge */}
-            <motion.div variants={itemVariants} className="inline-flex items-center justify-center lg:justify-start w-full lg:w-auto">
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center justify-center lg:justify-start w-full lg:w-auto"
+            >
               <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm px-4 py-2 text-sm font-medium text-foreground shadow-sm">
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
                 </span>
-                Open to opportunities
+                Available for Backend Roles
               </div>
             </motion.div>
 
             {/* Main Heading */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h1 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl font-bold leading-[1.1] tracking-tight">
-                <span className="block text-foreground">Full Stack Developer</span>
+                <span className="block text-foreground">Backend Developer</span>
                 <span className="block mt-2">
-                  Transitioning to{" "}
                   <span className="gradient-text inline-flex items-center gap-2">
-                    Data Science
+                    Python &middot; Django &middot; REST APIs
                   </span>
                 </span>
               </h1>
@@ -76,8 +85,15 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-base sm:text-lg md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              With <span className="text-foreground font-semibold">3 years of experience</span> in full-stack development specializing in Django and modern web technologies, I'm now expanding into{" "}
-              <span className="text-primary font-semibold">data science and machine learning</span> to build intelligent, data-driven solutions.
+              I build backend systems that run in production. With{" "}
+              <span className="text-foreground font-semibold">
+                3+ years of experience
+              </span>{" "}
+              shipping Django-based REST APIs, real-time WebSocket services, and{" "}
+              <span className="text-primary font-semibold">
+                PostgreSQL-backed architectures
+              </span>{" "}
+              for real clients — not just portfolio pieces.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -85,7 +101,12 @@ export function HeroSection() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
             >
-              <ScrollLink to="projects" smooth={true} duration={800} offset={-80}>
+              <ScrollLink
+                to="projects"
+                smooth={true}
+                duration={800}
+                offset={-80}
+              >
                 <Button
                   size="lg"
                   className="w-full sm:w-auto group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
@@ -98,7 +119,12 @@ export function HeroSection() {
                 </Button>
               </ScrollLink>
 
-              <ScrollLink to="contact" smooth={true} duration={800} offset={-80}>
+              <ScrollLink
+                to="contact"
+                smooth={true}
+                duration={800}
+                offset={-80}
+              >
                 <Button
                   variant="outline"
                   size="lg"
@@ -116,9 +142,9 @@ export function HeroSection() {
               className="flex flex-wrap gap-3 justify-center lg:justify-start pt-4"
             >
               {[
-                { icon: Code, label: "Full Stack Dev", color: "primary" },
-                { icon: Database, label: "Data Engineering", color: "primary" },
-                { icon: Brain, label: "Machine Learning", color: "primary" },
+                { icon: Server, label: "Django & REST APIs", color: "primary" },
+                { icon: Database, label: "PostgreSQL", color: "primary" },
+                { icon: Terminal, label: "DevOps & Cloud", color: "primary" },
               ].map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -128,7 +154,9 @@ export function HeroSection() {
                   <div className="flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 group-hover:bg-primary/20 transition-colors">
                     <item.icon className="w-4 h-4 text-primary" />
                   </div>
-                  <span className="text-sm font-medium text-foreground">{item.label}</span>
+                  <span className="text-sm font-medium text-foreground">
+                    {item.label}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
@@ -140,15 +168,15 @@ export function HeroSection() {
             >
               <div className="text-center lg:text-left">
                 <div className="text-3xl font-bold text-foreground">3+</div>
-                <div className="text-muted-foreground">Years Experience</div>
+                <div className="text-muted-foreground">Years in Production</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-3xl font-bold text-foreground">10+</div>
-                <div className="text-muted-foreground">Projects Completed</div>
+                <div className="text-muted-foreground">Systems Deployed</div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">80%</div>
-                <div className="text-muted-foreground">Client Satisfaction</div>
+                <div className="text-3xl font-bold text-foreground">1K+</div>
+                <div className="text-muted-foreground">Daily Transactions</div>
               </div>
             </motion.div>
           </motion.div>
@@ -164,24 +192,42 @@ export function HeroSection() {
               {/* Decorative Floating Elements */}
               <motion.div
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute -top-6 -right-6 w-20 h-20 bg-primary/20 rounded-2xl blur-2xl"
               />
               <motion.div
                 animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
                 className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/15 rounded-2xl blur-2xl"
               />
               <motion.div
                 animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 2,
+                }}
                 className="absolute top-1/2 -right-8 w-16 h-16 bg-primary/10 rounded-2xl blur-xl"
               />
 
               {/* Main Card */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent backdrop-blur-sm border border-border/50 shadow-2xl"
               />
 
@@ -196,20 +242,20 @@ export function HeroSection() {
                     <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden ring-4 ring-primary/20 ring-offset-4 ring-offset-background shadow-2xl">
                       <img
                         src="/me.jpg"
-                        alt="Hamza Khan - Full Stack Developer"
+                        alt="Hamza Khan - Backend Developer"
                         className="w-full h-full object-cover object-top"
                       />
                     </div>
 
-                    {/* Greeting Badge */}
+                    {/* Tech Badge */}
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 1, type: "spring", stiffness: 200 }}
                       className="absolute -bottom-2 -right-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-lg flex items-center gap-2"
                     >
-                      <span className="animate-wave inline-block">👋</span>
-                      <span>Hello!</span>
+                      <Terminal className="w-4 h-4" />
+                      <span>Backend</span>
                     </motion.div>
                   </motion.div>
                 </div>
@@ -220,8 +266,6 @@ export function HeroSection() {
             </div>
           </motion.div>
         </div>
-
-       
       </div>
     </section>
   );

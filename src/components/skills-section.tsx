@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Server, Database, Cloud, Smartphone, Layers, ChevronRight } from "lucide-react";
+import {
+  Code,
+  Server,
+  Database,
+  Cloud,
+  Layers,
+  ChevronRight,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +22,7 @@ function SkillsSection() {
           entry.target.classList.add("reveal-active");
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -31,106 +38,92 @@ function SkillsSection() {
 
   const skillCategories = [
     {
-      title: "Frontend Development",
-      icon: Code,
-      description: "Building responsive and interactive user interfaces",
-      gradient: "from-blue-500/10 to-cyan-500/10",
-      iconColor: "text-blue-500",
-      borderColor: "border-blue-500/20 hover:border-blue-500/40",
-      skills: [
-        { name: "HTML5", icon: "/icons/html5.svg" },
-        { name: "CSS3", icon: "/icons/css3.svg" },
-        { name: "JavaScript", icon: "/icons/javascript.svg" },
-        { name: "React", icon: "/icons/react.svg" },
-        { name: "Vite", icon: "/icons/Vite.js.svg" },
-        { name: "NextJS", icon: "/icons/Next.js.svg" },
-        { name: "Redux", icon: "/icons/redux.svg" },
-        { name: "Tailwind CSS", icon: "/icons/tailwindcss.svg" },
-        { name: "Shadcn UI", icon: "/icons/shadcn.svg" },
-        { name: "Bootstrap", icon: "/icons/bootstrap.svg" },
-        { name: "Flowbite", icon: "/icons/flowbite.png" },
-      ],
-    },
-    {
       title: "Backend Development",
       icon: Server,
-      description: "Creating scalable server-side applications",
+      description:
+        "Core expertise — building production REST APIs and real-time services",
       gradient: "from-green-500/10 to-emerald-500/10",
       iconColor: "text-green-500",
       borderColor: "border-green-500/20 hover:border-green-500/40",
       skills: [
         { name: "Python", icon: "/icons/python.svg" },
-        { name: "Flask", icon: "/icons/flask.svg" },
         { name: "Django", icon: "/icons/django.svg" },
-         { name: "Fast APIs", icon: "/icons/FastAPI.svg" },
+        { name: "Flask", icon: "/icons/flask.svg" },
+        { name: "FastAPI", icon: "/icons/FastAPI.svg" },
         { name: "REST APIs", icon: "/icons/api.svg" },
-
-        
       ],
     },
     {
-      title: "Database Management",
+      title: "Databases",
       icon: Database,
-      description: "Designing and managing data storage solutions",
+      description: "Schema design, query optimization, and data management",
       gradient: "from-purple-500/10 to-pink-500/10",
       iconColor: "text-purple-500",
       borderColor: "border-purple-500/20 hover:border-purple-500/40",
       skills: [
-        { name: "MySQL", icon: "/icons/mysql.svg" },
         { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
+        { name: "MySQL", icon: "/icons/mysql.svg" },
         { name: "SQLite", icon: "/icons/sqlite.svg" },
       ],
     },
     {
       title: "DevOps & Cloud",
       icon: Cloud,
-      description: "Deploying and maintaining cloud infrastructure",
+      description: "Deployment, containerization, and cloud infrastructure",
       gradient: "from-orange-500/10 to-red-500/10",
       iconColor: "text-orange-500",
       borderColor: "border-orange-500/20 hover:border-orange-500/40",
       skills: [
+        { name: "Docker", icon: "/icons/docker.svg" },
         { name: "AWS", icon: "/icons/aws.svg" },
         { name: "Google Cloud", icon: "/icons/googlecloud.svg" },
-         { name: "Digital Ocean", icon: "/icons/DigitalOcean.svg" },
-          { name: "Hostinger", icon: "/icons/hostinger.svg" },
-        { name: "Vercel", icon: "/icons/vercel.svg" },
+        { name: "Digital Ocean", icon: "/icons/DigitalOcean.svg" },
         { name: "Render", icon: "/icons/render.svg" },
-        { name: "Docker", icon: "/icons/docker.svg" },
+        { name: "Vercel", icon: "/icons/vercel.svg" },
         { name: "GitHub", icon: "/icons/github.svg" },
         { name: "Postman", icon: "/icons/postman.svg" },
       ],
     },
     {
-      title: "Mobile Development",
-      icon: Smartphone,
-      description: "Building cross-platform mobile applications",
-      gradient: "from-indigo-500/10 to-violet-500/10",
-      iconColor: "text-indigo-500",
-      borderColor: "border-indigo-500/20 hover:border-indigo-500/40",
+      title: "Frontend (Supporting)",
+      icon: Code,
+      description:
+        "Supporting role — building interfaces that connect to my backends",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconColor: "text-blue-500",
+      borderColor: "border-blue-500/20 hover:border-blue-500/40",
       skills: [
-        { name: "Kotlin", icon: "/icons/kotlin.svg" },
-        { name: "Jetpack Compose", icon: "/icons/jetpack.svg" },
-        { name: "Android SDK", icon: "/icons/android.svg" },
+        { name: "React", icon: "/icons/react.svg" },
+        { name: "NextJS", icon: "/icons/Next.js.svg" },
+        { name: "JavaScript", icon: "/icons/javascript.svg" },
+        { name: "Tailwind CSS", icon: "/icons/tailwindcss.svg" },
+        { name: "HTML5", icon: "/icons/html5.svg" },
+        { name: "CSS3", icon: "/icons/css3.svg" },
       ],
     },
     {
-      title: "Data Science & ML",
+      title: "Languages & Tools",
       icon: Layers,
-      description: "Exploring machine learning and data analytics",
+      description:
+        "Programming languages and development tools I use regularly",
       gradient: "from-teal-500/10 to-cyan-500/10",
       iconColor: "text-teal-500",
       borderColor: "border-teal-500/20 hover:border-teal-500/40",
       skills: [
         { name: "Python", icon: "/icons/python.svg" },
-        { name: "Pandas", icon: "/icons/Pandas.svg" },
-        { name: "NumPy", icon: "/icons/NumPy.svg" },
-        { name: "Jupyter", icon: "/icons/Jupyter.svg" },
+        { name: "Kotlin", icon: "/icons/kotlin.svg" },
+        { name: "Vite", icon: "/icons/Vite.js.svg" },
+        { name: "Android SDK", icon: "/icons/android.svg" },
       ],
     },
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="relative py-20 md:py-32 overflow-hidden reveal-container">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="relative py-20 md:py-32 overflow-hidden reveal-container"
+    >
       {/* Decorative Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -176,7 +169,8 @@ function SkillsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            A comprehensive toolkit spanning full-stack development, cloud infrastructure, and emerging data science technologies.
+            Backend-first toolkit spanning Python frameworks, databases, cloud
+            infrastructure, and supporting frontend technologies.
           </motion.p>
         </div>
 
@@ -184,7 +178,7 @@ function SkillsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {skillCategories.map((category, categoryIndex) => {
             const Icon = category.icon;
-            
+
             return (
               <motion.div
                 key={categoryIndex}
@@ -200,34 +194,41 @@ function SkillsSection() {
                     "group relative overflow-hidden h-full transition-all duration-500",
                     "bg-card/50 backdrop-blur-sm border",
                     category.borderColor,
-                    hoveredCard === categoryIndex && "shadow-xl shadow-primary/5 -translate-y-2"
+                    hoveredCard === categoryIndex &&
+                      "shadow-xl shadow-primary/5 -translate-y-2",
                   )}
                 >
                   {/* Gradient Overlay */}
-                  <div className={cn(
-                    "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                    "bg-gradient-to-br",
-                    category.gradient
-                  )} />
+                  <div
+                    className={cn(
+                      "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                      "bg-gradient-to-br",
+                      category.gradient,
+                    )}
+                  />
 
                   <CardHeader className="relative pb-4">
                     <div className="flex items-start justify-between mb-3">
-                      <div className={cn(
-                        "w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300",
-                        "bg-secondary/50 group-hover:scale-110",
-                        category.gradient
-                      )}>
+                      <div
+                        className={cn(
+                          "w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300",
+                          "bg-secondary/50 group-hover:scale-110",
+                          category.gradient,
+                        )}
+                      >
                         <Icon className={cn("w-7 h-7", category.iconColor)} />
                       </div>
                       <motion.div
                         initial={{ opacity: 0, x: -10 }}
-                        animate={{ 
+                        animate={{
                           opacity: hoveredCard === categoryIndex ? 1 : 0,
-                          x: hoveredCard === categoryIndex ? 0 : -10
+                          x: hoveredCard === categoryIndex ? 0 : -10,
                         }}
                         transition={{ duration: 0.3 }}
                       >
-                        <ChevronRight className={cn("w-5 h-5", category.iconColor)} />
+                        <ChevronRight
+                          className={cn("w-5 h-5", category.iconColor)}
+                        />
                       </motion.div>
                     </div>
                     <CardTitle className="text-xl font-bold mb-2">
@@ -246,18 +247,20 @@ function SkillsSection() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
-                          transition={{ 
-                            duration: 0.3, 
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05 
+                          transition={{
+                            duration: 0.3,
+                            delay: categoryIndex * 0.1 + skillIndex * 0.05,
                           }}
                           whileHover={{ scale: 1.1, y: -2 }}
                           className="flex flex-col items-center gap-2 group/skill"
                         >
-                          <div className={cn(
-                            "w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300",
-                            "bg-secondary/30 group-hover/skill:bg-secondary/50",
-                            "border border-border/30 group-hover/skill:border-border/60"
-                          )}>
+                          <div
+                            className={cn(
+                              "w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300",
+                              "bg-secondary/30 group-hover/skill:bg-secondary/50",
+                              "border border-border/30 group-hover/skill:border-border/60",
+                            )}
+                          >
                             <img
                               src={skill.icon}
                               alt={skill.name}
@@ -281,10 +284,12 @@ function SkillsSection() {
                         <span className="text-muted-foreground font-medium">
                           Technologies
                         </span>
-                        <span className={cn(
-                          "px-2.5 py-1 rounded-full font-semibold",
-                          "bg-secondary/50 text-foreground"
-                        )}>
+                        <span
+                          className={cn(
+                            "px-2.5 py-1 rounded-full font-semibold",
+                            "bg-secondary/50 text-foreground",
+                          )}
+                        >
                           {category.skills.length}
                         </span>
                       </div>
@@ -305,10 +310,9 @@ function SkillsSection() {
           className="mt-16 text-center"
         >
           <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            Continuously learning and adapting to new technologies. Currently expanding expertise in{" "}
-            <span className="text-primary font-semibold">Machine Learning</span>,{" "}
-            <span className="text-primary font-semibold">Data Analytics</span>, and{" "}
-            <span className="text-primary font-semibold">AI Integration</span>.
+            Primary focus on backend systems and API architecture. Frontend
+            skills are used in a supporting capacity to ship complete products
+            when needed.
           </p>
         </motion.div>
       </div>

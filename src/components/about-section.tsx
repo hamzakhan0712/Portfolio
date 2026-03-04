@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-import { User, Code, Briefcase, Brain, Database, BookOpen, ExternalLink, TrendingUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { User, Server, Briefcase, Database, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 function AboutSection() {
@@ -13,7 +12,7 @@ function AboutSection() {
           entry.target.classList.add("reveal-active");
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -29,25 +28,29 @@ function AboutSection() {
 
   const journey = [
     {
-      year: "2021-2024",
-      title: "Full Stack Developer",
-      icon: Code,
-      description: "Built scalable web applications using Django, React, and modern JavaScript frameworks. Delivered 10+ production-ready projects.",
-      highlight: "3 Years Experience",
+      year: "2021–2023",
+      title: "Freelance Backend Developer",
+      icon: Server,
+      description:
+        "Started building production systems for real clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling real user traffic and live deployments.",
+      highlight: "Production Experience",
     },
     {
-      year: "2025-Present",
-      title: "Transitioning to Data Science",
-      icon: Brain,
-      description: "Expanding expertise into machine learning, data analysis, and AI. Building intelligent solutions that combine development with data science.",
-      highlight: "Active Learning",
+      year: "2023–Present",
+      title: "Backend Engineer & System Builder",
+      icon: Database,
+      description:
+        "Architected enterprise-grade systems including a CRM processing 1,000+ daily transactions, a real estate platform with 500+ active listings, and real-time WebSocket services.",
+      highlight: "Enterprise Systems",
     },
   ];
 
-
-
   return (
-    <section id="about" ref={sectionRef} className="relative py-12 overflow-hidden reveal-container">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative py-12 overflow-hidden reveal-container"
+    >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
@@ -68,7 +71,7 @@ function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
-            My <span className="gradient-text">Journey</span> & Expertise
+            Background & <span className="gradient-text">Experience</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +80,8 @@ function AboutSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            From building robust web applications to exploring the power of data science combining technical excellence with continuous learning.
+            From freelancing for real clients since 2021 to building enterprise
+            systems that handle production traffic daily.
           </motion.p>
         </div>
 
@@ -95,19 +99,28 @@ function AboutSection() {
               <div className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm shadow-2xl">
                 <img
                   src="/me.jpg"
-                  alt="Hamza Khan - Full Stack Developer transitioning to Data Science"
+                  alt="Hamza Khan - Backend Developer"
                   className="w-full h-full object-cover object-top"
                 />
 
                 {/* Floating Decorative Elements */}
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-2xl"
                 />
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
                   className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/15 rounded-full blur-2xl"
                 />
               </div>
@@ -121,7 +134,9 @@ function AboutSection() {
                 className="absolute -bottom-8 -right-4 md:-right-8 p-4 md:p-6 glass-card rounded-2xl border border-border/50 shadow-2xl max-w-xs bg-background/95 backdrop-blur-md"
               >
                 <p className="font-serif italic text-sm md:text-base text-muted-foreground">
-                  "Data is the new oil, but code is the refinery that transforms it into insights."
+                  "Most of my projects were for clients who needed working
+                  systems, not demos — real constraints, real traffic, real
+                  users."
                 </p>
               </motion.div>
             </div>
@@ -145,10 +160,23 @@ function AboutSection() {
               </h3>
               <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  I'm a passionate <span className="text-foreground font-semibold">full-stack developer</span> with <span className="text-primary font-semibold">3 years of experience</span> building scalable web applications. My expertise spans across Django, React, RESTAPI and modern cloud technologies.
+                  I'm a{" "}
+                  <span className="text-foreground font-semibold">
+                    backend developer
+                  </span>{" "}
+                  with{" "}
+                  <span className="text-primary font-semibold">
+                    3+ years of production experience
+                  </span>{" "}
+                  building Django-based REST APIs, real-time WebSocket services,
+                  and PostgreSQL-backed architectures for real clients.
                 </p>
                 <p>
-                  Currently, I'm on an exciting journey <span className="text-foreground font-semibold">transitioning into data science</span>, combining my strong development background with machine learning and data analytics to create intelligent, data-driven solutions that solve real-world problems.
+                  I started freelancing in 2021 while studying B.Tech in
+                  Computer Science (Data Science) at the University of Mumbai.
+                  That experience — deploying on actual servers, handling real
+                  user traffic, maintaining code other people depend on — has
+                  shaped how I approach backend work.
                 </p>
               </div>
             </div>
@@ -178,13 +206,19 @@ function AboutSection() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                          <h4 className="text-lg font-bold text-foreground">{item.title}</h4>
+                          <h4 className="text-lg font-bold text-foreground">
+                            {item.title}
+                          </h4>
                           <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
                             {item.highlight}
                           </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mb-2">{item.year}</p>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {item.year}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -193,8 +227,6 @@ function AboutSection() {
             </div>
           </motion.div>
         </div>
-
-      
       </div>
     </section>
   );

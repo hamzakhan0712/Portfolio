@@ -1,16 +1,15 @@
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  MapPin, 
-  Heart, 
+import {
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
   ArrowUp,
-  Globe,
   FileText,
   Code,
   Briefcase,
+  Globe,
   Send,
-  ExternalLink
+  ExternalLink,
 } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { motion } from "framer-motion";
@@ -24,25 +23,18 @@ function Footer() {
   };
 
   const socialLinks = [
-    { 
-      icon: Github, 
-      href: "https://github.com/hamzakhan0712", 
+    {
+      icon: Github,
+      href: "https://github.com/hamzakhan0712",
       label: "GitHub",
-      color: "hover:text-gray-900 dark:hover:text-white"
+      color: "hover:text-gray-900 dark:hover:text-white",
     },
-    { 
-      icon: Linkedin, 
-      href: "https://linkedin.com/in/yourprofile", 
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/hamza-khan-3a2b0024a/",
       label: "LinkedIn",
-      color: "hover:text-blue-600"
+      color: "hover:text-blue-600",
     },
-    { 
-      icon: Globe, 
-      href: "https://initcore.vercel.app/", 
-      label: "Friends Developer's Group",
-      color: "hover:text-indigo-600"
-    },
-
   ];
 
   const quickLinks = [
@@ -56,8 +48,11 @@ function Footer() {
 
   const resources = [
     { name: "Resume", href: "/resume.pdf", external: true },
-    { name: "Source Code", href: "https://github.com/hamzakhan0712/portfolio", external: true },
- 
+    {
+      name: "Source Code",
+      href: "https://github.com/hamzakhan0712/portfolio",
+      external: true,
+    },
   ];
 
   return (
@@ -76,22 +71,23 @@ function Footer() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-lg overflow-hidden">
-                  <img 
-                    src="/me.jpg" 
-                    alt="Hamza Khan" 
+                  <img
+                    src="/me.jpg"
+                    alt="Hamza Khan"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <h3 className="text-2xl font-bold gradient-text">Hamza Khan</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Full-stack developer passionate about creating innovative digital solutions 
-                with modern technologies and clean design principles.
+                Backend developer specializing in Django REST APIs, WebSocket
+                services, and PostgreSQL-backed architectures for production
+                systems.
               </p>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Mail className="h-4 w-4 text-primary" />
-                  <a 
+                  <a
                     href="mailto:hamza81khan81@gmail.com"
                     className="hover:text-primary transition-colors"
                   >
@@ -150,7 +146,9 @@ function Footer() {
                     <a
                       href={resource.href}
                       target={resource.external ? "_blank" : undefined}
-                      rel={resource.external ? "noopener noreferrer" : undefined}
+                      rel={
+                        resource.external ? "noopener noreferrer" : undefined
+                      }
                       download={resource.name === "Resume"}
                       className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
@@ -228,8 +226,10 @@ function Footer() {
               className="flex items-center gap-4"
             >
               <p className="text-sm text-muted-foreground flex items-center">
-                Made with <Heart className="h-4 w-4 mx-1 text-red-500 animate-pulse" /> using 
-                <span className="ml-1 font-semibold text-foreground">Vite + TypeScript</span>
+                Built with
+                <span className="ml-1 font-semibold text-foreground">
+                  React + TypeScript
+                </span>
               </p>
             </motion.div>
           </div>
