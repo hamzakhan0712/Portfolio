@@ -74,8 +74,6 @@ function SkillsSection() {
       iconColor: "text-orange-500",
       borderColor: "border-orange-500/20 hover:border-orange-500/40",
       skills: [
-        { name: "Docker", icon: "/icons/docker.svg" },
-        { name: "AWS", icon: "/icons/aws.svg" },
         { name: "Google Cloud", icon: "/icons/googlecloud.svg" },
         { name: "Digital Ocean", icon: "/icons/DigitalOcean.svg" },
         { name: "Render", icon: "/icons/render.svg" },
@@ -110,7 +108,6 @@ function SkillsSection() {
       iconColor: "text-teal-500",
       borderColor: "border-teal-500/20 hover:border-teal-500/40",
       skills: [
-        { name: "Python", icon: "/icons/python.svg" },
         { name: "Kotlin", icon: "/icons/kotlin.svg" },
         { name: "Vite", icon: "/icons/Vite.js.svg" },
         { name: "Android SDK", icon: "/icons/android.svg" },
