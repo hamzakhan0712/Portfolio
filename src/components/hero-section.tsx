@@ -85,15 +85,12 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-base sm:text-lg md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              I build backend systems that run in production. With{" "}
-              <span className="text-foreground font-semibold">
-                3+ years of experience
-              </span>{" "}
-              shipping Django-based REST APIs, real-time WebSocket services, and{" "}
+              I build backend systems that run in production — from a CRM
+              handling 1,000+ daily call center transactions to a live real
+              estate platform serving real users across India.{" "}
               <span className="text-primary font-semibold">
-                PostgreSQL-backed architectures
-              </span>{" "}
-              for real clients — not just portfolio pieces.
+                Django · PostgreSQL · WebSockets · REST APIs
+              </span>
             </motion.p>
 
             {/* CTA Buttons */}
@@ -118,6 +115,20 @@ export function HeroSection() {
                   </span>
                 </Button>
               </ScrollLink>
+
+              <a href="/resume.pdf" download>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto group relative overflow-hidden border-2 border-border hover:border-primary/50 bg-background/50 hover:bg-background backdrop-blur-sm transition-all duration-300"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="relative flex items-center gap-2">
+                    Download Resume
+                    <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-1" />
+                  </span>
+                </Button>
+              </a>
 
               <ScrollLink
                 to="contact"
@@ -167,7 +178,7 @@ export function HeroSection() {
               className="flex flex-wrap gap-8 justify-center lg:justify-start pt-4 text-sm"
             >
               <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">3+</div>
+                <div className="text-3xl font-bold text-foreground">4+</div>
                 <div className="text-muted-foreground">Years in Production</div>
               </div>
               <div className="text-center lg:text-left">
@@ -177,6 +188,21 @@ export function HeroSection() {
               <div className="text-center lg:text-left">
                 <div className="text-3xl font-bold text-foreground">1K+</div>
                 <div className="text-muted-foreground">Daily Transactions</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl font-bold text-foreground">50+</div>
+                <div className="text-muted-foreground">Concurrent Users</div>
+              </div>
+            </motion.div>
+
+            {/* Education Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center justify-center lg:justify-start w-full lg:w-auto"
+            >
+              <div className="inline-flex items-center rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm px-4 py-2 text-sm font-medium text-foreground shadow-sm">
+                <span className="text-primary mr-2">📚</span>
+                B.Tech CSE · Graduating July 2026
               </div>
             </motion.div>
           </motion.div>

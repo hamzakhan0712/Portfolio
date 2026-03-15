@@ -65,7 +65,7 @@ function ProjectsSection() {
     {
       title: "InitCore CRM — Call Center Platform",
       description:
-        "Enterprise CRM engineered for a real call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard. Processing 1,000+ transactions daily across concurrent users.",
+        "Enterprise CRM engineered for a real call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard. Processing 1,000+ transactions daily with 50+ concurrent users.",
       tags: [
         "Django",
         "PostgreSQL",
@@ -84,7 +84,7 @@ function ProjectsSection() {
     {
       title: "Key2YourHome — Real Estate Platform",
       description:
-        "Backend for a live property listing marketplace. Built the REST API layer, search/filter system, and database schema for 500+ active listings. Query optimization brought API response times down by 45%. OAuth authentication and Grappelli admin interface.",
+        "Backend for a live property listing marketplace. Built the REST API layer, search/filter system, and database schema for 500+ active listings. Query optimization brought API response times down by 45%. OAuth authentication and Grappelli admin interface for real estate agents.",
       tags: ["Django", "PostgreSQL", "REST API", "OAuth", "Python"],
       category: "backend",
       imageUrl: "/key2yourhome.png",
@@ -95,7 +95,7 @@ function ProjectsSection() {
     {
       title: "FlaskSearch API",
       description:
-        "RESTful search service using Flask and Elasticsearch. Supports full-text search, pagination, and filtering over large document datasets. Designed as a production-deployable standalone microservice with scalable architecture.",
+        "RESTful search service using Flask and Elasticsearch for full-text search across Shakespeare's complete works corpus. Supports pagination, filtering, and advanced queries over large document datasets. Designed as a production-deployable standalone microservice with scalable architecture.",
       tags: ["Flask", "Elasticsearch", "Python", "REST API", "NoSQL"],
       category: "backend",
       imageUrl: "/flaskapi.png",

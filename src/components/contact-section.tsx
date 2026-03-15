@@ -638,8 +638,8 @@ function ContactSection() {
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
             <CheckCircle2 className="w-5 h-5 text-primary" />
             <p className="text-sm font-medium">
-              Average response time:{" "}
-              <span className="text-primary">24-48 hours</span>
+              Open to opportunities{" "}
+              <span className="text-primary">— responding within 24 hours</span>
             </p>
           </div>
         </motion.div>

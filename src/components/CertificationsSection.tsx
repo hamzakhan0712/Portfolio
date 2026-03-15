@@ -69,6 +69,39 @@ export default function AchievementsSection() {
 
   const achievements: Achievement[] = [
     {
+      id: "8",
+      type: "certification",
+      title: "Data Analytics Bootcamp",
+      issuer: "Udemy – Krish Naik",
+      date: "Completed",
+      duration: "89 hours",
+      skills: [
+        "Python",
+        "Data Analysis",
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "SQL",
+        "Statistics",
+      ],
+      image: "/certificate4.jpg",
+      description:
+        "Comprehensive data analytics bootcamp covering data manipulation, statistical analysis, visualization, and SQL for real-world data science applications.",
+    },
+    {
+      id: "6",
+      type: "hackathon",
+      title: "CodeCrafters 2.0 Hackathon",
+      issuer: "Coding Club, SCOE",
+      date: "Completed",
+      prize: "Participant",
+      location: "Navi Mumbai, India",
+      skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
+      image: "/hackathon1 .jpg",
+      description:
+        "24-hour hackathon focused on building scalable systems with emphasis on backend APIs and modern frontend integration using Spring Boot and React.",
+    },
+    {
       id: "5",
       type: "hackathon",
       title: "Smart India Hackathon (SIH) 2025 – Grand Finalist",
@@ -123,19 +156,6 @@ export default function AchievementsSection() {
       description:
         "Secured 2nd place in a college-wide engineering project competition for delivering a high-impact technical solution and leading the team.",
     },
-    {
-      id: "1",
-      type: "hackathon",
-      title: "CODECRAFTERS 2.0 Hackathon",
-      issuer: "Coding Club SCOE",
-      date: "Mar 15–16, 2025",
-      prize: "Participant",
-      location: "Navi Mumbai, India",
-      skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
-      image: "/hackathon1.jpg",
-      description:
-        "Participated in a 24-hour hackathon focused on building a digital asset management system with emphasis on backend APIs and frontend integration.",
-    },
   ];
 
   const categoryConfig = {
@@ -156,12 +176,6 @@ export default function AchievementsSection() {
       icon: Code2,
       count: achievements.filter((a) => a.type === "hackathon").length,
       color: "purple",
-    },
-    internship: {
-      label: "Internships",
-      icon: Briefcase,
-      count: achievements.filter((a) => a.type === "internship").length,
-      color: "green",
     },
     award: {
       label: "Awards",
@@ -191,13 +205,6 @@ export default function AchievementsSection() {
         iconColor: "text-purple-500",
         borderColor: "border-purple-500/30",
         bgColor: "bg-purple-500/10",
-      },
-      internship: {
-        icon: Briefcase,
-        gradient: "from-green-500/10 to-emerald-500/10",
-        iconColor: "text-green-500",
-        borderColor: "border-green-500/30",
-        bgColor: "bg-green-500/10",
       },
       award: {
         icon: Trophy,

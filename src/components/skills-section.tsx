@@ -48,8 +48,8 @@ function SkillsSection() {
       skills: [
         { name: "Python", icon: "/icons/python.svg" },
         { name: "Django", icon: "/icons/django.svg" },
+        { name: "Django Channels", icon: "/icons/django.svg" },
         { name: "Flask", icon: "/icons/flask.svg" },
-        { name: "FastAPI", icon: "/icons/FastAPI.svg" },
         { name: "REST APIs", icon: "/icons/api.svg" },
       ],
     },
@@ -64,6 +64,7 @@ function SkillsSection() {
         { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
         { name: "MySQL", icon: "/icons/mysql.svg" },
         { name: "SQLite", icon: "/icons/sqlite.svg" },
+        { name: "Elasticsearch", icon: "/icons/elasticsearch.svg" },
       ],
     },
     {
@@ -74,12 +75,12 @@ function SkillsSection() {
       iconColor: "text-orange-500",
       borderColor: "border-orange-500/20 hover:border-orange-500/40",
       skills: [
+        { name: "Docker", icon: "/icons/docker.svg" },
         { name: "Google Cloud", icon: "/icons/googlecloud.svg" },
         { name: "Digital Ocean", icon: "/icons/DigitalOcean.svg" },
         { name: "Render", icon: "/icons/render.svg" },
         { name: "Vercel", icon: "/icons/vercel.svg" },
         { name: "GitHub", icon: "/icons/github.svg" },
-        { name: "Postman", icon: "/icons/postman.svg" },
       ],
     },
     {

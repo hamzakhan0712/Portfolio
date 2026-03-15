@@ -28,20 +28,31 @@ function AboutSection() {
 
   const journey = [
     {
-      year: "2021–2023",
+      year: "2021–2025",
       title: "Freelance Backend Developer",
+      subtitle: "Self Employed",
       icon: Server,
       description:
-        "Started building production systems for real clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling real user traffic and live deployments.",
+        "Built production systems for real clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling real user traffic and live deployments.",
       highlight: "Production Experience",
     },
     {
-      year: "2023–Present",
-      title: "Backend Engineer & System Builder",
+      year: "Sept–Nov 2025",
+      title: "Full-Stack Developer",
+      subtitle: "Brandenbed Living Spaces, Berlin",
+      icon: Briefcase,
+      description:
+        "Developed full-stack solutions for an international property tech company. Collaborated with European teams on scalable backend systems and modern frontend integration.",
+      highlight: "International Client",
+    },
+    {
+      year: "2026",
+      title: "B.Tech CSE (Data Science)",
+      subtitle: "University of Mumbai",
       icon: Database,
       description:
-        "Architected enterprise-grade systems including a CRM processing 1,000+ daily transactions, a real estate platform with 500+ active listings, and real-time WebSocket services.",
-      highlight: "Enterprise Systems",
+        "Pursuing degree in Computer Science with Data Science specialization while maintaining production systems and contributing to open-source projects.",
+      highlight: "Education",
     },
   ];
 
@@ -125,7 +136,7 @@ function AboutSection() {
                 />
               </div>
 
-              {/* Quote Card */}
+              {/* Stat Overlay - 5 live production systems */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -133,10 +144,12 @@ function AboutSection() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="absolute -bottom-8 -right-4 md:-right-8 p-4 md:p-6 glass-card rounded-2xl border border-border/50 shadow-2xl max-w-xs bg-background/95 backdrop-blur-md"
               >
-                <p className="font-serif italic text-sm md:text-base text-muted-foreground">
-                  "Most of my projects were for clients who needed working
-                  systems, not demos — real constraints, real traffic, real
-                  users."
+                <p className="text-sm font-semibold text-foreground mb-1">
+                  5 Live Production Systems
+                </p>
+                <p className="font-serif text-xs text-muted-foreground">
+                  From CRM to real estate platforms, deployed and maintained by
+                  real users.
                 </p>
               </motion.div>
             </div>
@@ -166,7 +179,7 @@ function AboutSection() {
                   </span>{" "}
                   with{" "}
                   <span className="text-primary font-semibold">
-                    3+ years of production experience
+                    4+ years of production experience
                   </span>{" "}
                   building Django-based REST APIs, real-time WebSocket services,
                   and PostgreSQL-backed architectures for real clients.
@@ -209,6 +222,11 @@ function AboutSection() {
                           <h4 className="text-lg font-bold text-foreground">
                             {item.title}
                           </h4>
+                          {item.subtitle && (
+                            <p className="text-sm text-muted-foreground">
+                              {item.subtitle}
+                            </p>
+                          )}
                           <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
                             {item.highlight}
                           </span>
