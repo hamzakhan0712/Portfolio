@@ -69,39 +69,6 @@ export default function AchievementsSection() {
 
   const achievements: Achievement[] = [
     {
-      id: "8",
-      type: "certification",
-      title: "Data Analytics Bootcamp",
-      issuer: "Udemy – Krish Naik",
-      date: "Completed",
-      duration: "89 hours",
-      skills: [
-        "Python",
-        "Data Analysis",
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "SQL",
-        "Statistics",
-      ],
-      image: "/certificate4.jpg",
-      description:
-        "Comprehensive data analytics bootcamp covering data manipulation, statistical analysis, visualization, and SQL for real-world data science applications.",
-    },
-    {
-      id: "6",
-      type: "hackathon",
-      title: "CodeCrafters 2.0 Hackathon",
-      issuer: "Coding Club, SCOE",
-      date: "Completed",
-      prize: "Participant",
-      location: "Navi Mumbai, India",
-      skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
-      image: "/hackathon1 .jpg",
-      description:
-        "24-hour hackathon focused on building scalable systems with emphasis on backend APIs and modern frontend integration using Spring Boot and React.",
-    },
-    {
       id: "5",
       type: "hackathon",
       title: "Smart India Hackathon (SIH) 2025 – Grand Finalist",
@@ -119,25 +86,18 @@ export default function AchievementsSection() {
       description:
         "Selected as a Grand Finalist in the national-level Smart India Hackathon 2025. Built and presented a scalable real-world solution under extreme time constraints.",
     },
-
     {
-      id: "4",
-      type: "certification",
-      title: "The Complete Full-Stack Web Development Bootcamp",
-      issuer: "Udemy – Dr. Angela Yu",
-      date: "Nov 15, 2025",
-      skills: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "REST APIs",
-      ],
-      image: "/certificate3.jpg",
+      id: "6",
+      type: "hackathon",
+      title: "CodeCrafters 2.0 Hackathon",
+      issuer: "Coding Club, SCOE",
+      date: "Completed",
+      prize: "Participant",
+      location: "Navi Mumbai, India",
+      skills: ["Spring Boot", "React", "REST APIs", "Backend Development"],
+      image: "/hackathon1.jpg",
       description:
-        "Completed a comprehensive full-stack bootcamp covering modern frontend, backend, REST APIs, and deployment fundamentals through hands-on projects.",
+        "24-hour hackathon focused on building scalable systems with emphasis on backend APIs and modern frontend integration using Spring Boot and React.",
     },
     {
       id: "2",

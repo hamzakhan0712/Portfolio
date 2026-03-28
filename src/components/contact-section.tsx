@@ -639,7 +639,7 @@ function ContactSection() {
             <CheckCircle2 className="w-5 h-5 text-primary" />
             <p className="text-sm font-medium">
               Open to opportunities{" "}
-              <span className="text-primary">— responding within 24 hours</span>
+              <span className="text-primary">- responding within 24 hours</span>
             </p>
           </div>
         </motion.div>

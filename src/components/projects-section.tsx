@@ -63,9 +63,9 @@ function ProjectsSection() {
 
   const projects: Project[] = [
     {
-      title: "InitCore CRM — Call Center Platform",
+      title: "InitCore CRM - Call Center Platform",
       description:
-        "Enterprise CRM engineered for a real call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard. Processing 1,000+ transactions daily with 50+ concurrent users.",
+        "Enterprise CRM engineered for a call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard.",
       tags: [
         "Django",
         "PostgreSQL",
@@ -82,7 +82,7 @@ function ProjectsSection() {
       featured: true,
     },
     {
-      title: "Key2YourHome — Real Estate Platform",
+      title: "Key2YourHome - Real Estate Platform",
       description:
         "Backend for a live property listing marketplace. Built the REST API layer, search/filter system, and database schema for 500+ active listings. Query optimization brought API response times down by 45%. OAuth authentication and Grappelli admin interface for real estate agents.",
       tags: ["Django", "PostgreSQL", "REST API", "OAuth", "Python"],
@@ -105,7 +105,7 @@ function ProjectsSection() {
       featured: true,
     },
     {
-      title: "Tariq Perfumes — E-Commerce Backend",
+      title: "Tariq Perfumes - E-Commerce Backend",
       description:
         "Full e-commerce backend for a retail/wholesale perfume business. Product catalog, shopping cart, order management, dual pricing models, and an AdminLTE-based dashboard for store operations.",
       tags: [
@@ -122,24 +122,7 @@ function ProjectsSection() {
       urltext: "E-Commerce Platform",
     },
     {
-      title: "QSync Queue Management",
-      description:
-        "Queue management system with real-time WebSocket updates. React 19 frontend integrating with a Java Spring Boot backend via React Query. Zustand for state management and Shadcn UI components.",
-      tags: [
-        "React 19",
-        "WebSocket",
-        "React Query",
-        "Zustand",
-        "Spring Boot Integration",
-      ],
-      category: "backend",
-      imageUrl: "/qsync.png",
-      githubUrl: "",
-      liveUrl: "",
-      urltext: "Full Stack Application (Backend: Java Spring Boot)",
-    },
-    {
-      title: "FaceTrack — Attendance System",
+      title: "FaceTrack - Attendance System",
       description:
         "Android attendance app with facial recognition. Python ML models run on-device for offline processing, synced to a Django backend. Built for student attendance management in institutional settings.",
       tags: ["Kotlin", "Django", "TensorFlow", "Python", "Android"],
@@ -148,54 +131,6 @@ function ProjectsSection() {
       githubUrl: "https://github.com/hamzakhan0712/FaceTrack-Attendance",
       liveUrl: "",
       urltext: "Mobile App with Django Backend",
-    },
-    {
-      title: "SK Trading Co.",
-      description:
-        "Production website for an import/export business. Next.js 15 with Turbopack, SEO optimization, reCAPTCHA-protected contact forms, Google Sheets integration, and automated email handling with Nodemailer.",
-      tags: [
-        "Next.js 15",
-        "Turbopack",
-        "Tailwind CSS",
-        "Nodemailer",
-        "reCAPTCHA",
-      ],
-      category: "frontend",
-      imageUrl: "/sktrading.png",
-      liveUrl: "https://www.sktradings.in",
-      urltext: "www.sktradings.in",
-    },
-    {
-      title: "InitCore",
-      description:
-        "Digital solutions company website with modern UI/UX design. Implemented with SSR, performance optimization techniques, and smooth animations for enhanced user engagement.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SSR"],
-      category: "frontend",
-      imageUrl: "/initcore.png",
-      liveUrl: "https://initcore.in",
-      urltext: "www.initcore.in",
-    },
-    {
-      title: "ICTMT Conference 2024",
-      description:
-        "Conference website for International Conference on Technology, Mathematics, and Teaching. React 19, Vite 6, smooth animations, and responsive design for comprehensive event information.",
-      tags: ["React 19", "Vite 6", "Framer Motion", "Radix UI"],
-      category: "frontend",
-      imageUrl: "/ictmt.png",
-      githubUrl: "https://github.com/hamzakhan0712/ICTMT2024-Conference.git",
-      liveUrl: "",
-      urltext: "Conference Website",
-    },
-    {
-      title: "SUSTECH Conference 2024",
-      description:
-        "Digital platform for SUSTECH 2024 conference on green technology and sustainable mobility. Responsive design with elegant animations for academia and industry collaboration.",
-      tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-      category: "frontend",
-      imageUrl: "/sustech.jpg",
-      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2024-Conference.git",
-      liveUrl: "",
-      urltext: "Academic Conference Platform",
     },
   ];
 
@@ -317,7 +252,7 @@ function ProjectsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            Production systems built for real clients — from enterprise CRMs
+            Production systems built for clients: from enterprise CRMs
             processing 1,000+ daily transactions to REST APIs serving live
             traffic.
           </motion.p>

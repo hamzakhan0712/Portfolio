@@ -1,5 +1,12 @@
 import { useEffect, useRef } from "react";
-import { User, Server, Briefcase, Database, TrendingUp } from "lucide-react";
+import {
+  User,
+  Server,
+  Briefcase,
+  Database,
+  TrendingUp,
+  GraduationCap,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 function AboutSection() {
@@ -33,7 +40,7 @@ function AboutSection() {
       subtitle: "Self Employed",
       icon: Server,
       description:
-        "Built production systems for real clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling real user traffic and live deployments.",
+        "Built production systems for clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling production traffic and live deployments.",
       highlight: "Production Experience",
     },
     {
@@ -45,14 +52,26 @@ function AboutSection() {
         "Developed full-stack solutions for an international property tech company. Collaborated with European teams on scalable backend systems and modern frontend integration.",
       highlight: "International Client",
     },
+  ];
+
+  const education = [
     {
-      year: "2026",
-      title: "B.Tech CSE (Data Science)",
-      subtitle: "University of Mumbai",
-      icon: Database,
-      description:
-        "Pursuing degree in Computer Science with Data Science specialization while maintaining production systems and contributing to open-source projects.",
-      highlight: "Education",
+      year: "Expected July 2026",
+      title: "B.Tech - CSE (Data Science)",
+      subtitle: "Saraswati College of Engineering, Kharghar",
+      university: "University of Mumbai",
+      icon: GraduationCap,
+      description: "Currently Pursuing",
+      highlight: "Bachelor's Degree",
+    },
+    {
+      year: "July 2023",
+      title: "Diploma in Computer Engineering",
+      subtitle: "Anjuman-I-Islam's Abdul Razzaq Kalsekar Polytechnic",
+      university: "University of Mumbai",
+      icon: GraduationCap,
+      description: "72.63%",
+      highlight: "Diploma",
     },
   ];
 
@@ -91,7 +110,7 @@ function AboutSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            From freelancing for real clients since 2021 to building enterprise
+            From freelancing for clients since 2021 to building enterprise
             systems that handle production traffic daily.
           </motion.p>
         </div>
@@ -148,8 +167,8 @@ function AboutSection() {
                   5 Live Production Systems
                 </p>
                 <p className="font-serif text-xs text-muted-foreground">
-                  From CRM to real estate platforms, deployed and maintained by
-                  real users.
+                  From CRM to property platforms, deployed and maintained in
+                  production.
                 </p>
               </motion.div>
             </div>
@@ -182,14 +201,15 @@ function AboutSection() {
                     4+ years of production experience
                   </span>{" "}
                   building Django-based REST APIs, real-time WebSocket services,
-                  and PostgreSQL-backed architectures for real clients.
+                  and PostgreSQL-backed architectures for clients across India
+                  and internationally.
                 </p>
                 <p>
-                  I started freelancing in 2021 while studying B.Tech in
+                  I started freelancing in 2021 while pursuing B.Tech in
                   Computer Science (Data Science) at the University of Mumbai.
-                  That experience — deploying on actual servers, handling real
-                  user traffic, maintaining code other people depend on — has
-                  shaped how I approach backend work.
+                  That experience: deploying on servers, handling live traffic,
+                  maintaining code other people depend on. Shaped how I approach
+                  backend work.
                 </p>
               </div>
             </div>
@@ -231,6 +251,57 @@ function AboutSection() {
                             {item.highlight}
                           </span>
                         </div>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {item.year}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Education Timeline */}
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mr-3">
+                  <GraduationCap className="w-5 h-5 text-primary" />
+                </span>
+                Education
+              </h3>
+              <div className="space-y-4">
+                {education.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.5,
+                      delay: (journey.length + index) * 0.1,
+                    }}
+                    whileHover={{ scale: 1.02, x: 5 }}
+                    className="relative p-4 md:p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                        <item.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                          <h4 className="text-lg font-bold text-foreground">
+                            {item.title}
+                          </h4>
+                          <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
+                            {item.highlight}
+                          </span>
+                        </div>
+                        <p className="text-sm font-medium text-muted-foreground mb-1">
+                          {item.subtitle}
+                        </p>
                         <p className="text-sm text-muted-foreground mb-2">
                           {item.year}
                         </p>

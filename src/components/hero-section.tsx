@@ -83,11 +83,10 @@ export function HeroSection() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg md:text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-base sm:text-lg md:text-lg text-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              I build backend systems that run in production — from a CRM
-              handling 1,000+ daily call center transactions to a live real
-              estate platform serving real users across India.{" "}
+              I build backend systems that run in production. From CRM platforms
+              to property marketplaces serving users across India.{" "}
               <span className="text-primary font-semibold">
                 Django · PostgreSQL · WebSockets · REST APIs
               </span>
@@ -171,40 +170,6 @@ export function HeroSection() {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-8 justify-center lg:justify-start pt-4 text-sm"
-            >
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">4+</div>
-                <div className="text-muted-foreground">Years in Production</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">10+</div>
-                <div className="text-muted-foreground">Systems Deployed</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">1K+</div>
-                <div className="text-muted-foreground">Daily Transactions</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <div className="text-3xl font-bold text-foreground">50+</div>
-                <div className="text-muted-foreground">Concurrent Users</div>
-              </div>
-            </motion.div>
-
-            {/* Education Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center justify-center lg:justify-start w-full lg:w-auto"
-            >
-              <div className="inline-flex items-center rounded-lg border border-primary/20 bg-primary/5 backdrop-blur-sm px-4 py-2 text-sm font-medium text-foreground shadow-sm">
-                <span className="text-primary mr-2">📚</span>
-                B.Tech CSE · Graduating July 2026
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Right Content - Profile Card */}
@@ -281,7 +246,7 @@ export function HeroSection() {
                       className="absolute -bottom-2 -right-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-lg flex items-center gap-2"
                     >
                       <Terminal className="w-4 h-4" />
-                      <span>Backend</span>
+                      <span>Hamza Khan</span>
                     </motion.div>
                   </motion.div>
                 </div>
