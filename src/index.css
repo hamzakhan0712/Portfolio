@@ -360,4 +360,97 @@
       cursor: auto !important;
     }
   }
+
+  /* Floating bob — for decorative orbs and avatars */
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  .float-y {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  /* Slow drift — aurora-style movement for blurred blobs */
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(30px, -20px, 0) scale(1.05);
+    }
+    66% {
+      transform: translate3d(-20px, 25px, 0) scale(0.97);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  .drift {
+    animation: drift 18s ease-in-out infinite;
+  }
+
+  /* Subtle 3D tilt on hover for premium cards */
+  .tilt-on-hover {
+    transition:
+      transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+  }
+  .tilt-on-hover:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateY(-4px);
+  }
+
+  /* Animated underline for inline links */
+  .link-underline {
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--primary)),
+      hsl(var(--primary))
+    );
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    transition: background-size 0.3s ease;
+    padding-bottom: 2px;
+  }
+  .link-underline:hover {
+    background-size: 100% 2px;
+  }
+
+  /* Soft shimmer for skeletons / placeholders */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--accent)) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* Honor reduced-motion preference globally */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

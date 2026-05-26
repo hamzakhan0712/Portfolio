@@ -52,7 +52,7 @@ function AboutSection() {
     {
       icon: Languages,
       label: "Languages",
-      value: "English (professional), Hindi, Marathi, Urdu",
+      value: "English (professional), Hindi   ",
     },
     {
       icon: Sparkles,

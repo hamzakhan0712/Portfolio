@@ -12,6 +12,9 @@ import {
   X,
   Layers,
   FlaskConical,
+  Play,
+  Images,
+  Expand,
 } from "lucide-react";
 import {
   Card,
@@ -21,6 +24,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import MediaLightbox, { type MediaItem } from "@/components/media-lightbox";
 
 type ProjectCategory = "backend" | "fullstack" | "mobile" | "personal" | "all";
 
@@ -31,6 +35,7 @@ type Project = {
   tags: string[];
   category: Exclude<ProjectCategory, "all">;
   imageUrl?: string;
+  media?: MediaItem[];
   liveUrl?: string;
   githubUrl?: string;
   urltext: string;
@@ -41,6 +46,24 @@ function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [filter, setFilter] = useState<ProjectCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [lightboxState, setLightboxState] = useState<{
+    open: boolean;
+    items: MediaItem[];
+    title: string;
+    startIndex: number;
+  }>({ open: false, items: [], title: "", startIndex: 0 });
+
+  const openLightbox = (
+    items: MediaItem[],
+    title: string,
+    startIndex = 0,
+  ) => {
+    if (items.length === 0) return;
+    setLightboxState({ open: true, items, title, startIndex });
+  };
+
+  const closeLightbox = () =>
+    setLightboxState((s) => ({ ...s, open: false }));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -100,8 +123,8 @@ function ProjectsSection() {
       ],
       category: "backend",
       imageUrl: "/key2yourhome.png",
-      liveUrl: "https://www.key2yourhome.co.in",
-      urltext: "key2yourhome.co.in",
+      liveUrl: "https://www.key2yourhome.net",
+      urltext: "key2yourhome.net",
       featured: true,
     },
     {
@@ -119,6 +142,7 @@ function ProjectsSection() {
         "Pandas",
       ],
       category: "fullstack",
+      imageUrl: "/novem.png",
       githubUrl:
         "https://github.com/hamzakhan0712/Novem---E-Commerce-Intelligence-Platform",
       urltext: "Desktop app · Tauri + Python engine",
@@ -138,7 +162,7 @@ function ProjectsSection() {
         "Google Sheets API",
       ],
       category: "fullstack",
-      imageUrl: "/sktradings.png",
+      imageUrl: "/sktrading.png",
       liveUrl: "https://www.sktradings.in",
       githubUrl: "https://github.com/hamzakhan0712/SKTrading-Website",
       urltext: "sktradings.in",
@@ -175,6 +199,7 @@ function ProjectsSection() {
         "A data engineering project analyzing retail customer shopping behavior end-to-end. Python handles ingestion and ETL, SQL drives the analytical queries, and Power BI dashboards present the segmentation and trends. Includes data quality validation at each stage so dashboards don't surface stale or malformed records — the kind of pipeline hygiene most ad-hoc analysis projects skip.",
       tags: ["Python", "Pandas", "SQL", "Power BI", "ETL", "Jupyter"],
       category: "personal",
+      imageUrl: "/customer_analysis.png",
       githubUrl:
         "https://github.com/hamzakhan0712/Customer-Shopping-Behavior-Analysis",
       urltext: "Data engineering pipeline",
@@ -192,6 +217,7 @@ function ProjectsSection() {
         "Zustand",
         "Shadcn UI",
       ],
+      imageUrl: "/qsync.png",
       category: "fullstack",
       urltext: "Team project · Frontend lead",
     },
@@ -432,6 +458,23 @@ function ProjectsSection() {
               {filteredProjects.map((project, index) => {
                 const categoryStyle = categoryStyles[project.category];
                 const CategoryIcon = categoryStyle.icon;
+                const projectMedia: MediaItem[] = (() => {
+                  if (project.media && project.media.length > 0)
+                    return project.media;
+                  if (project.imageUrl)
+                    return [
+                      {
+                        type: "image" as const,
+                        src: project.imageUrl,
+                        alt: project.title,
+                      },
+                    ];
+                  return [];
+                })();
+                const hasMedia = projectMedia.length > 0;
+                const mediaCount = projectMedia.length;
+                const hasVideo = projectMedia.some((m) => m.type === "video");
+                const coverMedia = projectMedia[0];
 
                 return (
                   <motion.div
@@ -462,27 +505,80 @@ function ProjectsSection() {
                         </motion.div>
                       )}
 
-                      {/* Project Image */}
+                      {/* Project Image / Media */}
                       <CardHeader className="relative p-0 overflow-hidden">
-                        {project.imageUrl ? (
-                          <div className="aspect-video overflow-hidden bg-muted">
-                            <img
-                              src={project.imageUrl}
-                              alt={project.title}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                              loading="lazy"
-                              onError={(e) => {
-                                const target = e.currentTarget;
-                                target.style.display = "none";
-                                if (target.parentElement) {
-                                  target.parentElement.classList.add(
-                                    "fallback-active",
-                                  );
-                                }
-                              }}
-                            />
+                        {hasMedia && coverMedia ? (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              openLightbox(projectMedia, project.title, 0)
+                            }
+                            className="relative block w-full aspect-video overflow-hidden bg-muted cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+                            aria-label={`Open media viewer for ${project.title}`}
+                          >
+                            {coverMedia.type === "image" ? (
+                              <img
+                                src={coverMedia.src}
+                                alt={coverMedia.alt || project.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  target.style.display = "none";
+                                }}
+                              />
+                            ) : (
+                              <>
+                                {coverMedia.poster ? (
+                                  <img
+                                    src={coverMedia.poster}
+                                    alt={coverMedia.alt || project.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <video
+                                    src={coverMedia.src}
+                                    muted
+                                    playsInline
+                                    preload="metadata"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  />
+                                )}
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+                                  <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg group-hover:scale-110 transition-transform">
+                                    <Play className="w-6 h-6 text-white ml-0.5" />
+                                  </span>
+                                </div>
+                              </>
+                            )}
+
+                            {/* Hover overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
+
+                            {/* Expand hint */}
+                            <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Expand className="w-3 h-3" />
+                              View
+                            </div>
+
+                            {/* Media count badge */}
+                            {(mediaCount > 1 || hasVideo) && (
+                              <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] font-medium text-white">
+                                {hasVideo && mediaCount === 1 ? (
+                                  <>
+                                    <Play className="w-3 h-3" />
+                                    Video
+                                  </>
+                                ) : (
+                                  <>
+                                    <Images className="w-3 h-3" />
+                                    {mediaCount}
+                                  </>
+                                )}
+                              </div>
+                            )}
+                          </button>
                         ) : (
                           <div className="aspect-video bg-gradient-to-br from-secondary/30 to-muted/50 flex flex-col items-center justify-center gap-3 p-6 text-center">
                             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
@@ -654,6 +750,15 @@ function ProjectsSection() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Media Lightbox (mounted once, reused) */}
+      <MediaLightbox
+        open={lightboxState.open}
+        onClose={closeLightbox}
+        items={lightboxState.items}
+        title={lightboxState.title}
+        startIndex={lightboxState.startIndex}
+      />
     </section>
   );
 }

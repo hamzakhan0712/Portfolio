@@ -137,7 +137,7 @@ Quick facts
 Location: Mumbai, India
 Education: B.E. CSE (Data Science), Mumbai University
 Available: Remote, Mumbai, Navi Mumbai, Thane
-Languages: English (professional), Hindi, Marathi, Urdu
+Languages: English (professional), Hindi   
 Currently: Open to backend developer roles
 ```
 
@@ -271,7 +271,7 @@ The site has been running in production since I shipped it. It's the project tha
 **Tech tags:** `Python` `Django 5.2` `PostgreSQL` `Tailwind CSS` `OAuth` `Grappelli`
 
 **Links:**
-- Live: `https://www.key2yourhome.co.in`
+- Live: `https://www.key2yourhome.net`
 
 ---
 

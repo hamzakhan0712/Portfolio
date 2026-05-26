@@ -11,6 +11,7 @@ import {
   MapPin,
   ZoomIn,
   Sparkles,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -103,6 +104,7 @@ export default function AchievementsSection() {
       issuer: "Udemy · Krish Naik (KRISHAI Technologies)",
       date: "Feb 2026",
       skills: ["SQL", "Python", "Data Analysis", "Statistics"],
+      image: "/certificate4.jpg",
       description:
         "End-to-end data analyst curriculum covering SQL, Python, statistics, and visualization for data-driven decision making.",
     },
@@ -113,6 +115,7 @@ export default function AchievementsSection() {
       issuer: "Udemy · Dr. Angela Yu",
       date: "Nov 2025",
       skills: ["JavaScript", "Node.js", "React", "Databases"],
+      image: "/certificate3.jpg",
       description:
         "Comprehensive full-stack bootcamp covering modern web fundamentals through to production deployment.",
     },
@@ -145,6 +148,7 @@ export default function AchievementsSection() {
       issuer: "Great Learning",
       date: "Oct 2025",
       skills: ["Python", "ML Concepts", "Statistics"],
+      image: "/certificate1.jpg",
       description:
         "Entry course into data science workflows, Python tooling, and applied machine learning concepts.",
     },
@@ -155,6 +159,7 @@ export default function AchievementsSection() {
       issuer: "Training Programme",
       date: "Nov 2025",
       skills: ["Aptitude", "Soft Skills", "Technical Foundations"],
+      image: "/certificate2.png",
       description:
         "Structured training covering quantitative aptitude, communication, and core technical foundations.",
     },
@@ -532,11 +537,42 @@ export default function AchievementsSection() {
         open={!!fullScreenImage}
         onOpenChange={(open) => !open && setFullScreenImage(null)}
       >
-        <DialogContent className="max-w-none w-screen h-screen p-0 bg-black/95 backdrop-blur-xl border-none overflow-hidden">
+        <DialogContent className="max-w-none w-screen h-screen p-0 bg-black/95 backdrop-blur-xl border-none overflow-hidden [&>button]:hidden">
           {fullScreenImage && (
             <div className="relative w-full h-full flex items-center justify-center">
-              <div className="flex flex-col items-center justify-center gap-6 px-4 py-8 md:px-8 md:py-12 w-full h-full">
-                <div className="flex items-center justify-center w-full h-full max-w-[95vw] max-h-[calc(100vh-8rem)]">
+              {/* Top gradient — visual only */}
+              <div
+                aria-hidden
+                className="absolute top-0 inset-x-0 h-24 z-20 bg-gradient-to-b from-black/90 via-black/50 to-transparent pointer-events-none"
+              />
+
+              {/* Top-left meta */}
+              <div className="absolute top-3 md:top-4 left-4 md:left-6 z-30">
+                <span className="shrink-0 text-xs font-mono text-white/80 px-2.5 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md">
+                  Certificate
+                </span>
+              </div>
+
+              {/* Top-right close — always visible */}
+              <motion.button
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
+                onClick={() => setFullScreenImage(null)}
+                type="button"
+                className="group absolute top-3 md:top-4 right-4 md:right-6 z-[60] inline-flex items-center gap-2 h-11 min-w-[44px] px-3 md:px-4 rounded-full text-white font-semibold text-sm bg-red-500/90 hover:bg-red-600 border-2 border-white/70 hover:border-white backdrop-blur-md shadow-2xl shadow-black/50 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-black ring-2 ring-white/10"
+                aria-label="Close viewer"
+                title="Close (Esc)"
+              >
+                <X className="w-5 h-5 transition-transform group-hover:rotate-90" strokeWidth={2.5} />
+                <span className="hidden md:inline">Close</span>
+                <span className="hidden md:inline text-[10px] font-mono opacity-80 px-1.5 py-0.5 rounded bg-black/30 border border-white/30">
+                  Esc
+                </span>
+              </motion.button>
+
+              <div className="flex flex-col items-center justify-center gap-6 px-4 py-20 md:px-8 md:py-24 w-full h-full">
+                <div className="flex items-center justify-center w-full h-full max-w-[95vw] max-h-[calc(100vh-10rem)]">
                   <img
                     src={fullScreenImage.url}
                     alt={fullScreenImage.title}

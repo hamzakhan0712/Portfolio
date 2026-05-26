@@ -269,6 +269,12 @@ export function HeroSection() {
                 className="absolute top-1/2 -right-8 w-16 h-16 bg-primary/10 rounded-2xl blur-xl"
               />
 
+              {/* Outer gradient glow ring — frames the card */}
+              <div
+                aria-hidden
+                className="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-primary/40 via-purple-500/30 to-primary/40 opacity-70 blur-xl pointer-events-none"
+              />
+
               {/* Main Card with floating animation */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -277,34 +283,58 @@ export function HeroSection() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 rounded-3xl border border-border/50 shadow-2xl overflow-hidden bg-card"
+                className="absolute inset-0 rounded-3xl overflow-hidden shadow-[0_30px_80px_-20px_hsl(var(--primary)/0.4)] ring-1 ring-border/60"
               >
+                {/* Gradient border frame */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 rounded-3xl p-[2px] bg-gradient-to-br from-primary/60 via-purple-400/40 to-primary/60 pointer-events-none z-10"
+                  style={{
+                    WebkitMask:
+                      "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                  }}
+                />
+
                 {/* Photo fills the card */}
                 <motion.img
                   src="/me.jpg"
                   alt="Hamza Khan — Backend Developer"
                   loading="eager"
+                  decoding="async"
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.4 }}
-                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  className="absolute inset-0 w-full h-full object-cover object-top [image-rendering:auto] select-none"
+                  draggable={false}
                 />
 
-                {/* Subtle gradient overlay so text/badge reads cleanly */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/0 to-background/10 pointer-events-none" />
+                {/* Tiny bottom band so the badge reads cleanly — only behind the badge area, not across the whole photo */}
+                <div
+                  aria-hidden
+                  className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"
+                />
+
+                {/* Corner accent dots */}
+                <div
+                  aria-hidden
+                  className="absolute top-3 right-3 z-10 flex gap-1.5"
+                >
+                  <span className="w-2 h-2 rounded-full bg-red-400/80 shadow-sm" />
+                  <span className="w-2 h-2 rounded-full bg-yellow-400/80 shadow-sm" />
+                  <span className="w-2 h-2 rounded-full bg-green-400/80 shadow-sm" />
+                </div>
 
                 {/* Floating badge */}
                 <motion.div
                   initial={{ scale: 0, y: 10 }}
                   animate={{ scale: 1, y: 0 }}
                   transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                  className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full bg-primary text-white text-xs font-semibold shadow-lg flex items-center gap-1.5 backdrop-blur-md"
+                  className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-full bg-primary/90 text-white text-xs font-semibold shadow-lg flex items-center gap-1.5 backdrop-blur-md border border-white/20"
                 >
                   <Terminal className="w-3.5 h-3.5" />
                   <span className="font-mono">backend.dev</span>
                 </motion.div>
-
-                {/* Corner accent ring */}
-                <div className="absolute -inset-px rounded-3xl ring-1 ring-inset ring-primary/10 pointer-events-none" />
               </motion.div>
             </div>
           </motion.div>

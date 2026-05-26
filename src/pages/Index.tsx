@@ -1,4 +1,5 @@
 import { useEffect, lazy, Suspense, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
 import { Background } from "@/components/background";
@@ -20,6 +21,23 @@ const SectionLoader = ({ fullHeight = true }: { fullHeight?: boolean }) => (
     <p className="text-sm text-muted-foreground animate-pulse">Loading...</p>
   </div>
 );
+
+const ScrollProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  return (
+    <motion.div
+      style={{ scaleX }}
+      className="fixed top-0 left-0 right-0 h-[3px] origin-left z-[60] bg-gradient-to-r from-primary via-purple-400 to-primary shadow-[0_0_12px_hsl(var(--primary)/0.6)] pointer-events-none"
+      aria-hidden
+    />
+  );
+};
 
 const Index = () => {
   // Initialize scroll reveal observer with improved configuration
@@ -56,6 +74,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen transition-theme relative overflow-hidden">
+      {/* Scroll progress bar - thin gradient line at top of viewport */}
+      <ScrollProgressBar />
+
       {/* Global background that stays consistent across all sections */}
       <div className="fixed inset-0 w-full h-full -z-30">
         <Background />
