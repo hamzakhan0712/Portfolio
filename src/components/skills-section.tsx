@@ -6,9 +6,10 @@ import {
   Database,
   Cloud,
   Layers,
+  Wrench,
   ChevronRight,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 function SkillsSection() {
@@ -40,33 +41,35 @@ function SkillsSection() {
     {
       title: "Languages",
       icon: Code,
-      description: "Core programming languages for backend development",
+      description: "Core languages for backend and data work.",
       gradient: "from-yellow-500/10 to-orange-500/10",
       iconColor: "text-yellow-500",
       borderColor: "border-yellow-500/20 hover:border-yellow-500/40",
       skills: [
         { name: "Python", icon: "/icons/python.svg" },
         { name: "SQL", icon: "/icons/sql.svg" },
+        { name: "JavaScript", icon: "/icons/javascript.svg" },
       ],
     },
     {
       title: "Backend",
       icon: Server,
-      description: "Production-ready frameworks and APIs",
+      description: "Production-ready Python frameworks and APIs.",
       gradient: "from-green-500/10 to-emerald-500/10",
       iconColor: "text-green-500",
       borderColor: "border-green-500/20 hover:border-green-500/40",
       skills: [
         { name: "Django", icon: "/icons/django.svg" },
+        { name: "DRF", icon: "/icons/api.svg" },
+        { name: "Django Channels", icon: "/icons/websocket.svg" },
         { name: "Flask", icon: "/icons/flask.svg" },
-        { name: "REST APIs", icon: "/icons/api.svg" },
-        { name: "FastAPI", icon: "/icons/fastapi.svg" },
+        { name: "FastAPI", icon: "/icons/FastAPI.svg" },
       ],
     },
     {
       title: "Databases",
       icon: Database,
-      description: "Schema design, query optimization, and data management",
+      description: "Schema design, query optimization, data modeling.",
       gradient: "from-purple-500/10 to-pink-500/10",
       iconColor: "text-purple-500",
       borderColor: "border-purple-500/20 hover:border-purple-500/40",
@@ -77,46 +80,50 @@ function SkillsSection() {
       ],
     },
     {
-      title: "Frontend (Supporting)",
-      icon: Code,
-      description:
-        "Supporting role - building interfaces that connect to my backends",
+      title: "Cloud & DevOps",
+      icon: Cloud,
+      description: "Deployment, containers, and infrastructure.",
+      gradient: "from-orange-500/10 to-red-500/10",
+      iconColor: "text-orange-500",
+      borderColor: "border-orange-500/20 hover:border-orange-500/40",
+      skills: [
+        { name: "AWS", icon: "/icons/aws.svg" },
+        { name: "Docker", icon: "/icons/docker.svg" },
+        { name: "Git", icon: "/icons/git.svg" },
+        { name: "GitHub Actions", icon: "/icons/cicd.svg" },
+        { name: "DigitalOcean", icon: "/icons/DigitalOcean.svg" },
+        { name: "Vercel", icon: "/icons/vercel.svg" },
+        { name: "Render", icon: "/icons/render.svg" },
+        { name: "Hostinger", icon: "/icons/hostinger.svg" },
+      ],
+    },
+    {
+      title: "Frontend",
+      icon: Layers,
+      description: "Supporting role — building UIs for my backends.",
       gradient: "from-blue-500/10 to-cyan-500/10",
       iconColor: "text-blue-500",
       borderColor: "border-blue-500/20 hover:border-blue-500/40",
       skills: [
         { name: "React", icon: "/icons/react.svg" },
-        { name: "Next.js", icon: "/icons/Next.js.svg" },
+        { name: "Next.js", icon: "/icons/nextjs.svg" },
         { name: "Vite", icon: "/icons/vite.svg" },
-        { name: "AntDesign", icon: "/icons/antdesign.svg" },
-        { name: "Shadcn", icon: "/icons/shadcn.svg" },
-        { name: "Tailwind CSS", icon: "/icons/tailwindcss.svg" },
-      ],
-    },
-    {
-      title: "DevOps / Cloud",
-      icon: Cloud,
-      description: "Hosting platforms and deployment infrastructure",
-      gradient: "from-orange-500/10 to-red-500/10",
-      iconColor: "text-orange-500",
-      borderColor: "border-orange-500/20 hover:border-orange-500/40",
-      skills: [
-        { name: "Hostinger", icon: "/icons/hostinger.svg" },
-        { name: "DigitalOcean", icon: "/icons/DigitalOcean.svg" },
-        { name: "Render", icon: "/icons/render.svg" },
-        { name: "Vercel", icon: "/icons/vercel.svg" },
+        { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
+        { name: "Shadcn UI", icon: "/icons/shadcn.svg" },
       ],
     },
     {
       title: "Tools",
-      icon: Layers,
-      description: "Development and collaboration tools",
+      icon: Wrench,
+      description: "Day-to-day development environment.",
       gradient: "from-indigo-500/10 to-purple-500/10",
       iconColor: "text-indigo-500",
       borderColor: "border-indigo-500/20 hover:border-indigo-500/40",
       skills: [
-        { name: "Git", icon: "/icons/git.svg" },
         { name: "Postman", icon: "/icons/postman.svg" },
+        { name: "VS Code", icon: "/icons/vscode.svg" },
+        { name: "REST APIs", icon: "/icons/api.svg" },
+        { name: "GitHub", icon: "/icons/github.svg" },
       ],
     },
   ];
@@ -125,7 +132,7 @@ function SkillsSection() {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative py-20 md:py-32 overflow-hidden reveal-container"
+      className="relative py-20 md:py-28 overflow-hidden reveal-container"
     >
       {/* Decorative Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -145,7 +152,7 @@ function SkillsSection() {
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-14 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -154,7 +161,7 @@ function SkillsSection() {
             className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
           >
             <Layers className="w-4 h-4 text-primary mr-2" />
-            Technical Expertise
+            Tech Stack
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -163,17 +170,17 @@ function SkillsSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
-            Skills & <span className="gradient-text">Technologies</span>
+            What I <span className="gradient-text">Work With</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
           >
             Backend-first toolkit spanning Python frameworks, databases, cloud
-            infrastructure, and supporting frontend technologies.
+            infrastructure, and supporting frontend.
           </motion.p>
         </div>
 
@@ -188,7 +195,7 @@ function SkillsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+                transition={{ duration: 0.5, delay: categoryIndex * 0.08 }}
                 onMouseEnter={() => setHoveredCard(categoryIndex)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -252,10 +259,11 @@ function SkillsSection() {
                           viewport={{ once: true }}
                           transition={{
                             duration: 0.3,
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                            delay: categoryIndex * 0.08 + skillIndex * 0.04,
                           }}
                           whileHover={{ scale: 1.1, y: -2 }}
                           className="flex flex-col items-center gap-2 group/skill"
+                          title={skill.name}
                         >
                           <div
                             className={cn(
@@ -268,13 +276,14 @@ function SkillsSection() {
                               src={skill.icon}
                               alt={skill.name}
                               className="w-7 h-7 object-contain filter group-hover/skill:brightness-110 transition-all"
+                              loading="lazy"
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 target.src = "/icons/placeholder.svg";
                               }}
                             />
                           </div>
-                          <span className="text-xs font-medium text-center text-muted-foreground group-hover/skill:text-foreground transition-colors line-clamp-2">
+                          <span className="text-[11px] font-medium text-center text-muted-foreground group-hover/skill:text-foreground transition-colors line-clamp-2 leading-tight">
                             {skill.name}
                           </span>
                         </motion.div>
@@ -304,19 +313,26 @@ function SkillsSection() {
           })}
         </div>
 
-        {/* Additional Info */}
+        {/* Academic exposure footer */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 text-center"
+          className="mt-12 max-w-3xl mx-auto"
         >
-          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            Primary focus on backend systems and API architecture. Frontend
-            skills are used in a supporting capacity to ship complete products
-            when needed.
-          </p>
+          <div className="rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm p-5 text-center">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+              Academic exposure
+            </p>
+            <p className="text-sm text-muted-foreground italic">
+              Pandas · NumPy · Matplotlib · TensorFlow · Elasticsearch · Apache
+              Spark · Hadoop
+            </p>
+            <p className="text-[11px] text-muted-foreground/70 mt-2">
+              Coursework exposure, not production experience.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

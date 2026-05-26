@@ -2,11 +2,11 @@ import { useEffect, lazy, Suspense, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
 import { Background } from "@/components/background";
-import { CustomCursor } from "@/components/custom-cursor";
 import { Loader2 } from "lucide-react";
 
 // Lazy load larger components to improve initial load performance
 const AboutSection = lazy(() => import("@/components/about-section"));
+const ExperienceSection = lazy(() => import("@/components/experience-section"));
 const ProjectsSection = lazy(() => import("@/components/projects-section"));
 const SkillsSection = lazy(() => import("@/components/skills-section"));
 const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
@@ -61,9 +61,6 @@ const Index = () => {
         <Background />
       </div>
 
-      {/* Custom cursor - Uncomment when ready */}
-      {/* <CustomCursor /> */}
-
       {/* Navigation - Always visible */}
       <Navbar />
       
@@ -74,6 +71,10 @@ const Index = () => {
       <main className="relative z-10">
         <Suspense fallback={<SectionLoader />}>
           <AboutSection />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+          <ExperienceSection />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>

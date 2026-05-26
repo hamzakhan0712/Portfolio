@@ -5,12 +5,13 @@ import {
   Filter,
   Server,
   Search,
-  Monitor,
+  Smartphone,
   Github,
   Lock,
   ImageIcon,
   X,
-  Globe,
+  Layers,
+  FlaskConical,
 } from "lucide-react";
 import {
   Card,
@@ -21,13 +22,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-type ProjectCategory = "backend" | "frontend" | "mobile" | "all";
+type ProjectCategory = "backend" | "fullstack" | "mobile" | "personal" | "all";
 
 type Project = {
   title: string;
+  summary: string;
   description: string;
   tags: string[];
-  category: ProjectCategory;
+  category: Exclude<ProjectCategory, "all">;
   imageUrl?: string;
   liveUrl?: string;
   githubUrl?: string;
@@ -63,74 +65,135 @@ function ProjectsSection() {
 
   const projects: Project[] = [
     {
-      title: "InitCore CRM - Call Center Platform",
+      title: "InitCore CRM — Call Center Platform",
+      summary:
+        "Multi-role CRM with real-time agent monitoring for call center operations.",
       description:
-        "Enterprise CRM engineered for a call center operation. Django Channels for real-time WebSocket communication, multi-role access control, lead management, payment processing, PDF invoice generation, and analytics dashboard.",
+        "A multi-role CRM built with Django and PostgreSQL for call center operations. Three permission levels — agents, supervisors, and administrators — each with their own dashboards and workflows. Modules include lead management, call logging, payment tracking, attendance, and PDF invoice generation. Real-time agent monitoring is built with Django Channels and WebSockets, so supervisors see live status updates without refreshing.",
       tags: [
-        "Django",
-        "PostgreSQL",
-        "Django Channels",
-        "WebSockets",
-        "REST API",
         "Python",
+        "Django",
+        "Django Channels",
+        "PostgreSQL",
+        "WebSockets",
+        "ReportLab",
       ],
       category: "backend",
       imageUrl: "/crm.png",
       githubUrl: "https://github.com/hamzakhan0712/InitCore-CRM-CallCenter",
-      liveUrl: "",
-      urltext: "Enterprise Solution (On-premise Deployment)",
+      urltext: "On-premise deployment",
       featured: true,
     },
     {
-      title: "Key2YourHome - Real Estate Platform",
+      title: "Key2YourHome — Real Estate Marketplace",
+      summary:
+        "Live property listing platform with OAuth authentication and admin tooling.",
       description:
-        "Backend for a live property listing marketplace. Built the REST API layer, search/filter system, and database schema for 500+ active listings. Query optimization brought API response times down by 45%. OAuth authentication and Grappelli admin interface for real estate agents.",
-      tags: ["Django", "PostgreSQL", "REST API", "OAuth", "Python"],
+        "Live property listing platform built with Django 5.2 and PostgreSQL, deployed to a custom domain. Features OAuth-based authentication, a Grappelli-powered admin interface for managing listings, property search and filtering, and a Tailwind CSS frontend. Running in production since I shipped it — the project that most shaped how I think about admin tooling.",
+      tags: [
+        "Python",
+        "Django 5.2",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "OAuth",
+        "Grappelli",
+      ],
       category: "backend",
       imageUrl: "/key2yourhome.png",
       liveUrl: "https://www.key2yourhome.co.in",
-      urltext: "www.key2yourhome.co.in",
+      urltext: "key2yourhome.co.in",
       featured: true,
     },
     {
-      title: "FlaskSearch API",
+      title: "Novem — E-Commerce Intelligence Platform",
+      summary:
+        "Desktop BI tool that turns raw Shopify exports into inventory, pricing, and marketing answers for small store owners.",
       description:
-        "RESTful search service using Flask and Elasticsearch for full-text search across Shakespeare's complete works corpus. Supports pagination, filtering, and advanced queries over large document datasets. Designed as a production-deployable standalone microservice with scalable architecture.",
-      tags: ["Flask", "Elasticsearch", "Python", "REST API", "NoSQL"],
-      category: "backend",
+        "An offline-first desktop application aimed at e-commerce store owners under $500K/year who can't afford enterprise BI tools or in-house data scientists. A Tauri + React shell wraps a Python analytics engine that ingests Shopify exports and surfaces decisions — what to restock, where to adjust pricing, which channels are working — rather than just charts. Architecture is split into a TypeScript desktop client and a separately runnable Python engine so the analytics layer stays scriptable.",
+      tags: [
+        "Tauri",
+        "React",
+        "TypeScript",
+        "Vite",
+        "Python",
+        "Pandas",
+      ],
+      category: "fullstack",
+      githubUrl:
+        "https://github.com/hamzakhan0712/Novem---E-Commerce-Intelligence-Platform",
+      urltext: "Desktop app · Tauri + Python engine",
+      featured: true,
+    },
+    {
+      title: "SK Trading Co. — Corporate Website",
+      summary:
+        "Next.js 15 corporate site for an import/export business with form automation.",
+      description:
+        "Corporate website for an import and export business. Next.js 15 and Tailwind CSS, with smooth Framer Motion transitions across pages. reCAPTCHA-protected contact forms feed into Google Sheets via the Sheets API for the client's internal tracking, and Nodemailer handles automated email replies — a clean inbox of inquiries plus a sortable spreadsheet, no third-party CRM.",
+      tags: [
+        "Next.js 15",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Nodemailer",
+        "Google Sheets API",
+      ],
+      category: "fullstack",
+      imageUrl: "/sktradings.png",
+      liveUrl: "https://www.sktradings.in",
+      githubUrl: "https://github.com/hamzakhan0712/SKTrading-Website",
+      urltext: "sktradings.in",
+      featured: true,
+    },
+    {
+      title: "FlaskSearch — REST Search API",
+      summary:
+        "Containerized Flask + Elasticsearch microservice for full-text search.",
+      description:
+        "A Flask and Elasticsearch microservice that exposes full-text search over the complete Shakespeare plays corpus. Supports filtering, pagination, and query parameters via clean REST endpoints. Containerized with Docker — single command to spin up the API and the Elasticsearch node together.",
+      tags: ["Python", "Flask", "Elasticsearch", "Docker", "REST API"],
+      category: "personal",
       imageUrl: "/flaskapi.png",
       githubUrl: "https://github.com/hamzakhan0712/FlaskSearch-API",
-      liveUrl: "",
-      urltext: "RESTful Search Microservice",
-      featured: true,
+      urltext: "Microservice",
     },
     {
-      title: "Tariq Perfumes - E-Commerce Backend",
+      title: "FaceTrack — Android Attendance",
+      summary:
+        "Kotlin Android app with on-device face recognition syncing to a Django backend.",
       description:
-        "Full e-commerce backend for a retail/wholesale perfume business. Product catalog, shopping cart, order management, dual pricing models, and an AdminLTE-based dashboard for store operations.",
-      tags: [
-        "Django",
-        "PostgreSQL",
-        "JavaScript",
-        "Inventory Management",
-        "Python",
-      ],
-      category: "backend",
-      imageUrl: "/ecommerce.png",
-      githubUrl: "https://github.com/hamzakhan0712/TariqPerfumes-Ecommerce",
-      liveUrl: "",
-      urltext: "E-Commerce Platform",
-    },
-    {
-      title: "FaceTrack - Attendance System",
-      description:
-        "Android attendance app with facial recognition. Python ML models run on-device for offline processing, synced to a Django backend. Built for student attendance management in institutional settings.",
-      tags: ["Kotlin", "Django", "TensorFlow", "Python", "Android"],
+        "An Android attendance app that uses a facial recognition model to identify students. Kotlin on Android, with a Python ML model for face matching. Attendance records sync from the device to a Django backend over REST. The project pushed me into ML inference on mobile, model size constraints, and offline-first sync patterns.",
+      tags: ["Kotlin", "Android Studio", "Python", "TensorFlow", "Django"],
       category: "mobile",
-      imageUrl: "",
       githubUrl: "https://github.com/hamzakhan0712/FaceTrack-Attendance",
-      liveUrl: "",
-      urltext: "Mobile App with Django Backend",
+      urltext: "Mobile + Django backend",
+    },
+    {
+      title: "Customer Shopping Behavior Analysis",
+      summary:
+        "End-to-end retail data pipeline — Python ETL, SQL queries, and Power BI dashboards.",
+      description:
+        "A data engineering project analyzing retail customer shopping behavior end-to-end. Python handles ingestion and ETL, SQL drives the analytical queries, and Power BI dashboards present the segmentation and trends. Includes data quality validation at each stage so dashboards don't surface stale or malformed records — the kind of pipeline hygiene most ad-hoc analysis projects skip.",
+      tags: ["Python", "Pandas", "SQL", "Power BI", "ETL", "Jupyter"],
+      category: "personal",
+      githubUrl:
+        "https://github.com/hamzakhan0712/Customer-Shopping-Behavior-Analysis",
+      urltext: "Data engineering pipeline",
+    },
+    {
+      title: "QSync — Real-Time Queue Management",
+      summary: "React 19 SPA for queue management with WebSocket-based live sync.",
+      description:
+        "Team project: a real-time queue management SPA for multi-terminal environments. I built the React frontend — React 19 with Vite, React Query for server state, Zustand for client state, and Shadcn UI components — with WebSocket-based live synchronization. The Spring Boot backend was developed by a teammate; first project where I stepped fully into a frontend lead role.",
+      tags: [
+        "React 19",
+        "Vite",
+        "WebSocket",
+        "React Query",
+        "Zustand",
+        "Shadcn UI",
+      ],
+      category: "fullstack",
+      urltext: "Team project · Frontend lead",
     },
   ];
 
@@ -140,6 +203,7 @@ function ProjectsSection() {
     const matchesSearch =
       searchQuery === "" ||
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.tags.some((tag) =>
         tag.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -149,42 +213,57 @@ function ProjectsSection() {
   });
 
   const categoryConfig = {
-    all: { label: "All Projects", icon: Filter, count: projects.length },
+    all: { label: "All", icon: Filter, count: projects.length },
     backend: {
-      label: "Backend & APIs",
+      label: "Backend",
       icon: Server,
       count: projects.filter((p) => p.category === "backend").length,
     },
-    frontend: {
-      label: "Frontend & Sites",
-      icon: Globe,
-      count: projects.filter((p) => p.category === "frontend").length,
+    fullstack: {
+      label: "Full-Stack",
+      icon: Layers,
+      count: projects.filter((p) => p.category === "fullstack").length,
     },
     mobile: {
-      label: "Mobile Apps",
-      icon: Monitor,
+      label: "Mobile",
+      icon: Smartphone,
       count: projects.filter((p) => p.category === "mobile").length,
+    },
+    personal: {
+      label: "Personal",
+      icon: FlaskConical,
+      count: projects.filter((p) => p.category === "personal").length,
     },
   };
 
   const categoryStyles = {
     backend: {
-      bg: "bg-green-500 dark:bg-green-500",
+      bg: "bg-green-500/90",
       text: "text-white",
-      border: "border-green-500/20",
+      border: "border-green-500/30",
       icon: Server,
+      label: "Backend",
     },
-    frontend: {
-      bg: "bg-blue-500 dark:bg-blue-500",
+    fullstack: {
+      bg: "bg-blue-500/90",
       text: "text-white",
-      border: "border-blue-500/20",
-      icon: Globe,
+      border: "border-blue-500/30",
+      icon: Layers,
+      label: "Full-Stack",
     },
     mobile: {
-      bg: "bg-purple-500 dark:bg-purple-500",
+      bg: "bg-purple-500/90",
       text: "text-white",
-      border: "border-purple-500/20",
-      icon: Monitor,
+      border: "border-purple-500/30",
+      icon: Smartphone,
+      label: "Mobile",
+    },
+    personal: {
+      bg: "bg-orange-500/90",
+      text: "text-white",
+      border: "border-orange-500/30",
+      icon: FlaskConical,
+      label: "Personal",
     },
   };
 
@@ -192,7 +271,7 @@ function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative py-2 overflow-hidden reveal-container"
+      className="relative py-20 md:py-28 overflow-hidden reveal-container"
     >
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -225,7 +304,7 @@ function ProjectsSection() {
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-14 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -250,11 +329,10 @@ function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Production systems built for clients: from enterprise CRMs
-            processing 1,000+ daily transactions to REST APIs serving live
-            traffic.
+            Production systems built for paying clients and selected personal
+            work.
           </motion.p>
         </div>
 
@@ -267,7 +345,7 @@ function ProjectsSection() {
           className="mb-12"
         >
           {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
+          <div className="flex flex-wrap justify-center gap-2.5 mb-6">
             {(Object.keys(categoryConfig) as ProjectCategory[]).map(
               (category) => {
                 const config = categoryConfig[category];
@@ -277,25 +355,25 @@ function ProjectsSection() {
                 return (
                   <motion.button
                     key={category}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => setFilter(category)}
                     className={`
                     relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300
                     ${
                       isActive
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                        ? "bg-primary text-white shadow-lg shadow-primary/25"
                         : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border"
                     }
                   `}
                   >
                     <span className="flex items-center gap-2">
-                      <Icon className="w-4 h-4 " />
+                      <Icon className="w-4 h-4" />
                       <span>{config.label}</span>
                       <span
                         className={`
-                      ml-1 px-1.5 py-0.5 rounded-full text-xs font-semibold
-                      ${isActive ? "bg-primary-foreground/20" : "bg-muted"}
+                      ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-semibold
+                      ${isActive ? "bg-white/20" : "bg-muted"}
                     `}
                       >
                         {config.count}
@@ -313,10 +391,10 @@ function ProjectsSection() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-20" />
               <input
                 type="text"
-                placeholder="Search projects by name, description, or technology..."
+                placeholder="Search by name, tech, or description..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-12 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300"
+                className="w-full pl-12 pr-12 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-sm"
               />
               {searchQuery && (
                 <button
@@ -330,12 +408,12 @@ function ProjectsSection() {
           </div>
 
           {/* Results Count */}
-          <div className="text-center mt-4 text-sm text-muted-foreground">
+          <div className="text-center mt-4 text-xs text-muted-foreground">
             {filteredProjects.length === projects.length ? (
               <span>Showing all {projects.length} projects</span>
             ) : (
               <span>
-                Found {filteredProjects.length} of {projects.length} projects
+                {filteredProjects.length} of {projects.length} projects
               </span>
             )}
           </div>
@@ -352,10 +430,7 @@ function ProjectsSection() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             >
               {filteredProjects.map((project, index) => {
-                const categoryStyle =
-                  categoryStyles[
-                    project.category as keyof typeof categoryStyles
-                  ];
+                const categoryStyle = categoryStyles[project.category];
                 const CategoryIcon = categoryStyle.icon;
 
                 return (
@@ -364,7 +439,7 @@ function ProjectsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.08 }}
                     whileHover={{ y: -8 }}
                     className="h-full"
                   >
@@ -381,7 +456,7 @@ function ProjectsSection() {
                           }}
                           className="absolute top-4 left-4 z-20"
                         >
-                          <span className="px-3 py-1 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs font-semibold rounded-full shadow-lg flex items-center gap-1">
+                          <span className="px-3 py-1 bg-gradient-to-r from-primary to-primary/80 text-white text-xs font-semibold rounded-full shadow-lg flex items-center gap-1">
                             Featured
                           </span>
                         </motion.div>
@@ -395,6 +470,16 @@ function ProjectsSection() {
                               src={project.imageUrl}
                               alt={project.title}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              loading="lazy"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.style.display = "none";
+                                if (target.parentElement) {
+                                  target.parentElement.classList.add(
+                                    "fallback-active",
+                                  );
+                                }
+                              }}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
@@ -405,9 +490,6 @@ function ProjectsSection() {
                             </div>
                             <div>
                               <p className="text-sm font-medium text-foreground/70">
-                                Preview Coming Soon
-                              </p>
-                              <p className="text-xs text-muted-foreground mt-1">
                                 {project.title}
                               </p>
                             </div>
@@ -424,9 +506,7 @@ function ProjectsSection() {
                           `}
                           >
                             <CategoryIcon className="w-3.5 h-3.5" />
-                            {project.category === "backend" && "Backend & API"}
-                            {project.category === "frontend" && "Frontend"}
-                            {project.category === "mobile" && "Mobile"}
+                            {categoryStyle.label}
                           </span>
                         </div>
                       </CardHeader>
@@ -434,20 +514,23 @@ function ProjectsSection() {
                       {/* Project Content */}
                       <CardContent className="flex-grow p-6 space-y-4">
                         <div>
-                          <h3 className="text-xl font-bold mb-2 font-serif group-hover:text-primary transition-colors">
+                          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                             {project.title}
                           </h3>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm font-medium text-foreground/80 mb-2">
+                            {project.summary}
+                          </p>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             {project.description}
                           </p>
                         </div>
 
                         {/* Tech Stack Tags */}
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1.5">
                           {project.tags.map((tag, i) => (
                             <span
                               key={i}
-                              className="text-xs px-2.5 py-1 rounded-md bg-secondary/50 text-secondary-foreground border border-border/30 hover:border-border transition-colors"
+                              className="text-[11px] px-2 py-0.5 rounded-md bg-secondary/50 text-secondary-foreground border border-border/30 hover:border-border transition-colors"
                             >
                               {tag}
                             </span>
@@ -469,7 +552,7 @@ function ProjectsSection() {
                               <Button
                                 variant="default"
                                 size="sm"
-                                className="w-full group/btn"
+                                className="w-full group/btn text-white"
                               >
                                 <span className="flex items-center gap-2">
                                   View Live
@@ -519,6 +602,7 @@ function ProjectsSection() {
                                 variant="ghost"
                                 size="sm"
                                 className="aspect-square p-0 w-9"
+                                aria-label="View source on GitHub"
                               >
                                 <Github className="w-4 h-4" />
                               </Button>
@@ -528,7 +612,7 @@ function ProjectsSection() {
 
                         {/* URL Text */}
                         {project.urltext && (
-                          <div className="text-xs text-muted-foreground text-center truncate w-full">
+                          <div className="text-[11px] text-muted-foreground text-center truncate w-full font-mono">
                             {project.urltext}
                           </div>
                         )}
@@ -549,9 +633,9 @@ function ProjectsSection() {
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
                 <Search className="w-10 h-10 text-muted-foreground/50" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">No Projects Found</h3>
+              <h3 className="text-xl font-semibold mb-2">No projects found</h3>
               <p className="text-muted-foreground mb-6">
-                Try adjusting your filters or search query
+                Try adjusting your filters or search query.
               </p>
               <Button
                 variant="outline"
@@ -562,7 +646,7 @@ function ProjectsSection() {
                 className="group"
               >
                 <span className="flex items-center gap-2">
-                  Reset Filters
+                  Reset filters
                   <X className="w-4 h-4 transition-transform group-hover:rotate-90" />
                 </span>
               </Button>

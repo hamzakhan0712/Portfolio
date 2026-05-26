@@ -8,6 +8,7 @@ import {
   User,
   Server,
   Briefcase,
+  Folder,
   Mail,
   Home,
   ChevronRight,
@@ -33,6 +34,7 @@ export function Navbar({ className }: NavbarProps) {
       const sections = [
         "hero",
         "about",
+        "experience",
         "projects",
         "skills",
         "achievements",
@@ -87,9 +89,10 @@ export function Navbar({ className }: NavbarProps) {
   const navLinks = [
     { name: "Home", href: "#hero", icon: Home },
     { name: "About", href: "#about", icon: User },
-    { name: "Projects", href: "#projects", icon: Briefcase },
+    { name: "Experience", href: "#experience", icon: Briefcase },
+    { name: "Projects", href: "#projects", icon: Folder },
     { name: "Skills", href: "#skills", icon: Server },
-    { name: "Achievements", href: "#achievements", icon: Award },
+    { name: "Recognition", href: "#achievements", icon: Award },
     { name: "Contact", href: "#contact", icon: Mail },
   ];
 

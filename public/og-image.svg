@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.6">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.1" cy="0.9" r="0.55">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#27272a" opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Top status pill -->
+  <g transform="translate(80, 90)">
+    <rect x="0" y="0" width="290" height="44" rx="22" fill="#18181b" stroke="#a78bfa" stroke-opacity="0.4" stroke-width="1"/>
+    <circle cx="22" cy="22" r="5" fill="#a78bfa"/>
+    <circle cx="22" cy="22" r="9" fill="#a78bfa" fill-opacity="0.3"/>
+    <text x="42" y="28" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#fafafa">Open to backend developer roles</text>
+  </g>
+
+  <!-- Name -->
+  <text x="80" y="240" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="96" font-weight="700" fill="#fafafa" letter-spacing="-3">Hamza Khan</text>
+
+  <!-- Role -->
+  <text x="80" y="310" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="600" fill="url(#accent)">Backend Developer</text>
+
+  <!-- Tech stack -->
+  <text x="80" y="365" font-family="JetBrains Mono, Consolas, monospace" font-size="22" font-weight="500" fill="#a1a1aa">Python  ·  Django  ·  PostgreSQL  ·  AWS</text>
+
+  <!-- Divider -->
+  <line x1="80" y1="410" x2="200" y2="410" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Stats row -->
+  <g transform="translate(80, 450)">
+    <text x="0" y="36" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="56" font-weight="700" fill="#fafafa">4</text>
+    <text x="0" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#71717a" letter-spacing="1">YEARS FREELANCE</text>
+
+    <text x="240" y="36" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="56" font-weight="700" fill="#fafafa">6</text>
+    <text x="240" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#71717a" letter-spacing="1">PRODUCTION PROJECTS</text>
+
+    <text x="540" y="36" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="56" font-weight="700" fill="url(#accent)">SIH'25</text>
+    <text x="540" y="68" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#71717a" letter-spacing="1">GRAND FINALIST</text>
+  </g>
+
+  <!-- Right-side decorative code block -->
+  <g transform="translate(820, 130)" opacity="0.9">
+    <rect x="0" y="0" width="300" height="360" rx="16" fill="#0f0f12" stroke="#27272a" stroke-width="1"/>
+    <!-- window dots -->
+    <circle cx="20" cy="22" r="6" fill="#ef4444"/>
+    <circle cx="42" cy="22" r="6" fill="#f59e0b"/>
+    <circle cx="64" cy="22" r="6" fill="#22c55e"/>
+    <line x1="0" y1="44" x2="300" y2="44" stroke="#27272a" stroke-width="1"/>
+
+    <!-- code lines -->
+    <text x="20" y="80" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#71717a">from django.urls</text>
+    <text x="20" y="104" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#71717a">import path</text>
+
+    <text x="20" y="142" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#a78bfa">class</text>
+    <text x="74" y="142" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#fafafa">Hamza:</text>
+
+    <text x="40" y="170" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#c4b5fd">role</text>
+    <text x="76" y="170" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#fafafa">=</text>
+    <text x="92" y="170" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#86efac">"backend"</text>
+
+    <text x="40" y="194" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#c4b5fd">stack</text>
+    <text x="86" y="194" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#fafafa">= [</text>
+    <text x="60" y="218" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#86efac">"python",</text>
+    <text x="60" y="242" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#86efac">"django",</text>
+    <text x="60" y="266" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#86efac">"postgres",</text>
+    <text x="60" y="290" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#86efac">"aws",</text>
+    <text x="40" y="314" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#fafafa">]</text>
+
+    <text x="20" y="346" font-family="JetBrains Mono, Consolas, monospace" font-size="14" fill="#71717a"># shipping since 2021</text>
+  </g>
+
+  <!-- Footer URL -->
+  <g transform="translate(80, 575)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#52525b">github.com/hamzakhan0712</text>
+    <text x="280" y="0" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#52525b">·</text>
+    <text x="300" y="0" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#52525b">hamza81khan81@gmail.com</text>
+  </g>
+</svg>

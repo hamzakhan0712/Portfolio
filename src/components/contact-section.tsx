@@ -168,7 +168,7 @@ function ContactSection() {
     {
       icon: Calendar,
       label: "Availability",
-      value: "Open to backend roles",
+      value: "Open to backend developer roles",
       href: "#",
       copyable: false,
       gradient: "from-blue-500/10 to-cyan-500/10",
@@ -234,17 +234,18 @@ function ContactSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
-            Let's Work <span className="gradient-text">Together</span>
+            Get in <span className="gradient-text">Touch</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Looking for a backend developer for your team or project? I'm open
-            to backend-focused roles in Mumbai or remote.
+            Open to backend developer roles — remote, Mumbai, Navi Mumbai,
+            Thane, or remote-from-India roles based in Australia. The fastest
+            way to reach me is email.
           </motion.p>
         </div>
 

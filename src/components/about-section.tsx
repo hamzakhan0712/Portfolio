@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import {
   User,
-  Server,
-  Briefcase,
-  Database,
-  TrendingUp,
+  MapPin,
   GraduationCap,
+  Languages,
+  Briefcase,
+  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -33,45 +33,31 @@ function AboutSection() {
     };
   }, []);
 
-  const journey = [
+  const quickFacts = [
     {
-      year: "2021–2025",
-      title: "Freelance Backend Developer",
-      subtitle: "Self Employed",
-      icon: Server,
-      description:
-        "Built production systems for clients while studying. Shipped Django apps, REST APIs, and PostgreSQL databases handling production traffic and live deployments.",
-      highlight: "Production Experience",
+      icon: MapPin,
+      label: "Location",
+      value: "Mumbai, India",
     },
     {
-      year: "Sept–Nov 2025",
-      title: "Full-Stack Developer",
-      subtitle: "Brandenbed Living Spaces, Berlin",
+      icon: GraduationCap,
+      label: "Education",
+      value: "B.E. CSE (Data Science), Mumbai University",
+    },
+    {
       icon: Briefcase,
-      description:
-        "Developed full-stack solutions for an international property tech company. Collaborated with European teams on scalable backend systems and modern frontend integration.",
-      highlight: "International Client",
-    },
-  ];
-
-  const education = [
-    {
-      year: "Expected July 2026",
-      title: "B.Tech - CSE (Data Science)",
-      subtitle: "Saraswati College of Engineering, Kharghar",
-      university: "University of Mumbai",
-      icon: GraduationCap,
-      description: "Currently Pursuing",
-      highlight: "Bachelor's Degree",
+      label: "Available",
+      value: "Remote · Mumbai · Navi Mumbai · Thane",
     },
     {
-      year: "July 2023",
-      title: "Diploma in Computer Engineering",
-      subtitle: "Anjuman-I-Islam's Abdul Razzaq Kalsekar Polytechnic",
-      university: "University of Mumbai",
-      icon: GraduationCap,
-      description: "72.63%",
-      highlight: "Diploma",
+      icon: Languages,
+      label: "Languages",
+      value: "English (professional), Hindi, Marathi, Urdu",
+    },
+    {
+      icon: Sparkles,
+      label: "Currently",
+      value: "Open to backend developer roles",
     },
   ];
 
@@ -79,11 +65,11 @@ function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-12 overflow-hidden reveal-container"
+      className="relative py-20 md:py-28 overflow-hidden reveal-container"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-14 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +78,7 @@ function AboutSection() {
             className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
           >
             <User className="w-4 h-4 text-primary mr-2" />
-            About Me
+            About
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -101,219 +87,155 @@ function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
-            Background & <span className="gradient-text">Experience</span>
+            Backend, <span className="gradient-text">pragmatic</span>, shipped.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            From freelancing for clients since 2021 to building enterprise
-            systems that handle production traffic daily.
+            Production-aware Django developer. Four years of real client work,
+            real deployments, real users.
           </motion.p>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 md:mb-20">
-          {/* Left Column - Image & Quote */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-14 items-start max-w-6xl mx-auto">
+          {/* Left Column - Story */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="reveal-content"
+            className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed"
           >
-            <div className="relative">
-              <div className="relative aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm shadow-2xl">
-                <img
-                  src="/me.jpg"
-                  alt="Hamza Khan - Backend Developer"
-                  className="w-full h-full object-cover object-top"
-                />
+            <p>
+              <span className="text-foreground font-semibold">
+                Backend developer
+              </span>{" "}
+              with{" "}
+              <span className="text-primary font-semibold">4 years</span> of
+              freelance project experience building Django-based web
+              applications, REST APIs, and real-time WebSocket services backed
+              by PostgreSQL.
+            </p>
+            <p>
+              I started freelancing in 2021 while studying. Most projects were
+              for clients who needed working systems they could actually use —
+              which meant dealing with real constraints: deployment on shared
+              servers, handling user traffic, debugging in production, and
+              maintaining code other people depend on.
+            </p>
+            <p>
+              That experience shaped how I approach backend work — pragmatic,
+              deployment-aware, and focused on what actually ships.
+            </p>
+            <p>
+              Currently completing a{" "}
+              <span className="text-foreground font-medium">
+                B.E. in Computer Science and Engineering (Data Science)
+              </span>{" "}
+              at the University of Mumbai (graduating July 2026), and building
+              toward a career in{" "}
+              <span className="text-primary font-medium">Data Engineering</span>.
+            </p>
 
-                {/* Floating Decorative Elements */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-full blur-2xl"
-                />
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                  className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/15 rounded-full blur-2xl"
-                />
-              </div>
-
-              {/* Stat Overlay - 5 live production systems */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="absolute -bottom-8 -right-4 md:-right-8 p-4 md:p-6 glass-card rounded-2xl border border-border/50 shadow-2xl max-w-xs bg-background/95 backdrop-blur-md"
-              >
-                <p className="text-sm font-semibold text-foreground mb-1">
-                  5 Live Production Systems
-                </p>
-                <p className="font-serif text-xs text-muted-foreground">
-                  From CRM to property platforms, deployed and maintained in
-                  production.
-                </p>
-              </motion.div>
-            </div>
+            {/* Highlight strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="grid grid-cols-3 gap-3 pt-4"
+            >
+              {[
+                { value: "4yrs", label: "Freelance" },
+                { value: "6", label: "Projects shipped" },
+                { value: "2", label: "Live deployments" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-3 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm"
+                >
+                  <div className="text-xl md:text-2xl font-bold text-foreground">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wide mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* Right Column - About Content */}
+          {/* Right Column - Quick Facts */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="reveal-content space-y-8"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative"
           >
-            {/* About Me */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 flex items-center">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mr-3">
-                  <User className="w-5 h-5 text-primary" />
-                </span>
-                About Me
-              </h3>
-              <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  I'm a{" "}
-                  <span className="text-foreground font-semibold">
-                    backend developer
-                  </span>{" "}
-                  with{" "}
-                  <span className="text-primary font-semibold">
-                    4+ years of production experience
-                  </span>{" "}
-                  building Django-based REST APIs, real-time WebSocket services,
-                  and PostgreSQL-backed architectures for clients across India
-                  and internationally.
-                </p>
-                <p>
-                  I started freelancing in 2021 while pursuing B.Tech in
-                  Computer Science (Data Science) at the University of Mumbai.
-                  That experience: deploying on servers, handling live traffic,
-                  maintaining code other people depend on. Shaped how I approach
-                  backend work.
-                </p>
+            <div className="relative rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm shadow-xl overflow-hidden">
+              {/* Card header */}
+              <div className="px-6 py-4 border-b border-border/50 bg-gradient-to-r from-primary/10 via-transparent to-transparent flex items-center justify-between">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+                  Quick facts
+                </h3>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500/70"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/70"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500/70"></span>
+                </div>
+              </div>
+
+              {/* Facts list */}
+              <div className="p-6 space-y-4">
+                {quickFacts.map((fact, idx) => {
+                  const Icon = fact.icon;
+                  return (
+                    <motion.div
+                      key={fact.label}
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.06 }}
+                      className="flex items-start gap-3 group"
+                    >
+                      <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">
+                          {fact.label}
+                        </div>
+                        <div className="text-sm text-foreground/90 leading-relaxed">
+                          {fact.value}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Card footer */}
+              <div className="px-6 py-3 border-t border-border/50 bg-secondary/20 font-mono text-[11px] text-muted-foreground">
+                <span className="text-primary">$</span> available --remote --mumbai
               </div>
             </div>
 
-            {/* Journey Timeline */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mr-3">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                </span>
-                Career Path
-              </h3>
-              <div className="space-y-4">
-                {journey.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="relative p-4 md:p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
-                        <item.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                          <h4 className="text-lg font-bold text-foreground">
-                            {item.title}
-                          </h4>
-                          {item.subtitle && (
-                            <p className="text-sm text-muted-foreground">
-                              {item.subtitle}
-                            </p>
-                          )}
-                          <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
-                            {item.highlight}
-                          </span>
-                        </div>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          {item.year}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Education Timeline */}
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 mr-3">
-                  <GraduationCap className="w-5 h-5 text-primary" />
-                </span>
-                Education
-              </h3>
-              <div className="space-y-4">
-                {education.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.5,
-                      delay: (journey.length + index) * 0.1,
-                    }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="relative p-4 md:p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
-                        <item.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                          <h4 className="text-lg font-bold text-foreground">
-                            {item.title}
-                          </h4>
-                          <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10">
-                            {item.highlight}
-                          </span>
-                        </div>
-                        <p className="text-sm font-medium text-muted-foreground mb-1">
-                          {item.subtitle}
-                        </p>
-                        <p className="text-sm text-muted-foreground mb-2">
-                          {item.year}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            {/* Floating glow */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-3xl -z-10"
+            />
           </motion.div>
         </div>
       </div>

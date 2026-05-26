@@ -40,9 +40,10 @@ function Footer() {
   const quickLinks = [
     { name: "Home", to: "hero", icon: Code },
     { name: "About", to: "about", icon: Briefcase },
+    { name: "Experience", to: "experience", icon: Briefcase },
     { name: "Projects", to: "projects", icon: Globe },
     { name: "Skills", to: "skills", icon: Code },
-    { name: "Achievements", to: "achievements", icon: FileText },
+    { name: "Recognition", to: "achievements", icon: FileText },
     { name: "Contact", to: "contact", icon: Send },
   ];
 
@@ -80,9 +81,9 @@ function Footer() {
                 <h3 className="text-2xl font-bold gradient-text">Hamza Khan</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Backend developer specializing in Django REST APIs, WebSocket
-                services, and PostgreSQL-backed architectures for production
-                systems.
+                Backend developer. Four years of freelance project experience
+                building Django apps, REST APIs, and real-time WebSocket
+                services backed by PostgreSQL.
               </p>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -228,7 +229,12 @@ function Footer() {
               <p className="text-sm text-muted-foreground flex items-center">
                 Built with
                 <span className="ml-1 font-semibold text-foreground">
-                  React + TypeScript
+                  Vite + React + Tailwind
+                </span>
+                <span className="mx-1.5">·</span>
+                Shipped on
+                <span className="ml-1 font-semibold text-foreground">
+                  Vercel
                 </span>
               </p>
             </motion.div>
