@@ -181,17 +181,6 @@ function ProjectsSection() {
       urltext: "Microservice",
     },
     {
-      title: "FaceTrack — Android Attendance",
-      summary:
-        "Kotlin Android app with on-device face recognition syncing to a Django backend.",
-      description:
-        "An Android attendance app that uses a facial recognition model to identify students. Kotlin on Android, with a Python ML model for face matching. Attendance records sync from the device to a Django backend over REST. The project pushed me into ML inference on mobile, model size constraints, and offline-first sync patterns.",
-      tags: ["Kotlin", "Android Studio", "Python", "TensorFlow", "Django"],
-      category: "mobile",
-      githubUrl: "https://github.com/hamzakhan0712/FaceTrack-Attendance",
-      urltext: "Mobile + Django backend",
-    },
-    {
       title: "Customer Shopping Behavior Analysis",
       summary:
         "End-to-end retail data pipeline — Python ETL, SQL queries, and Power BI dashboards.",
