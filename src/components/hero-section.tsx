@@ -41,7 +41,7 @@ export function HeroSection() {
 
   const stats = [
     { value: "4", label: "Years freelance" },
-    { value: "6", label: "Production projects" },
+    { value: "8", label: "Projects shown" },
     { value: "SIH'25", label: "Grand Finalist" },
   ];
 
@@ -128,8 +128,8 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-sm md:text-base text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0"
             >
-              Currently completing B.E. CSE (Data Science) at the University of
-              Mumbai.{" "}
+              Graduated B.E. CSE (Data Science) from the University of Mumbai
+              with CGPI 8.19/10.{" "}
               <span className="inline-flex items-center gap-1 text-foreground/90 font-medium">
                 <Sparkles className="w-3.5 h-3.5 text-primary" />
                 Smart India Hackathon 2025 Grand Finalist.

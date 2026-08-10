@@ -42,7 +42,7 @@ function AboutSection() {
     {
       icon: GraduationCap,
       label: "Education",
-      value: "B.E. CSE (Data Science), Mumbai University",
+      value: "B.E. CSE (Data Science), University of Mumbai — CGPI 8.19 / 10",
     },
     {
       icon: Briefcase,
@@ -52,7 +52,7 @@ function AboutSection() {
     {
       icon: Languages,
       label: "Languages",
-      value: "English (professional), Hindi   ",
+      value: "English (IELTS Academic 6.5, CEFR B2), Hindi",
     },
     {
       icon: Sparkles,
@@ -133,12 +133,12 @@ function AboutSection() {
               deployment-aware, and focused on what actually ships.
             </p>
             <p>
-              Currently completing a{" "}
+              Graduated with a{" "}
               <span className="text-foreground font-medium">
                 B.E. in Computer Science and Engineering (Data Science)
               </span>{" "}
-              at the University of Mumbai (graduating July 2026), and building
-              toward a career in{" "}
+              from the University of Mumbai in Summer 2026 with a CGPI of
+              8.19 / 10, and building toward a career in{" "}
               <span className="text-primary font-medium">Data Engineering</span>.
             </p>
 
@@ -152,7 +152,7 @@ function AboutSection() {
             >
               {[
                 { value: "4yrs", label: "Freelance" },
-                { value: "6", label: "Projects shipped" },
+                { value: "8", label: "Projects shown" },
                 { value: "2", label: "Live deployments" },
               ].map((stat) => (
                 <div

@@ -22,3 +22,11 @@ RESUSE.TXT
 *.njsproj
 *.sln
 *.sw?
+
+# Personal documents — never commit
+/Academic Documents/
+/Profession Documents/
+/Achivements/
+
+# Extracted document scans (working files)
+/tmp/

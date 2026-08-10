@@ -5,7 +5,7 @@ import {
   Filter,
   Server,
   Search,
-  Smartphone,
+  LayoutTemplate,
   Github,
   Lock,
   ImageIcon,
@@ -26,7 +26,12 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import MediaLightbox, { type MediaItem } from "@/components/media-lightbox";
 
-type ProjectCategory = "backend" | "fullstack" | "mobile" | "personal" | "all";
+type ProjectCategory =
+  | "backend"
+  | "fullstack"
+  | "frontend"
+  | "personal"
+  | "all";
 
 type Project = {
   title: string;
@@ -90,16 +95,18 @@ function ProjectsSection() {
     {
       title: "InitCore CRM — Call Center Platform",
       summary:
-        "Multi-role CRM with real-time agent monitoring for call center operations.",
+        "Django CRM for running an outbound call-center desk — leads, payments, GST invoices, attendance and a live break monitor.",
       description:
-        "A multi-role CRM built with Django and PostgreSQL for call center operations. Three permission levels — agents, supervisors, and administrators — each with their own dashboards and workflows. Modules include lead management, call logging, payment tracking, attendance, and PDF invoice generation. Real-time agent monitoring is built with Django Channels and WebSockets, so supervisors see live status updates without refreshing.",
+        "A single Django app for a small outbound call-center desk. Leads are imported from CSV or XLSX through a column-mapping screen before anything is written, carry a disposition and free-form sub-disposition, and append to a history table on every change — transfers between agents record who moved what and why. Converted leads become paid customers, and once an admin verifies the record the app renders a GST invoice, converts the amount to words with num2words in Indian numbering, and shells out to wkhtmltopdf via pdfkit to store the PDF. Attendance is derived from the login and logout views rather than a clock-in button, computing effective work time after breaks to decide Present, Half day or Absent. Agents start and stop breaks over a WebSocket and team leaders watch them live on a monitor page. Server-rendered templates throughout — no REST API and no JavaScript framework.",
       tags: [
-        "Python",
-        "Django",
-        "Django Channels",
+        "Django 5",
         "PostgreSQL",
+        "Django Channels",
         "WebSockets",
-        "ReportLab",
+        "pdfkit",
+        "Pandas",
+        "Daphne",
+        "Gunicorn",
       ],
       category: "backend",
       imageUrl: "/crm.png",
@@ -108,108 +115,145 @@ function ProjectsSection() {
       featured: true,
     },
     {
-      title: "Key2YourHome — Real Estate Marketplace",
-      summary:
-        "Live property listing platform with OAuth authentication and admin tooling.",
-      description:
-        "Live property listing platform built with Django 5.2 and PostgreSQL, deployed to a custom domain. Features OAuth-based authentication, a Grappelli-powered admin interface for managing listings, property search and filtering, and a Tailwind CSS frontend. Running in production since I shipped it — the project that most shaped how I think about admin tooling.",
-      tags: [
-        "Python",
-        "Django 5.2",
-        "PostgreSQL",
-        "Tailwind CSS",
-        "OAuth",
-        "Grappelli",
-      ],
-      category: "backend",
-      imageUrl: "/key2yourhome.png",
-      liveUrl: "https://www.key2yourhome.net",
-      urltext: "key2yourhome.net",
-      featured: true,
-    },
-    {
       title: "Novem — E-Commerce Intelligence Platform",
       summary:
-        "Desktop BI tool that turns raw Shopify exports into inventory, pricing, and marketing answers for small store owners.",
+        "Offline-first desktop BI tool: a Tauri shell over a FastAPI + DuckDB engine that turns Shopify exports into forecasts, segments and recommendations.",
       description:
-        "An offline-first desktop application aimed at e-commerce store owners under $500K/year who can't afford enterprise BI tools or in-house data scientists. A Tauri + React shell wraps a Python analytics engine that ingests Shopify exports and surfaces decisions — what to restock, where to adjust pricing, which channels are working — rather than just charts. Architecture is split into a TypeScript desktop client and a separately runnable Python engine so the analytics layer stays scriptable.",
+        "Built for e-commerce owners under $500K/year who cannot afford enterprise BI and have no data scientist — they need answers, not another dashboard. A Tauri (Rust) desktop shell wraps a React + TypeScript client using Ant Design and ECharts, talking to a separately runnable FastAPI engine backed by DuckDB for analytical queries. The engine is where the real work happens: Prophet for demand forecasting, scikit-learn for segmentation, mlxtend for market-basket association rules, the lifetimes library for customer lifetime value, SHAP so a recommendation can explain itself, and TextBlob for review sentiment. Ollama runs a local LLM so summaries never leave the machine. ReportLab generates the exports and APScheduler handles recurring refreshes. GitHub Actions runs the full gate on every push — Ruff lint and format, pytest across Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest, and a production build.",
       tags: [
         "Tauri",
+        "Rust",
         "React",
         "TypeScript",
-        "Vite",
-        "Python",
-        "Pandas",
+        "FastAPI",
+        "DuckDB",
+        "scikit-learn",
+        "Prophet",
+        "SHAP",
+        "Ollama",
+        "GitHub Actions",
       ],
       category: "fullstack",
       imageUrl: "/novem.png",
       githubUrl:
         "https://github.com/hamzakhan0712/Novem---E-Commerce-Intelligence-Platform",
-      urltext: "Desktop app · Tauri + Python engine",
+      urltext: "Desktop app · Tauri shell + FastAPI engine",
       featured: true,
     },
     {
-      title: "SK Trading Co. — Corporate Website",
+      title: "QSync — Queue Management (Frontend)",
       summary:
-        "Next.js 15 corporate site for an import/export business with form automation.",
+        "React 19 SPA for multi-terminal queue management, with live sync over STOMP/WebSocket and a FastAPI prediction service.",
       description:
-        "Corporate website for an import and export business. Next.js 15 and Tailwind CSS, with smooth Framer Motion transitions across pages. reCAPTCHA-protected contact forms feed into Google Sheets via the Sheets API for the client's internal tracking, and Nodemailer handles automated email replies — a clean inbox of inquiries plus a sortable spreadsheet, no third-party CRM.",
+        "The client half of a real-time queue management system for multi-terminal environments. React 19 on Vite, TanStack React Query for server state, Zustand for client state, Radix-based shadcn/ui components, a drag-and-drop counter layout via react-dnd and react-grid-layout, Recharts for the analytics views, and react-hook-form with Zod for validation. Live synchronisation runs over STOMP on SockJS so every terminal reflects queue changes without polling. Alongside it I wrote a separate prediction service — a small FastAPI app using scikit-learn and XGBoost to estimate wait times from historical queue data. The Spring Boot API it talks to lives in its own repository, listed next.",
       tags: [
-        "Next.js 15",
-        "Tailwind CSS",
-        "Framer Motion",
-        "Nodemailer",
-        "Google Sheets API",
+        "React 19",
+        "Vite",
+        "TanStack Query",
+        "Zustand",
+        "STOMP / SockJS",
+        "FastAPI",
+        "XGBoost",
+        "Recharts",
       ],
+      imageUrl: "/qsync.png",
       category: "fullstack",
-      imageUrl: "/sktrading.png",
-      liveUrl: "https://www.sktradings.in",
-      githubUrl: "https://github.com/hamzakhan0712/SKTrading-Website",
-      urltext: "sktradings.in",
+      githubUrl: "https://github.com/hamzakhan0712/QSync-Frontend",
+      urltext: "Team project · Frontend lead",
       featured: true,
     },
     {
-      title: "FlaskSearch — REST Search API",
+      title: "QSync — Queue Management API (Backend)",
       summary:
-        "Containerized Flask + Elasticsearch microservice for full-text search.",
+        "Spring Boot 3.4 REST API on Java 21 for virtual queues — capacity, waitlists, no-show limits and rejoining rules enforced server-side.",
       description:
-        "A Flask and Elasticsearch microservice that exposes full-text search over the complete Shakespeare plays corpus. Supports filtering, pagination, and query parameters via clean REST endpoints. Containerized with Docker — single command to spin up the API and the Elasticsearch node together.",
-      tags: ["Python", "Flask", "Elasticsearch", "Docker", "REST API"],
+        "The service behind QSync. Businesses create queues; customers join by walk-in, QR, online booking or a scheduled slot; staff move people through while the API enforces the rules. Every user type extends a single UserModel with JOINED inheritance, so admins, customers and business owners each get their own table joined on a shared id. Settings cascade — a queue inherits roughly twenty switches from its parent business unless it overrides them, and the resolver copies the business defaults in before validating. Tokens are issued under a ReentrantLock that reads the current maximum from the database, with separate series for normal, emergency and scheduled entries, and queue ordering is computed in Java rather than SQL: emergency first, then normal plus any scheduled entry whose time has arrived, then the rest. Status changes pass through a transition validator that also checks the supplied exit method is permitted by settings. JWT with BCrypt for auth, Hibernate for the schema, springdoc for Swagger UI. Still in progress — the README documents exactly which endpoints and beans are unfinished rather than hiding them.",
+      tags: [
+        "Java 21",
+        "Spring Boot 3.4",
+        "Spring Data JPA",
+        "Spring Security",
+        "PostgreSQL",
+        "JWT",
+        "Gradle",
+        "OpenAPI / Swagger",
+      ],
+      category: "backend",
+      githubUrl: "https://github.com/hamzakhan0712/QSync-Backend",
+      urltext: "REST API · work in progress",
+    },
+    {
+      title: "ICTMT 2025 — Conference Website",
+      summary:
+        "Single-page React 19 site for an international conference at SCOE, with content fully separated from markup.",
+      description:
+        "The website for ICTMT 2025, the International Conference on Technology and Management for Transformation, organised by Saraswati College of Engineering and held online on 8 April 2025. One scrolling page covering the conference intro, keynote, five paper tracks, key dates, call for papers, fees and committees, with react-scroll navigation between sections rather than routing between pages. Nearly all copy — dates, names, fees, track topics — lives in a single values file exported as plain objects, so preparing the next edition means editing content and not components. Two separate navigations by breakpoint: a sticky desktop bar that turns solid past 50px, and a Radix sheet drawer below the lg breakpoint.",
+      tags: [
+        "React 19",
+        "Vite 6",
+        "Tailwind CSS v4",
+        "Radix UI",
+        "Framer Motion",
+        "Swiper",
+      ],
+      category: "frontend",
+      imageUrl: "/ictmt.png",
+      liveUrl: "https://ictmt-2025-conference.vercel.app",
+      githubUrl: "https://github.com/hamzakhan0712/ICTMT2025-Conference",
+      urltext: "ictmt-2025-conference.vercel.app",
+    },
+    {
+      title: "SUSTECH 2025 — Conference Website",
+      summary:
+        "Static React site for SCOE’s International Conference on Sustainable Technologies.",
+      description:
+        "Single-page site for SUSTECH 2025, the International Conference on Sustainable Technologies held online on 8 April 2025 and organised by Saraswati College of Engineering. Sections cover the conference overview, the college, four paper tracks, key dates, the call for papers, registration fees and the organising committees. There is no backend — submissions are handled externally through Microsoft CMT, so the site only has to present information and link out. Same content-as-data approach as ICTMT: one values file holds every title, deadline, fee and committee name that the page maps over.",
+      tags: [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Radix UI",
+        "Framer Motion",
+        "React Router",
+      ],
+      category: "frontend",
+      imageUrl: "/sustech.jpg",
+      githubUrl: "https://github.com/hamzakhan0712/SUSTECH2025-Conference",
+      urltext: "Conference site · SCOE",
+    },
+    {
+      title: "FlaskSearch — Elasticsearch Play Catalogue",
+      summary:
+        "Flask app serving a searchable catalogue of Shakespeare plays over an Elasticsearch index.",
+      description:
+        "A small Flask app serving a searchable catalogue of 38 Shakespeare plays. The listing pages read from a local JSON file and work with Elasticsearch switched off; search runs a multi_match query across play name, author and characters against an Elasticsearch index, and a modal form POSTs new plays straight into that index. The two data sources are deliberately independent — nothing copies the file into the index at startup — which the README calls out as the thing to understand before running it.",
+      tags: ["Python", "Flask", "Elasticsearch", "REST API", "Jinja"],
       category: "personal",
       imageUrl: "/flaskapi.png",
       githubUrl: "https://github.com/hamzakhan0712/FlaskSearch-API",
-      urltext: "Microservice",
+      urltext: "Search app",
     },
     {
       title: "Customer Shopping Behavior Analysis",
       summary:
-        "End-to-end retail data pipeline — Python ETL, SQL queries, and Power BI dashboards.",
+        "End-to-end analytics on a 3,900-row retail dataset — pandas ETL into PostgreSQL, ten SQL business questions, Power BI dashboard.",
       description:
-        "A data engineering project analyzing retail customer shopping behavior end-to-end. Python handles ingestion and ETL, SQL drives the analytical queries, and Power BI dashboards present the segmentation and trends. Includes data quality validation at each stage so dashboards don't surface stale or malformed records — the kind of pipeline hygiene most ad-hoc analysis projects skip.",
-      tags: ["Python", "Pandas", "SQL", "Power BI", "ETL", "Jupyter"],
+        "A complete analytics pass over a 3,900-row consumer shopping dataset of 18 columns. Pandas handles cleaning — including the 37 missing review ratings — before the data is loaded into PostgreSQL, where ten business questions are answered in SQL covering category performance, seasonal patterns, subscription behaviour and spend by demographic. The results are summarised in a Power BI dashboard checked into the repo alongside the notebook, the query file and the raw CSV, so the whole path from raw data to dashboard is reproducible.",
+      tags: [
+        "Python",
+        "Pandas",
+        "PostgreSQL",
+        "SQL",
+        "Power BI",
+        "Jupyter",
+        "ETL",
+      ],
       category: "personal",
       imageUrl: "/customer_analysis.png",
       githubUrl:
         "https://github.com/hamzakhan0712/Customer-Shopping-Behavior-Analysis",
-      urltext: "Data engineering pipeline",
-    },
-    {
-      title: "QSync — Real-Time Queue Management",
-      summary: "React 19 SPA for queue management with WebSocket-based live sync.",
-      description:
-        "Team project: a real-time queue management SPA for multi-terminal environments. I built the React frontend — React 19 with Vite, React Query for server state, Zustand for client state, and Shadcn UI components — with WebSocket-based live synchronization. The Spring Boot backend was developed by a teammate; first project where I stepped fully into a frontend lead role.",
-      tags: [
-        "React 19",
-        "Vite",
-        "WebSocket",
-        "React Query",
-        "Zustand",
-        "Shadcn UI",
-      ],
-      imageUrl: "/qsync.png",
-      category: "fullstack",
-      urltext: "Team project · Frontend lead",
-    },
+      urltext: "Data analytics pipeline",
+    }
   ];
 
   // Filter projects based on category and search query
@@ -239,10 +283,10 @@ function ProjectsSection() {
       icon: Layers,
       count: projects.filter((p) => p.category === "fullstack").length,
     },
-    mobile: {
-      label: "Mobile",
-      icon: Smartphone,
-      count: projects.filter((p) => p.category === "mobile").length,
+    frontend: {
+      label: "Frontend",
+      icon: LayoutTemplate,
+      count: projects.filter((p) => p.category === "frontend").length,
     },
     personal: {
       label: "Personal",
@@ -266,12 +310,12 @@ function ProjectsSection() {
       icon: Layers,
       label: "Full-Stack",
     },
-    mobile: {
+    frontend: {
       bg: "bg-purple-500/90",
       text: "text-white",
       border: "border-purple-500/30",
-      icon: Smartphone,
-      label: "Mobile",
+      icon: LayoutTemplate,
+      label: "Frontend",
     },
     personal: {
       bg: "bg-orange-500/90",
@@ -361,8 +405,9 @@ function ProjectsSection() {
         >
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-2.5 mb-6">
-            {(Object.keys(categoryConfig) as ProjectCategory[]).map(
-              (category) => {
+            {(Object.keys(categoryConfig) as ProjectCategory[])
+              .filter((category) => categoryConfig[category].count > 0)
+              .map((category) => {
                 const config = categoryConfig[category];
                 const Icon = config.icon;
                 const isActive = filter === category;
@@ -396,8 +441,7 @@ function ProjectsSection() {
                     </span>
                   </motion.button>
                 );
-              },
-            )}
+              })}
           </div>
 
           {/* Search Bar */}

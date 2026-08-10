@@ -6,7 +6,7 @@ import {
   Database,
   Cloud,
   Layers,
-  Wrench,
+  LineChart,
   ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -41,20 +41,21 @@ function SkillsSection() {
     {
       title: "Languages",
       icon: Code,
-      description: "Core languages for backend and data work.",
+      description: "Core languages across backend, data and interface work.",
       gradient: "from-yellow-500/10 to-orange-500/10",
       iconColor: "text-yellow-500",
       borderColor: "border-yellow-500/20 hover:border-yellow-500/40",
       skills: [
         { name: "Python", icon: "/icons/python.svg" },
         { name: "SQL", icon: "/icons/sql.svg" },
+        { name: "TypeScript", icon: "/icons/typescript.svg" },
         { name: "JavaScript", icon: "/icons/javascript.svg" },
       ],
     },
     {
-      title: "Backend",
+      title: "Backend & APIs",
       icon: Server,
-      description: "Production-ready Python frameworks and APIs.",
+      description: "Python frameworks, real-time transports, REST design.",
       gradient: "from-green-500/10 to-emerald-500/10",
       iconColor: "text-green-500",
       borderColor: "border-green-500/20 hover:border-green-500/40",
@@ -62,14 +63,16 @@ function SkillsSection() {
         { name: "Django", icon: "/icons/django.svg" },
         { name: "DRF", icon: "/icons/api.svg" },
         { name: "Django Channels", icon: "/icons/websocket.svg" },
-        { name: "Flask", icon: "/icons/flask.svg" },
         { name: "FastAPI", icon: "/icons/FastAPI.svg" },
+        { name: "Flask", icon: "/icons/flask.svg" },
+        { name: "REST APIs", icon: "/icons/api.svg" },
+        { name: "Postman", icon: "/icons/postman.svg" },
       ],
     },
     {
-      title: "Databases",
+      title: "Databases & Search",
       icon: Database,
-      description: "Schema design, query optimization, data modeling.",
+      description: "Schema design, query optimisation, analytical stores.",
       gradient: "from-purple-500/10 to-pink-500/10",
       iconColor: "text-purple-500",
       borderColor: "border-purple-500/20 hover:border-purple-500/40",
@@ -77,20 +80,39 @@ function SkillsSection() {
         { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
         { name: "MySQL", icon: "/icons/mysql.svg" },
         { name: "SQLite", icon: "/icons/sqlite.svg" },
+        { name: "DuckDB", icon: "/icons/duckdb.svg" },
+        { name: "Elasticsearch", icon: "/icons/elasticsearch.svg" },
+      ],
+    },
+    {
+      title: "Data & Analytics",
+      icon: LineChart,
+      description: "Pipelines, modelling and reporting from shipped projects.",
+      gradient: "from-cyan-500/10 to-teal-500/10",
+      iconColor: "text-cyan-500",
+      borderColor: "border-cyan-500/20 hover:border-cyan-500/40",
+      skills: [
+        { name: "Pandas", icon: "/icons/Pandas.svg" },
+        { name: "NumPy", icon: "/icons/NumPy.svg" },
+        { name: "scikit-learn", icon: "/icons/scikitlearn.svg" },
+        { name: "XGBoost", icon: "/icons/xgboost.svg" },
+        { name: "Prophet", icon: "/icons/prophet.svg" },
+        { name: "Power BI", icon: "/icons/powerbi.svg" },
+        { name: "Jupyter", icon: "/icons/Jupyter.svg" },
       ],
     },
     {
       title: "Cloud & DevOps",
       icon: Cloud,
-      description: "Deployment, containers, and infrastructure.",
+      description: "Deployment, containers, CI and hosting.",
       gradient: "from-orange-500/10 to-red-500/10",
       iconColor: "text-orange-500",
       borderColor: "border-orange-500/20 hover:border-orange-500/40",
       skills: [
-        { name: "AWS", icon: "/icons/aws.svg" },
+        { name: "Azure", icon: "/icons/azure.svg" },
         { name: "Docker", icon: "/icons/docker.svg" },
-        { name: "Git", icon: "/icons/git.svg" },
         { name: "GitHub Actions", icon: "/icons/cicd.svg" },
+        { name: "Git", icon: "/icons/git.svg" },
         { name: "DigitalOcean", icon: "/icons/DigitalOcean.svg" },
         { name: "Vercel", icon: "/icons/vercel.svg" },
         { name: "Render", icon: "/icons/render.svg" },
@@ -98,9 +120,9 @@ function SkillsSection() {
       ],
     },
     {
-      title: "Frontend",
+      title: "Frontend & Desktop",
       icon: Layers,
-      description: "Supporting role — building UIs for my backends.",
+      description: "Interfaces for my own backends, plus a Tauri desktop app.",
       gradient: "from-blue-500/10 to-cyan-500/10",
       iconColor: "text-blue-500",
       borderColor: "border-blue-500/20 hover:border-blue-500/40",
@@ -110,20 +132,9 @@ function SkillsSection() {
         { name: "Vite", icon: "/icons/vite.svg" },
         { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
         { name: "Shadcn UI", icon: "/icons/shadcn.svg" },
-      ],
-    },
-    {
-      title: "Tools",
-      icon: Wrench,
-      description: "Day-to-day development environment.",
-      gradient: "from-indigo-500/10 to-purple-500/10",
-      iconColor: "text-indigo-500",
-      borderColor: "border-indigo-500/20 hover:border-indigo-500/40",
-      skills: [
-        { name: "Postman", icon: "/icons/postman.svg" },
-        { name: "VS Code", icon: "/icons/vscode.svg" },
-        { name: "REST APIs", icon: "/icons/api.svg" },
-        { name: "GitHub", icon: "/icons/github.svg" },
+        { name: "Ant Design", icon: "/icons/antdesign.svg" },
+        { name: "Framer Motion", icon: "/icons/framermotion.svg" },
+        { name: "Tauri", icon: "/icons/tauri.svg" },
       ],
     },
   ];
@@ -179,8 +190,9 @@ function SkillsSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Backend-first toolkit spanning Python frameworks, databases, cloud
-            infrastructure, and supporting frontend.
+            Backend-first toolkit spanning Python frameworks, databases,
+            analytics and cloud infrastructure — everything below is used in a
+            project on this page.
           </motion.p>
         </div>
 
@@ -326,8 +338,8 @@ function SkillsSection() {
               Academic exposure
             </p>
             <p className="text-sm text-muted-foreground italic">
-              Pandas · NumPy · Matplotlib · TensorFlow · Elasticsearch · Apache
-              Spark · Hadoop
+              TensorFlow · Apache Spark · Hadoop · Matplotlib · Blockchain
+              Technologies · Natural Language Processing
             </p>
             <p className="text-[11px] text-muted-foreground/70 mt-2">
               Coursework exposure, not production experience.
