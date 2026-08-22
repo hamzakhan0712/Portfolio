@@ -434,13 +434,13 @@ function ContactSection() {
                   asChild
                 >
                   <a
-                    href="/resume.pdf"
+                    href="/Hamza_Khan_CV.pdf"
                     download
                     rel="noopener"
-                    aria-label="Download resume (PDF)"
+                    aria-label="Download CV (PDF)"
                   >
                     <Download className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Download Resume (PDF)
+                    Download CV (PDF)
                   </a>
                 </Button>
               </CardContent>

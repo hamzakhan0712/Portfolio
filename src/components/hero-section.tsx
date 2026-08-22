@@ -64,8 +64,8 @@ export function HeroSection() {
     },
     {
       icon: FileText,
-      href: "/resume.pdf",
-      label: "Resume",
+      href: "/Hamza_Khan_CV.pdf",
+      label: "CV",
       download: true,
     },
   ];

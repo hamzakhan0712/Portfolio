@@ -48,7 +48,7 @@ function Footer() {
   ];
 
   const resources = [
-    { name: "Resume", href: "/resume.pdf", external: true },
+    { name: "CV", href: "/Hamza_Khan_CV.pdf", external: true },
     {
       name: "This site's source",
       href: "https://github.com/hamzakhan0712/Portfolio",
@@ -150,7 +150,7 @@ function Footer() {
                       rel={
                         resource.external ? "noopener noreferrer" : undefined
                       }
-                      download={resource.name === "Resume"}
+                      download={resource.name === "CV"}
                       className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
                       <FileText className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
