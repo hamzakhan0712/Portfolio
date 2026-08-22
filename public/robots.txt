@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://portfolio-vert-six-26.vercel.app/sitemap.xml

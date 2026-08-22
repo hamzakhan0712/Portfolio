@@ -30,3 +30,11 @@ RESUSE.TXT
 
 # Extracted document scans (working files)
 /tmp/
+
+# Master screen recordings — kept locally, never deployed
+/_media-source/
+
+# Local environment (EmailJS ids are client-visible but must not be published)
+.env
+.env.local
+.env.*.local

@@ -50,8 +50,8 @@ function Footer() {
   const resources = [
     { name: "Resume", href: "/resume.pdf", external: true },
     {
-      name: "Source Code",
-      href: "https://github.com/hamzakhan0712/portfolio",
+      name: "This site's source",
+      href: "https://github.com/hamzakhan0712/Portfolio",
       external: true,
     },
   ];

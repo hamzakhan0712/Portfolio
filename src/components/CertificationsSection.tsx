@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   ExternalLink,
   Award,
@@ -10,7 +10,6 @@ import {
   Calendar,
   MapPin,
   ZoomIn,
-  Sparkles,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -35,14 +34,10 @@ interface Achievement {
 
 export default function AchievementsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeFilter, setActiveFilter] = useState<AchievementType | "all">(
-    "all",
-  );
   const [fullScreenImage, setFullScreenImage] = useState<{
     url: string;
     title: string;
   } | null>(null);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -190,33 +185,9 @@ export default function AchievementsSection() {
     },
   ];
 
-  const categoryConfig = {
-    all: {
-      label: "All",
-      icon: Sparkles,
-      count: achievements.length,
-    },
-    hackathon: {
-      label: "Hackathons",
-      icon: Code2,
-      count: achievements.filter((a) => a.type === "hackathon").length,
-    },
-    award: {
-      label: "Awards",
-      icon: Trophy,
-      count: achievements.filter((a) => a.type === "award").length,
-    },
-    certification: {
-      label: "Certifications",
-      icon: Award,
-      count: achievements.filter((a) => a.type === "certification").length,
-    },
-  };
-
-  const filteredAchievements =
-    activeFilter === "all"
-      ? achievements
-      : achievements.filter((ach) => ach.type === activeFilter);
+  /** Awards and competitions carry the weight; courses are supporting detail. */
+  const recognitions = achievements.filter((a) => a.type !== "certification");
+  const certifications = achievements.filter((a) => a.type === "certification");
 
   const getTypeConfig = (type: AchievementType) => {
     const configs = {
@@ -249,312 +220,209 @@ export default function AchievementsSection() {
     <section
       id="achievements"
       ref={sectionRef}
-      className="relative py-20 md:py-28 overflow-hidden reveal-container"
+      className="relative overflow-hidden py-14 md:py-20 reveal-container"
     >
-      {/* Decorative Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-        />
-      </div>
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
-          >
-            <Trophy className="w-4 h-4 text-primary mr-2" />
-            Recognition
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            Awards & <span className="gradient-text">Certifications</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            National recognitions, competitions, and continuous learning along
-            the way.
-          </motion.p>
+        <SectionHeading
+          eyebrow="Recognition"
+          icon={Trophy}
+          align="center"
+          title={
+            <>
+              Awards &amp; certifications
+            </>
+          }
+        >
+          National recognitions, competitions, and continuous learning along the way.
+        </SectionHeading>
+
+        {/* Recognitions lead — these two are national / institutional and
+            carry far more weight than nine online courses, so they get the
+            space. The courses follow as a compact, scannable list. */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {recognitions.map((achievement, index) => {
+            const typeConfig = getTypeConfig(achievement.type);
+            const TypeIcon = typeConfig.icon;
+
+            return (
+              <motion.article
+                key={achievement.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className={cn(
+                  "group relative flex flex-col overflow-hidden rounded-2xl border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-primary/5",
+                  typeConfig.borderColor,
+                )}
+              >
+                {achievement.image && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFullScreenImage({
+                        url: achievement.image!,
+                        title: achievement.title,
+                      })
+                    }
+                    className="relative h-44 w-full cursor-zoom-in overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    aria-label={"View certificate: " + achievement.title}
+                  >
+                    <img
+                      src={achievement.image}
+                      alt={achievement.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                    <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-2.5 py-1 text-[11px] font-medium text-white opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
+                      <ZoomIn className="h-3.5 w-3.5" />
+                      View
+                    </span>
+                  </button>
+                )}
+
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge
+                      className={cn(
+                        "flex items-center gap-1.5 border",
+                        typeConfig.bgColor,
+                        typeConfig.iconColor,
+                        typeConfig.borderColor,
+                      )}
+                    >
+                      <TypeIcon className="h-3.5 w-3.5" />
+                      <span className="font-semibold capitalize">
+                        {achievement.type}
+                      </span>
+                    </Badge>
+                    {achievement.prize && (
+                      <Badge className="border-primary/50 bg-primary/90 text-white">
+                        <Trophy className="mr-1 h-3 w-3" />
+                        {achievement.prize}
+                      </Badge>
+                    )}
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-bold leading-snug transition-colors group-hover:text-primary md:text-lg">
+                      {achievement.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium text-muted-foreground">
+                      {achievement.issuer}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Calendar className="h-3 w-3" />
+                      {achievement.date}
+                    </span>
+                    {achievement.location && (
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin className="h-3 w-3" />
+                        {achievement.location}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {achievement.description}
+                  </p>
+
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
+                    {achievement.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="bg-secondary/50 px-2 py-0.5 text-[10px]"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-12"
-        >
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {(
-              Object.keys(categoryConfig) as Array<keyof typeof categoryConfig>
-            ).map((category) => {
-              const config = categoryConfig[category];
-              const Icon = config.icon;
-              const isActive = activeFilter === category;
-
-              return (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  onClick={() => setActiveFilter(category)}
-                  className={cn(
-                    "relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
-                    "flex items-center gap-2",
-                    isActive
-                      ? "bg-primary text-white shadow-lg shadow-primary/25"
-                      : "bg-secondary/50 hover:bg-secondary text-foreground border border-border/50 hover:border-border",
-                  )}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{config.label}</span>
-                  <span
-                    className={cn(
-                      "ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-semibold",
-                      isActive ? "bg-white/20" : "bg-muted",
-                    )}
-                  >
-                    {config.count}
-                  </span>
-                </motion.button>
-              );
-            })}
+        {/* Certifications — compact rows. Same facts, a fraction of the height. */}
+        <div className="mt-12">
+          <div className="mb-5 flex flex-wrap items-baseline gap-x-3 border-b border-border/50 pb-4">
+            <h3 className="text-xl font-bold md:text-2xl">Certifications</h3>
+            <span className="font-mono text-sm tabular-nums text-muted-foreground">
+              {certifications.length}
+            </span>
           </div>
-        </motion.div>
 
-        {/* Achievements Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFilter}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-          >
-            {filteredAchievements.map((achievement, index) => {
-              const typeConfig = getTypeConfig(achievement.type);
-              const TypeIcon = typeConfig.icon;
+          <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
+            {certifications.map((achievement, index) => (
+              <motion.div
+                key={achievement.id}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: Math.min(index, 6) * 0.04 }}
+                className="group flex items-start gap-3 rounded-lg border border-transparent px-3 py-3.5 transition-colors hover:border-border/50 hover:bg-card/40"
+              >
+                <Award className="mt-0.5 h-4 w-4 shrink-0 text-blue-500/80" />
 
-              return (
-                <motion.div
-                  key={achievement.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.06 }}
-                  onMouseEnter={() => setHoveredCard(achievement.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={{ y: -8 }}
-                  className="h-full"
-                >
-                  <div
-                    className={cn(
-                      "group relative overflow-hidden h-full flex flex-col",
-                      "bg-card/50 backdrop-blur-sm rounded-2xl border transition-all duration-300",
-                      "hover:shadow-xl hover:shadow-primary/5",
-                      typeConfig.borderColor,
-                    )}
-                  >
-                    {/* Image Section */}
-                    <div className="relative h-48 overflow-hidden">
-                      {achievement.image ? (
-                        <>
-                          <img
-                            src={achievement.image}
-                            alt={achievement.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-70" />
-
-                          {/* Zoom Overlay */}
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{
-                              opacity: hoveredCard === achievement.id ? 1 : 0,
-                            }}
-                            className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm cursor-pointer"
-                            onClick={() =>
-                              setFullScreenImage({
-                                url: achievement.image!,
-                                title: achievement.title,
-                              })
-                            }
-                          >
-                            <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center">
-                              <ZoomIn className="w-7 h-7 text-primary" />
-                            </div>
-                          </motion.div>
-                        </>
-                      ) : (
-                        <div
-                          className={cn(
-                            "w-full h-full flex items-center justify-center",
-                            "bg-gradient-to-br",
-                            typeConfig.gradient,
-                          )}
-                        >
-                          <TypeIcon
-                            className={cn(
-                              "w-16 h-16 opacity-30",
-                              typeConfig.iconColor,
-                            )}
-                          />
-                        </div>
-                      )}
-
-                      {/* Type Badge */}
-                      <div className="absolute top-3 left-3">
-                        <Badge
-                          className={cn(
-                            "backdrop-blur-md border flex items-center gap-1.5 shadow-lg",
-                            typeConfig.bgColor,
-                            typeConfig.iconColor,
-                            typeConfig.borderColor,
-                          )}
-                        >
-                          <TypeIcon className="w-3.5 h-3.5" />
-                          <span className="capitalize font-semibold">
-                            {achievement.type}
-                          </span>
-                        </Badge>
-                      </div>
-
-                      {/* Prize Badge */}
-                      {achievement.prize && (
-                        <div className="absolute top-3 right-3">
-                          <Badge className="backdrop-blur-md bg-primary/90 text-white border-primary/50 shadow-lg">
-                            <Trophy className="w-3 h-3 mr-1" />
-                            {achievement.prize}
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col p-5 space-y-3">
-                      <div>
-                        <h3 className="text-base md:text-lg font-bold mb-1 line-clamp-2 group-hover:text-primary transition-colors">
-                          {achievement.title}
-                        </h3>
-                        <p className="text-xs text-muted-foreground font-medium">
-                          {achievement.issuer}
-                        </p>
-                      </div>
-
-                      {/* Metadata */}
-                      <div className="flex flex-wrap gap-3 text-[11px] text-muted-foreground">
-                        <div className="flex items-center gap-1.5">
-                          <Calendar className="w-3 h-3" />
-                          <span>{achievement.date}</span>
-                        </div>
-                        {achievement.location && (
-                          <div className="flex items-center gap-1.5">
-                            <MapPin className="w-3 h-3" />
-                            <span>{achievement.location}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                        {achievement.description}
-                      </p>
-
-                      {/* Skills */}
-                      <div className="flex-1 flex items-end">
-                        <div className="flex flex-wrap gap-1.5">
-                          {achievement.skills.map((skill, i) => (
-                            <Badge
-                              key={i}
-                              variant="secondary"
-                              className="text-[10px] bg-secondary/50 hover:bg-secondary transition-colors px-2 py-0.5"
-                            >
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Action Button */}
-                      {achievement.credentialUrl && (
-                        <div className="pt-2">
-                          <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="w-full group/btn"
-                          >
-                            <a
-                              href={achievement.credentialUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <span className="flex items-center gap-2">
-                                Verify Credential
-                                <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
-                              </span>
-                            </a>
-                          </Button>
-                        </div>
-                      )}
-                    </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-baseline gap-x-2">
+                    <h4 className="text-sm font-semibold leading-snug text-foreground">
+                      {achievement.title}
+                    </h4>
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                      {achievement.date}
+                    </span>
                   </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Empty State */}
-        {filteredAchievements.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-16"
-          >
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted/50 mb-6">
-              <Award className="w-10 h-10 text-muted-foreground/50" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">
-              No achievements to show
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              No{" "}
-              {activeFilter !== "all" &&
-                categoryConfig[activeFilter].label.toLowerCase()}{" "}
-              to display.
-            </p>
-            <Button variant="outline" onClick={() => setActiveFilter("all")}>
-              View all
-            </Button>
-          </motion.div>
-        )}
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    {achievement.issuer}
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                    {achievement.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded border border-border/30 bg-secondary/40 px-1.5 py-0.5 text-[10px] text-muted-foreground"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                    {achievement.image && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setFullScreenImage({
+                            url: achievement.image!,
+                            title: achievement.title,
+                          })
+                        }
+                        className="inline-flex items-center gap-1 text-[10px] font-medium text-muted-foreground underline-offset-2 transition-colors hover:text-primary hover:underline"
+                      >
+                        <ZoomIn className="h-3 w-3" />
+                        Certificate
+                      </button>
+                    )}
+                    {achievement.credentialUrl && (
+                      <a
+                        href={achievement.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[10px] font-medium text-muted-foreground underline-offset-2 transition-colors hover:text-primary hover:underline"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        Verify
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Full Screen Image Dialog */}

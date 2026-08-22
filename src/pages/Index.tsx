@@ -2,13 +2,13 @@ import { useEffect, lazy, Suspense, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
+import ProjectsSection from "@/components/projects-section";
 import { Background } from "@/components/background";
 import { Loader2 } from "lucide-react";
 
 // Lazy load larger components to improve initial load performance
 const AboutSection = lazy(() => import("@/components/about-section"));
 const ExperienceSection = lazy(() => import("@/components/experience-section"));
-const ProjectsSection = lazy(() => import("@/components/projects-section"));
 const SkillsSection = lazy(() => import("@/components/skills-section"));
 const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
 const ContactSection = lazy(() => import("@/components/contact-section"));
@@ -67,8 +67,18 @@ const Index = () => {
     };
   }, []);
 
-  // Smooth scroll to top on mount
+  // Honour an incoming hash (e.g. returning from a project page), else start at top
   useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        const offsetPosition =
+          target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        return;
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -84,22 +94,21 @@ const Index = () => {
 
       {/* Navigation - Always visible */}
       <Navbar />
-      
-      {/* Hero Section - Immediate load for LCP optimization */}
-      <HeroSection />
+
+      {/* Projects lead the page - visitors came for the work, not the bio */}
+      <ProjectsSection />
 
       {/* Main Content Sections with optimized lazy loading */}
       <main className="relative z-10">
+        {/* Hero / intro comes after the work */}
+        <HeroSection />
+
         <Suspense fallback={<SectionLoader />}>
           <AboutSection />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
           <ExperienceSection />
-        </Suspense>
-
-        <Suspense fallback={<SectionLoader />}>
-          <ProjectsSection />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>

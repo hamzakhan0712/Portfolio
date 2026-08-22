@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/section-heading";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -181,7 +182,7 @@ function ContactSection() {
       icon: Github,
       url: "https://github.com/hamzakhan0712",
       gradient: "from-gray-500 to-gray-700",
-      description: "View my code and repositories",
+      description: "Profile and open work",
     },
     {
       name: "LinkedIn",
@@ -198,56 +199,20 @@ function ContactSection() {
       ref={sectionRef}
       className="relative py-12 overflow-hidden reveal-container"
     >
-      {/* Decorative Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-        />
-      </div>
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
-          >
-            <MessageSquare className="w-4 h-4 text-primary mr-2" />
-            Get In Touch
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            Get in <span className="gradient-text">Touch</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            Open to backend developer roles — remote, Mumbai, Navi Mumbai,
-            Thane, or remote-from-India roles based in Australia. The fastest
-            way to reach me is email.
-          </motion.p>
-        </div>
+        <SectionHeading
+          eyebrow="Contact"
+          icon={MessageSquare}
+          align="left"
+          title={
+            <>
+              Get in <span className="gradient-text">Touch</span>
+            </>
+          }
+        >
+          Open to backend developer roles — remote, Mumbai, Navi Mumbai or Thane. The fastest way to reach me is email; I reply within a day.
+        </SectionHeading>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {/* Left Column - Contact Form */}

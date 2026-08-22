@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
 import {
   Menu,
@@ -22,45 +22,60 @@ type NavbarProps = {
 };
 
 export function Navbar({ className }: NavbarProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("projects");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Determine which section is currently in view with improved detection
+      if (!isHome) return;
+
+      // Section ids in DOM order — must match the navLinks hrefs below
       const sections = [
+        "projects",
         "hero",
         "about",
         "experience",
-        "projects",
         "skills",
         "achievements",
         "contact",
       ];
-      const scrollPosition = window.scrollY + 150;
+      // Just below the navbar, so the section under the bar is the active one
+      const scrollPosition = window.scrollY + 120;
 
+      // getBoundingClientRect, not offsetTop: sections sit in different
+      // positioned containers, so offsetTop is measured from different origins.
+      let current = "";
       for (const section of sections) {
         const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
-          }
-        }
+        if (!element) continue; // lazy sections may not be mounted yet
+        const top = element.getBoundingClientRect().top + window.scrollY;
+        if (scrollPosition >= top) current = section;
       }
+
+      // At the bottom of the page the last section wins even if it is short
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom) {
+        const last = [...sections]
+          .reverse()
+          .find((section) => document.getElementById(section));
+        if (last) current = last;
+      }
+
+      setActiveSection(current || sections[0]);
     };
 
     handleScroll(); // Initial check
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   // Close mobile menu when resizing to desktop
   useEffect(() => {
@@ -87,10 +102,10 @@ export function Navbar({ className }: NavbarProps) {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: "Home", href: "#hero", icon: Home },
+    { name: "Work", href: "#projects", icon: Folder },
+    { name: "Intro", href: "#hero", icon: Home },
     { name: "About", href: "#about", icon: User },
     { name: "Experience", href: "#experience", icon: Briefcase },
-    { name: "Projects", href: "#projects", icon: Folder },
     { name: "Skills", href: "#skills", icon: Server },
     { name: "Recognition", href: "#achievements", icon: Award },
     { name: "Contact", href: "#contact", icon: Mail },
@@ -101,6 +116,14 @@ export function Navbar({ className }: NavbarProps) {
     href: string,
   ) => {
     e.preventDefault();
+
+    // On a project page there is no section to scroll to — go home to it instead
+    if (!isHome) {
+      setIsMobileMenuOpen(false);
+      navigate(`/${href}`);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       const offset = 80;
@@ -151,7 +174,8 @@ export function Navbar({ className }: NavbarProps) {
           <div className="hidden md:flex items-center gap-2">
             <div className="flex items-center gap-1 bg-secondary/50 rounded-full p-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
+                const isActive =
+                  isHome && activeSection === link.href.substring(1);
                 return (
                   <a
                     key={link.name}
@@ -266,7 +290,8 @@ export function Navbar({ className }: NavbarProps) {
                 <div className="flex-1 overflow-y-auto p-4">
                   <div className="space-y-1">
                     {navLinks.map((link, index) => {
-                      const isActive = activeSection === link.href.substring(1);
+                      const isActive =
+                  isHome && activeSection === link.href.substring(1);
                       return (
                         <motion.a
                           key={link.name}

@@ -8,6 +8,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/section-heading";
+import { projects } from "@/data/projects";
 
 function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -65,41 +67,22 @@ function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-20 md:py-28 overflow-hidden reveal-container"
+      className="relative overflow-hidden py-14 md:py-20 reveal-container"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
-          >
-            <User className="w-4 h-4 text-primary mr-2" />
-            About
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            Backend, <span className="gradient-text">pragmatic</span>, shipped.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            Production-aware Django developer. Four years of real client work,
-            real deployments, real users.
-          </motion.p>
-        </div>
+        <SectionHeading
+          eyebrow="About"
+          icon={User}
+          align="left"
+          title={
+            <>
+              Backend, <span className="gradient-text">pragmatic</span>, shipped.
+            </>
+          }
+        >
+          Production-aware Django developer. Four years of real client work, real deployments, real users.
+        </SectionHeading>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-14 items-start max-w-6xl mx-auto">
@@ -152,8 +135,8 @@ function AboutSection() {
             >
               {[
                 { value: "4yrs", label: "Freelance" },
-                { value: "8", label: "Projects shown" },
-                { value: "2", label: "Live deployments" },
+                { value: String(projects.length), label: "Systems shipped" },
+                { value: "2", label: "Countries served" },
               ].map((stat) => (
                 <div
                   key={stat.label}

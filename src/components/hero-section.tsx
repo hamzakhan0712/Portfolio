@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import { motion, type Variants } from "framer-motion";
+import { projects } from "@/data/projects";
 
 export function HeroSection() {
   const [, setIsLoaded] = useState(false);
@@ -41,7 +42,7 @@ export function HeroSection() {
 
   const stats = [
     { value: "4", label: "Years freelance" },
-    { value: "8", label: "Projects shown" },
+    { value: String(projects.length), label: "Systems shipped" },
     { value: "SIH'25", label: "Grand Finalist" },
   ];
 
@@ -72,7 +73,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20"
+      className="relative flex items-center justify-center overflow-hidden pb-16 pt-24 md:pb-20 md:pt-28"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
@@ -99,16 +100,18 @@ export function HeroSection() {
 
             {/* Name + Role */}
             <motion.div variants={itemVariants} className="space-y-3">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+              {/* Visually the headline of this section, but the page's h1 lives
+                  in the work masthead above — one h1 per document. */}
+              <p className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
                 <span className="block text-foreground">Hamza Khan</span>
-              </h1>
+              </p>
               <p className="text-xl sm:text-2xl md:text-2xl font-semibold gradient-text">
                 Backend Developer
               </p>
               <p className="font-mono text-sm sm:text-base text-muted-foreground tracking-tight">
                 Python <span className="text-primary">·</span> Django{" "}
                 <span className="text-primary">·</span> PostgreSQL{" "}
-                <span className="text-primary">·</span> AWS
+                <span className="text-primary">·</span> Azure
               </p>
             </motion.div>
 

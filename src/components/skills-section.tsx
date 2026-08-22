@@ -7,9 +7,9 @@ import {
   Cloud,
   Layers,
   LineChart,
-  ChevronRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { SectionHeading } from "@/components/section-heading";
 import { cn } from "@/lib/utils";
 
 function SkillsSection() {
@@ -143,58 +143,22 @@ function SkillsSection() {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative py-20 md:py-28 overflow-hidden reveal-container"
+      className="relative overflow-hidden py-14 md:py-20 reveal-container"
     >
-      {/* Decorative Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-        />
-      </div>
-
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center justify-center px-4 py-2 mb-6 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm text-sm font-medium"
-          >
-            <Layers className="w-4 h-4 text-primary mr-2" />
-            Tech Stack
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-          >
-            What I <span className="gradient-text">Work With</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            Backend-first toolkit spanning Python frameworks, databases,
-            analytics and cloud infrastructure — everything below is used in a
-            project on this page.
-          </motion.p>
-        </div>
+        <SectionHeading
+          eyebrow="Tech Stack"
+          icon={Layers}
+          align="left"
+          title={
+            <>
+              What I work with
+            </>
+          }
+        >
+          Backend-first toolkit spanning Python frameworks, databases, analytics and cloud infrastructure — everything below is used in a project on this page.
+        </SectionHeading>
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -240,18 +204,6 @@ function SkillsSection() {
                       >
                         <Icon className={cn("w-7 h-7", category.iconColor)} />
                       </div>
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{
-                          opacity: hoveredCard === categoryIndex ? 1 : 0,
-                          x: hoveredCard === categoryIndex ? 0 : -10,
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronRight
-                          className={cn("w-5 h-5", category.iconColor)}
-                        />
-                      </motion.div>
                     </div>
                     <CardTitle className="text-xl font-bold mb-2">
                       {category.title}
@@ -302,22 +254,6 @@ function SkillsSection() {
                       ))}
                     </div>
 
-                    {/* Skill Count Badge */}
-                    <div className="mt-6 pt-4 border-t border-border/30">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground font-medium">
-                          Technologies
-                        </span>
-                        <span
-                          className={cn(
-                            "px-2.5 py-1 rounded-full font-semibold",
-                            "bg-secondary/50 text-foreground",
-                          )}
-                        >
-                          {category.skills.length}
-                        </span>
-                      </div>
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
