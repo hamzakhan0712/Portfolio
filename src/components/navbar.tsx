@@ -160,9 +160,9 @@ export function Navbar({ className }: NavbarProps) {
           >
             <div className="relative w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center transition-all duration-300 group-hover:from-primary/30 group-hover:to-primary/20">
               <img
-                src="/me.jpg"
+                src="/me-avatar.jpg"
                 alt="Hamza Khan Logo"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">

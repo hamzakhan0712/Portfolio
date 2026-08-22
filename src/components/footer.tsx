@@ -73,9 +73,9 @@ function Footer() {
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-lg overflow-hidden">
                   <img
-                    src="/me.jpg"
+                    src="/me-avatar.jpg"
                     alt="Hamza Khan"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <h3 className="text-2xl font-bold gradient-text">Hamza Khan</h3>
