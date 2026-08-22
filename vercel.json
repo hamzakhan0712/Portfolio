@@ -1,7 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -11,7 +15,13 @@
       ]
     },
     {
-      "source": "/projects/(.*)\.(mp4|jpg|png|webp)",
+      "source": "/projects/(.*).mp4",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    },
+    {
+      "source": "/projects/(.*).jpg",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=2592000" }
       ]
