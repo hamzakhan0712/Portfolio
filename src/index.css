@@ -1,81 +1,131 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts are loaded from index.html with preconnect. An @import here would be
+   render-blocking a second time for the same three families. */
+
 @layer base {
   :root {
-    /* Light — off-white canvas, ink text, violet primary */
-    --background: 0 0% 98%;
-    --foreground: 240 10% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 4%;
-    --primary: 262 83% 58%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-    --accent: 262 100% 97%;
-    --accent-foreground: 262 83% 58%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 5% 90%;
-    --input: 240 5% 90%;
-    --ring: 262 83% 58%;
-    --radius: 0.75rem;
+    /* ── Light: schematic paper. Ink on white, deep emerald signal. ──
+       Colour carries meaning on this site: --primary is "interactive",
+       --ok/--warn/--err are status, --ai is reserved for AI surfaces only. */
+    --background: 210 20% 98%;
+    --foreground: 220 25% 8%;
 
-    /* Glow used by Background + accents */
-    --glow-primary: 262 83% 58%;
-    --glow-secondary: 280 80% 65%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 8%;
+
+    --primary: 160 90% 26%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 12%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 42%;
+    --accent: 160 55% 94%;
+    --accent-foreground: 160 90% 22%;
+
+    /* Semantic status — the same scale a monitoring dashboard uses. */
+    --ok: 142 71% 34%;
+    --ok-foreground: 0 0% 100%;
+    --warn: 32 95% 38%;
+    --warn-foreground: 0 0% 100%;
+    --err: 0 72% 46%;
+    --err-foreground: 0 0% 100%;
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Violet exists on this site for exactly one purpose: AI surfaces. */
+    --ai: 258 72% 52%;
+    --ai-foreground: 0 0% 100%;
+
+    --border: 220 13% 89%;
+    --input: 220 13% 89%;
+    --ring: 160 90% 26%;
+    --radius: 0.65rem;
+
+    /* Background system */
+    --grid-line: 220 25% 8%;
+    --grid-alpha: 0.055;
+    --glow-primary: 160 84% 39%;
+    --glow-secondary: 174 84% 40%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 4%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-foreground: 220 25% 8%;
+    --sidebar-primary: 160 90% 26%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 5% 96%;
-    --sidebar-accent-foreground: 240 6% 10%;
-    --sidebar-border: 240 5% 90%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 220 20% 12%;
+    --sidebar-border: 220 13% 89%;
+    --sidebar-ring: 160 90% 26%;
   }
 
   .dark {
-    /* Dark — near-black charcoal, mid-violet primary */
-    --background: 240 10% 4%;
-    --foreground: 0 0% 98%;
-    --card: 240 4% 11%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 4% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 262 83% 65%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 4% 14%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 4% 14%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 240 4% 18%;
-    --accent-foreground: 258 90% 80%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 18%;
-    --input: 240 4% 18%;
-    --ring: 262 83% 65%;
+    /* ── Dark: the canonical theme. Near-black rack, terminal-green signal. ── */
+    --background: 240 8% 4%;
+    --foreground: 150 6% 96%;
 
-    --glow-primary: 262 83% 58%;
-    --glow-secondary: 280 85% 70%;
+    --card: 240 6% 8%;
+    --card-foreground: 150 6% 96%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 150 6% 96%;
 
-    --sidebar-background: 240 10% 4%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 262 83% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 14%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 4% 18%;
-    --sidebar-ring: 262 83% 65%;
+    --primary: 157 100% 44%;
+    /* Near-black on the green: at 44% lightness the green is far too bright to
+       carry white text at any accessible contrast ratio. */
+    --primary-foreground: 160 100% 6%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 240 5% 13%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 157 40% 11%;
+    --accent-foreground: 157 90% 62%;
+
+    --ok: 142 71% 45%;
+    --ok-foreground: 150 100% 5%;
+    --warn: 38 92% 50%;
+    --warn-foreground: 38 100% 6%;
+    --err: 0 84% 60%;
+    --err-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ai: 258 90% 66%;
+    --ai-foreground: 0 0% 100%;
+
+    --border: 240 5% 16%;
+    --input: 240 5% 16%;
+    --ring: 157 100% 44%;
+
+    --grid-line: 150 30% 90%;
+    --grid-alpha: 0.05;
+    --glow-primary: 157 100% 40%;
+    --glow-secondary: 174 90% 42%;
+
+    --sidebar-background: 240 8% 4%;
+    --sidebar-foreground: 150 6% 96%;
+    --sidebar-primary: 157 100% 44%;
+    --sidebar-primary-foreground: 160 100% 6%;
+    --sidebar-accent: 240 5% 12%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 240 5% 16%;
+    --sidebar-ring: 157 100% 44%;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Reference-documentation chassis.
+
+   The site is laid out as an API reference because that is the artefact a
+   backend developer actually produces. Density and precision do the work
+   here, not effects — the page has to survive being read, not just looked at.
+
+   Three columns at the widest breakpoint: navigation, prose, code. Below that
+   the code panel folds inline beneath the prose it belongs to, and the
+   navigation collapses into a drawer.
+   ───────────────────────────────────────────────────────────────────────── */
 
 @layer base {
   * {
@@ -83,65 +133,53 @@
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Anchored headings must clear the fixed masthead. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  /* Smooth scrolling is a preference, not a default. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family:
-      "Inter",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    font-size: 15px;
   }
 
+  /* Reference headings are labels, not billboards. The display scale that
+     suits a marketing hero makes a document unreadable. */
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-serif tracking-tight font-bold text-foreground;
-    font-family: "Space Grotesk", "Inter", sans-serif;
-    letter-spacing: -0.025em;
+  h4 {
+    @apply font-sans font-semibold text-foreground;
+    letter-spacing: -0.02em;
   }
 
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-    letter-spacing: -0.04em;
+  /* Numbers are data on this site — never let them shift width. */
+  time,
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-    letter-spacing: -0.03em;
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
-  }
-
-  p {
-    @apply text-base md:text-lg leading-relaxed text-muted-foreground;
-  }
-
-  /* Selection */
   ::selection {
     background: hsl(var(--primary) / 0.25);
     color: hsl(var(--foreground));
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--border));
@@ -149,308 +187,336 @@
     border: 2px solid hsl(var(--background));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.6);
+    background: hsl(var(--primary) / 0.5);
   }
 
-  /* Focus ring */
   *:focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
-}
 
-@layer components {
-  .transition-theme {
-    @apply transition-colors duration-300 ease-out;
-  }
-
-  .section-padding {
-    @apply py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-20 xl:px-32;
-  }
-
-  .hover-link {
-    @apply relative text-foreground after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-primary hover:after:w-full;
-  }
-
-  .text-gradient,
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(262 83% 58%) 0%,
-      hsl(280 85% 65%) 50%,
-      hsl(262 83% 58%) 100%
-    );
-    background-size: 200% auto;
-    animation: gradient-shift 8s ease infinite;
-  }
-
-  .dark .text-gradient,
-  .dark .gradient-text {
-    background-image: linear-gradient(
-      135deg,
-      hsl(258 90% 76%) 0%,
-      hsl(290 95% 78%) 50%,
-      hsl(258 90% 76%) 100%
-    );
-  }
-
-  .reveal-container {
-    @apply overflow-hidden;
-  }
-
-  .reveal-content {
-    @apply translate-y-12 opacity-0 transition-all duration-700 ease-out;
-  }
-
-  .reveal-active .reveal-content {
-    @apply translate-y-0 opacity-100;
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1;
-  }
-
-  .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-border/60 rounded-2xl shadow-sm;
-  }
-
-  /* Subtle conic-gradient border on hover for premium cards */
-  .gradient-border {
-    position: relative;
-    isolation: isolate;
-  }
-  .gradient-border::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: conic-gradient(
-      from 180deg at 50% 50%,
-      hsl(var(--primary) / 0) 0deg,
-      hsl(var(--primary) / 0.6) 90deg,
-      hsl(var(--primary) / 0) 180deg,
-      hsl(var(--primary) / 0.6) 270deg,
-      hsl(var(--primary) / 0) 360deg
-    );
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: -1;
-  }
-  .gradient-border:hover::before {
-    opacity: 1;
-  }
-
-  /* Shine sweep on buttons / cards */
-  .shine {
-    position: relative;
-    overflow: hidden;
-  }
-  .shine::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      120deg,
-      transparent 30%,
-      hsl(var(--primary) / 0.15) 50%,
-      transparent 70%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.8s ease;
-    pointer-events: none;
-  }
-  .shine:hover::after {
-    transform: translateX(100%);
-  }
-
-  /* Glowing button */
-  .btn-glow {
-    @apply relative overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300;
-  }
-  .btn-glow::after {
-    content: "";
-    @apply absolute inset-0 rounded-md opacity-0 transition-opacity duration-500 -z-10;
-    background: linear-gradient(
-      135deg,
-      hsl(262 83% 58%),
-      hsl(280 85% 65%),
-      hsl(262 83% 58%)
-    );
-    background-size: 200% 200%;
-    animation: gradient-shift 6s ease infinite;
-  }
-  .btn-glow:hover::after {
-    @apply opacity-25;
-  }
-  .btn-glow span,
-  .btn-glow a {
-    @apply relative z-10;
-  }
-
-  /* Pulse-glow for status dots etc. */
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
-    }
-    50% {
-      box-shadow: 0 0 40px 10px hsl(var(--primary) / 0.2);
-    }
-  }
-  .pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  /* Dot grid background utility (used by Background component) */
-  .bg-dot-grid {
-    background-image: radial-gradient(
-      hsl(var(--foreground) / 0.08) 1px,
-      transparent 1px
-    );
-    background-size: 24px 24px;
-  }
-
-  .dark .bg-dot-grid {
-    background-image: radial-gradient(
-      hsl(var(--foreground) / 0.06) 1px,
-      transparent 1px
-    );
-    background-size: 24px 24px;
-  }
-
-  /* Faded edges for the grid */
-  .grid-mask {
-    -webkit-mask-image: radial-gradient(
-      ellipse at center,
-      black 30%,
-      transparent 80%
-    );
-    mask-image: radial-gradient(
-      ellipse at center,
-      black 30%,
-      transparent 80%
-    );
-  }
-
-  @media (hover: none) and (pointer: coarse) {
-    * {
-      cursor: auto !important;
-    }
-  }
-
-  /* Floating bob — for decorative orbs and avatars */
-  @keyframes float-y {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-12px);
-    }
-  }
-  .float-y {
-    animation: float-y 6s ease-in-out infinite;
-  }
-
-  /* Slow drift — aurora-style movement for blurred blobs */
-  @keyframes drift {
-    0% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-    33% {
-      transform: translate3d(30px, -20px, 0) scale(1.05);
-    }
-    66% {
-      transform: translate3d(-20px, 25px, 0) scale(0.97);
-    }
-    100% {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-  }
-  .drift {
-    animation: drift 18s ease-in-out infinite;
-  }
-
-  /* Subtle 3D tilt on hover for premium cards */
-  .tilt-on-hover {
-    transition:
-      transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-      box-shadow 0.4s ease;
-    transform-style: preserve-3d;
-  }
-  .tilt-on-hover:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateY(-4px);
-  }
-
-  /* Animated underline for inline links */
-  .link-underline {
-    background-image: linear-gradient(
-      to right,
-      hsl(var(--primary)),
-      hsl(var(--primary))
-    );
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 2px;
-    transition: background-size 0.3s ease;
-    padding-bottom: 2px;
-  }
-  .link-underline:hover {
-    background-size: 100% 2px;
-  }
-
-  /* Soft shimmer for skeletons / placeholders */
-  @keyframes shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
-  }
-  .shimmer {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--muted)) 0%,
-      hsl(var(--accent)) 50%,
-      hsl(var(--muted)) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2.5s linear infinite;
-  }
-
-  /* Honor reduced-motion preference globally */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-      animation-duration: 0.001ms !important;
+      animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
     }
+  }
+}
+
+@layer components {
+  /* ── Layout ─────────────────────────────────────────────────────────── */
+
+  .docs-shell {
+    --masthead-h: 3.5rem;
+    --sidebar-w: 17rem;
+    --codepanel-w: 25rem;
+  }
+
+  .docs-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "main"
+      "aside"
+      "pager";
+  }
+
+  /* Named areas rather than a duplicated aside: below the widest breakpoint
+     the code rail drops beneath the prose it belongs to, in the same column,
+     without the panel being rendered twice into the DOM. */
+  @media (min-width: 1024px) {
+    .docs-columns {
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+      grid-template-areas:
+        "nav main"
+        "nav aside"
+        "nav pager";
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .docs-columns {
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--codepanel-w);
+      grid-template-areas:
+        "nav main  aside"
+        "nav pager aside";
+    }
+  }
+
+  .docs-area-nav {
+    grid-area: nav;
+  }
+  .docs-area-main {
+    grid-area: main;
+    min-width: 0;
+  }
+  .docs-area-aside {
+    grid-area: aside;
+    min-width: 0;
+    align-self: start;
+  }
+  .docs-area-pager {
+    grid-area: pager;
+    min-width: 0;
+  }
+
+  .docs-sticky {
+    position: sticky;
+    top: var(--masthead-h);
+    max-height: calc(100vh - var(--masthead-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  /* ── Prose ──────────────────────────────────────────────────────────── */
+
+  .doc-prose {
+    @apply text-[15px] leading-[1.75] text-muted-foreground;
+  }
+
+  .doc-prose strong {
+    @apply font-semibold text-foreground;
+  }
+
+  .doc-prose a:not(.no-underline) {
+    @apply font-medium text-primary underline decoration-primary/30 underline-offset-[3px];
+    transition: text-decoration-color 150ms;
+  }
+
+  .doc-prose a:not(.no-underline):hover {
+    @apply decoration-primary;
+  }
+
+  .doc-prose p + p {
+    margin-top: 1rem;
+  }
+
+  .doc-prose code {
+    @apply rounded border border-border bg-secondary/70 px-[0.35em] py-[0.15em] font-mono text-[0.85em] text-foreground;
+  }
+
+  /* ── Navigation ─────────────────────────────────────────────────────── */
+
+  .nav-group-label {
+    @apply px-3 pb-2 pt-5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70;
+  }
+
+  .nav-link {
+    @apply relative flex items-center gap-2 rounded-md px-3 py-[7px] text-[13.5px] leading-tight text-muted-foreground transition-colors;
+  }
+
+  .nav-link:hover {
+    @apply bg-secondary/70 text-foreground;
+  }
+
+  .nav-link[aria-current="page"] {
+    @apply bg-primary/10 font-medium text-primary;
+  }
+
+  /* The rail marks where you are without shifting the label. */
+  .nav-link[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    left: -0.5rem;
+    top: 0.375rem;
+    bottom: 0.375rem;
+    width: 2px;
+    border-radius: 1px;
+    background: hsl(var(--primary));
+  }
+
+  /* ── Code surfaces ──────────────────────────────────────────────────── */
+
+  .code-surface {
+    @apply overflow-hidden rounded-xl border border-border bg-card;
+  }
+
+  .code-bar {
+    @apply flex items-center gap-2 border-b border-border/80 bg-secondary/40 px-3 py-2 font-mono text-[11px] text-muted-foreground;
+  }
+
+  .code-tab {
+    @apply rounded px-2 py-1 font-mono text-[11px] text-muted-foreground transition-colors;
+  }
+
+  .code-tab:hover {
+    @apply text-foreground;
+  }
+
+  .code-tab[data-active="true"] {
+    @apply bg-background text-foreground shadow-sm;
+  }
+
+  .code-body {
+    @apply overflow-x-auto p-3.5 font-mono text-[12.5px] leading-[1.65];
+    tab-size: 2;
+  }
+
+  /* Syntax roles are named by meaning, not by colour, so the light and dark
+     palettes can disagree about the hue and still agree about the role. */
+  .tok-key {
+    color: hsl(var(--glow-secondary));
+  }
+  .tok-str {
+    color: hsl(var(--primary));
+  }
+  .tok-num {
+    color: hsl(var(--warn));
+  }
+  .tok-lit {
+    @apply italic;
+    color: hsl(var(--muted-foreground));
+  }
+  .tok-punc {
+    color: hsl(var(--muted-foreground) / 0.7);
+  }
+  .tok-cmd {
+    @apply font-semibold;
+    color: hsl(var(--foreground));
+  }
+  .tok-flag {
+    color: hsl(var(--ai));
+  }
+  .tok-comment {
+    @apply italic;
+    color: hsl(var(--muted-foreground) / 0.65);
+  }
+
+  /* ── Reference primitives ───────────────────────────────────────────── */
+
+  .method {
+    @apply inline-flex shrink-0 items-center rounded font-mono text-[10px] font-bold uppercase tracking-wider;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .method-get {
+    background: hsl(var(--primary) / 0.14);
+    color: hsl(var(--primary));
+  }
+
+  .method-post {
+    background: hsl(var(--warn) / 0.16);
+    color: hsl(var(--warn));
+  }
+
+  .mono-label {
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground;
+  }
+
+  .status {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium;
+  }
+  .status-ok {
+    @apply border-ok/30 bg-ok/10 text-ok;
+  }
+  .status-warn {
+    @apply border-warn/30 bg-warn/10 text-warn;
+  }
+  .status-err {
+    @apply border-err/30 bg-err/10 text-err;
+  }
+  .status-ai {
+    @apply border-ai/30 bg-ai/10 text-ai;
+  }
+  .status-idle {
+    @apply border-border bg-secondary/60 text-muted-foreground;
+  }
+
+  /* A property row in a schema table. */
+  .prop {
+    @apply border-t border-border/70 py-3.5;
+  }
+
+  .prop:first-child {
+    @apply border-t-0 pt-0;
+  }
+
+  .prop-name {
+    @apply font-mono text-[13px] font-medium text-foreground;
+  }
+
+  .prop-type {
+    @apply font-mono text-[11px] text-muted-foreground/80;
+  }
+
+  .callout {
+    @apply rounded-lg border border-l-[3px] bg-secondary/40 px-4 py-3 text-[13.5px] leading-relaxed;
+  }
+
+  .kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded border border-border bg-secondary px-1 font-mono text-[10px] text-muted-foreground;
+  }
+
+  /* Panels — retained for the architecture diagrams, the one place a raised
+     surface still earns its keep. */
+  .panel {
+    @apply rounded-xl border border-border bg-card;
+  }
+  .panel-outline {
+    @apply rounded-lg border border-border/70 bg-secondary/20;
+  }
+  .panel-terminal {
+    @apply overflow-hidden rounded-xl border border-border bg-card;
+  }
+  .panel-terminal-bar {
+    @apply flex items-center gap-2 border-b border-border/80 bg-secondary/40 px-3 py-2 font-mono text-[11px] text-muted-foreground;
+  }
+
+  /* ── Motion ─────────────────────────────────────────────────────────── */
+
+  /* A packet travelling one hop, used between architecture tiers. */
+  .flow-dot {
+    animation: flow-y 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  .caret {
+    animation: caret-blink 1.1s step-end infinite;
+  }
+
+  .transition-theme {
+    @apply transition-colors duration-200 ease-out;
+  }
+}
+
+@keyframes flow-y {
+  0% {
+    transform: translateY(-0.6rem);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0.6rem);
+    opacity: 0;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   View Transitions.
+
+   Deliberately outside every @layer: layered rules lose to the browser's
+   default ::view-transition styles, and the animation silently never runs.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

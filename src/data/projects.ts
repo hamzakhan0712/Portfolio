@@ -9,6 +9,27 @@ import type { MediaItem } from "@/components/media-lightbox";
  */
 export type ProjectCategory = "product" | "client";
 
+/**
+ * A tier in a project's runtime, ordered the way a request travels through it.
+ * Only authored where the project's own write-up already establishes the shape.
+ */
+export type ArchitectureTier = {
+  /** Short name for the tier, e.g. "Engine". */
+  label: string;
+  /** The technology the tier runs on, e.g. "Python FastAPI". */
+  detail?: string;
+  /** What sits in this tier. */
+  items: string[];
+};
+
+export type Architecture = {
+  /** One line describing the overall shape. */
+  summary: string;
+  tiers: ArchitectureTier[];
+  /** Build, release or CI facts that sit outside the request path. */
+  notes?: string[];
+};
+
 export type Project = {
   /** URL segment for /projects/:slug — keep stable once a link is shared. */
   slug: string;
@@ -45,6 +66,12 @@ export type Project = {
   urltext: string;
   /** What I did on it — shown in the detail sidebar. */
   role?: string;
+  /**
+   * Runtime shape, rendered as a diagram on the detail page. Omitted for the
+   * front-end-only sites, where a diagram would say nothing the tag list does
+   * not already say.
+   */
+  architecture?: Architecture;
 };
 
 export const projects: Project[] = [
@@ -53,6 +80,47 @@ export const projects: Project[] = [
   // ---------------------------------------------------------------------
   {
     slug: "novem",
+    architecture: {
+      summary:
+        "A desktop shell over a local HTTP engine — the data never leaves the machine.",
+      tiers: [
+        {
+          label: "Shell",
+          detail: "Tauri (Rust)",
+          items: [
+            "React 19 + TypeScript client",
+            "Ant Design",
+            "ECharts",
+          ],
+        },
+        {
+          label: "Engine",
+          detail: "Python FastAPI · 127.0.0.1:44945",
+          items: [
+            "23 routers, ~170 endpoints",
+            "Prophet — demand forecasting",
+            "scikit-learn — segmentation",
+            "mlxtend — market-basket rules",
+            "lifetimes — customer lifetime value",
+            "SHAP — recommendation explanations",
+            "Ollama — local LLM copilot",
+            "APScheduler · ReportLab",
+          ],
+        },
+        {
+          label: "Storage",
+          detail: "Local, scoped by store_id",
+          items: [
+            "DuckDB — analytical tables",
+            "SQLite — settings, import lineage, alerts, encrypted credentials",
+          ],
+        },
+      ],
+      notes: [
+        "Release builds freeze the engine with PyInstaller and ship it inside an NSIS installer.",
+        "CI gates every push: Ruff, pytest across Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest, production build.",
+      ],
+    },
     title: "Novem — E-Commerce Intelligence Platform",
     summary:
       "Local-first desktop BI tool: a Tauri shell over a FastAPI + DuckDB engine that turns e-commerce exports into forecasts, segments and plain-language answers.",
@@ -154,6 +222,36 @@ export const projects: Project[] = [
   },
   {
     slug: "initcore-crm",
+    architecture: {
+      summary:
+        "Server-rendered Django with a real-time layer over PostgreSQL.",
+      tiers: [
+        {
+          label: "Client",
+          detail: "Server-rendered",
+          items: [
+            "Django templates",
+            "Chart.js dashboards",
+            "WebSocket subscriptions",
+          ],
+        },
+        {
+          label: "Application",
+          detail: "Django 5 · Python 3.12",
+          items: [
+            "Django Channels — real-time events",
+            "Daphne — ASGI server",
+            "pdfkit + wkhtmltopdf — GST invoices",
+            "pandas + openpyxl — reports and exports",
+          ],
+        },
+        {
+          label: "Storage",
+          detail: "PostgreSQL",
+          items: ["Relational core for leads, customers, staff and invoices"],
+        },
+      ],
+    },
     title: "InitCore CRM — Call Center Platform",
     summary:
       "Django CRM for running an outbound call-center desk — leads, payments, GST invoices, attendance and a live break monitor.",
@@ -258,6 +356,39 @@ export const projects: Project[] = [
   },
   {
     slug: "initcore-realestate",
+    architecture: {
+      summary:
+        "One Django install serving five role-scoped products off a shared model.",
+      tiers: [
+        {
+          label: "Portals",
+          detail: "Server-rendered templates",
+          items: [
+            "Super user — whole portfolio",
+            "Property manager — own properties and tickets",
+            "Maintenance supervisor — tasks and deadlines",
+            "Landlord — rent collected",
+            "Tenant — self-service",
+          ],
+        },
+        {
+          label: "Application",
+          detail: "Django · Python",
+          items: [
+            "Role-scoped access",
+            "Inventory tracked to the bed space",
+            "Invitation-based onboarding with expiry",
+          ],
+        },
+        {
+          label: "Storage",
+          detail: "PostgreSQL",
+          items: [
+            "Occupancy and collection rates computed against bed-space inventory",
+          ],
+        },
+      ],
+    },
     title: "InitCore Real Estate CRM",
     summary:
       "Django platform for co-living property management — bed-space inventory, tenancies and payments, with a different application for each role.",
@@ -354,6 +485,36 @@ export const projects: Project[] = [
   // ---------------------------------------------------------------------
   {
     slug: "sk-trading",
+    architecture: {
+      summary:
+        "A Windows desktop app with a local store and Google APIs for delivery.",
+      tiers: [
+        {
+          label: "Shell",
+          detail: "Electron",
+          items: ["JavaScript interface", "Installed on site"],
+        },
+        {
+          label: "Documents",
+          detail: "Generation pipeline",
+          items: [
+            "Quotations and quotation editor",
+            "Proforma invoices",
+            "Delivery challans",
+            "PDF generation",
+          ],
+        },
+        {
+          label: "Storage & delivery",
+          detail: "Local-first",
+          items: [
+            "SQLite — customers, products, documents",
+            "Google Drive API — document storage",
+            "Gmail API — sending to customers",
+          ],
+        },
+      ],
+    },
     title: "S.K Trading — Billing Desktop App",
     summary:
       "Offline Electron app for an industrial valve supplier — quotations, proforma and tax invoices and delivery challans, printed to a GST letterhead.",

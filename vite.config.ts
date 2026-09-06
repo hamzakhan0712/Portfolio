@@ -34,8 +34,7 @@ export default defineConfig(async ({ mode }) => {
             'vendor-react': [
               'react',
               'react-dom',
-              'react-router-dom',
-              'react-scroll'
+              'react-router-dom'
             ],
             // Group UI-related libraries
             'vendor-ui': [

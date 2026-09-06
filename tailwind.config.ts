@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -20,7 +21,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["Space Grotesk", "Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
@@ -40,6 +40,25 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        /* Semantic status. These are not decorative palette entries — reach
+           for them only when the thing being coloured genuinely has a state. */
+        ok: {
+          DEFAULT: "hsl(var(--ok))",
+          foreground: "hsl(var(--ok-foreground))",
+        },
+        warn: {
+          DEFAULT: "hsl(var(--warn))",
+          foreground: "hsl(var(--warn-foreground))",
+        },
+        err: {
+          DEFAULT: "hsl(var(--err))",
+          foreground: "hsl(var(--err-foreground))",
+        },
+        /* Reserved for AI surfaces only, so the violet reads as deliberate. */
+        ai: {
+          DEFAULT: "hsl(var(--ai))",
+          foreground: "hsl(var(--ai-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -171,5 +190,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

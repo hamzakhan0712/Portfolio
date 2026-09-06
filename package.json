@@ -11,7 +11,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "smoke": "vite build --config smoke/vite.config.ts --ssr smoke/ssr.tsx --outDir smoke/dist --emptyOutDir && node smoke/dist/ssr.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -38,3 +38,6 @@ RESUSE.TXT
 .env
 .env.local
 .env.*.local
+
+# Render smoke-test output
+smoke/dist
