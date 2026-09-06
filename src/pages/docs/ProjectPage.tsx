@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ExternalLink, Lock, Maximize2, Play } from "lucide-react";
+import { ArrowRight, ExternalLink, Lock, Maximize2, Play } from "lucide-react";
 import { DocsPage } from "@/components/docs/docs-layout";
 import { CodePanel } from "@/components/docs/code-panel";
 import {
@@ -16,6 +16,7 @@ import ArchitectureDiagram from "@/components/architecture-diagram";
 import MediaLightbox, { type MediaItem } from "@/components/media-lightbox";
 import { getProjectBySlug, getProjectMedia } from "@/data/projects";
 import { projectPayload } from "@/data/payloads";
+import { solutionsForProject } from "@/data/solutions";
 import { mediaTransitionName } from "@/lib/view-transition";
 
 /**
@@ -29,6 +30,9 @@ import { mediaTransitionName } from "@/lib/view-transition";
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = getProjectBySlug(slug);
+  // A visitor who arrived from a search lands here without ever seeing the
+  // banner this system sits behind; this is the way back to the offer.
+  const offers = slug ? solutionsForProject(slug) : [];
 
   const [lightbox, setLightbox] = useState({ open: false, index: 0 });
 
@@ -108,6 +112,30 @@ export default function ProjectPage() {
           </>
         }
       />
+
+      {offers.length > 0 && (
+        <div className="mb-8 rounded-xl border border-border bg-secondary/30 p-3.5">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            Available for your business
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {offers.map((offer) => (
+              <li key={offer.slug}>
+                <Link
+                  to={`/solutions#${offer.slug}`}
+                  className="group inline-flex items-center gap-2 text-[13.5px] font-medium text-primary no-underline"
+                >
+                  {offer.title}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <span className="block text-[12.5px] leading-relaxed text-muted-foreground">
+                  {offer.tagline}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Hero media. The poster pairs with the card thumbnail in the view
           transition, so the image the visitor clicked grows into this. */}

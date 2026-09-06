@@ -14,15 +14,78 @@ import { DocsFooter } from "@/components/docs/docs-footer";
  * what lets the code rail sit beside the prose on a wide screen and fold
  * beneath it on a narrow one without being rendered twice.
  */
+/** Masthead height plus a little air, so an anchored section clears it. */
+const ANCHOR_OFFSET = 72;
+
 export function DocsLayout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // A new page starts at its top, not wherever the last one was scrolled to.
+  // A new page starts at its top, not wherever the last one was scrolled to —
+  // unless the link asked for a section, in which case the section is the top.
+  //
+  // Landing on an anchor is not one scroll but several. The page chunk is
+  // fetched lazily, so on the first frame the section does not exist yet; then
+  // the webfonts swap in and re-measure every line above it; then the
+  // screenshots decode. Each of those moves the anchor, so this keeps
+  // re-aligning frame by frame until the layout stops moving under it.
+  //
+  // Two things keep that from being a trap. It gives up on a deadline, and it
+  // stops the instant the viewport is somewhere it did not put it — which is
+  // to say, the moment the visitor scrolls, they own the page.
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
     setMenuOpen(false);
-  }, [pathname]);
+
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+
+    /** Where this effect last put the viewport. */
+    let placedAt = Math.round(window.scrollY);
+    /** Frames of stillness seen since the target was last found. */
+    let settled = 0;
+    let found = false;
+    let frame = 0;
+
+    const deadline = performance.now() + 3000;
+
+    const tick = () => {
+      // A scroll position we did not set is the visitor's; hands off.
+      if (Math.round(window.scrollY) !== placedAt) return;
+
+      const target = document.getElementById(hash.slice(1));
+      if (target) {
+        if (!found) {
+          found = true;
+          settled = 0;
+        }
+        const before = Math.round(window.scrollY);
+        // Positioned rather than scrollIntoView'd: the sticky masthead
+        // overlaps the scrollport, so the section has to clear it by hand.
+        window.scrollTo({
+          top: Math.max(
+            0,
+            before + target.getBoundingClientRect().top - ANCHOR_OFFSET,
+          ),
+          behavior: "auto",
+        });
+        placedAt = Math.round(window.scrollY);
+        settled = placedAt === before ? settled + 1 : 0;
+      } else if (!found) {
+        // Nothing to align to yet — sit at the top rather than mid-document.
+        window.scrollTo({ top: 0, behavior: "auto" });
+        placedAt = Math.round(window.scrollY);
+      }
+
+      // Half a second of not moving means the layout has finished settling.
+      if (settled > 30 || performance.now() > deadline) return;
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash]);
 
   // The drawer is modal; the page behind it must not scroll.
   useEffect(() => {

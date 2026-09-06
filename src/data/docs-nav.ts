@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import { solutions } from "@/data/solutions";
 
 /**
  * The reference's table of contents.
@@ -34,11 +35,20 @@ export const navigation: NavGroup[] = [
     ],
   },
   {
-    label: "About me",
+    // First group after the overview, because a visitor who runs a business
+    // wants to know what can be built for them before they want a CV.
+    //
+    // The four domains are not listed individually here: they are anchors on
+    // one page, and a sidebar entry that cannot be the active page — or the
+    // pager's next page — is a link pretending to be a destination.
+    label: "What I build",
     items: [
-      { title: "Profile", href: "/profile", method: "GET" },
-      { title: "Experience", href: "/experience", method: "GET" },
-      { title: "Skills & tools", href: "/skills", method: "GET" },
+      {
+        title: "Solutions",
+        href: "/solutions",
+        method: "GET" as const,
+        meta: String(solutions.length),
+      },
     ],
   },
   {
@@ -52,6 +62,14 @@ export const navigation: NavGroup[] = [
         href: `/projects/${project.slug}`,
         meta: project.category === "product" ? "product" : "client",
       })),
+    ],
+  },
+  {
+    label: "About me",
+    items: [
+      { title: "Profile", href: "/profile", method: "GET" },
+      { title: "Experience", href: "/experience", method: "GET" },
+      { title: "Skills & tools", href: "/skills", method: "GET" },
     ],
   },
   {

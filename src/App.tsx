@@ -15,6 +15,7 @@ const Errors = lazy(() => import("@/pages/docs/Errors"));
 const Profile = lazy(() => import("@/pages/docs/Profile"));
 const Experience = lazy(() => import("@/pages/docs/Experience"));
 const Skills = lazy(() => import("@/pages/docs/Skills"));
+const Solutions = lazy(() => import("@/pages/docs/Solutions"));
 const Projects = lazy(() => import("@/pages/docs/Projects"));
 const ProjectPage = lazy(() => import("@/pages/docs/ProjectPage"));
 const Recognition = lazy(() => import("@/pages/docs/Recognition"));
@@ -96,6 +97,14 @@ const App = () => (
                 element={
                   <Suspense fallback={<PageSkeleton />}>
                     <Skills />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="solutions"
+                element={
+                  <Suspense fallback={<PageSkeleton />}>
+                    <Solutions />
                   </Suspense>
                 }
               />

@@ -40,6 +40,7 @@ import Errors from "@/pages/docs/Errors";
 import Profile from "@/pages/docs/Profile";
 import Experience from "@/pages/docs/Experience";
 import Skills from "@/pages/docs/Skills";
+import Solutions from "@/pages/docs/Solutions";
 import Projects from "@/pages/docs/Projects";
 import ProjectPage from "@/pages/docs/ProjectPage";
 import Recognition from "@/pages/docs/Recognition";
@@ -61,6 +62,7 @@ function Tree({ url }: { url: string }) {
               <Route path="profile" element={<Profile />} />
               <Route path="experience" element={<Experience />} />
               <Route path="skills" element={<Skills />} />
+              <Route path="solutions" element={<Solutions />} />
               <Route path="projects" element={<Projects />} />
               <Route path="projects/:slug" element={<ProjectPage />} />
               <Route path="recognition" element={<Recognition />} />

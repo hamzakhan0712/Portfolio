@@ -2,6 +2,7 @@ import { projects } from "@/data/projects";
 import { workHistory, education } from "@/data/experience";
 import { layers, runtimeLanguages, notInTheStack } from "@/data/skills";
 import { recognitions, certifications } from "@/data/recognition";
+import { solutions, proofProjects } from "@/data/solutions";
 
 /**
  * The site's content, shaped as API responses.
@@ -49,6 +50,22 @@ export const projectsPayload = {
     // Only assert a URL where one is genuinely reachable.
     live_url: project.liveUrl ?? null,
     source: "private",
+  })),
+};
+
+export const solutionsPayload = {
+  count: solutions.length,
+  results: solutions.map((solution) => ({
+    slug: solution.slug,
+    domain: solution.domain,
+    title: solution.title,
+    for: solution.audience,
+    delivery: solution.delivery,
+    stack: solution.stack,
+    includes: solution.capabilities.length,
+    // The proof is the point: a solution with nothing running behind it would
+    // be an advertisement rather than a record.
+    running: proofProjects(solution).map((project) => project.slug),
   })),
 };
 
@@ -161,8 +178,23 @@ export const systemMetrics: SystemMetric[] = [
   { label: "CGPI", value: "8.19", source: "B.E. CSE, Mumbai Univ." },
 ];
 
-/** Route index, used by the Overview page and the search index. */
+/**
+ * Route index, used by the Overview page and the search index.
+ *
+ * Ordered the way a visitor's interest runs, not the way a CV does: what I can
+ * build for you, then what I have built, and only then who I am.
+ */
 export const routeIndex = [
+  {
+    method: "GET" as const,
+    path: "/solutions",
+    summary: `${solutions.length} systems ready to set up for a business`,
+  },
+  {
+    method: "GET" as const,
+    path: "/projects",
+    summary: `${projects.length} things I have built`,
+  },
   { method: "GET" as const, path: "/profile", summary: "Who I am and what I do" },
   {
     method: "GET" as const,
@@ -173,11 +205,6 @@ export const routeIndex = [
     method: "GET" as const,
     path: "/skills",
     summary: "The tools I build with",
-  },
-  {
-    method: "GET" as const,
-    path: "/projects",
-    summary: `${projects.length} things I have built`,
   },
   {
     method: "GET" as const,

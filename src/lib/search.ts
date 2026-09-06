@@ -1,6 +1,7 @@
 import { projects } from "@/data/projects";
 import { routeIndex, contactPayload } from "@/data/payloads";
 import { notInTheStack } from "@/data/skills";
+import { solutions, proofProjects } from "@/data/solutions";
 
 /**
  * A small retrieval index over the site's own content.
@@ -12,7 +13,7 @@ import { notInTheStack } from "@/data/skills";
  * client or a number.
  */
 
-export type DocKind = "project" | "page" | "fact";
+export type DocKind = "project" | "solution" | "page" | "fact";
 
 export type Doc = {
   id: string;
@@ -82,6 +83,25 @@ const PAGE_DOCS: Doc[] = [
     snippet: "The technologies I work with, in the order they run",
     body: "skills stack tech tools interface edge application data analytics languages python sql typescript javascript request path",
     keywords: ["skills", "stack", "tech", "tools", "technologies"],
+  },
+  {
+    id: "page-solutions",
+    title: "What I can build for you",
+    kind: "page",
+    href: "/solutions",
+    snippet: `${solutions.length} finished systems, ready to set up for a business`,
+    body: `solutions offer domains industries ready made off the shelf hire build for my business ${solutions
+      .map((solution) => `${solution.domain} ${solution.title} ${solution.audience}`)
+      .join(" ")}`,
+    keywords: [
+      "solutions",
+      "build for me",
+      "domain",
+      "industry",
+      "product",
+      "offer",
+      ...solutions.map((solution) => solution.domain),
+    ],
   },
   {
     id: "page-projects",
@@ -157,6 +177,32 @@ const techVocabulary = Array.from(
   new Set(projects.flatMap((project) => project.tags)),
 ).sort();
 
+/**
+ * One document per solution.
+ *
+ * A visitor searching "real estate" is asking a commercial question, not a
+ * technical one — this puts the banner ahead of the two project pages behind
+ * it, which is the order that answers them.
+ */
+const solutionDocs: Doc[] = solutions.map((solution) => ({
+  id: `solution-${solution.slug}`,
+  title: solution.title,
+  kind: "solution",
+  href: `/solutions#${solution.slug}`,
+  snippet: solution.tagline,
+  body: [
+    solution.domain,
+    solution.tagline,
+    solution.audience,
+    solution.capabilities.join(" "),
+    solution.stack.join(" "),
+    solution.delivery,
+  ]
+    .join(" ")
+    .toLowerCase(),
+  keywords: [solution.domain, solution.slug, ...solution.stack],
+}));
+
 const projectDocs: Doc[] = projects.map((project) => ({
   id: `project-${project.slug}`,
   title: project.title,
@@ -176,7 +222,12 @@ const projectDocs: Doc[] = projects.map((project) => ({
   keywords: [...project.tags, project.category, project.slug],
 }));
 
-export const documents: Doc[] = [...projectDocs, ...PAGE_DOCS, ...FACT_DOCS];
+export const documents: Doc[] = [
+  ...solutionDocs,
+  ...projectDocs,
+  ...PAGE_DOCS,
+  ...FACT_DOCS,
+];
 
 const STOPWORDS = new Set([
   "a", "an", "and", "any", "are", "as", "at", "be", "by", "can", "did", "do",
@@ -288,6 +339,38 @@ export function answerFor(query: string): Answer {
     }
   }
 
+  // "do you build for real estate?" / "anything for a call centre?"
+  const domain = solutions.find((solution) =>
+    has(
+      trimmed,
+      solution.domain.toLowerCase(),
+      // Spelling and hyphenation people actually type.
+      ...({
+        "real-estate": ["property", "realestate", "tenant", "rental", "broker"],
+        "call-center": ["call center", "callcenter", "bpo", "tele", "agent"],
+        ecommerce: ["e-commerce", "shopify", "store", "online shop", "retail"],
+        billing: ["invoice", "invoicing", "gst", "quotation", "challan"],
+      }[solution.slug] ?? []),
+    ),
+  );
+  if (domain) {
+    const behind = proofProjects(domain);
+    return {
+      text:
+        `Yes — ${domain.title}. ${domain.tagline} ` +
+        `${behind.length === 1 ? "One system" : `${behind.length} systems`} already running behind it: ` +
+        `${behind.map((project) => project.title.split(" — ")[0]).join(" and ")}. ` +
+        `${domain.capabilities.length} capabilities are listed on the solutions page.`,
+      sources: [
+        solutionDocs.find((doc) => doc.id === `solution-${domain.slug}`)!,
+        ...behind.map(
+          (project) =>
+            projectDocs.find((doc) => doc.id === `project-${project.slug}`)!,
+        ),
+      ],
+    };
+  }
+
   // Absence is answerable too, and more useful than a shrug.
   const absent = notInTheStack.find((item) =>
     trimmed.toLowerCase().includes(item.toLowerCase()),
@@ -385,6 +468,7 @@ export function answerFor(query: string): Answer {
 
 /** Shown when the palette opens with an empty query. */
 export const suggestions = [
+  "Do you have anything for real estate?",
   "What did he build with Django?",
   "How much experience?",
   "What is he weakest at?",

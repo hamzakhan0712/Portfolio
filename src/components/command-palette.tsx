@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
  */
 
 const KIND_LABEL: Record<Doc["kind"], string> = {
+  solution: "solution",
   project: "project",
   page: "page",
   fact: "fact",
