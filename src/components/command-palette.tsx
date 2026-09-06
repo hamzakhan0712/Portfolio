@@ -169,134 +169,150 @@ export function CommandPalette() {
               onClick={() => setOpen(false)}
             />
 
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-label="Ask about this portfolio"
-              initial={{ opacity: 0, y: -12, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="fixed left-1/2 top-[12vh] z-[101] w-[min(640px,calc(100vw-2rem))] -translate-x-1/2"
-            >
-              <div className="panel-terminal border-ai/30">
-                {/* Input */}
-                <div className="flex items-center gap-3 border-b border-border px-4 py-3">
-                  <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
-                  <input
-                    ref={inputRef}
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    onKeyDown={onInputKeyDown}
-                    placeholder="Ask about the work, the stack, the experience…"
-                    className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    aria-label="Close"
-                    className="shrink-0 rounded p-1 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
+            {/* Positioning wrapper.
+                Centring the panel with `left-1/2 -translate-x-1/2` cannot work
+                here: framer-motion writes its own inline `transform` for the
+                entrance animation, which replaces Tailwind's translate wholesale
+                and leaves the panel hanging off the right edge. Flex centring
+                keeps layout and animation from fighting over one property.
+                The wrapper ignores pointer events so clicks outside the panel
+                still reach the backdrop below it. */}
+            <div className="pointer-events-none fixed inset-0 z-[101] flex items-start justify-center overflow-y-auto px-4 pb-8 pt-16 sm:pt-[12vh]">
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Search this site"
+                initial={{ opacity: 0, y: -12, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                className="pointer-events-auto h-fit w-full max-w-[640px]"
+              >
+                <div className="panel-terminal border-ai/30">
+                  {/* Input */}
+                  <div className="flex items-center gap-3 border-b border-border px-4 py-3">
+                    <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <input
+                      ref={inputRef}
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      onKeyDown={onInputKeyDown}
+                      type="search"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      enterKeyHint="go"
+                      placeholder="Search projects, skills, experience…"
+                      className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      aria-label="Close"
+                      className="shrink-0 rounded p-1 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
 
-                <div className="max-h-[min(60vh,460px)] overflow-y-auto">
-                  {/* Empty state */}
-                  {!answer && (
-                    <div className="p-4">
-                      <p className="mono-label mb-3">Try asking</p>
-                      <div className="flex flex-wrap gap-2">
-                        {suggestions.map((suggestion) => (
-                          <button
-                            key={suggestion}
-                            type="button"
-                            onClick={() => setQuery(suggestion)}
-                            className="rounded-full border border-border px-3 py-1.5 text-[12px] text-muted-foreground transition-colors hover:border-ai/50 hover:text-foreground"
-                          >
-                            {suggestion}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Reply */}
-                  {answer && (
-                    <div className="p-4">
-                      <div className="flex gap-3">
-                        <span
-                          aria-hidden
-                          className="mt-0.5 h-4 w-0.5 shrink-0 rounded-full bg-ai"
-                        />
-                        <p
-                          className="text-[13px] leading-relaxed text-foreground/90"
-                          aria-live="polite"
-                        >
-                          {words.slice(0, revealed).join(" ")}
-                          {streaming && (
-                            <span className="ml-0.5 inline-block h-3.5 w-1.5 translate-y-0.5 animate-pulse bg-ai" />
-                          )}
-                        </p>
-                      </div>
-
-                      {/* Sources */}
-                      {!streaming && sources.length > 0 && (
-                        <div className="mt-4">
-                          <p className="mono-label mb-2">
-                            {answer.text.startsWith("Closest")
-                              ? "Results"
-                              : "Sources"}
-                          </p>
-                          <ul className="space-y-1">
-                            {sources.map((doc, index) => (
-                              <li key={doc.id}>
-                                <button
-                                  type="button"
-                                  onClick={() => go(doc)}
-                                  onMouseEnter={() => setActiveIndex(index)}
-                                  className={cn(
-                                    "flex w-full items-center gap-3 rounded-md px-2.5 py-2 text-left transition-colors",
-                                    index === activeIndex
-                                      ? "bg-secondary"
-                                      : "hover:bg-secondary/60",
-                                  )}
-                                >
-                                  <span className="min-w-0 flex-1">
-                                    <span className="block truncate text-[13px] font-medium text-foreground">
-                                      {doc.title}
-                                    </span>
-                                    <span className="block truncate text-[11px] text-muted-foreground">
-                                      {doc.snippet}
-                                    </span>
-                                  </span>
-                                  <span className="mono-label shrink-0 text-[9px]">
-                                    {KIND_LABEL[doc.kind]}
-                                  </span>
-                                  {index === activeIndex && (
-                                    <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                                  )}
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
+                  <div className="max-h-[min(55vh,26rem)] overflow-y-auto">
+                    {/* Empty state */}
+                    {!answer && (
+                      <div className="p-4">
+                        <p className="mono-label mb-3">Try asking</p>
+                        <div className="flex flex-wrap gap-2">
+                          {suggestions.map((suggestion) => (
+                            <button
+                              key={suggestion}
+                              type="button"
+                              onClick={() => setQuery(suggestion)}
+                              className="rounded-full border border-border px-3 py-1.5 text-[12px] text-muted-foreground transition-colors hover:border-ai/50 hover:text-foreground"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
                         </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+                      </div>
+                    )}
 
-                {/* Foot — says exactly what this is. */}
-                <div className="flex items-center justify-between gap-3 border-t border-border bg-secondary/40 px-3 py-2 font-mono text-[10px] text-muted-foreground">
-                  <span>local index · no model call · nothing leaves the page</span>
-                  <span className="hidden shrink-0 items-center gap-2 sm:flex">
-                    <kbd className="rounded border border-border px-1">↑↓</kbd>
-                    <kbd className="rounded border border-border px-1">⏎</kbd>
-                    <kbd className="rounded border border-border px-1">esc</kbd>
-                  </span>
-                </div>
+                    {/* Reply */}
+                    {answer && (
+                      <div className="p-4">
+                        <div className="flex gap-3">
+                          <span
+                            aria-hidden
+                            className="mt-0.5 h-4 w-0.5 shrink-0 rounded-full bg-ai"
+                          />
+                          <p
+                            className="text-[13px] leading-relaxed text-foreground/90"
+                            aria-live="polite"
+                          >
+                            {words.slice(0, revealed).join(" ")}
+                            {streaming && (
+                              <span className="ml-0.5 inline-block h-3.5 w-1.5 translate-y-0.5 animate-pulse bg-ai" />
+                            )}
+                          </p>
+                        </div>
+
+                        {/* Sources */}
+                        {!streaming && sources.length > 0 && (
+                          <div className="mt-4">
+                            <p className="mono-label mb-2">
+                              {answer.text.startsWith("Closest")
+                                ? "Results"
+                                : "Sources"}
+                            </p>
+                            <ul className="space-y-1">
+                              {sources.map((doc, index) => (
+                                <li key={doc.id}>
+                                  <button
+                                    type="button"
+                                    onClick={() => go(doc)}
+                                    onMouseEnter={() => setActiveIndex(index)}
+                                    className={cn(
+                                      "flex w-full items-center gap-3 rounded-md px-2.5 py-2 text-left transition-colors",
+                                      index === activeIndex
+                                        ? "bg-secondary"
+                                        : "hover:bg-secondary/60",
+                                    )}
+                                  >
+                                    <span className="min-w-0 flex-1">
+                                      <span className="block truncate text-[13px] font-medium text-foreground">
+                                        {doc.title}
+                                      </span>
+                                      <span className="block truncate text-[11px] text-muted-foreground">
+                                        {doc.snippet}
+                                      </span>
+                                    </span>
+                                    <span className="mono-label shrink-0 text-[9px]">
+                                      {KIND_LABEL[doc.kind]}
+                                    </span>
+                                    {index === activeIndex && (
+                                      <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                                    )}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Foot — says exactly what this is. */}
+                  <div className="flex items-center justify-between gap-3 border-t border-border bg-secondary/40 px-3 py-2 font-mono text-[10px] text-muted-foreground">
+                    <span>local index · no model call · nothing leaves the page</span>
+                    <span className="hidden shrink-0 items-center gap-2 sm:flex">
+                      <kbd className="rounded border border-border px-1">↑↓</kbd>
+                      <kbd className="rounded border border-border px-1">⏎</kbd>
+                      <kbd className="rounded border border-border px-1">esc</kbd>
+                    </span>
+                  </div>
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
