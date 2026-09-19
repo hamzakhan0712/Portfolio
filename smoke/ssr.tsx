@@ -8,79 +8,48 @@
  *
  * Run with `npm run smoke`.
  */
-/* Minimal browser globals. The theme provider reads localStorage during
-   render; everything else the pages touch lives in effects, which never run
-   under renderToStaticMarkup. */
-const store = new Map<string, string>();
-(globalThis as Record<string, unknown>).localStorage = {
-  getItem: (key: string) => store.get(key) ?? null,
-  setItem: (key: string, value: string) => void store.set(key, value),
-  removeItem: (key: string) => void store.delete(key),
-  clear: () => store.clear(),
-  key: () => null,
-  length: 0,
-};
-(globalThis as Record<string, unknown>).matchMedia = () => ({
-  matches: false,
-  addEventListener: () => {},
-  removeEventListener: () => {},
-  addListener: () => {},
-  removeListener: () => {},
-});
-
 import { renderToStaticMarkup } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { DocsLayout } from "@/components/docs/docs-layout";
-import Overview from "@/pages/docs/Overview";
-import Authentication from "@/pages/docs/Authentication";
-import Errors from "@/pages/docs/Errors";
-import Profile from "@/pages/docs/Profile";
-import Experience from "@/pages/docs/Experience";
-import Skills from "@/pages/docs/Skills";
-import Solutions from "@/pages/docs/Solutions";
-import Projects from "@/pages/docs/Projects";
-import ProjectPage from "@/pages/docs/ProjectPage";
-import Recognition from "@/pages/docs/Recognition";
-import Contact from "@/pages/docs/Contact";
+import { SiteLayout } from "@/components/layout/site-layout";
+import Home from "@/pages/Home";
+import Services from "@/pages/Services";
+import Projects from "@/pages/Projects";
+import ProjectPage from "@/pages/ProjectPage";
+import About from "@/pages/About";
+import Experience from "@/pages/Experience";
+import Skills from "@/pages/Skills";
+import Recognition from "@/pages/Recognition";
+import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
 import { projects } from "@/data/projects";
-import { flatNavigation } from "@/data/docs-nav";
+import { allRoutes } from "@/data/site";
 
 function Tree({ url }: { url: string }) {
   return (
-    <ThemeProvider defaultTheme="dark">
-      <TooltipProvider>
-        <StaticRouter location={url}>
-          <Routes>
-            <Route element={<DocsLayout />}>
-              <Route index element={<Overview />} />
-              <Route path="authentication" element={<Authentication />} />
-              <Route path="errors" element={<Errors />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="experience" element={<Experience />} />
-              <Route path="skills" element={<Skills />} />
-              <Route path="solutions" element={<Solutions />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path="projects/:slug" element={<ProjectPage />} />
-              <Route path="recognition" element={<Recognition />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </StaticRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <StaticRouter location={url}>
+        <Routes>
+          <Route element={<SiteLayout />}>
+            <Route index element={<Home />} />
+            <Route path="services" element={<Services />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="projects/:slug" element={<ProjectPage />} />
+            <Route path="about" element={<About />} />
+            <Route path="experience" element={<Experience />} />
+            <Route path="skills" element={<Skills />} />
+            <Route path="recognition" element={<Recognition />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </StaticRouter>
+    </TooltipProvider>
   );
 }
 
-const routes = [
-  ...flatNavigation.map((item) => item.href),
-  "/projects/does-not-exist",
-  "/nonsense",
-];
+const routes = [...allRoutes, "/projects/does-not-exist", "/nonsense"];
 
 let failures = 0;
 

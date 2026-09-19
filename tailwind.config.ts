@@ -2,14 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
-  darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  prefix: "",
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
@@ -21,7 +14,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -29,6 +21,7 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: "hsl(var(--surface))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -41,8 +34,8 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        /* Semantic status. These are not decorative palette entries — reach
-           for them only when the thing being coloured genuinely has a state. */
+        /* Semantic status — reach for these only when the thing being
+           coloured genuinely has a state. */
         ok: {
           DEFAULT: "hsl(var(--ok))",
           foreground: "hsl(var(--ok-foreground))",
@@ -54,11 +47,6 @@ export default {
         err: {
           DEFAULT: "hsl(var(--err))",
           foreground: "hsl(var(--err-foreground))",
-        },
-        /* Reserved for AI surfaces only, so the violet reads as deliberate. */
-        ai: {
-          DEFAULT: "hsl(var(--ai))",
-          foreground: "hsl(var(--ai-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -76,16 +64,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -101,92 +79,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-in": {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
-        "fade-out": {
-          "0%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-          "100%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-        },
-        "scale-in": {
-          "0%": {
-            opacity: "0",
-            transform: "scale(0.95)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "scale(1)",
-          },
-        },
-        "slide-in": {
-          "0%": {
-            opacity: "0",
-            transform: "translateX(-100%)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateX(0)",
-          },
-        },
-        float: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-          },
-          "50%": {
-            transform: "translateY(-10px)",
-          },
-        },
-        "float-slow": {
-          "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(20px, -30px)" },
-        },
-        "float-medium": {
-          "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(-25px, 20px)" },
-        },
-        "float-fast": {
-          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
-          "50%": { transform: "translate(-50%, -50%) scale(1.08)" },
-        },
-        "text-reveal": {
-          "0%": {
-            width: "0",
-          },
-          "100%": {
-            width: "100%",
-          },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-1000px 0" },
-          "100%": { backgroundPosition: "1000px 0" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.7s ease-out forwards",
-        "fade-out": "fade-out 0.7s ease-out forwards",
-        "scale-in": "scale-in 0.7s ease-out forwards",
-        "slide-in": "slide-in 0.7s ease-out forwards",
-        float: "float 5s ease-in-out infinite",
-        "float-slow": "float-slow 18s ease-in-out infinite",
-        "float-medium": "float-medium 14s ease-in-out infinite",
-        "float-fast": "float-fast 10s ease-in-out infinite",
-        "text-reveal": "text-reveal 1s ease forwards",
-        shimmer: "shimmer 2.5s linear infinite",
       },
     },
   },

@@ -2,132 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts are loaded from index.html with preconnect. An @import here would be
-   render-blocking a second time for the same three families. */
+/* Fonts are loaded from index.html with preconnect. */
 
 @layer base {
   :root {
-    /* ── Light: schematic paper. Ink on white, deep emerald signal. ──
-       Colour carries meaning on this site: --primary is "interactive",
-       --ok/--warn/--err are status, --ai is reserved for AI surfaces only. */
-    --background: 210 20% 98%;
-    --foreground: 220 25% 8%;
+    /* One dark palette. Colour is spent on exactly one thing — the accent
+       marks what is interactive — so a visitor never has to decode it. */
+    --background: 224 40% 6%;
+    --foreground: 210 40% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 25% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 8%;
+    --card: 223 38% 9%;
+    --card-foreground: 210 40% 96%;
+    --popover: 223 38% 9%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 160 90% 26%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 12%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 42%;
-    --accent: 160 55% 94%;
-    --accent-foreground: 160 90% 22%;
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 68%;
+    --accent: 218 55% 17%;
+    --accent-foreground: 213 94% 76%;
 
-    /* Semantic status — the same scale a monitoring dashboard uses. */
-    --ok: 142 71% 34%;
-    --ok-foreground: 0 0% 100%;
-    --warn: 32 95% 38%;
-    --warn-foreground: 0 0% 100%;
-    --err: 0 72% 46%;
-    --err-foreground: 0 0% 100%;
-    --destructive: 0 72% 46%;
-    --destructive-foreground: 0 0% 100%;
+    /* A slightly lifted surface for alternating sections. */
+    --surface: 223 38% 8%;
 
-    /* Violet exists on this site for exactly one purpose: AI surfaces. */
-    --ai: 258 72% 52%;
-    --ai-foreground: 0 0% 100%;
-
-    --border: 220 13% 89%;
-    --input: 220 13% 89%;
-    --ring: 160 90% 26%;
-    --radius: 0.65rem;
-
-    /* Background system */
-    --grid-line: 220 25% 8%;
-    --grid-alpha: 0.055;
-    --glow-primary: 160 84% 39%;
-    --glow-secondary: 174 84% 40%;
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 25% 8%;
-    --sidebar-primary: 160 90% 26%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 220 20% 12%;
-    --sidebar-border: 220 13% 89%;
-    --sidebar-ring: 160 90% 26%;
-  }
-
-  .dark {
-    /* ── Dark: the canonical theme. Near-black rack, terminal-green signal. ── */
-    --background: 240 8% 4%;
-    --foreground: 150 6% 96%;
-
-    --card: 240 6% 8%;
-    --card-foreground: 150 6% 96%;
-    --popover: 240 6% 10%;
-    --popover-foreground: 150 6% 96%;
-
-    --primary: 157 100% 44%;
-    /* Near-black on the green: at 44% lightness the green is far too bright to
-       carry white text at any accessible contrast ratio. */
-    --primary-foreground: 160 100% 6%;
-    --secondary: 240 5% 12%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 240 5% 13%;
-    --muted-foreground: 240 5% 62%;
-    --accent: 157 40% 11%;
-    --accent-foreground: 157 90% 62%;
-
-    --ok: 142 71% 45%;
+    --ok: 142 65% 52%;
     --ok-foreground: 150 100% 5%;
-    --warn: 38 92% 50%;
+    --warn: 38 92% 58%;
     --warn-foreground: 38 100% 6%;
-    --err: 0 84% 60%;
+    --err: 0 84% 66%;
     --err-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --ai: 258 90% 66%;
-    --ai-foreground: 0 0% 100%;
+    --border: 222 28% 17%;
+    --input: 222 26% 23%;
+    --ring: 217 91% 60%;
+    --radius: 0.875rem;
 
-    --border: 240 5% 16%;
-    --input: 240 5% 16%;
-    --ring: 157 100% 44%;
-
-    --grid-line: 150 30% 90%;
-    --grid-alpha: 0.05;
-    --glow-primary: 157 100% 40%;
-    --glow-secondary: 174 90% 42%;
-
-    --sidebar-background: 240 8% 4%;
-    --sidebar-foreground: 150 6% 96%;
-    --sidebar-primary: 157 100% 44%;
-    --sidebar-primary-foreground: 160 100% 6%;
-    --sidebar-accent: 240 5% 12%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 240 5% 16%;
-    --sidebar-ring: 157 100% 44%;
+    color-scheme: dark;
   }
-}
 
-/* ─────────────────────────────────────────────────────────────────────────
-   Reference-documentation chassis.
-
-   The site is laid out as an API reference because that is the artefact a
-   backend developer actually produces. Density and precision do the work
-   here, not effects — the page has to survive being read, not just looked at.
-
-   Three columns at the widest breakpoint: navigation, prose, code. Below that
-   the code panel folds inline beneath the prose it belongs to, and the
-   navigation collapses into a drawer.
-   ───────────────────────────────────────────────────────────────────────── */
-
-@layer base {
   * {
     @apply border-border;
   }
@@ -136,11 +53,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    /* Anchored headings must clear the fixed masthead. */
+    /* Anchored headings must clear the sticky header. */
     scroll-padding-top: 5.5rem;
   }
 
-  /* Smooth scrolling is a preference, not a default. */
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -148,46 +64,27 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
-    font-size: 15px;
+    @apply bg-background font-sans text-foreground antialiased;
+    font-size: 16px;
+    line-height: 1.65;
   }
 
-  /* Reference headings are labels, not billboards. The display scale that
-     suits a marketing hero makes a document unreadable. */
   h1,
   h2,
   h3,
   h4 {
-    @apply font-sans font-semibold text-foreground;
+    @apply font-semibold text-foreground;
     letter-spacing: -0.02em;
+    line-height: 1.15;
   }
 
-  /* Numbers are data on this site — never let them shift width. */
   time,
   .tabular {
     font-variant-numeric: tabular-nums;
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.25);
-    color: hsl(var(--foreground));
-  }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 5px;
-    border: 2px solid hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.5);
+    background: hsl(var(--primary) / 0.35);
   }
 
   *:focus-visible {
@@ -208,309 +105,123 @@
 @layer components {
   /* ── Layout ─────────────────────────────────────────────────────────── */
 
-  .docs-shell {
-    --masthead-h: 3.5rem;
-    --sidebar-w: 17rem;
-    --codepanel-w: 25rem;
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  .docs-columns {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "main"
-      "aside"
-      "pager";
+  .section {
+    @apply py-16 sm:py-24;
   }
 
-  /* Named areas rather than a duplicated aside: below the widest breakpoint
-     the code rail drops beneath the prose it belongs to, in the same column,
-     without the panel being rendered twice into the DOM. */
-  @media (min-width: 1024px) {
-    .docs-columns {
-      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
-      grid-template-areas:
-        "nav main"
-        "nav aside"
-        "nav pager";
-    }
+  .section-tight {
+    @apply py-12 sm:py-16;
   }
 
-  @media (min-width: 1536px) {
-    .docs-columns {
-      grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--codepanel-w);
-      grid-template-areas:
-        "nav main  aside"
-        "nav pager aside";
-    }
+  /* ── Type ───────────────────────────────────────────────────────────── */
+
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-primary;
   }
 
-  .docs-area-nav {
-    grid-area: nav;
-  }
-  .docs-area-main {
-    grid-area: main;
-    min-width: 0;
-  }
-  .docs-area-aside {
-    grid-area: aside;
-    min-width: 0;
-    align-self: start;
-  }
-  .docs-area-pager {
-    grid-area: pager;
-    min-width: 0;
+  .display {
+    @apply text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-[3.5rem];
+    line-height: 1.08;
   }
 
-  .docs-sticky {
-    position: sticky;
-    top: var(--masthead-h);
-    max-height: calc(100vh - var(--masthead-h));
-    overflow-y: auto;
-    overscroll-behavior: contain;
+  .heading-section {
+    @apply text-3xl font-semibold tracking-[-0.025em] sm:text-4xl;
   }
 
-  /* ── Prose ──────────────────────────────────────────────────────────── */
-
-  .doc-prose {
-    @apply text-[15px] leading-[1.75] text-muted-foreground;
+  .heading-sub {
+    @apply text-xl font-semibold tracking-[-0.02em] sm:text-2xl;
   }
 
-  .doc-prose strong {
+  .lead {
+    @apply text-lg leading-relaxed text-muted-foreground sm:text-xl;
+  }
+
+  .prose-plain {
+    @apply text-[17px] leading-[1.75] text-muted-foreground;
+  }
+
+  .prose-plain p + p {
+    @apply mt-5;
+  }
+
+  .prose-plain strong {
     @apply font-semibold text-foreground;
   }
 
-  .doc-prose a:not(.no-underline) {
-    @apply font-medium text-primary underline decoration-primary/30 underline-offset-[3px];
-    transition: text-decoration-color 150ms;
+  .prose-plain a {
+    @apply font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary;
   }
 
-  .doc-prose a:not(.no-underline):hover {
-    @apply decoration-primary;
+  /* ── Buttons ────────────────────────────────────────────────────────── */
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-3 text-[15px] font-medium no-underline transition-colors;
   }
 
-  .doc-prose p + p {
-    margin-top: 1rem;
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground shadow-sm hover:bg-primary/90;
   }
 
-  .doc-prose code {
-    @apply rounded border border-border bg-secondary/70 px-[0.35em] py-[0.15em] font-mono text-[0.85em] text-foreground;
+  .btn-secondary {
+    @apply btn border border-border bg-background text-foreground hover:border-foreground/30 hover:bg-secondary;
   }
 
-  /* ── Navigation ─────────────────────────────────────────────────────── */
+  .btn-ghost {
+    @apply btn text-foreground hover:bg-secondary;
+  }
 
-  .nav-group-label {
-    @apply px-3 pb-2 pt-5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70;
+  .btn-sm {
+    @apply px-4 py-2 text-[14px];
+  }
+
+  /* ── Surfaces ───────────────────────────────────────────────────────── */
+
+  .card {
+    @apply rounded-2xl border border-border bg-card;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/15 hover:shadow-[0_16px_40px_-16px_rgba(0,0,0,0.7)];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 text-[13px] font-medium text-foreground/80;
+  }
+
+  .chip-accent {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[13px] font-medium text-accent-foreground;
+  }
+
+  .chip-ok {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-ok/10 px-3 py-1 text-[13px] font-medium text-ok;
   }
 
   .nav-link {
-    @apply relative flex items-center gap-2 rounded-md px-3 py-[7px] text-[13.5px] leading-tight text-muted-foreground transition-colors;
-  }
-
-  .nav-link:hover {
-    @apply bg-secondary/70 text-foreground;
+    @apply rounded-full px-3.5 py-2 text-[15px] font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground;
   }
 
   .nav-link[aria-current="page"] {
-    @apply bg-primary/10 font-medium text-primary;
+    @apply bg-accent text-accent-foreground;
   }
 
-  /* The rail marks where you are without shifting the label. */
-  .nav-link[aria-current="page"]::before {
-    content: "";
-    position: absolute;
-    left: -0.5rem;
-    top: 0.375rem;
-    bottom: 0.375rem;
-    width: 2px;
-    border-radius: 1px;
-    background: hsl(var(--primary));
+  .field-label {
+    @apply mb-2 block text-[14px] font-medium text-foreground;
   }
 
-  /* ── Code surfaces ──────────────────────────────────────────────────── */
-
-  .code-surface {
-    @apply overflow-hidden rounded-xl border border-border bg-card;
-  }
-
-  .code-bar {
-    @apply flex items-center gap-2 border-b border-border/80 bg-secondary/40 px-3 py-2 font-mono text-[11px] text-muted-foreground;
-  }
-
-  .code-tab {
-    @apply rounded px-2 py-1 font-mono text-[11px] text-muted-foreground transition-colors;
-  }
-
-  .code-tab:hover {
-    @apply text-foreground;
-  }
-
-  .code-tab[data-active="true"] {
-    @apply bg-background text-foreground shadow-sm;
-  }
-
-  .code-body {
-    @apply overflow-x-auto p-3.5 font-mono text-[12.5px] leading-[1.65];
-    tab-size: 2;
-  }
-
-  /* Syntax roles are named by meaning, not by colour, so the light and dark
-     palettes can disagree about the hue and still agree about the role. */
-  .tok-key {
-    color: hsl(var(--glow-secondary));
-  }
-  .tok-str {
-    color: hsl(var(--primary));
-  }
-  .tok-num {
-    color: hsl(var(--warn));
-  }
-  .tok-lit {
-    @apply italic;
-    color: hsl(var(--muted-foreground));
-  }
-  .tok-punc {
-    color: hsl(var(--muted-foreground) / 0.7);
-  }
-  .tok-cmd {
-    @apply font-semibold;
-    color: hsl(var(--foreground));
-  }
-  .tok-flag {
-    color: hsl(var(--ai));
-  }
-  .tok-comment {
-    @apply italic;
-    color: hsl(var(--muted-foreground) / 0.65);
-  }
-
-  /* ── Reference primitives ───────────────────────────────────────────── */
-
-  .method {
-    @apply inline-flex shrink-0 items-center rounded font-mono text-[10px] font-bold uppercase tracking-wider;
-    padding: 0.15rem 0.4rem;
-  }
-
-  .method-get {
-    background: hsl(var(--primary) / 0.14);
-    color: hsl(var(--primary));
-  }
-
-  .method-post {
-    background: hsl(var(--warn) / 0.16);
-    color: hsl(var(--warn));
-  }
-
-  .mono-label {
-    @apply font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground;
-  }
-
-  .status {
-    @apply inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium;
-  }
-  .status-ok {
-    @apply border-ok/30 bg-ok/10 text-ok;
-  }
-  .status-warn {
-    @apply border-warn/30 bg-warn/10 text-warn;
-  }
-  .status-err {
-    @apply border-err/30 bg-err/10 text-err;
-  }
-  .status-ai {
-    @apply border-ai/30 bg-ai/10 text-ai;
-  }
-  .status-idle {
-    @apply border-border bg-secondary/60 text-muted-foreground;
-  }
-
-  /* A property row in a schema table. */
-  .prop {
-    @apply border-t border-border/70 py-3.5;
-  }
-
-  .prop:first-child {
-    @apply border-t-0 pt-0;
-  }
-
-  .prop-name {
-    @apply font-mono text-[13px] font-medium text-foreground;
-  }
-
-  .prop-type {
-    @apply font-mono text-[11px] text-muted-foreground/80;
-  }
-
-  .callout {
-    @apply rounded-lg border border-l-[3px] bg-secondary/40 px-4 py-3 text-[13.5px] leading-relaxed;
-  }
-
-  .kbd {
-    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded border border-border bg-secondary px-1 font-mono text-[10px] text-muted-foreground;
-  }
-
-  /* Panels — retained for the architecture diagrams, the one place a raised
-     surface still earns its keep. */
-  .panel {
-    @apply rounded-xl border border-border bg-card;
-  }
-  .panel-outline {
-    @apply rounded-lg border border-border/70 bg-secondary/20;
-  }
-  .panel-terminal {
-    @apply overflow-hidden rounded-xl border border-border bg-card;
-  }
-  .panel-terminal-bar {
-    @apply flex items-center gap-2 border-b border-border/80 bg-secondary/40 px-3 py-2 font-mono text-[11px] text-muted-foreground;
-  }
-
-  /* ── Motion ─────────────────────────────────────────────────────────── */
-
-  /* A packet travelling one hop, used between architecture tiers. */
-  .flow-dot {
-    animation: flow-y 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  }
-
-  .caret {
-    animation: caret-blink 1.1s step-end infinite;
-  }
-
-  .transition-theme {
-    @apply transition-colors duration-200 ease-out;
-  }
-}
-
-@keyframes flow-y {
-  0% {
-    transform: translateY(-0.6rem);
-    opacity: 0;
-  }
-  20%,
-  80% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0.6rem);
-    opacity: 0;
-  }
-}
-
-@keyframes caret-blink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
+  .field-input {
+    @apply w-full rounded-xl border border-input bg-background px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground/70 transition-colors focus:border-primary focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:ring-offset-0;
   }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
    View Transitions.
 
-   Deliberately outside every @layer: layered rules lose to the browser's
-   default ::view-transition styles, and the animation silently never runs.
+   Outside every @layer on purpose: layered rules lose to the browser's default
+   ::view-transition styles, and the animation silently never runs.
    ───────────────────────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: no-preference) {

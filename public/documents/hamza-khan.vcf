@@ -1,13 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
-N:Your;Name;;;
-FN:Your Name
-TITLE:React.js Developer
-EMAIL;type=INTERNET;type=WORK:your.email@example.com
-URL;type=WORK:https://yourwebsite.com
-URL;type=GitHub:https://github.com/yourusername
-URL;type=LinkedIn:https://linkedin.com/in/yourusername
-URL;type=Twitter:https://twitter.com/yourusername
-URL;type=Instagram:https://instagram.com/yourusername
-ADR;type=WORK:;;Your Street;Your City;Your State;Your Zip;Your Country
+N:Khan;Hamza;;;
+FN:Hamza Khan
+TITLE:Software Engineer
+EMAIL;type=INTERNET;type=WORK:hamza81khan81@gmail.com
+TEL;type=CELL:+919137966960
+URL;type=WORK:https://portfolio-vert-six-26.vercel.app/
+URL;type=LinkedIn:https://www.linkedin.com/in/hamza-khan-3a2b0024a/
+ADR;type=WORK:;;;Mumbai;Maharashtra;;India
 END:VCARD

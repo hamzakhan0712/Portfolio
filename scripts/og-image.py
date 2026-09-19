@@ -2,8 +2,8 @@
 Regenerates public/brand/og-image.png — the social preview card.
 
 Run with `python scripts/og-image.py` after changing any headline figure. The
-numbers below mirror `systemMetrics` in src/data/payloads.ts; if they disagree,
-payloads.ts is the source of truth and this file is stale.
+numbers below mirror `metrics` in src/data/site.ts; if they disagree, site.ts
+is the source of truth and this file is stale.
 
 Fonts come from the Windows system set so the script needs no downloads.
 """
@@ -14,12 +14,13 @@ import os
 W, H = 1200, 630
 
 # The dark palette from src/index.css, resolved out of HSL.
-BG = (9, 9, 11)             # --background  240 8% 4%
-CARD = (20, 20, 22)         # --card        240 6% 8%
-BORDER = (39, 39, 43)       # --border      240 5% 16%
-FG = (245, 246, 245)        # --foreground  150 6% 96%
-MUTED = (151, 151, 163)     # --muted-foreground 240 5% 62%
-PRIMARY = (0, 224, 138)     # --primary     157 100% 44%
+BG = (9, 13, 21)            # --background  224 40% 6%
+SURFACE = (14, 19, 30)      # --card        223 38% 9%
+BORDER = (31, 40, 56)       # --border      222 28% 17%
+FG = (243, 246, 250)        # --foreground  210 40% 96%
+MUTED = (157, 171, 190)     # --muted-foreground 215 20% 68%
+PRIMARY = (59, 130, 246)    # --primary     217 91% 60%
+OK = (58, 212, 118)         # --ok
 
 FONTS = "C:/Windows/Fonts/"
 
@@ -29,69 +30,58 @@ def font(name, size):
 
 
 bold = lambda s: font("segoeuib.ttf", s)
+semibold = lambda s: font("seguisb.ttf", s)
 regular = lambda s: font("segoeui.ttf", s)
-mono = lambda s: font("consola.ttf", s)
 
 img = Image.new("RGB", (W, H), BG)
 d = ImageDraw.Draw(img)
 
-# ── Blueprint grid, matching the site's background treatment ──────────────
-for x in range(0, W, 56):
-    d.line([(x, 0), (x, H)], fill=(18, 20, 19), width=1)
-for y in range(0, H, 56):
-    d.line([(0, y), (W, y)], fill=(18, 20, 19), width=1)
+# ── Tinted right-hand panel behind the portrait ───────────────────────────
+d.rounded_rectangle([720, 40, W - 40, H - 40], radius=36, fill=SURFACE, outline=BORDER)
 
-# ── Portrait, bleeding off the right edge ─────────────────────────────────
+# ── Portrait, sitting on the panel's floor ────────────────────────────────
 cutout = Image.open("public/photos/cutout.webp").convert("RGBA")
-target_h = 600
+target_h = 500
 cutout = cutout.resize(
     (round(cutout.width * target_h / cutout.height), target_h), Image.LANCZOS
 )
-
-# A soft glow behind it so the black suit does not vanish into the black page.
-glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-gd = ImageDraw.Draw(glow)
-cx, cy = W - cutout.width // 2 - 40, H // 2
-for r in range(320, 0, -8):
-    alpha = int(16 * (1 - r / 320))
-    gd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(0, 224, 138, alpha))
-img.paste(Image.alpha_composite(img.convert("RGBA"), glow).convert("RGB"), (0, 0))
-
-img.paste(cutout, (W - cutout.width - 40, H - target_h), cutout)
+# Clip to the panel so the suit does not bleed past its rounded corner.
+panel = Image.new("L", (W, H), 0)
+ImageDraw.Draw(panel).rounded_rectangle([720, 40, W - 40, H - 40], radius=36, fill=255)
+layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+layer.paste(cutout, (940 - cutout.width // 2, H - 40 - target_h), cutout)
+layer.putalpha(Image.fromarray(__import__("numpy").minimum(
+    __import__("numpy").array(layer.split()[3]), __import__("numpy").array(panel))))
+img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 d = ImageDraw.Draw(img)
 
 # ── Status pill ───────────────────────────────────────────────────────────
-pill_text = "open to backend developer roles"
-pf = regular(21)
+pill_text = "Open to full-time roles"
+pf = regular(22)
 tw = d.textlength(pill_text, font=pf)
-d.rounded_rectangle([64, 56, 64 + tw + 62, 102], radius=23,
-                    fill=CARD, outline=(0, 90, 58))
-d.ellipse([86, 72, 100, 86], fill=PRIMARY)
-d.text((112, 68), pill_text, font=pf, fill=FG)
+d.rounded_rectangle([64, 64, 64 + tw + 64, 112], radius=24, fill=SURFACE, outline=BORDER)
+d.ellipse([86, 81, 100, 95], fill=OK)
+d.text((112, 74), pill_text, font=pf, fill=FG)
 
 # ── Name and role ─────────────────────────────────────────────────────────
-d.text((64, 128), "Hamza Khan", font=bold(86), fill=FG)
-d.text((66, 238), "Backend Developer", font=bold(40), fill=PRIMARY)
-d.text((66, 300), "Python · Django · PostgreSQL · Azure",
-       font=mono(22), fill=MUTED)
-
-d.line([(66, 356), (186, 356)], fill=PRIMARY, width=3)
+d.text((62, 140), "Hamza Khan", font=bold(84), fill=FG)
+d.text((66, 248), "Software Engineer", font=semibold(42), fill=PRIMARY)
+d.text((66, 312), "I build software that businesses run on.", font=regular(26), fill=MUTED)
 
 # ── Headline figures ──────────────────────────────────────────────────────
-stats = [("4", "YEARS FREELANCE"), ("10", "SHIPPED SYSTEMS"),
-         ("SIH'25", "GRAND FINALIST")]
+stats = [("4+", "years building software"), ("10", "finished systems"),
+         ("SIH '25", "grand finalist")]
 x = 66
 for value, label in stats:
-    d.text((x, 396), value, font=bold(58), fill=FG)
-    d.text((x, 474), label, font=mono(16), fill=MUTED)
-    x += max(d.textlength(label, font=mono(16)),
-             d.textlength(value, font=bold(58))) + 46
+    d.text((x, 410), value, font=bold(56), fill=FG)
+    d.text((x, 484), label, font=regular(19), fill=MUTED)
+    x += max(d.textlength(label, font=regular(19)),
+             d.textlength(value, font=bold(56))) + 48
 
 # ── Foot ──────────────────────────────────────────────────────────────────
-d.line([(64, 542), (700, 542)], fill=BORDER, width=1)
-d.text((66, 562), "hamza81khan81@gmail.com  ·  Mumbai, India",
-       font=mono(19), fill=(110, 110, 120))
+d.line([(66, 548), (660, 548)], fill=BORDER, width=2)
+d.text((66, 566), "Mumbai, India  ·  portfolio-vert-six-26.vercel.app", font=regular(20), fill=MUTED)
 
-out = "public/brand/og-image.png"
-img.save(out, "PNG", optimize=True)
-print(f"{out} · {img.size[0]}x{img.size[1]} · {os.path.getsize(out)/1024:.0f} KB")
+os.makedirs("public/brand", exist_ok=True)
+img.save("public/brand/og-image.png", optimize=True)
+print("wrote public/brand/og-image.png")
