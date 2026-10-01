@@ -56,7 +56,7 @@ img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 d = ImageDraw.Draw(img)
 
 # ── Status pill ───────────────────────────────────────────────────────────
-pill_text = "Open to full-time roles"
+pill_text = "Fresher · open to entry-level roles"
 pf = regular(22)
 tw = d.textlength(pill_text, font=pf)
 d.rounded_rectangle([64, 64, 64 + tw + 64, 112], radius=24, fill=SURFACE, outline=BORDER)
@@ -66,10 +66,10 @@ d.text((112, 74), pill_text, font=pf, fill=FG)
 # ── Name and role ─────────────────────────────────────────────────────────
 d.text((62, 140), "Hamza Khan", font=bold(84), fill=FG)
 d.text((66, 248), "Software Engineer", font=semibold(42), fill=PRIMARY)
-d.text((66, 312), "I build software that businesses run on.", font=regular(26), fill=MUTED)
+d.text((66, 312), "I build reliable web and desktop software.", font=regular(26), fill=MUTED)
 
 # ── Headline figures ──────────────────────────────────────────────────────
-stats = [("4+", "years building software"), ("10", "finished systems"),
+stats = [("2026", "B.E. graduate"), ("10", "projects"),
          ("SIH '25", "grand finalist")]
 x = 66
 for value, label in stats:

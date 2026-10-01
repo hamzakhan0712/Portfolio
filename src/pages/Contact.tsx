@@ -8,6 +8,7 @@ import {
   Check,
   Contact as ContactCard,
   Copy,
+  Github,
   Linkedin,
   Loader2,
   Mail,
@@ -149,7 +150,7 @@ export default function Contact() {
       <PageHeader
         eyebrow="Contact"
         title="Let's talk"
-        lead="Whether you are hiring or have a system you need built, send a message and I will get back to you — usually within a day. A note about which project caught your attention always gets a better answer."
+        lead="Have a role in mind or just want to connect? Send me a message and I will get back to you, usually within a day."
       />
 
       <Section>
@@ -199,7 +200,7 @@ export default function Contact() {
                 </label>
                 <input
                   id="subject"
-                  placeholder="A role at …, or a system you need built"
+                  placeholder="A role at …"
                   aria-invalid={Boolean(errors.subject)}
                   className={fieldClass(Boolean(errors.subject))}
                   {...form.register("subject")}
@@ -216,7 +217,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   rows={7}
-                  placeholder="What are you building, or what are you running today?"
+                  placeholder="Tell me a little about the role or what you would like to discuss."
                   aria-invalid={Boolean(errors.message)}
                   className={cn(fieldClass(Boolean(errors.message)), "resize-y")}
                   {...form.register("message")}
@@ -287,6 +288,13 @@ export default function Contact() {
                   href={contact.linkedin}
                   external
                 />
+                <CopyRow
+                  icon={Github}
+                  label="GitHub"
+                  value={contact.githubHandle}
+                  href={contact.github}
+                  external
+                />
                 <CopyRow icon={MapPin} label="Based in" value={contact.basedIn} />
               </div>
               <a href={profile.vcard} download className="btn-secondary mt-6 w-full">
@@ -298,8 +306,8 @@ export default function Contact() {
             <div className="card p-6 sm:p-8">
               <dl className="divide-y divide-border">
                 <Fact label="Looking for">
-                  Software engineering roles — Python and Django first, with a
-                  view to moving into data engineering.
+                  Entry-level, full-time software engineering roles — backend,
+                  full-stack or frontend.
                 </Fact>
                 <Fact label="Open to">{profile.openTo.join(", ")}</Fact>
                 <Fact label="Response time">Usually within a day.</Fact>

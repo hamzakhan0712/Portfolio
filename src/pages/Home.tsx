@@ -1,28 +1,21 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, MapPin } from "lucide-react";
 import {
+  ChipList,
   ContactBand,
   Section,
   SectionHeading,
 } from "@/components/primitives";
 import { ProjectCard } from "@/components/project-card";
-import { ServiceCard } from "@/components/service-card";
-import { engagementSteps, metrics, profile } from "@/data/site";
+import { metrics, profile, strengths } from "@/data/site";
 import { projects } from "@/data/projects";
-import { solutions } from "@/data/solutions";
 
 /**
- * The front page, ordered the way a visitor's interest runs: who this is,
- * what can be built for them, what has already been built, how working
- * together goes, and how to get in touch.
+ * The front page: who this is, the headline numbers, selected projects, what
+ * I work on, and how to get in touch.
  */
 
-// A short, balanced selection for the front page — the first few of each
-// group, in the order the data file lists them. The full list is one click.
-const featured = [
-  ...projects.filter((p) => p.category === "product").slice(0, 3),
-  ...projects.filter((p) => p.category === "client").slice(0, 3),
-];
+const featured = projects.slice(0, 6);
 
 export default function Home() {
   return (
@@ -44,7 +37,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/projects" className="btn-primary">
-                See my work
+                View projects
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/contact" className="btn-secondary">
@@ -63,7 +56,7 @@ export default function Home() {
 
             <p className="mt-8 inline-flex items-center gap-2 text-[14.5px] text-muted-foreground">
               <MapPin className="h-4 w-4" />
-              {profile.role} · {profile.location} · {profile.openTo.join(", ")}
+              {profile.role} · {profile.location}
             </p>
           </div>
 
@@ -101,29 +94,12 @@ export default function Home() {
         </dl>
       </Section>
 
-      {/* ── Services ─────────────────────────────────────────────────── */}
+      {/* ── Projects ─────────────────────────────────────────────────── */}
       <Section tone="surface">
         <SectionHeading
-          eyebrow="What I can build for you"
-          title="Ready-made systems for four kinds of business"
-          lead="Each of these already exists and runs today. They can be set up for another business, branded for you, with your data imported."
-          action={{ to: "/services", label: "All services" }}
-        />
-        <ul className="mt-12 grid gap-6 md:grid-cols-2">
-          {solutions.map((solution) => (
-            <li key={solution.slug}>
-              <ServiceCard solution={solution} />
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* ── Work ─────────────────────────────────────────────────────── */}
-      <Section>
-        <SectionHeading
-          eyebrow="Selected work"
-          title="Software I have designed, built and delivered"
-          lead={`${projects.length} finished systems, each shown with screenshots and a recorded walkthrough of the real thing. Here are six of them.`}
+          eyebrow="Featured projects"
+          title="Things I have built"
+          lead="Web applications, websites and desktop apps — each with screenshots and a video walkthrough."
           action={{ to: "/projects", label: `View all ${projects.length} projects` }}
         />
         <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -135,32 +111,29 @@ export default function Home() {
         </ul>
       </Section>
 
-      {/* ── Process ──────────────────────────────────────────────────── */}
-      <Section tone="surface">
+      {/* ── What I work on ───────────────────────────────────────────── */}
+      <Section>
         <SectionHeading
-          eyebrow="How working together goes"
-          title="Simple, fixed-scope, and yours to keep"
-          align="center"
+          eyebrow="What I do"
+          title="What I work on"
+          action={{ to: "/skills", label: "All skills" }}
         />
-        <ol className="mt-12 grid gap-6 md:grid-cols-3">
-          {engagementSteps.map((step, index) => (
-            <li key={step.title} className="card p-7">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-[15px] font-semibold text-accent-foreground tabular">
-                {index + 1}
-              </span>
-              <h3 className="mt-5 text-[19px] font-semibold text-foreground">
-                {step.title}
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
+          {strengths.map((item) => (
+            <li key={item.title} className="card p-7">
+              <h3 className="text-[19px] font-semibold text-foreground">
+                {item.title}
               </h3>
               <p className="mt-2.5 text-[15.5px] leading-relaxed text-muted-foreground">
-                {step.body}
+                {item.body}
               </p>
             </li>
           ))}
-        </ol>
+        </ul>
       </Section>
 
       {/* ── About teaser ─────────────────────────────────────────────── */}
-      <Section>
+      <Section tone="surface">
         <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <img
             src="/photos/full-length.webp"
@@ -171,23 +144,22 @@ export default function Home() {
           <div>
             <p className="eyebrow mb-3">About me</p>
             <h2 className="heading-section">
-              A software engineer who has carried projects from the first call
-              to the last handover
+              A fresh graduate who learns by building
             </h2>
             <div className="prose-plain mt-6">
               <p>
-                I started freelancing in {profile.freelancingSince.split(" ")[1]}{" "}
-                while studying. Most projects were for clients who needed working
-                systems they could actually use — which meant real constraints:
-                deployment on shared servers, real users, debugging in production,
-                and maintaining code other people depend on.
+                I graduated in 2026 with a B.E. in Computer Science and
+                Engineering from the University of Mumbai (CGPI 8.19 / 10),
+                after a Diploma in Computer Engineering.
               </p>
               <p>
-                I graduated in Summer 2026 with a B.E. in Computer Science and
-                Engineering (Data Science) from the University of Mumbai, and I am
-                building toward a career in {profile.movingToward.toLowerCase()}.
+                Alongside my studies I built the web applications, websites
+                and desktop apps on this site, and my team reached the Grand
+                Finale of Smart India Hackathon 2025. I&apos;m now looking for
+                my first full-time role as a software engineer.
               </p>
             </div>
+            <ChipList items={profile.focus} className="mt-6" />
             <Link
               to="/about"
               className="group mt-7 inline-flex items-center gap-1.5 text-[15px] font-medium text-primary no-underline"

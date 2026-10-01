@@ -54,10 +54,7 @@ export function ProjectCard({
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="text-[13px] font-medium text-primary">
-          {project.category === "product" ? "My own product" : "Built for a client"}
-          {projectKind(project) && (
-            <span className="text-muted-foreground"> · {projectKind(project)}</span>
-          )}
+          {projectKind(project) || "Project"}
         </p>
         <h3 className="mt-2 flex items-start justify-between gap-3 text-[19px] font-semibold leading-snug text-foreground">
           {projectName(project)}

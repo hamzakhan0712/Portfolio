@@ -4,13 +4,12 @@ import {
   ContactBand,
   PageHeader,
   Section,
-  SectionHeading,
 } from "@/components/primitives";
-import { workHistory, education, type TimelineEntry } from "@/data/experience";
+import { education, type TimelineEntry } from "@/data/experience";
 import { usePageTitle } from "@/lib/page-title";
 
 /**
- * Career and qualifications as a timeline, newest first.
+ * Education as a timeline, newest first.
  */
 function Entry({ entry, current }: { entry: TimelineEntry; current?: boolean }) {
   return (
@@ -59,32 +58,18 @@ function Timeline({
   );
 }
 
-export default function Experience() {
-  usePageTitle("Experience");
+export default function Education() {
+  usePageTitle("Education");
 
   return (
     <>
       <PageHeader
-        eyebrow="Experience"
-        title="Four years of work, and the education behind it"
-        lead="Every engagement was remote and solo — from requirements through deployment to maintenance. Newest first."
+        eyebrow="Education"
+        title="Education"
+        lead="I graduated in 2026 and am looking for my first full-time role. Newest first."
       />
 
       <Section>
-        <SectionHeading
-          eyebrow="Work"
-          title="Where I have worked"
-          lead="Three engagements, every one of them remote and solo."
-        />
-        <Timeline entries={workHistory} markCurrent />
-      </Section>
-
-      <Section tone="surface">
-        <SectionHeading
-          eyebrow="Education"
-          title="What I studied"
-          lead="A diploma into a direct second-year degree entry, specialising in data science. Marks are given as they appear on the transcripts."
-        />
         <Timeline entries={education} />
       </Section>
 

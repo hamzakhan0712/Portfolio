@@ -8,11 +8,10 @@ import Home from "@/pages/Home";
 
 /* The home page ships in the first chunk. Every other page is split — a
    visitor who reads two pages should not pay for ten. */
-const Services = lazy(() => import("@/pages/Services"));
 const Projects = lazy(() => import("@/pages/Projects"));
 const ProjectPage = lazy(() => import("@/pages/ProjectPage"));
 const About = lazy(() => import("@/pages/About"));
-const Experience = lazy(() => import("@/pages/Experience"));
+const Education = lazy(() => import("@/pages/Education"));
 const Skills = lazy(() => import("@/pages/Skills"));
 const Recognition = lazy(() => import("@/pages/Recognition"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -57,21 +56,22 @@ const App = () => (
         <Routes>
           <Route element={<SiteLayout />}>
             <Route index element={<Home />} />
-            <Route path="services" element={lazyPage(<Services />)} />
             <Route path="projects" element={lazyPage(<Projects />)} />
             <Route path="projects/:slug" element={lazyPage(<ProjectPage />)} />
             <Route path="about" element={lazyPage(<About />)} />
-            <Route path="experience" element={lazyPage(<Experience />)} />
+            <Route path="education" element={lazyPage(<Education />)} />
             <Route path="skills" element={lazyPage(<Skills />)} />
             <Route path="recognition" element={lazyPage(<Recognition />)} />
             <Route path="contact" element={lazyPage(<Contact />)} />
 
             {/* Addresses from the previous version of the site, so links that
                 were shared keep working. */}
-            <Route path="solutions" element={<Moved to="/services" />} />
+            <Route path="experience" element={<Moved to="/education" />} />
+            <Route path="services" element={<Moved to="/projects" />} />
+            <Route path="solutions" element={<Moved to="/projects" />} />
             <Route path="profile" element={<Moved to="/about" />} />
             <Route path="authentication" element={<Moved to="/about" />} />
-            <Route path="errors" element={<Moved to="/about#gaps" />} />
+            <Route path="errors" element={<Moved to="/about" />} />
 
             <Route path="*" element={lazyPage(<NotFound />)} />
           </Route>

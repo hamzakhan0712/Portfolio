@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FileText, Linkedin, Mail, Phone } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { contact, navigation, profile } from "@/data/site";
 
 export function SiteFooter() {
@@ -15,8 +15,7 @@ export function SiteFooter() {
               {profile.role} · {profile.location}
             </p>
             <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-              {profile.headline} Every project on this site is finished software,
-              shown running.
+              {profile.headline}
             </p>
           </div>
 
@@ -70,6 +69,17 @@ export function SiteFooter() {
                 >
                   <Linkedin className="h-4 w-4 shrink-0" />
                   LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2.5 text-[15px] text-foreground/80 no-underline transition-colors hover:text-primary"
+                >
+                  <Github className="h-4 w-4 shrink-0" />
+                  GitHub
                 </a>
               </li>
               <li>

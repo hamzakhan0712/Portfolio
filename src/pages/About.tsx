@@ -6,7 +6,7 @@ import {
   PageHeader,
   Section,
 } from "@/components/primitives";
-import { gaps, profile } from "@/data/site";
+import { profile } from "@/data/site";
 import { usePageTitle } from "@/lib/page-title";
 
 export default function About() {
@@ -16,69 +16,53 @@ export default function About() {
     <>
       <PageHeader
         eyebrow="About"
-        title={`${profile.role}, based in ${profile.location}`}
-        lead="Who I am, what I have been doing for four years, and where I am headed next — in plain words."
+        title={`Fresh graduate and aspiring ${profile.role.toLowerCase()}`}
+        lead="A little about who I am, what I have built and what I'm looking for."
       />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-16">
           <div className="prose-plain min-w-0">
-            <h2 className="heading-section mb-6 text-foreground">The short version</h2>
+            <h2 className="heading-section mb-6 text-foreground">Hi, I&apos;m Hamza</h2>
             <p>
-              <strong>{profile.role}</strong> with four years of freelance
-              project experience building web applications, the services behind
-              them, and real-time features, all backed by properly designed
-              databases.
+              I&apos;m a <strong>2026 Computer Science &amp; Engineering
+              graduate</strong> from the University of Mumbai and a fresher
+              looking for my first full-time role as a software engineer.
             </p>
             <p>
-              I started freelancing in 2021 while studying. Most projects were
-              for clients who needed working systems they could actually use —
-              which meant dealing with real constraints: deployment on shared
-              servers, handling user traffic, debugging in production, and
-              maintaining code other people depend on.
+              I came to the degree through a Diploma in Computer Engineering,
+              and graduated with a CGPI of 8.19 / 10. Alongside my studies I
+              have built web applications, REST APIs, real-time features,
+              websites and desktop apps — you can see them under{" "}
+              <Link to="/projects">Projects</Link>, each with screenshots and a
+              video walkthrough.
             </p>
             <p>
-              That experience shaped how I work — pragmatic, deployment-aware,
-              and focused on what actually ships. I graduated with a B.E. in
-              Computer Science and Engineering (Data Science) from the
-              University of Mumbai in Summer 2026 with a CGPI of 8.19 / 10, and
-              I am building toward a career in{" "}
-              <strong>{profile.movingToward.toLowerCase()}</strong>.
+              My team reached the Grand Finale of Smart India Hackathon 2025,
+              and we won 2nd place at SCOE Avishkar 2025.
             </p>
 
             <h2 className="heading-section mb-6 mt-16 text-foreground">How I work</h2>
             <p>
-              Solo, so far — every system under <Link to="/projects">Work</Link>{" "}
-              was specified, built, deployed and maintained by one person. That
-              means I have carried features from a client conversation through
-              to a production incident, which is the part of the job that
-              teaches you what to build differently next time.
+              I care about software that is simple to use and easy to maintain:
+              clear data models, predictable APIs, role-based access done
+              properly, and tests and CI that catch problems early.
             </p>
             <p>
-              It also means I know where my experience stops, and I would
-              rather say so here than have it come up later — see the gaps
-              below.
+              Most of what I build uses Python and Django on the backend and
+              React with TypeScript on the frontend, and I enjoy picking up
+              new tools when a project needs them — FastAPI, Tauri, Electron
+              and Next.js have all been part of my recent projects.
             </p>
 
-            <h2 id="gaps" className="heading-section mb-3 mt-16 scroll-mt-24 text-foreground">
-              Where I am honest about the gaps
+            <h2 className="heading-section mb-6 mt-16 text-foreground">
+              What I&apos;m looking for
             </h2>
-            <p className="mb-8">
-              Anyone can list what they are good at. What is actually worth
-              knowing is whether they can tell you where that list stops.
+            <p>
+              An entry-level, full-time software engineering role on a team
+              where I can learn from experienced engineers and grow — remote,
+              or on-site in Mumbai, Navi Mumbai or Thane.
             </p>
-            <ul className="not-prose grid gap-4">
-              {gaps.map((gap) => (
-                <li key={gap.title} className="card p-6">
-                  <h3 className="text-[17px] font-semibold text-foreground">
-                    {gap.title}
-                  </h3>
-                  <p className="mt-2 text-[15.5px] leading-relaxed text-muted-foreground">
-                    {gap.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
@@ -92,10 +76,7 @@ export default function About() {
               <dl className="divide-y divide-border">
                 <Fact label="Role">{profile.role}</Fact>
                 <Fact label="Based in">{profile.location}</Fact>
-                <Fact label="Experience">
-                  {profile.experienceYears} years, freelancing since{" "}
-                  {profile.freelancingSince}
-                </Fact>
+                <Fact label="Stage">Fresher · graduated {profile.graduated}</Fact>
                 <Fact label="Education">{profile.education}</Fact>
                 <Fact label="Languages">
                   {profile.languages.map((l) => `${l.name} — ${l.level}`).join(" · ")}

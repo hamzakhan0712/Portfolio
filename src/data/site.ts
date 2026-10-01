@@ -1,35 +1,27 @@
 import { projects } from "@/data/projects";
-import { solutions } from "@/data/solutions";
-import { notInTheStack } from "@/data/skills";
 
 /**
  * Site-wide facts: who this is, how to reach him, and the handful of numbers
  * the home page leads with.
- *
- * Every figure here is either computed from the data files or traceable to a
- * document — nothing is written for effect. If a number has no source, it
- * does not belong on the site.
  */
 
 export const profile = {
   name: "Hamza Khan",
   role: "Software Engineer",
   location: "Mumbai, India",
-  headline: "I build software that businesses run on.",
+  headline: "I build reliable web and desktop software.",
   intro:
-    "For the past four years I have designed, built and delivered complete software systems — websites, business management tools and desktop applications — for real businesses. Everything on this site is real software, shown running.",
-  status: "Open to full-time roles",
+    "I'm a 2026 Computer Science & Engineering graduate from the University of Mumbai, looking for my first full-time role as a software engineer. I build with Python and Django, React and TypeScript, and I've put that into practice across the projects on this site.",
+  status: "Fresher · open to entry-level roles",
   openTo: ["Remote", "Mumbai", "Navi Mumbai", "Thane"],
-  experienceYears: 4,
-  freelancingSince: "January 2021",
+  graduated: "2026",
   education:
-    "B.E. in Computer Science & Engineering (Data Science), University of Mumbai — CGPI 8.19 / 10",
+    "B.E. in Computer Science & Engineering, University of Mumbai — CGPI 8.19 / 10",
   languages: [
     { name: "English", level: "IELTS Academic 6.5 (CEFR B2)" },
     { name: "Hindi", level: "Native" },
   ],
-  focus: ["Python & Django", "Web applications", "Databases", "Real-time features"],
-  movingToward: "Data engineering",
+  focus: ["Python & Django", "React & TypeScript", "REST APIs", "PostgreSQL", "WebSockets"],
   cv: "/documents/Hamza_Khan_CV.pdf",
   vcard: "/documents/hamza-khan.vcf",
 } as const;
@@ -39,47 +31,42 @@ export const contact = {
   phone: "+91 91379 66960",
   linkedin: "https://www.linkedin.com/in/hamza-khan-3a2b0024a/",
   linkedinHandle: "in/hamza-khan-3a2b0024a",
+  github: "https://github.com/hamzakhan0712",
+  githubHandle: "hamzakhan0712",
   basedIn: "Mumbai, Maharashtra, India",
   responseTime: "usually within a day",
 } as const;
 
-const productCount = projects.filter((p) => p.category === "product").length;
-const clientCount = projects.filter((p) => p.category === "client").length;
-
-/**
- * Headline numbers. `source` names where each one comes from so the claim
- * stays checkable — a number nobody can trace is decoration.
- */
+/** Headline numbers on the home page. */
 export type Metric = { value: string; label: string; source: string };
 
 export const metrics: Metric[] = [
   {
-    value: `${profile.experienceYears}+`,
-    label: "Years building software",
-    source: "Freelancing since Jan 2021",
+    value: profile.graduated,
+    label: "B.E. graduate",
+    source: "Computer Science & Engineering",
   },
   {
     value: String(projects.length),
-    label: "Finished systems",
-    source: `${productCount} own products · ${clientCount} for clients`,
+    label: "Projects",
+    source: "Web apps, websites and desktop apps",
   },
   {
     value: "SIH ’25",
     label: "Grand Finalist",
     source: "Smart India Hackathon, Govt. of India",
   },
-  { value: "8.19", label: "CGPI out of 10", source: "B.E. CSE, University of Mumbai" },
+  { value: "8.19", label: "CGPI out of 10", source: "University of Mumbai" },
 ];
 
-/** Main navigation, in the order a visitor's interest usually runs. */
+/** Main navigation. */
 export type NavItem = { label: string; href: string };
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Work", href: "/projects" },
+  { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
+  { label: "Education", href: "/education" },
   { label: "Skills", href: "/skills" },
   { label: "Awards", href: "/recognition" },
   { label: "Contact", href: "/contact" },
@@ -91,40 +78,22 @@ export const allRoutes: string[] = [
   ...projects.map((project) => `/projects/${project.slug}`),
 ];
 
-/** How an engagement runs, in the words a business owner would use. */
-export const engagementSteps = [
+/** The areas I work in, shown on the home page. */
+export const strengths = [
   {
-    title: "We talk",
-    body: "A call about what you run today, what is slow or manual, and what a working system would change for you.",
+    title: "Backend & APIs",
+    body: "Django, Django REST Framework and FastAPI services backed by well-designed PostgreSQL schemas, with role-based access and real-time features over WebSockets.",
   },
   {
-    title: "A fixed scope",
-    body: "Setup and branding, the changes your business needs, your data imported, and a clear list of what is included.",
+    title: "Frontend",
+    body: "Responsive, accessible interfaces in React, Next.js and TypeScript with Tailwind CSS — from marketing sites to data-heavy dashboards.",
   },
   {
-    title: "You get a handover",
-    body: "Something you can keep running without me. I built every system here myself, so you talk to the person writing the code.",
-  },
-];
-
-/**
- * The honest other half of the site: the gaps, written down rather than left
- * for an interviewer to discover.
- */
-export const gaps = [
-  {
-    title: "The code is private",
-    body: "Client systems were built under commercial terms, and my own products are unreleased. Every project page shows screenshots, video and a written account instead of a repository link. I am glad to walk through any of it on a call.",
+    title: "Desktop apps",
+    body: "Offline-first desktop applications with Tauri and Electron, local SQLite and DuckDB storage, and installers for Windows.",
   },
   {
-    title: "I have worked solo so far",
-    body: "Every project on this site was specified, built, deployed and maintained by one person. That is the strength and the ceiling of the list — I have not yet worked inside a large existing codebase with a team, and that is the gap I am looking to close.",
-  },
-  {
-    title: "Some tools I have not used in production",
-    body: `${notInTheStack.join(", ")}. These do not appear in any project here because I have not run them for real — a statement about my track record, not about what I can learn.`,
+    title: "Deployment",
+    body: "Docker, CI pipelines with GitHub Actions, and deploying to Azure, DigitalOcean, Vercel and Render.",
   },
 ];
-
-/** Plain-English one-liners for the services, keyed by slug. */
-export const serviceCount = solutions.length;

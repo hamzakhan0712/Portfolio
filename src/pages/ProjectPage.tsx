@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ExternalLink,
-  Lock,
   Maximize2,
   Play,
 } from "lucide-react";
@@ -20,22 +19,18 @@ import { projectKind, projectName } from "@/lib/project-name";
 import ArchitectureOverview from "@/components/architecture-overview";
 import MediaLightbox, { type MediaItem } from "@/components/media-lightbox";
 import { getProjectBySlug, getProjectMedia, projects } from "@/data/projects";
-import { solutionsForProject } from "@/data/solutions";
 import { mediaTransitionName } from "@/lib/view-transition";
 import { usePageTitle } from "@/lib/page-title";
 
 /**
  * One project.
  *
- * The sections are the same across all ten so they can be compared, and they
- * are ordered for someone who cannot read a technology list: the video and
- * the screenshots come before anything technical, because seeing the
- * software work is the evidence that needs no translation.
+ * Every project page has the same sections: walkthrough, overview, key
+ * features, screenshots and architecture.
  */
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = getProjectBySlug(slug);
-  const offers = slug ? solutionsForProject(slug) : [];
 
   usePageTitle(project ? projectName(project) : "Not found");
 
@@ -55,14 +50,14 @@ export default function ProjectPage() {
     return (
       <>
         <PageHeader
-          eyebrow="Work"
+          eyebrow="Projects"
           title="No such project"
           lead="The link may be out of date."
         />
         <Section>
           <p className="prose-plain">
-            Everything I have built is listed under{" "}
-            <Link to="/projects">Work</Link>.
+            All projects are listed under{" "}
+            <Link to="/projects">Projects</Link>.
           </p>
         </Section>
       </>
@@ -83,7 +78,7 @@ export default function ProjectPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Work · ${project.category === "product" ? "My own product" : "Built for a client"}`}
+        eyebrow="Project"
         title={name}
         lead={project.summary}
         meta={
@@ -114,8 +109,7 @@ export default function ProjectPage() {
               className="w-full rounded-2xl border border-border bg-black"
             />
             <figcaption className="mt-3 text-[14.5px] text-muted-foreground">
-              A recorded walkthrough of the software running — the quickest way
-              to see what it does.
+              Video walkthrough of the project.
             </figcaption>
           </figure>
         ) : project.imageUrl ? (
@@ -129,7 +123,7 @@ export default function ProjectPage() {
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
           <div className="min-w-0">
-            <h2 className="heading-section">About this project</h2>
+            <h2 className="heading-section">Overview</h2>
             <div className="prose-plain mt-6">
               {paragraphs.map((text, i) => (
                 <p key={i}>{text}</p>
@@ -138,7 +132,7 @@ export default function ProjectPage() {
 
             {project.highlights && project.highlights.length > 0 && (
               <>
-                <h2 className="heading-section mt-16">What it does</h2>
+                <h2 className="heading-section mt-16">Key features</h2>
                 <CheckList items={project.highlights} className="mt-6" />
               </>
             )}
@@ -147,8 +141,7 @@ export default function ProjectPage() {
               <>
                 <h2 className="heading-section mt-16">Screenshots</h2>
                 <p className="lead mt-3 text-[17px]">
-                  {screenshots.length} captures of the real software. Select any
-                  to open it full size.
+                  Select any screenshot to open it full size.
                 </p>
                 <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {screenshots.map((item, i) => (
@@ -177,12 +170,7 @@ export default function ProjectPage() {
 
             {project.architecture && (
               <>
-                <h2 className="heading-section mt-16">Under the hood</h2>
-                <p className="lead mt-3 text-[17px]">
-                  For the technical reader: the parts below are listed in the
-                  order a request travels through them, from what you click
-                  down to where the data is stored.
-                </p>
+                <h2 className="heading-section mt-16">Architecture</h2>
                 <div className="mt-6">
                   <ArchitectureOverview architecture={project.architecture} />
                 </div>
@@ -193,79 +181,27 @@ export default function ProjectPage() {
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
             <div className="card p-6">
               <dl className="divide-y divide-border">
-                <Fact label="Type of work">
-                  {project.category === "product"
-                    ? "My own product — idea, design and code, end to end"
-                    : "Built for a client, to their brief and their brand"}
-                </Fact>
-                <Fact label="Where it runs">{project.urltext}</Fact>
+                <Fact label="Type">{project.urltext}</Fact>
                 {project.role && <Fact label="My role">{project.role}</Fact>}
-                <Fact label="Built with">
+                <Fact label="Tech stack">
                   <ChipList items={project.tags} className="mt-1" />
                 </Fact>
-                <Fact label="Can you see it live?">
-                  {project.liveUrl ? (
+                {project.liveUrl && (
+                  <Fact label="Live site">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-1.5 font-medium text-primary no-underline hover:underline"
                     >
-                      Yes — {project.urltext}
+                      {project.urltext}
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
-                  ) : (
-                    <span className="text-muted-foreground">
-                      Not publicly ({project.urltext}). The screenshots and
-                      walkthrough above are of the real thing running.
-                    </span>
-                  )}
-                </Fact>
+                  </Fact>
+                )}
               </dl>
             </div>
 
-            {offers.length > 0 && (
-              <div className="card border-primary/20 bg-accent/40 p-6">
-                <h3 className="text-[14px] font-semibold uppercase tracking-[0.08em] text-accent-foreground">
-                  Available for your business
-                </h3>
-                <ul className="mt-3 space-y-3">
-                  {offers.map((offer) => (
-                    <li key={offer.slug}>
-                      <Link
-                        to={`/services#${offer.slug}`}
-                        className="group inline-flex items-center gap-1.5 text-[15.5px] font-semibold text-foreground no-underline hover:text-primary"
-                      >
-                        {offer.title}
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                      </Link>
-                      <p className="mt-1 text-[14px] leading-relaxed text-muted-foreground">
-                        {offer.tagline}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="card p-6">
-              <p className="flex items-start gap-3 text-[14.5px] leading-relaxed text-muted-foreground">
-                <Lock className="mt-1 h-4 w-4 shrink-0 text-foreground" />
-                <span>
-                  <strong className="font-semibold text-foreground">
-                    The code is private.
-                  </strong>{" "}
-                  {project.category === "product"
-                    ? "This is a product of mine that has not been released, so the code stays closed."
-                    : "This was paid work, so the code belongs to the client and stays closed."}{" "}
-                  I am glad to walk through it on a call —{" "}
-                  <Link to="/contact" className="font-medium text-primary">
-                    get in touch
-                  </Link>
-                  .
-                </span>
-              </p>
-            </div>
           </aside>
         </div>
       </Section>

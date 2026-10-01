@@ -1,15 +1,6 @@
 import type { MediaItem } from "@/components/media-lightbox";
 
 /**
- * Projects are grouped by who owns them, not by which layer of the stack they
- * touch — that is the distinction a visitor actually cares about.
- *
- * "product" — conceived, built and shipped by me, end to end.
- * "client"  — built for a business, on their brief and their brand.
- */
-export type ProjectCategory = "product" | "client";
-
-/**
  * A tier in a project's runtime, ordered the way a request travels through it.
  * Only authored where the project's own write-up already establishes the shape.
  */
@@ -39,7 +30,6 @@ export type Project = {
   /** Long-form copy shown on the detail page. */
   description: string;
   tags: string[];
-  category: ProjectCategory;
   /** Card thumbnail. Falls back to a lettered placeholder when absent. */
   imageUrl?: string;
   /**
@@ -75,20 +65,17 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  // ---------------------------------------------------------------------
-  // Products — mine, end to end
-  // ---------------------------------------------------------------------
   {
     slug: "novem",
     architecture: {
       summary:
-        "A desktop shell over a local HTTP engine — the data never leaves the machine.",
+      "Local-first desktop app that turns e-commerce store data into forecasts, customer segments and plain-language answers. Tauri shell over a FastAPI + DuckDB engine.",
       tiers: [
         {
           label: "Shell",
           detail: "Tauri (Rust)",
           items: [
-            "React 19 + TypeScript client",
+            "React 19 + TypeScript frontend",
             "Ant Design",
             "ECharts",
           ],
@@ -121,11 +108,11 @@ export const projects: Project[] = [
         "CI gates every push: Ruff, pytest across Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest, production build.",
       ],
     },
-    title: "Novem — E-Commerce Intelligence Platform",
+    title: "Novem — E-Commerce Insights Desktop App",
     summary:
       "Local-first desktop BI tool: a Tauri shell over a FastAPI + DuckDB engine that turns e-commerce exports into forecasts, segments and plain-language answers.",
     description:
-      "Built for e-commerce owners under $500K/year who cannot afford enterprise BI and have no data scientist — they need answers, not another dashboard. \n\nA Tauri (Rust) desktop shell wraps a React 19 + TypeScript client using Ant Design and ECharts, talking to a Python FastAPI engine that runs as a local HTTP server on 127.0.0.1:44945 — 23 routers and roughly 170 endpoints. Analytical tables live in DuckDB scoped by store_id so multiple stores stay isolated; settings, import lineage, alerts and encrypted connector credentials live in SQLite. The engine is where the real work happens: Prophet for demand forecasting, scikit-learn for segmentation, mlxtend for market-basket association rules, the lifetimes library for customer lifetime value, SHAP so a recommendation can explain itself, and TextBlob for review sentiment. Ollama runs a local LLM so summaries never leave the machine. ReportLab generates the exports and APScheduler handles recurring refreshes. \n\nRelease builds freeze the engine with PyInstaller and ship it inside an NSIS installer, and CI runs the full gate on every push — Ruff lint and format, pytest across Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest, and a production build.",
+      "Novem is a desktop application that helps online store owners understand their sales, customers and products. Store data is imported from CSV, Excel, Google Sheets, Shopify or PostgreSQL, and everything runs locally on the user's machine.\n\nA Tauri (Rust) desktop shell wraps a React 19 + TypeScript interface built with Ant Design and ECharts. It talks to a Python FastAPI engine running as a local HTTP server — 23 routers and roughly 170 endpoints. Store data lives in DuckDB, scoped per store so multiple stores stay isolated, while settings, import history, alerts and encrypted connector credentials live in SQLite. The engine handles demand forecasting, customer segmentation, lifetime value, product bundles and review sentiment, and a local LLM powers an in-app copilot so data never leaves the machine.\n\nRelease builds bundle the engine with PyInstaller inside an NSIS installer, and CI runs on every push — Ruff, pytest on Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest and a production build.",
     tags: [
       "Tauri",
       "Rust",
@@ -140,7 +127,6 @@ export const projects: Project[] = [
       "Ollama",
       "PyInstaller",
     ],
-    category: "product",
     imageUrl: "/projects/novem/poster.jpg",
     previewVideo: "/projects/novem/preview.mp4",
     video: {
@@ -149,12 +135,12 @@ export const projects: Project[] = [
       duration: "7:47",
     },
     highlights: [
-      "A Tauri (Rust) shell owns the window and the engine lifecycle — it launches the Python process on startup, waits for the port to accept connections, and asks it to shut down gracefully on exit.",
-      "Everything runs on the machine: DuckDB for the analytical tables, SQLite for settings and lineage, and a local Ollama model for the Copilot. Nothing is uploaded anywhere.",
-      "Customers get RFM segmentation, churn risk and CLV via BG/NBD + Gamma-Gamma, plus cohort retention and per-customer story timelines.",
-      "Insights decompose a change rather than just reporting it — “revenue fell 15.5% — returning customers −$20.5k, AOV −$12.7k” — with z-score anomaly detection and SHAP explanations.",
-      "Capabilities degrade instead of failing: forecasting falls back to linear-trend extrapolation without Prophet, sentiment falls back from a transformer to TextBlob to keyword matching, and the Copilot falls back to rule-based answers without Ollama.",
-      "Customer emails and names are SHA-256 hashed on import by default, which is why the Data Viewer shows customer_email_hash rather than an address.",
+      "Tauri (Rust) shell manages the window and the engine lifecycle — it starts the Python process, waits for the port to come up, and shuts it down cleanly on exit.",
+      "Fully local: DuckDB for store data, SQLite for settings and history, and a local Ollama model for the copilot.",
+      "Customer insights including RFM segmentation, churn risk, lifetime value and cohort retention.",
+      "Insights explain a change instead of just reporting it, e.g. “revenue fell 15.5% — returning customers −$20.5k, AOV −$12.7k”, with anomaly detection.",
+      "Features degrade gracefully — forecasting, sentiment and the copilot each fall back to simpler methods when an optional dependency is missing.",
+      "Customer emails and names are hashed with SHA-256 on import by default.",
     ],
     media: [
       {
@@ -217,17 +203,17 @@ export const projects: Project[] = [
         caption: "Data Viewer — the raw DuckDB tables, with hashed emails.",
       },
     ],
-    urltext: "Desktop app · Tauri shell + FastAPI engine",
-    role: "Solo — product, architecture, engine, client and packaging",
+    urltext: "Desktop app · Windows",
+    role: "Design, architecture, backend engine, frontend and packaging",
   },
   {
     slug: "initcore-crm",
     architecture: {
       summary:
-        "Server-rendered Django with a real-time layer over PostgreSQL.",
+      "Django CRM for outbound call-center teams — leads, payments, GST invoices, attendance and a live break monitor over WebSockets.",
       tiers: [
         {
-          label: "Client",
+          label: "Frontend",
           detail: "Server-rendered",
           items: [
             "Django templates",
@@ -252,11 +238,11 @@ export const projects: Project[] = [
         },
       ],
     },
-    title: "InitCore CRM — Call Center Platform",
+    title: "InitCore CRM — Call Center CRM",
     summary:
       "Django CRM for running an outbound call-center desk — leads, payments, GST invoices, attendance and a live break monitor.",
     description:
-      "A single Django app for a small outbound call-center desk. Leads are imported from CSV or XLSX through a column-mapping screen before anything is written, carry a disposition and a free-form sub-disposition, and append to a LeadHistory row on every change — moving a lead to another agent writes a transfer record with the from/to users and a remark. Contact numbers are unique across the table, so re-importing the same list will not create duplicates. \n\nConverted leads become paid customers, and once an admin verifies the record the app creates an invoice, converts the amount to words with num2words in Indian numbering, renders the invoice template and shells out to wkhtmltopdf via pdfkit to store the PDF. Attendance is written by the login and logout views rather than a clock-in button: on save the model computes total login time, subtracts break time, and sets Present, Half day or Absent. Agents start and stop breaks over a WebSocket and team leaders watch them live on the Monitor page. \n\nEvery page filters its queryset by the logged-in user's role, so one view serves the superuser, the team leader and the agent. Server-rendered templates throughout — 17 models, no REST API and no JavaScript framework.",
+      "A CRM for outbound call-center teams, built with Django and PostgreSQL. Leads are imported from CSV or XLSX through a column-mapping screen, carry a disposition and sub-disposition, and keep a full history of every change, including transfers between agents. Contact numbers are unique, so re-importing a list does not create duplicates.\n\nConverted leads become paid customers. Once a payment is verified, the app generates a GST invoice — the amount is written out in words in Indian numbering and the invoice is rendered to PDF with wkhtmltopdf. Attendance is recorded automatically from login and logout times, with break time subtracted, and agents start and stop breaks over a WebSocket while team leaders watch them live on a monitor page.\n\nAccess is role-based throughout: the same views serve admins, team leaders and agents, each seeing only their own data. The app uses server-rendered templates across 17 models.",
     tags: [
       "Django 5",
       "Python 3.12",
@@ -270,7 +256,6 @@ export const projects: Project[] = [
       "openpyxl",
       "Chart.js",
     ],
-    category: "product",
     imageUrl: "/projects/initcore-crm/poster.jpg",
     previewVideo: "/projects/initcore-crm/preview.mp4",
     video: {
@@ -279,12 +264,12 @@ export const projects: Project[] = [
       duration: "2:49",
     },
     highlights: [
-      "Every page filters its queryset by the logged-in user's role, so a single view serves all three — scope of data, visible pages and permission to verify payments all follow from the role on UserProfile.",
-      "Imports pass through a column-mapping screen before anything is written, and contact numbers are unique across the table, so re-importing the same list will not create duplicates.",
-      "A verified payment creates an invoice, converts the amount to words with num2words in Indian numbering, renders the template and shells out to wkhtmltopdf via pdfkit to store a PDF against it.",
-      "Attendance is a side effect of logging in and out rather than a clock-in button — the model subtracts break time from total login time and sets Present at nine hours, Half day at four and a half, otherwise Absent.",
-      "Agents start and stop breaks over Django Channels, and admins and team leaders watch them live on the Monitor page.",
-      "The known constraints are written down rather than hidden — the in-memory channel layer that limits the monitor to a single worker, wkhtmltopdf resolved as a bare relative path, and Present being close to unreachable because the shift is exactly nine hours.",
+      "Role-based access — one set of views serves admins, team leaders and agents, with data scope and permissions driven by the user's role.",
+      "CSV/XLSX lead import with column mapping and duplicate protection.",
+      "Verified payments generate GST invoices as PDFs, with the amount written out in words.",
+      "Attendance is calculated automatically from login and logout times, minus breaks.",
+      "Real-time break tracking with Django Channels, visible live to team leaders.",
+      "Dashboards and CSV reports broken down by team leader, agent and disposition.",
     ],
     media: [
       {
@@ -351,14 +336,14 @@ export const projects: Project[] = [
           "User management — role, contact details, joining date and sales commitment.",
       },
     ],
-    urltext: "On-premise deployment",
-    role: "Solo — data model, views, realtime layer and templates",
+    urltext: "Web application",
+    role: "Data model, backend, real-time layer and templates",
   },
   {
     slug: "initcore-realestate",
     architecture: {
       summary:
-        "One Django install serving five role-scoped products off a shared model.",
+      "Django platform for co-living property management — bed-space inventory, tenancies, payments and maintenance, with a separate portal for each role.",
       tiers: [
         {
           label: "Portals",
@@ -389,13 +374,12 @@ export const projects: Project[] = [
         },
       ],
     },
-    title: "InitCore Real Estate CRM",
+    title: "InitCore Real Estate — Property Management Platform",
     summary:
       "Django platform for co-living property management — bed-space inventory, tenancies and payments, with a different application for each role.",
     description:
-      "A property management platform for co-living and shared accommodation, built as a server-rendered Django application on PostgreSQL. Inventory goes down to the bed space: every room carries a type, occupancy, rent and availability status, and the dashboard computes occupancy and collection rates against them rather than against whole units. Prospective tenants and landlords are onboarded by emailed invitation, with a management screen tracking who was invited, by whom, when the invite was created and when it expires. \n\nA tenancy carries contract dates, monthly rent, security deposit, room assignment and a financial breakdown, and contracts approaching expiry are flagged on both the admin and the tenant side. Leads move through a pipeline — contacted, interested, meeting scheduled, proposal sent, lost — each with an owner and a last-activity trail. Maintenance is ticket-driven with priorities and assignment, and payments, activity logs and resident community events each get their own module. \n\nThe part that shapes everything else is role scoping: the same install presents a different product to a super user, a property manager, a maintenance supervisor, a landlord and a tenant.",
+      "A property management platform for co-living and shared accommodation, built with Django and PostgreSQL. Inventory is tracked down to the bed space: every room has a type, occupancy, rent and availability status, and the dashboard calculates occupancy and collection rates from them.\n\nTenants and landlords are onboarded by email invitation with expiry tracking. A tenancy holds contract dates, monthly rent, security deposit, room assignment and a financial breakdown, and contracts nearing expiry are flagged. Leads move through a sales pipeline, maintenance is handled through prioritised tickets, and payments, activity logs and community events each have their own module.\n\nThe same installation presents a different portal to each role — super user, property manager, maintenance supervisor, landlord and tenant.",
     tags: ["Django", "Python", "PostgreSQL", "Server-rendered templates"],
-    category: "product",
     imageUrl: "/projects/initcore-realestate/poster.jpg",
     previewVideo: "/projects/initcore-realestate/preview.mp4",
     video: {
@@ -404,12 +388,12 @@ export const projects: Project[] = [
       duration: "9:13",
     },
     highlights: [
-      "One install, five different products: a super user sees the whole portfolio, a property manager only their own properties and tickets, a maintenance supervisor their tasks and deadlines, a landlord their rent collected, and a tenant a self-service portal.",
-      "Inventory is tracked to the bed space — each room carries a type, occupancy, rent and availability, and occupancy and collection rates are computed against those rather than whole units.",
-      "Tenants and landlords are onboarded by emailed invitation, with a management screen showing who was invited, by whom, when it was created and when it expires.",
-      "A tenancy carries contract dates, monthly rent, security deposit, room assignment and a financial breakdown, and contracts near expiry surface on both the admin and tenant views.",
-      "Leads run through contacted, interested, meeting scheduled, proposal sent and lost, each with an owner and a last-activity trail.",
-      "Maintenance is ticket-driven with priority and assignment, alongside modules for payments, activity logs and resident community events.",
+      "Five role-based portals from one codebase: super user, property manager, maintenance supervisor, landlord and tenant.",
+      "Bed-space level inventory with occupancy and collection rates calculated from it.",
+      "Invitation-based onboarding for tenants and landlords, with expiry tracking.",
+      "Tenancy records with contract dates, rent, deposit, room assignment and expiry alerts.",
+      "Lead pipeline from first contact to proposal, with owner and activity history.",
+      "Ticket-based maintenance with priorities and assignment, plus payments and activity logs.",
     ],
     media: [
       {
@@ -476,18 +460,14 @@ export const projects: Project[] = [
           "Tenant portal — contract status, upcoming payments, documents and quick actions.",
       },
     ],
-    urltext: "Multi-role platform · private deployment",
-    role: "Solo — role model, inventory, tenancy and all five portals",
+    urltext: "Web application",
+    role: "Data model, backend, role system and all five portals",
   },
-
-  // ---------------------------------------------------------------------
-  // Client work
-  // ---------------------------------------------------------------------
   {
     slug: "sk-trading",
     architecture: {
       summary:
-        "A Windows desktop app with a local store and Google APIs for delivery.",
+      "Offline Windows desktop app for quotations, proforma and tax invoices and delivery challans, with a live A4 print preview and GST calculation.",
       tiers: [
         {
           label: "Shell",
@@ -519,7 +499,7 @@ export const projects: Project[] = [
     summary:
       "Offline Electron app for an industrial valve supplier — quotations, proforma and tax invoices and delivery challans, printed to a GST letterhead.",
     description:
-      "A Windows desktop application for a supplier of IBR and non-IBR valves, pipes and fittings, replacing the spreadsheet-and-Word routine that produced their paperwork. Every document type the business issues — quotation, proforma invoice, tax invoice, delivery challan — is edited in a form on the left while an A4 print preview re-renders on the right, so what you approve is exactly what prints. Line items carry size, HSN code, quantity, unit, rate and GST percentage, tax splits into CGST and SGST or IGST from the place of supply, and the total is written out in words on the document. \n\nCustomers and products are never entered twice: both lists are accumulated from the documents already issued, so the customer page can show invoice count, total billed and outstanding, and the product page can recall the last rate used for a line. Reports break revenue down by customer, by product and by state with CSV export, and an audience export builds segments — bought in the last ninety days, dormant six months or more, quoted but never bought, payment outstanding, top twenty by value — as a contact file for a WhatsApp campaign tool. \n\nEverything is local: a SQLite database and generated PDFs sit in a folder on the machine, with Google Drive backup and Gmail app-password sending as opt-in extras.",
+      "A Windows desktop application for creating business documents — quotations, proforma invoices, tax invoices and delivery challans. Each document is edited in a form on the left while an A4 print preview updates live on the right, so what you see is exactly what prints.\n\nLine items carry size, HSN code, quantity, unit, rate and GST percentage. Tax is split into CGST and SGST or IGST based on the place of supply, and the total is written out in words. Customers and products are built up automatically from issued documents, which lets the app show totals billed, outstanding amounts and the last rate used for each product. Reports break revenue down by customer, product and state with CSV export, and customer segments can be exported as contact lists.\n\nEverything runs offline on a local SQLite database, with optional Google Drive backup and Gmail sending.",
     tags: [
       "Electron",
       "SQLite",
@@ -528,7 +508,6 @@ export const projects: Project[] = [
       "Google Drive API",
       "Gmail API",
     ],
-    category: "client",
     imageUrl: "/projects/sk-trading/poster.jpg",
     previewVideo: "/projects/sk-trading/preview.mp4",
     video: {
@@ -537,12 +516,12 @@ export const projects: Project[] = [
       duration: "1:35",
     },
     highlights: [
-      "Each document is a form on the left and a live A4 print preview on the right, so the thing being approved is the thing that prints.",
-      "Tax splits into CGST and SGST or into IGST from the place of supply, and the grand total is spelled out in words on the printed document.",
-      "Customers and products are accumulated from the documents already issued rather than maintained by hand — which is what lets the app surface total billed, outstanding, and the last rate used for a line item.",
-      "Audience export turns the same history into segments — dormant six months or more, quoted but never bought, payment outstanding, top twenty by value — and writes a contact file for a WhatsApp campaign tool.",
-      "Everything runs offline against a local SQLite database with the generated PDFs beside it; Google Drive backup and Gmail sending are opt-in and work through the user's own account.",
-      "Recorded on the real installation, so the business's own phone, email and GSTIN are blurred wherever they appear.",
+      "Form-and-preview editor — every document shows a live A4 print preview while you type.",
+      "Automatic GST split into CGST/SGST or IGST, with the total written out in words.",
+      "Customer and product lists built automatically from issued documents.",
+      "Revenue reports by customer, product and state, with CSV export.",
+      "Customer segment export — e.g. inactive for six months, quoted but never purchased, payment outstanding.",
+      "Works fully offline on SQLite, with optional Google Drive backup and Gmail sending.",
     ],
     media: [
       {
@@ -609,16 +588,16 @@ export const projects: Project[] = [
           "Audience export — segments such as dormant six months or payment outstanding.",
       },
     ],
-    urltext: "Windows desktop app · installed on site",
-    role: "Solo — built, packaged and installed for the client",
+    urltext: "Desktop app · Windows",
+    role: "Design, development and packaging",
   },
   {
     slug: "sk-trading-web",
-    title: "S.K Trading & Co. — Valve Catalogue Site",
+    title: "S.K Trading & Co. — Valve Catalogue Website",
     summary:
-      "Public catalogue for a Navi Mumbai valve stockist — 224 products across fourteen categories, organised by duty rather than by size alone.",
+      "Product catalogue website for industrial valves and fittings — 224 products across fourteen categories, with technical filters and an enquiry flow.",
     description:
-      "The customer-facing half of the same business the billing app serves: a catalogue site for a stockist and supplier of industrial valves, pipe fittings and MS dismantling joints. The site is organised the way the sales desk actually works. The home page opens on stock rather than on a slogan — 224 products listed, fourteen product categories, twenty brands stocked, fifteen years in the trade — and every category tile carries its own count, so a buyer can see the depth before clicking. \n\nThe product listing filters on the attributes an engineer specifies against: body material, end connection, pressure rating and operation, paged with a load-more rather than a wall of results. Alongside the catalogue there is a sector view built on the premise that the same nominal size behaves very differently on potable water and on 250 °C saturated steam — six sectors, from water supply and municipal through power and boiler houses to sugar, paper and process, each mapping to the categories most often quoted for it and linking straight into the relevant part of the catalogue. The About page is deliberately blunt about what the business is: a trading house that holds and supplies valves built by the manufacturers a specification already names, with one exception it manufactures in-house. \n\nEnquiry is the conversion path throughout — a requirement form taking a product category and a free-text specification, a WhatsApp handoff, and a linked IndiaMART store — with the office and godown address, working hours, GST, Udyam and ISO registration numbers, and a map closing the contact page.",
+      "A product catalogue website for industrial valves, pipe fittings and dismantling joints, built with Next.js, TypeScript and Tailwind CSS. The home page leads with the catalogue — products, categories and brands at a glance — and every category tile shows its product count.\n\nThe product listing filters on the attributes engineers specify: body material, end connection, pressure rating and operation, with load-more pagination. A sectors section maps industries such as water supply, power, sugar and paper to the product categories most used in each, linking straight into the catalogue.\n\nEvery page ends in a clear enquiry path — a requirement form with product category and specification, a WhatsApp link and an external store link — and the contact page includes address, hours, registration details and a map.",
     tags: [
       "Next.js",
       "React",
@@ -627,7 +606,6 @@ export const projects: Project[] = [
       "Product catalogue",
       "SEO",
     ],
-    category: "client",
     imageUrl: "/projects/sk-trading-web/poster.jpg",
     previewVideo: "/projects/sk-trading-web/preview.mp4",
     video: {
@@ -636,12 +614,11 @@ export const projects: Project[] = [
       duration: "1:26",
     },
     highlights: [
-      "The hero leads with inventory, not adjectives — 224 products listed, 14 categories, 20 brands stocked, 15+ years — because that is the first thing a procurement buyer checks.",
-      "Products are filtered on what an engineer actually specifies: body material, end connection, pressure rating and operation.",
-      "A sector view sits beside the catalogue on the premise that the same nominal size behaves differently on potable water and on 250 °C saturated steam — six sectors, each mapped to the categories most often quoted for it.",
-      "Brand tiles are marked stocked rather than merely listed, so a buyer can tell holding stock from a sourcing promise.",
-      "Every page ends in the same three exits — request a quote, WhatsApp the sales desk, or open the IndiaMART store — and the requirement form takes a category plus a free-text specification.",
-      "Registration details, working hours and the office-and-godown address sit on the page rather than behind a form, which is what an industrial buyer verifies before enquiring.",
+      "Catalogue of 224 products across 14 categories and 20 brands.",
+      "Technical filters for body material, end connection, pressure rating and operation.",
+      "Sectors section mapping industries to the product categories they use.",
+      "Enquiry form, WhatsApp and store links available from every page.",
+      "SEO-friendly page structure built with Next.js.",
     ],
     media: [
       {
@@ -706,16 +683,16 @@ export const projects: Project[] = [
         caption: "Office and godown — address, hours and a map.",
       },
     ],
-    urltext: "Catalogue website · Navi Mumbai",
-    role: "Solo — information architecture, build and content structure",
+    urltext: "Website",
+    role: "Information architecture, design and development",
   },
   {
     slug: "key2yourhome",
-    title: "Key2YourHome — Real Estate Channel Partner",
+    title: "Key2YourHome — Real Estate Listings Website",
     summary:
-      "Property discovery site for a MahaRERA-registered channel partner across Mumbai, Thane, Navi Mumbai and Pune, with a dedicated NRI desk.",
+      "Property discovery website for Mumbai, Thane, Navi Mumbai and Pune — project search, detailed project pages and a dedicated NRI section.",
     description:
-      "A property site for a registered real estate channel partner — not a developer, and the site says so on every page, because in Maharashtra that distinction is a legal one. Projects, resale homes, rentals and land deals each get their own index, searchable by name, locality or builder and filtered by city, type, BHK and budget. \n\nA project page is the heart of it: a photo gallery, an overview, a specification table covering price, configuration, possession, builder, tower structure, jodi layouts and on-site retail, a connectivity list measured in minutes to the junction, the bullet train station, the IT hub, the hospital and the airport, an embedded walkthrough, available unit plans with price on request, project highlights and an FAQ — all wrapped by a sticky enquiry rail carrying a WhatsApp handoff, a site-visit booking, a brochure download and a callback form pre-filled with the project name. \n\nThe MahaRERA number is not decoration: it sits on the hero badge, in a QR card linking to the state authority's own portal, and in a footer disclaimer telling buyers to verify independently. A separate NRI desk covers what remote buyers actually need — video site visits, RERA and document verification, banking, FEMA and repatriation guidance, and post-purchase rental management — and a five-step process runs from discovery call through curated shortlist and virtual due diligence to booking and post-purchase support. Cookie consent is granular, with essential, analytics and marketing controlled separately.",
+      "A real estate website for browsing new projects, resale homes, rentals and land across Mumbai, Thane, Navi Mumbai and Pune. Each listing type has its own index, searchable by name, locality or builder and filterable by city, type, BHK and budget.\n\nProject pages include a photo gallery, overview, specification table, connectivity to key locations, an embedded video walkthrough, unit plans, highlights and an FAQ. A sticky enquiry panel offers WhatsApp, site-visit booking, brochure download and a callback form pre-filled with the project name. RERA registration details are shown with a QR code linking to the official portal.\n\nA separate NRI section covers video site visits, document verification, banking guidance and rental management, and cookie consent lets visitors control essential, analytics and marketing cookies separately.",
     tags: [
       "React",
       "TypeScript",
@@ -724,7 +701,6 @@ export const projects: Project[] = [
       "SEO",
       "Cookie consent",
     ],
-    category: "client",
     imageUrl: "/projects/key2yourhome/poster.jpg",
     previewVideo: "/projects/key2yourhome/preview.mp4",
     video: {
@@ -733,12 +709,12 @@ export const projects: Project[] = [
       duration: "1:38",
     },
     highlights: [
-      "The channel-partner status is treated as a legal fact, not a badge — MahaRERA registration on the hero, a QR card linking to the state portal, and a footer disclaimer that the business is not the promoter or developer.",
-      "A project page runs from gallery and overview to a full specification table, a connectivity list measured in minutes, unit plans, highlights and an FAQ — with a sticky rail that never loses the enquiry.",
-      "The callback form arrives pre-filled with the project the visitor is reading, so a lead carries its own context.",
-      "An NRI desk covers remote buying end to end — video site visits, RERA and document verification, banking, FEMA and repatriation, and rental management after possession.",
-      "Listings are labelled as illustrative while the live inventory feed is being connected, rather than passing sample data off as stock.",
-      "Cookie consent is granular — essential, analytics and marketing each toggled separately, with reject-non-essential as a first-class choice.",
+      "Search and filters by city, property type, BHK and budget.",
+      "Detailed project pages with gallery, specifications, connectivity, unit plans and FAQ.",
+      "Sticky enquiry panel with a callback form pre-filled with the current project.",
+      "RERA details with a QR code linking to the official registry.",
+      "Dedicated NRI section for remote buyers.",
+      "Granular cookie consent for essential, analytics and marketing cookies.",
     ],
     media: [
       {
@@ -807,15 +783,15 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://www.key2yourhome.net",
     urltext: "key2yourhome.net",
-    role: "Solo — design, build and deployment",
+    role: "Design, development and deployment",
   },
   {
     slug: "taj-metals",
-    title: "Taj Metals — Industrial Tubes & Pipes",
+    title: "Taj Metals — Industrial Tubes & Pipes Website",
     summary:
-      "Catalogue and enquiry site for a Mumbai steel supplier, built so every product page ends in a WhatsApp quote with the specification attached.",
+      "Product catalogue and enquiry website for industrial tubes and pipes, with filterable specifications and a WhatsApp quote flow on every product.",
     description:
-      "A catalogue site for a Mumbai supplier of hydraulic honed tubes, seamless pipes, boiler tubes, hollow sections and ERW pipes. The brief was a site that converts on WhatsApp, because that is where this trade already negotiates — so the quote path sits on the hero, on every product card, at the bottom of every product page, and as a floating button that follows the visitor down the page. \n\nThe catalogue filters by category, material and standard, and a product page carries what a buyer needs before asking for a price: thickness and length ranges, standard and grade, finish, key features and the applications the product is actually specified into. Credibility is handled in-page rather than claimed — the GSTIN sits in a certified-supplier card on the hero and again on the contact page, alongside ISO certification, pan-India delivery, business hours and a map to the yard. \n\nA blog covers the questions that precede a purchase, such as tolerances and surface finish on honed tubes and how DIN 2391, ASTM A106 and IS 3601 differ in practice, which is also what earns the site its search traffic. Cookie consent, a privacy policy, terms, a cookies policy and a sitemap complete it.",
+      "A catalogue website for hydraulic honed tubes, seamless pipes, boiler tubes, hollow sections and ERW pipes, built with Next.js, TypeScript and Tailwind CSS. A WhatsApp quote button appears in the hero, on every product card, under every specification table and as a floating button.\n\nThe catalogue filters by category, material and standard. Each product page lists thickness and length ranges, standard and grade, finish, key features and typical applications. Certifications, delivery coverage, business hours and a map are shown on the home and contact pages.\n\nA blog covers common technical questions — such as tolerances on honed tubes and the differences between DIN 2391, ASTM A106 and IS 3601 — to support search traffic. The site also includes cookie consent, privacy policy, terms and a sitemap.",
     tags: [
       "Next.js",
       "React",
@@ -824,7 +800,6 @@ export const projects: Project[] = [
       "SEO",
       "Content / blog",
     ],
-    category: "client",
     imageUrl: "/projects/taj-metals/poster.jpg",
     previewVideo: "/projects/taj-metals/preview.mp4",
     video: {
@@ -833,12 +808,11 @@ export const projects: Project[] = [
       duration: "1:48",
     },
     highlights: [
-      "WhatsApp is the conversion path, not an afterthought — on the hero, on every product card, under every specification table, and as a floating button throughout.",
-      "The catalogue filters by category, material and standard, and each product page carries thickness and length ranges, standard, grade, finish, key features and real applications.",
-      "The GSTIN and ISO certification are shown in a certified-supplier card rather than asserted in prose, which is what a first-time industrial buyer checks.",
-      "A blog answers the questions that come before a purchase — honed-tube tolerances and surface finish, and how DIN 2391, ASTM A106 and IS 3601 actually differ — and carries the site's search traffic.",
-      "Business hours, the Reay Road office address and an embedded map close the contact page, because this trade still confirms a supplier by visiting the yard.",
-      "Cookie consent, privacy policy, terms, cookies policy and a sitemap are all in place.",
+      "WhatsApp quote flow on every product card and product page.",
+      "Catalogue filters by category, material and standard.",
+      "Product pages with full specifications, features and applications.",
+      "Technical blog for search visibility.",
+      "Cookie consent, privacy policy, terms and sitemap.",
     ],
     media: [
       {
@@ -906,15 +880,15 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://www.tajmetals.in",
     urltext: "tajmetals.in",
-    role: "Solo — design, build and deployment",
+    role: "Design, development and deployment",
   },
   {
     slug: "logxivia",
-    title: "Logxivia — Europe–India Trade Consultancy",
+    title: "Logxivia — Bilingual Consultancy Website",
     summary:
-      "Bilingual lead-generation site for a Cologne-based trade consultancy, built to German disclosure norms — imprint, essential-only cookies, no tracking.",
+      "Bilingual (German/English) website for a Europe–India trade consultancy, built to GDPR norms with an imprint and essential-only cookies.",
     description:
-      "A marketing site for a Cologne-based consultancy that connects European and Indian businesses — supplier sourcing, buyer search, market-entry research and business connection support. The audience is a cautious SME owner on either side of a cross-border deal, so the whole page is built to remove doubt rather than to excite. Four numbered services state precisely what is and is not offered, closing on a line that all services are advisory and that final agreements are made directly between the parties. A four-step process shows what happens after an enquiry. A side-by-side panel contrasts working without structure — unverified partners, fragmented search, poor pricing visibility — against what a research-backed process produces, which is the actual sales argument. \n\nThere is a fit-check section that tells the wrong visitor they are the wrong visitor, an audience section naming the four kinds of business served, and a sector list covering scrap metals and recycling, industrial raw materials, manufacturing and engineering, and medical consumables. The founder appears with the credentials that matter to this specific buyer — over ten years living and working in Germany, an MBA in International Business Management, fluent German. \n\nGerman practice shaped the build: an imprint, a privacy policy, a consent checkbox on the contact form, a language toggle, and a cookie banner that can say only essential cookies are used because no analytics or marketing scripts were loaded at all.",
+      "A bilingual marketing website for a consultancy connecting European and Indian businesses, built with React, TypeScript, Tailwind CSS and Framer Motion. It presents four services — supplier sourcing, buyer search, market research and business connection support — along with a four-step process, a comparison panel, a fit-check section, target sectors and a founder profile.\n\nThe site follows German and EU requirements: an imprint, a privacy policy, a consent checkbox on the contact form and a DE/EN language toggle. No analytics or marketing scripts are loaded, so the cookie banner only needs to cover essential cookies.",
     tags: [
       "React",
       "TypeScript",
@@ -923,7 +897,6 @@ export const projects: Project[] = [
       "GDPR compliance",
       "Framer Motion",
     ],
-    category: "client",
     imageUrl: "/projects/logxivia/poster.jpg",
     previewVideo: "/projects/logxivia/preview.mp4",
     video: {
@@ -932,12 +905,11 @@ export const projects: Project[] = [
       duration: "1:45",
     },
     highlights: [
-      "Built to German norms: an imprint, a privacy policy, a consent checkbox on the contact form, and a DE/EN language toggle.",
-      "The cookie banner can honestly say only essential cookies are used, because no analytics or marketing scripts ship with the site at all.",
-      "Each of the four services closes on a disclaimer that the work is advisory and that final agreements are made directly between the parties — scope stated up front, not in a contract later.",
-      "A without-structure versus with-Logxivia panel carries the sales argument by naming the failure mode rather than praising the service.",
-      "A fit-check section is willing to disqualify the wrong visitor, which is what makes the enquiries that do arrive worth answering.",
-      "The contact form promises what a hesitant SME buyer needs to hear — a Germany-based team, a reply within 24 hours, and that exploratory calls are welcome.",
+      "German/English language toggle across the whole site.",
+      "GDPR-compliant: imprint, privacy policy and a consent checkbox on the contact form.",
+      "No tracking scripts, so only essential cookies are used.",
+      "Clear service, process and sector sections with smooth Framer Motion transitions.",
+      "Contact form with validation and consent handling.",
     ],
     media: [
       {
@@ -1003,16 +975,16 @@ export const projects: Project[] = [
           "Contact — consent checkbox, 24-hour reply, no obligation stated plainly.",
       },
     ],
-    urltext: "Consultancy site · Cologne, Germany",
-    role: "Solo — design, build and bilingual content structure",
+    urltext: "Website",
+    role: "Design, development and bilingual content structure",
   },
   {
     slug: "ictmt-2025",
     title: "ICTMT 2025 — Conference Website",
     summary:
-      "Site for an international technology-and-management conference at SCOE — tracks, keynote, deadlines, fees and committees, with the content kept out of the markup.",
+      "Website for an international conference on technology and management — tracks, keynote, key dates, call for papers, fees and committees.",
     description:
-      "The website for ICTMT 2025, the International Conference on Technology and Management for Transformation, organised by Saraswati College of Engineering and held online on 8 April 2025. A conference site is a deadline machine: it exists to get researchers from the call for papers to a paid registration before three dates pass. \n\nSo the page runs in that order — the conference and its keynote, five paper tracks each expandable into its topic list, a dated timeline from full-paper submission through notification of acceptance to the last date of registration, the call for papers with its Microsoft CMT submission route and publication terms, a registration fee table split by delegate type in both rupees and dollars with the bank details directly beneath it, and finally the patrons, chair and the four committees. \n\nNearly all copy — dates, names, fees, track topics, committee rosters — lives in a values file exported as plain objects rather than sitting in components, so preparing the next edition is a content edit and not a rebuild. Navigation is split by breakpoint: a sticky desktop bar with dropdowns that turns solid once the page scrolls, and a drawer below the large breakpoint.",
+      "The website for ICTMT 2025, the International Conference on Technology and Management for Transformation, held online on 8 April 2025. The page follows the order a researcher needs it: the conference and keynote, five paper tracks that expand into their topics, a timeline of key dates, the call for papers with its Microsoft CMT submission route, a registration fee table in rupees and dollars with payment details, and the patrons and committees.\n\nNearly all content — dates, fees, track topics and committee lists — lives in a single data file rather than in components, so a future edition is a content edit instead of a rebuild. Navigation uses a sticky desktop bar with dropdowns and a drawer on smaller screens.",
     tags: [
       "React 19",
       "Vite 6",
@@ -1021,7 +993,6 @@ export const projects: Project[] = [
       "Framer Motion",
       "Swiper",
     ],
-    category: "client",
     imageUrl: "/projects/ictmt-2025/poster.jpg",
     previewVideo: "/projects/ictmt-2025/preview.mp4",
     video: {
@@ -1030,12 +1001,11 @@ export const projects: Project[] = [
       duration: "0:42",
     },
     highlights: [
-      "The page is ordered by the reader's deadline, not by the organiser's org chart — keynote and tracks, then dates, then submission, then fees, then committees.",
-      "Five paper tracks each expand into their own topic list, with a note that the topics are indicative and can be extended under each track.",
-      "The fee table carries both rupee and dollar amounts per delegate type, with the bank and IFSC details immediately below, so registration never leaves the page.",
-      "Dates, fees, track topics and every committee roster live in a values file as plain objects, so the next edition is a content edit rather than a rebuild.",
-      "Two separate navigations by breakpoint — a sticky desktop bar with dropdowns that turns solid on scroll, and a drawer below the large breakpoint.",
-      "Submission runs through Microsoft CMT, so the site's job ends at handing the author off cleanly rather than trying to own the review process.",
+      "Five expandable paper tracks, each with its own topic list.",
+      "Key dates timeline from paper submission to registration deadline.",
+      "Registration fee table in INR and USD with payment details on the same page.",
+      "All content stored in a single data file for easy updates.",
+      "Sticky desktop navigation with dropdowns and a mobile drawer.",
     ],
     media: [
       {
@@ -1097,16 +1067,16 @@ export const projects: Project[] = [
           "Programme, executive, international advisory and advisory committees.",
       },
     ],
-    urltext: "Conference site · SCOE, Navi Mumbai",
-    role: "Solo — build, content architecture and handover",
+    urltext: "Website",
+    role: "Development and content architecture",
   },
   {
     slug: "sustech-2025",
     title: "SUSTECH 2025 — Conference Website",
     summary:
-      "Sister site to ICTMT for SCOE's conference on sustainable technologies — four green-tech tracks, an IEI-sponsored best paper award, same content-as-data build.",
+      "Website for an international conference on sustainable technologies — four tracks, key dates, submission details, fees and committees.",
     description:
-      "The website for SUSTECH 2025, the International Conference on Sustainable Technologies, organised by Saraswati College of Engineering and held online on 8 April 2025 — a platform for researchers, academicians and industry professionals working in green technology, AI for sustainability and sustainable mobility. \n\nFour paper tracks cover green technology initiatives, emerging technologies in structural design, green mobility solutions and advances in sustainable technologies, each expanding into topics from pollution prevention and sustainable environment management through machine learning for sustainable manufacturing, IoT-based solutions and precision agriculture. There is no backend: peer review runs on Microsoft CMT and papers are published in conference proceedings and book chapters with an ISBN, with selected papers going to indexed journals — so the site's job is to present information accurately and hand off cleanly. The best paper award is sponsored by the Institution of Engineers (India), Navi Mumbai Local Centre, and the committee section runs deep, from programme chairs and organisers to international advisers in Japan, Germany and the UAE and a national advisory panel drawn from DRDO, industry and half a dozen engineering colleges. \n\nSame content-as-data approach as ICTMT: one values file holds every title, deadline, fee and committee name that the page maps over.",
+      "The website for SUSTECH 2025, the International Conference on Sustainable Technologies, held online on 8 April 2025, covering green technology, AI for sustainability and sustainable mobility.\n\nFour paper tracks expand into their topic lists. The site presents key dates, submission and publication details, the best paper award, registration fees and an extensive committee section. Paper review is handled through Microsoft CMT, so the site focuses on presenting information clearly and linking out for submission.\n\nIt uses the same content-as-data approach as ICTMT 2025: one data file holds every title, deadline, fee and committee name that the pages render.",
     tags: [
       "React",
       "Vite",
@@ -1115,7 +1085,6 @@ export const projects: Project[] = [
       "Framer Motion",
       "React Router",
     ],
-    category: "client",
     imageUrl: "/projects/sustech-2025/poster.jpg",
     previewVideo: "/projects/sustech-2025/preview.mp4",
     video: {
@@ -1124,12 +1093,11 @@ export const projects: Project[] = [
       duration: "0:42",
     },
     highlights: [
-      "Four green-tech tracks, each expanding into its own topic list — from pollution prevention to machine learning for sustainable manufacturing and precision agriculture.",
-      "No backend at all: review runs on Microsoft CMT and publication on proceedings and book chapters, so the site presents and hands off rather than pretending to own the workflow.",
-      "Publication terms are stated plainly — ISBN proceedings and book chapters, with selected papers to indexed journals subject to acceptance and applicable fees.",
-      "The committee section carries programme chairs, organisers, an international advisory panel spanning Japan, Germany and the UAE, and a national panel from DRDO, industry and six engineering colleges.",
-      "Built on the same content-as-data structure as ICTMT, so both conferences are maintained the same way by the same non-developer staff.",
-      "The best paper award and its sponsoring body are surfaced beside the call for papers, where they actually influence a submission decision.",
+      "Four expandable paper tracks with topic lists.",
+      "Key dates, submission details and publication terms on one page.",
+      "Registration fees with payment details.",
+      "Committee section with programme chairs, organisers and advisory panels.",
+      "Shares a content-as-data structure with ICTMT 2025.",
     ],
     media: [
       {
@@ -1191,8 +1159,8 @@ export const projects: Project[] = [
           "Programme chairs, organisers, and the international and national advisory committees.",
       },
     ],
-    urltext: "Conference site · SCOE, Navi Mumbai",
-    role: "Solo — build, content architecture and handover",
+    urltext: "Website",
+    role: "Development and content architecture",
   },
 ];
 
@@ -1221,42 +1189,3 @@ export const getProjectMedia = (project: Project): MediaItem[] => {
 
   return items;
 };
-
-export const categoryMeta: Record<
-  ProjectCategory,
-  { label: string; dot: string; chip: string }
-> = {
-  product: {
-    label: "Product",
-    dot: "bg-emerald-500",
-    chip: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25",
-  },
-  client: {
-    label: "Client work",
-    dot: "bg-sky-500",
-    chip: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/25",
-  },
-};
-
-/** Section headings for the work page, in the order they are rendered. */
-export const projectGroups: {
-  category: ProjectCategory;
-  title: string;
-  blurb: string;
-}[] = [
-  {
-    category: "product",
-    title: "Products",
-    blurb:
-      "Mine end to end — my idea, my architecture, my code. Each one is a finished thing a business could run on today.",
-  },
-  {
-    category: "client",
-    title: "Client work",
-    blurb:
-      "Built for businesses that came to me through my own network — their brief, their brand, their customers using it.",
-  },
-];
-
-export const getProjectsByCategory = (category: ProjectCategory) =>
-  projects.filter((project) => project.category === category);

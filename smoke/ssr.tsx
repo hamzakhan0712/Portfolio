@@ -14,11 +14,10 @@ import { Routes, Route } from "react-router-dom";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteLayout } from "@/components/layout/site-layout";
 import Home from "@/pages/Home";
-import Services from "@/pages/Services";
 import Projects from "@/pages/Projects";
 import ProjectPage from "@/pages/ProjectPage";
 import About from "@/pages/About";
-import Experience from "@/pages/Experience";
+import Education from "@/pages/Education";
 import Skills from "@/pages/Skills";
 import Recognition from "@/pages/Recognition";
 import Contact from "@/pages/Contact";
@@ -33,11 +32,10 @@ function Tree({ url }: { url: string }) {
         <Routes>
           <Route element={<SiteLayout />}>
             <Route index element={<Home />} />
-            <Route path="services" element={<Services />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:slug" element={<ProjectPage />} />
             <Route path="about" element={<About />} />
-            <Route path="experience" element={<Experience />} />
+            <Route path="education" element={<Education />} />
             <Route path="skills" element={<Skills />} />
             <Route path="recognition" element={<Recognition />} />
             <Route path="contact" element={<Contact />} />

@@ -182,10 +182,10 @@ export function Fact({
   );
 }
 
-/** The closing band on most pages: one question, two ways to answer it. */
+/** The closing band on most pages. */
 export function ContactBand({
-  title = "Have a project in mind, or hiring?",
-  body = "Tell me what you are building or what you are running today. I read every message myself and usually reply within a day.",
+  title = "Let’s work together",
+  body = "I’m a 2026 graduate looking for my first full-time software engineering role. Send me a message — I usually reply within a day.",
 }: {
   title?: string;
   body?: string;
