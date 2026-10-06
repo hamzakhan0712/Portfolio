@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Images, Play } from "lucide-react";
 import type { Project } from "@/data/projects";
-import { projectKind, projectName } from "@/lib/project-name";
 import { mediaTransitionName } from "@/lib/view-transition";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +15,7 @@ export function ProjectCard({
   project: Project;
   className?: string;
 }) {
-  const shots = project.media?.length ?? 0;
+  const shots = project.gallery.length;
 
   return (
     <Link
@@ -27,10 +26,10 @@ export function ProjectCard({
       )}
     >
       <div className="relative overflow-hidden border-b border-border bg-secondary">
-        {project.imageUrl && (
+        {project.poster && (
           <img
-            src={project.imageUrl}
-            alt={`${projectName(project)} screenshot`}
+            src={project.poster}
+            alt={`${project.name} screenshot`}
             loading="lazy"
             style={{ viewTransitionName: mediaTransitionName(project.slug) }}
             className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
@@ -54,10 +53,10 @@ export function ProjectCard({
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="text-[13px] font-medium text-primary">
-          {projectKind(project) || "Project"}
+          {project.kind}
         </p>
         <h3 className="mt-2 flex items-start justify-between gap-3 text-[19px] font-semibold leading-snug text-foreground">
-          {projectName(project)}
+          {project.name}
           <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
         </h3>
         <p className="mt-2.5 line-clamp-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">

@@ -1,0 +1,1492 @@
+[
+  {
+    "slug": "initcore-commerce",
+    "name": "InitCore Commerce",
+    "kind": "Web application",
+    "headline": "Sell online and run every order from one back office.",
+    "summary": "An online store and its back office built as one system — products, stock, checkout, shipping, offers and reports — for Indian retailers who sell from shops and online.",
+    "description": [
+      "InitCore Commerce is a complete online store with the back office to run it. Shoppers search with suggestions that forgive typos, see live stock and a dated delivery window, and check out on one page with express delivery, store pickup, cash on delivery or online payment.",
+      "The owner sees what needs attention on one dashboard, moves orders through clear steps, ships them in one or more parcels with carrier and tracking, handles returns and refunds, keeps stock per warehouse and store, reorders by supplier, runs offers and email campaigns, and reads sales reports and a visit-to-order funnel.",
+      "It is InitCore's own build in Angular, .NET and PostgreSQL, made for India from the first line — rupees, GST-inclusive prices, PIN codes, COD, Razorpay and store pickup — and tested from unit to browser level."
+    ],
+    "challenge": "Retailers who sell from shops and online usually juggle a website plugin, payment links, a stock spreadsheet and phone calls about deliveries. The website doesn't know what's on the shelf, offers are applied by hand, and no one can see sales and reorders in one place.",
+    "solution": "One system with two halves: a storefront with typo-tolerant search, dated delivery, a one-page checkout and order tracking; and a back office for orders, parcels, returns, stock per location, reorders, promotions, campaigns, staff permissions and reports.",
+    "highlights": [
+      "Storefront and back office share one database",
+      "One-page checkout with COD, Razorpay, express delivery and store pickup",
+      "Ship in parcels; customers see every carrier update",
+      "Dashboard of what needs attention, reorder list by supplier",
+      "Promotions, campaigns, reports and a shopping funnel",
+      "7 staff permission areas and an audit log"
+    ],
+    "features": [
+      {
+        "title": "Ship from one screen",
+        "benefit": "Move the order on, add carrier and tracking, and the customer's order page updates straight away.",
+        "video": "/projects/initcore-commerce/features/ship-from-the-back-office.mp4",
+        "poster": "/projects/initcore-commerce/features/ship-from-the-back-office.jpg"
+      },
+      {
+        "title": "What needs attention, at a glance",
+        "benefit": "Pending orders, unpaid card orders, returns, reviews, questions and messages on one dashboard."
+      },
+      {
+        "title": "One-page checkout",
+        "benefit": "Saved address, express or store pickup, promo codes, points, COD or online payment.",
+        "video": "/projects/initcore-commerce/features/one-page-checkout.mp4",
+        "poster": "/projects/initcore-commerce/features/one-page-checkout.jpg"
+      },
+      {
+        "title": "Delivery dates before you buy",
+        "benefit": "Live stock, dated delivery windows, store pickup and the lowest price in 30 days.",
+        "video": "/projects/initcore-commerce/features/product-page-delivery-dates.mp4",
+        "poster": "/projects/initcore-commerce/features/product-page-delivery-dates.jpg"
+      },
+      {
+        "title": "Search that forgives typos",
+        "benefit": "Suggestions as you type; \"iphne\" still finds the iPhone.",
+        "video": "/projects/initcore-commerce/features/search-forgives-typos.mp4",
+        "poster": "/projects/initcore-commerce/features/search-forgives-typos.jpg"
+      },
+      {
+        "title": "Reports you can act on",
+        "benefit": "Sales by day, week or month with CSV, plus a visit-to-order funnel.",
+        "video": "/projects/initcore-commerce/features/reports-and-analytics.mp4",
+        "poster": "/projects/initcore-commerce/features/reports-and-analytics.jpg"
+      },
+      {
+        "title": "Store locator and pickup",
+        "benefit": "A map with live opening hours, and free pickup at checkout.",
+        "video": "/projects/initcore-commerce/features/store-locator.mp4",
+        "poster": "/projects/initcore-commerce/features/store-locator.jpg"
+      }
+    ],
+    "audience": [
+      "Retailers with one or more physical shops",
+      "D2C brands moving off marketplaces",
+      "Store owners and managers who run daily operations"
+    ],
+    "tags": [
+      "Angular 22",
+      "Angular SSR",
+      "Angular Material",
+      "PWA",
+      ".NET 10",
+      "ASP.NET Core",
+      "EF Core",
+      "PostgreSQL",
+      "SignalR",
+      "Razorpay",
+      "MailKit",
+      "Leaflet",
+      "OpenStreetMap",
+      "Docker",
+      "GitHub Actions",
+      "xUnit",
+      "Vitest",
+      "Playwright",
+      "OpenTelemetry",
+      "WebAuthn"
+    ],
+    "industry": "Retail and e-commerce",
+    "platform": "Web (responsive, installable PWA) — storefront + admin portal",
+    "role": "Product design, full-stack development, testing and deployment setup",
+    "year": "2026",
+    "poster": "/projects/initcore-commerce/poster.jpg",
+    "previewVideo": "/projects/initcore-commerce/preview.mp4",
+    "video": {
+      "src": "/projects/initcore-commerce/walkthrough.mp4",
+      "poster": "/projects/initcore-commerce/poster.jpg",
+      "duration": "2:18"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/01-homepage.jpg",
+        "alt": "Store homepage with banner and departments",
+        "caption": "Homepage — sections the owner arranges from the back office."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/02-product-page.jpg",
+        "alt": "Product page with price, stock and delivery dates",
+        "caption": "Product page — price, saving, stock and a dated delivery window."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/03-checkout.jpg",
+        "alt": "One-page checkout",
+        "caption": "Checkout — saved address and delivery options on one page."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/04-order-tracking.jpg",
+        "alt": "Customer order tracking page",
+        "caption": "Order page — every step with its date and time, plus parcel tracking."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/05-store-locator.jpg",
+        "alt": "Store locator with map",
+        "caption": "Store locator — search by city or PIN, see who's open now."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/06-admin-dashboard.jpg",
+        "alt": "Back-office dashboard",
+        "caption": "Dashboard — revenue, orders and what needs attention today."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/07-admin-order.jpg",
+        "alt": "Back-office order page with parcel history",
+        "caption": "Order in the back office — items, discounts, payment and parcel updates."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/08-admin-reports.jpg",
+        "alt": "Sales reports",
+        "caption": "Reports — net sales, orders, discounts and refunds by day, week or month."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-commerce/gallery/09-admin-analytics.jpg",
+        "alt": "Shopping funnel and traffic sources",
+        "caption": "Analytics — the funnel from visit to order and where orders came from."
+      }
+    ]
+  },
+  {
+    "slug": "initcore-crm",
+    "name": "InitCore CRM",
+    "kind": "Web application",
+    "headline": "Every lead, call, sale and shift on one screen.",
+    "summary": "A CRM for outbound call centres. Leads are shared out, every call gets an outcome, verified payments become invoice PDFs, and owners see sales and attendance live.",
+    "description": [
+      "InitCore CRM runs the day of an outbound call centre. Lead sheets are imported from CSV or Excel, matched to the right fields once, and shared out to teams and agents in bulk. Importing the same list again updates leads instead of duplicating them.",
+      "Agents record how each call ended, add a remark and set call-back reminders that count down on the lead. When a customer pays, the payment is recorded against the lead; when the owner verifies it, the invoice PDF is created on the spot with GSTIN, tax and the amount in words.",
+      "Owners and team leaders see sales against target, attendance worked out from login and logout, breaks as they happen and every agent's call outcomes. Each role sees only its own slice of the data."
+    ],
+    "challenge": "An outbound call centre works from lists. Once a list is shared, answers scatter across Excel, WhatsApp groups and a register: who called this number last, which call-backs are due, which payments came in and whether the invoice went out, who is on break, and who is close to target. Two agents call the same customer, call-backs are forgotten and invoices are typed by hand.",
+    "solution": "One web app that follows a lead from the sheet it arrived in to the invoice it ended with: lead import with column mapping, bulk assignment with a full history, call outcomes with reminders, payments matched to leads, invoice PDFs on verification, a live break monitor, automatic attendance, a target leaderboard and reports — scoped to owner, team leader and agent.",
+    "highlights": [
+      "Payment verified → invoice PDF ready, with GSTIN, tax and amount in words",
+      "Every call ends with an outcome, a remark and an optional call-back reminder",
+      "Live break monitor that updates without a refresh",
+      "Attendance from login and logout, with break time subtracted",
+      "Agents ranked against their monthly target",
+      "Lead import from CSV or Excel with column mapping and no duplicate numbers",
+      "Three roles — owner, team leader, agent — on the same pages"
+    ],
+    "features": [
+      {
+        "title": "A verified payment becomes an invoice",
+        "benefit": "Verify the payment and the invoice PDF is ready, with GSTIN, the tax split, the amount in words and the package dates.",
+        "video": "/projects/initcore-crm/features/payment-to-invoice.mp4",
+        "poster": "/projects/initcore-crm/features/payment-to-invoice.jpg"
+      },
+      {
+        "title": "No call ends without a next step",
+        "benefit": "Agents record the outcome and a remark, and set a call-back reminder that counts down on the lead.",
+        "video": "/projects/initcore-crm/features/call-outcome-and-reminder.mp4",
+        "poster": "/projects/initcore-crm/features/call-outcome-and-reminder.jpg"
+      },
+      {
+        "title": "One screen for the whole centre's sales",
+        "benefit": "Today's sales, this month's sales, sales by team leader and a 30-day trend.",
+        "video": "/projects/initcore-crm/features/owner-dashboard.mp4",
+        "poster": "/projects/initcore-crm/features/owner-dashboard.jpg"
+      },
+      {
+        "title": "Agents ranked against their target",
+        "benefit": "Achievement against monthly target with leads, conversion rate and invoices beside it.",
+        "video": "/projects/initcore-crm/features/targets-attendance-reports.mp4",
+        "poster": "/projects/initcore-crm/features/targets-attendance-reports.jpg"
+      },
+      {
+        "title": "A new lead sheet is working in minutes",
+        "benefit": "Upload CSV or Excel, match the columns once, import — no duplicate numbers.",
+        "video": "/projects/initcore-crm/features/lead-import.mp4",
+        "poster": "/projects/initcore-crm/features/lead-import.jpg"
+      },
+      {
+        "title": "Leads shared out in bulk, with a trail",
+        "benefit": "Assign to a team or an agent at once; every move is in the lead's history.",
+        "video": "/projects/initcore-crm/features/bulk-assign.mp4",
+        "poster": "/projects/initcore-crm/features/bulk-assign.jpg"
+      },
+      {
+        "title": "See who is on break, live",
+        "benefit": "Agents start breaks from their screen and the Monitor updates without a refresh.",
+        "video": "/projects/initcore-crm/features/live-break-monitor.mp4",
+        "poster": "/projects/initcore-crm/features/live-break-monitor.jpg"
+      }
+    ],
+    "audience": [
+      "Owners of outbound call centres and tele-sales teams (up to 25 staff)",
+      "Businesses that sell packages, plans or memberships by phone",
+      "Operations managers and team leaders running a calling floor"
+    ],
+    "tags": [
+      "Django",
+      "Python",
+      "PostgreSQL",
+      "Django Channels",
+      "WebSockets",
+      "Daphne",
+      "pdfkit",
+      "wkhtmltopdf",
+      "pandas",
+      "openpyxl",
+      "num2words",
+      "Chart.js"
+    ],
+    "industry": "Call centres and tele-sales",
+    "platform": "Web app (Django, PostgreSQL, WebSockets) — runs in any browser",
+    "role": "Design and development of the full system: data model, screens, invoicing, live monitor and reports",
+    "year": "2024",
+    "poster": "/projects/initcore-crm/poster.jpg",
+    "previewVideo": "/projects/initcore-crm/preview.mp4",
+    "video": {
+      "src": "/projects/initcore-crm/walkthrough.mp4",
+      "poster": "/projects/initcore-crm/poster.jpg",
+      "duration": "2:58"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/01-dashboard.jpg",
+        "alt": "Owner dashboard showing total sales, paid customers, leads, attendance rate, sales by team leader and a 30-day sales chart",
+        "caption": "Dashboard — the day's and month's sales, by team leader, at a glance."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/02-lead-import-mapping.jpg",
+        "alt": "Lead import screen matching spreadsheet columns to lead fields",
+        "caption": "Lead import — match the sheet's columns once, then import."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/03-assign-leads.jpg",
+        "alt": "Fresh leads selected for bulk assignment to a team",
+        "caption": "Bulk assign — tick the leads, pick a team, proceed."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/04-dispose-call.jpg",
+        "alt": "Dispose Lead dialog with call outcome, call-back reminder and remark",
+        "caption": "Call outcome — every call ends with a result, a remark and a reminder."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/05-break-monitor.jpg",
+        "alt": "Monitor page listing agents currently on break",
+        "caption": "Break monitor — who is on break right now, updating live."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/06-paid-customers.jpg",
+        "alt": "Paid customers list with verified and unverified payments",
+        "caption": "Payments — verify a payment to create its invoice."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/07-invoice-pdf.jpg",
+        "alt": "Invoice PDF with GSTIN, tax amount and amount in words for a demo company",
+        "caption": "Invoice PDF — created by the app the moment a payment is verified."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/08-sales-leaderboard.jpg",
+        "alt": "Sales leaderboard ranking agents against monthly target",
+        "caption": "Sales — agents ranked against target, with conversion and invoices."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-crm/gallery/09-reports.jpg",
+        "alt": "Report of one agent's leads by call outcome with a pie chart",
+        "caption": "Reports — how each agent's calls ended, outcome by outcome."
+      }
+    ]
+  },
+  {
+    "slug": "initcore-realestate",
+    "name": "InitCore Real Estate",
+    "kind": "Web application",
+    "headline": "Every bed, tenant and rupee of rent in one place",
+    "summary": "Property management software for a co-living operator. Every bed is tracked with its own rent and status, new tenants are invited to a specific bed by email, rent is recorded against the bed, and tenants and landlords get their own portals.",
+    "description": [
+      "A co-living business rents beds, not flats. This web app tracks every property down to the individual bed, with its own rent, deposit and status: occupied, free, reserved or under repair. Room occupancy is worked out from the beds, so it is always up to date.",
+      "When a bed frees up, staff email a prospect an invitation for that exact bed, and the bed is held as reserved. The prospect registers from the link without an account and sees the bed, rent and deposit. The owner reviews the application next to the bed and approves it, which creates the tenant's account and sends a welcome email.",
+      "Rent and other payments are recorded against the tenant, room and bed, and late payments are flagged. Contracts show the days remaining, and agreements ending soon are flagged. Tenants and landlords each have their own portal, staff roles control access module by module, and support tickets and new enquiries are tracked alongside."
+    ],
+    "challenge": "The operator rents beds, not flats. One room can have several tenants, a free bed and a different rent for each, and every bed has its own move-in date, deposit and agreement end date. Spreadsheets and WhatsApp could not show which beds were free, who had paid, or which agreements were about to end.",
+    "solution": "One web app built around beds: properties, rooms and beds with their own rent and status; email invitations tied to a specific bed with self-registration and approval; rent and payments recorded against the bed; contracts with expiry warnings; support tickets with deadlines; a leads pipeline; role-based staff access; and portals for tenants and landlords.",
+    "highlights": [
+      "Every property tracked down to the individual bed, with its own rent, deposit and status.",
+      "Invite a prospect to a specific bed by email; the bed is held as reserved until they apply.",
+      "Applications reviewed next to the bed and approved in two clicks.",
+      "Rent recorded against tenant, room and bed, with upcoming, pending and overdue amounts on one screen.",
+      "Agreements ending within 30 days flagged to staff and to the tenant.",
+      "Separate portals for tenants and landlords, and role-based access for staff."
+    ],
+    "features": [
+      {
+        "title": "Every bed, tracked on its own",
+        "benefit": "Know which beds you can rent out today, and what each one earns.",
+        "video": "/projects/initcore-realestate/features/bed-tracking.mp4",
+        "poster": "/projects/initcore-realestate/features/bed-tracking.jpg"
+      },
+      {
+        "title": "Invite a tenant to a specific bed",
+        "benefit": "The prospect fills in their own details and the bed is held for them, so it is never offered twice.",
+        "video": "/projects/initcore-realestate/features/invite-tenant-to-bed.mp4",
+        "poster": "/projects/initcore-realestate/features/invite-tenant-to-bed.jpg"
+      },
+      {
+        "title": "The month on one screen",
+        "benefit": "Income, occupancy, rent collected and open tickets at a glance.",
+        "video": "/projects/initcore-realestate/features/owner-dashboard.mp4",
+        "poster": "/projects/initcore-realestate/features/owner-dashboard.jpg"
+      },
+      {
+        "title": "Rent you can see",
+        "benefit": "Every payment tied to a tenant, room and bed, with overdue rent flagged.",
+        "video": "/projects/initcore-realestate/features/rent-payments.mp4",
+        "poster": "/projects/initcore-realestate/features/rent-payments.jpg"
+      },
+      {
+        "title": "Tenant and landlord portals",
+        "benefit": "Tenants see their agreement and payments; landlords see their buildings and rent collected.",
+        "video": "/projects/initcore-realestate/features/tenant-and-landlord-portals.mp4",
+        "poster": "/projects/initcore-realestate/features/tenant-and-landlord-portals.jpg"
+      },
+      {
+        "title": "Repairs that don't get lost",
+        "benefit": "Tickets with a priority, an owner and a deadline.",
+        "video": "/projects/initcore-realestate/features/support-tickets.mp4",
+        "poster": "/projects/initcore-realestate/features/support-tickets.jpg"
+      }
+    ],
+    "audience": [
+      "Co-living operators",
+      "PG and hostel owners",
+      "Student housing providers",
+      "Property managers who run buildings for landlords"
+    ],
+    "tags": [
+      "Django",
+      "Python",
+      "Tailwind CSS",
+      "Flowbite",
+      "Chart.js",
+      "PostgreSQL",
+      "SQLite",
+      "Stripe",
+      "ReportLab",
+      "openpyxl"
+    ],
+    "industry": "real-estate",
+    "platform": "Web application",
+    "role": "Planning, design and full development",
+    "poster": "/projects/initcore-realestate/poster.jpg",
+    "previewVideo": "/projects/initcore-realestate/preview.mp4",
+    "video": {
+      "src": "/projects/initcore-realestate/walkthrough.mp4",
+      "poster": "/projects/initcore-realestate/poster.jpg",
+      "duration": "2:59"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/01-dashboard.jpg",
+        "alt": "Co-living management dashboard with income, occupancy and bed status",
+        "caption": "Dashboard: this month's income, occupancy, rent collected and open tickets."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/02-bed-spaces.jpg",
+        "alt": "Bed-level occupancy across all properties",
+        "caption": "Bed spaces: every bed across the portfolio, available, occupied, reserved or under repair."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/03-send-invitation.jpg",
+        "alt": "Inviting a prospective tenant to a specific bed by email",
+        "caption": "Bed invitation: email a prospect a link for one specific bed."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/04-tenant-registration.jpg",
+        "alt": "Prospect's registration page showing the reserved bed and rent",
+        "caption": "Registration: the prospect sees the reserved bed, rent and deposit, and fills in their details."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/05-application-review.jpg",
+        "alt": "Reviewing a tenant application next to the linked bed",
+        "caption": "Application review: the applicant's details beside the bed they applied for."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/06-payments.jpg",
+        "alt": "Rent payments dashboard with upcoming, pending and overdue amounts",
+        "caption": "Payments: collected, upcoming, pending and overdue rent, payment by payment."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/07-tenant-portal.jpg",
+        "alt": "Tenant portal with contract status and upcoming rent",
+        "caption": "Tenant portal: agreement status, amount due, total paid and next rent."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/08-landlord-portal.jpg",
+        "alt": "Landlord portal with properties and rent collected",
+        "caption": "Landlord portal: their properties, tenants, free beds and rent collected."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-realestate/gallery/09-support.jpg",
+        "alt": "Support tickets with priority and overdue status",
+        "caption": "Support: tenant issues as tickets with priority, owner and deadline."
+      }
+    ]
+  },
+  {
+    "slug": "initcore-web",
+    "name": "initcore.in",
+    "kind": "Website",
+    "headline": "Real work, clear prices, promises you can hold us to.",
+    "summary": "InitCore's own website: starting prices, real projects on video, written promises and a one-click quote.",
+    "description": [
+      "A website that answers buyers' questions before the first call.",
+      "Four packages with starting prices in rupees or dollars, every project on video, six written promises.",
+      "An honest page on building with AI, five buying guides and a quote form that remembers the package."
+    ],
+    "challenge": "A one-engineer studio without a big brand has to earn a buyer's trust before the first call.",
+    "solution": "Put the price range, the real work and the promises on the website, in plain words.",
+    "highlights": [
+      "4 packages with public starting prices",
+      "Every project with a video walkthrough",
+      "6 written promises",
+      "5 guides"
+    ],
+    "features": [
+      {
+        "title": "Starting prices, up front",
+        "benefit": "Know the price range before the first call.",
+        "video": "/projects/initcore-web/features/honest-pricing.mp4",
+        "poster": "/projects/initcore-web/features/honest-pricing.jpg"
+      },
+      {
+        "title": "Real work, on video",
+        "benefit": "See software that exists, not mock-ups.",
+        "video": "/projects/initcore-web/features/real-work-on-video.mp4",
+        "poster": "/projects/initcore-web/features/real-work-on-video.jpg"
+      },
+      {
+        "title": "Promises you can hold us to",
+        "benefit": "Know how we work before you pay.",
+        "video": "/projects/initcore-web/features/our-promise.mp4",
+        "poster": "/projects/initcore-web/features/our-promise.jpg"
+      },
+      {
+        "title": "\"Why not just use AI?\"",
+        "benefit": "An honest answer, including what AI does well.",
+        "video": "/projects/initcore-web/features/why-not-just-ai.mp4",
+        "poster": "/projects/initcore-web/features/why-not-just-ai.jpg"
+      },
+      {
+        "title": "A quote in one click",
+        "benefit": "The package is already chosen on the form.",
+        "video": "/projects/initcore-web/features/quote-in-one-click.mp4",
+        "poster": "/projects/initcore-web/features/quote-in-one-click.jpg"
+      },
+      {
+        "title": "Case studies and guides",
+        "benefit": "The full story, and buying advice with real numbers.",
+        "video": "/projects/initcore-web/features/case-studies-and-guides.mp4",
+        "poster": "/projects/initcore-web/features/case-studies-and-guides.jpg"
+      }
+    ],
+    "audience": [
+      "Small and growing businesses in India",
+      "Small companies abroad hiring a developer in India"
+    ],
+    "tags": [
+      "Next.js",
+      "Cloudflare"
+    ],
+    "industry": "software-services",
+    "platform": "Website",
+    "role": "Content, design, development, video, search set-up and hosting",
+    "year": "2026",
+    "liveUrl": "https://initcore.in",
+    "poster": "/projects/initcore-web/poster.jpg",
+    "previewVideo": "/projects/initcore-web/preview.mp4",
+    "video": {
+      "src": "/projects/initcore-web/walkthrough.mp4",
+      "poster": "/projects/initcore-web/poster.jpg",
+      "duration": "2:15"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/01-home-hero.jpg",
+        "alt": "InitCore home page",
+        "caption": "Home — what we build, with real software playing."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/02-pricing.jpg",
+        "alt": "Pricing page",
+        "caption": "Pricing — four packages with starting prices."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/03-promise.jpg",
+        "alt": "Promise band",
+        "caption": "Our promise — the motto and six promises."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/04-selected-work.jpg",
+        "alt": "Selected work",
+        "caption": "Work — every project on video."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/05-ai-comparison.jpg",
+        "alt": "AI comparison",
+        "caption": "Why not just AI? — an honest comparison."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/06-case-study.jpg",
+        "alt": "Novem case study",
+        "caption": "Case study — the full story with video."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/07-solutions.jpg",
+        "alt": "Ready-made suites",
+        "caption": "Solutions — start from software already built."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/08-guides.jpg",
+        "alt": "Guides",
+        "caption": "Guides — honest answers before you spend."
+      },
+      {
+        "type": "image",
+        "src": "/projects/initcore-web/gallery/09-contact.jpg",
+        "alt": "Enquiry form",
+        "caption": "Contact — the package is already chosen."
+      }
+    ]
+  },
+  {
+    "slug": "key2yourhome",
+    "name": "Key2YourHome",
+    "kind": "Website",
+    "headline": "A property website the team updates from one Google Sheet.",
+    "summary": "A fast real estate website for a MahaRERA-registered channel partner. The team edits listings in a Google Sheet, and every floor plan is one tap from WhatsApp.",
+    "description": [
+      "Key2YourHome is a MahaRERA-registered real estate channel partner covering Thane, Mumbai, Navi Mumbai and Pune. Its prices and stock change every week, and its sales happen on WhatsApp.",
+      "I built a static website that takes every listing from one Google Sheet. When the team edits a row, the site rebuilds and publishes itself, with no server, database or admin panel to maintain.",
+      "Buyers filter by city, BHK and budget, open full-screen floor plans, and tap \"Get price\" to start a WhatsApp chat with the unit and project already typed. Callback requests land in the Sheet and the sales inbox."
+    ],
+    "challenge": "Listings, prices and stock change every week, and every website update used to need a developer. Buyers want floor plans, prices and proof of MahaRERA registration before they talk to anyone, and the sales team needs to know which project and unit each enquiry is about.",
+    "solution": "A static Astro website that reads every listing from one Google Sheet at build time and rebuilds automatically when the Sheet changes. Each project gets a full page with gallery, facts, unit plans and its MahaRERA number; every unit has a pre-filled WhatsApp enquiry; callback requests are written to the Sheet by a Google Apps Script and emailed to sales.",
+    "highlights": [
+      "Listings managed from one Google Sheet; edits rebuild the site automatically",
+      "One-tap WhatsApp enquiries that name the unit, project and area",
+      "Unit plans with carpet area, starting price, availability and full-screen floor plans",
+      "Every enquiry saved to the Sheet with its source page, plus an email to sales",
+      "About 12 KB of JavaScript; tracking loads only after consent"
+    ],
+    "features": [
+      {
+        "title": "Floor plan to WhatsApp in one tap",
+        "benefit": "\"Get price\" opens WhatsApp with the unit, project and area already typed, so the sales team knows what the buyer wants.",
+        "video": "/projects/key2yourhome/features/floor-plan-to-whatsapp.mp4",
+        "poster": "/projects/key2yourhome/features/floor-plan-to-whatsapp.jpg"
+      },
+      {
+        "title": "The Sheet is the website",
+        "benefit": "Edit a row in Google Sheets and the site rebuilds and publishes itself.",
+        "video": "/projects/key2yourhome/features/sheet-to-website.mp4",
+        "poster": "/projects/key2yourhome/features/sheet-to-website.jpg"
+      },
+      {
+        "title": "Unit plans buyers can open",
+        "benefit": "Carpet area, starting price, availability and full-screen floor plans with several layouts per unit."
+      },
+      {
+        "title": "A full page for every project",
+        "benefit": "Gallery, facts, amenities, connectivity, MahaRERA number and FAQ, with price and contact options always beside the page.",
+        "video": "/projects/key2yourhome/features/project-page.mp4",
+        "poster": "/projects/key2yourhome/features/project-page.jpg"
+      },
+      {
+        "title": "Search by city, BHK and budget",
+        "benefit": "Results update instantly and the filters stay in the link, so a shortlist can be shared.",
+        "video": "/projects/key2yourhome/features/search-and-filters.mp4",
+        "poster": "/projects/key2yourhome/features/search-and-filters.jpg"
+      },
+      {
+        "title": "No enquiry gets lost",
+        "benefit": "Callback requests become rows in the Sheet, with source page and campaign, and an email to sales.",
+        "video": "/projects/key2yourhome/features/callback-to-sheet.mp4",
+        "poster": "/projects/key2yourhome/features/callback-to-sheet.jpg"
+      },
+      {
+        "title": "Local pages for Google",
+        "benefit": "A guide for each city with live listings, a profile for each builder, structured data and a sitemap.",
+        "video": "/projects/key2yourhome/features/area-and-builder-pages.mp4",
+        "poster": "/projects/key2yourhome/features/area-and-builder-pages.jpg"
+      }
+    ],
+    "audience": [
+      "Real estate channel partners and brokers",
+      "Small developers and property sales teams",
+      "Businesses whose product or price list lives in a spreadsheet"
+    ],
+    "tags": [
+      "Astro",
+      "Tailwind CSS",
+      "Google Sheets API",
+      "Google Apps Script",
+      "GitHub Actions",
+      "Hostinger",
+      "JSON-LD"
+    ],
+    "industry": "Real estate",
+    "platform": "Web (responsive)",
+    "role": "Website design and build, Google Sheet content model, lead capture, automated deployment and operator documentation",
+    "year": "2026",
+    "liveUrl": "https://key2yourhome.net",
+    "poster": "/projects/key2yourhome/poster.jpg",
+    "previewVideo": "/projects/key2yourhome/preview.mp4",
+    "video": {
+      "src": "/projects/key2yourhome/walkthrough.mp4",
+      "poster": "/projects/key2yourhome/poster.jpg",
+      "duration": "1:55"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/01-home-hero.jpg",
+        "alt": "Homepage hero with a trending project, price and MahaRERA number",
+        "caption": "Homepage — trending projects first, with price and MahaRERA number."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/02-projects-explorer.jpg",
+        "alt": "Projects page with instant search and filters",
+        "caption": "Projects — search and filter by city, type, BHK and budget."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/03-project-detail.jpg",
+        "alt": "Project page with photo gallery",
+        "caption": "Project page — a full gallery for every project."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/04-project-at-a-glance.jpg",
+        "alt": "Project facts beside the price and WhatsApp panel",
+        "caption": "At a glance — key facts, with price, WhatsApp and callback always beside them."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/05-unit-plans.jpg",
+        "alt": "Unit plans with floor plans, carpet area and starting price",
+        "caption": "Unit plans — carpet area, starting price and availability for each configuration."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/06-floor-plan-full-screen.jpg",
+        "alt": "Floor plan open full-screen",
+        "caption": "Floor plans — open any layout full-screen."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/07-whatsapp-prefilled-message.jpg",
+        "alt": "Pre-filled WhatsApp message for the 2 BHK",
+        "caption": "Get price — WhatsApp opens with the unit and project already typed."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/08-area-thane.jpg",
+        "alt": "Local guide page for Thane",
+        "caption": "Area pages — a local guide for each city with its live listings."
+      },
+      {
+        "type": "image",
+        "src": "/projects/key2yourhome/gallery/09-nri-services.jpg",
+        "alt": "NRI services page",
+        "caption": "NRI services — what the team handles for buyers abroad."
+      }
+    ]
+  },
+  {
+    "slug": "logxivia",
+    "name": "Logxivia",
+    "kind": "Website",
+    "headline": "A clear, bilingual front door for Europe–India trade.",
+    "summary": "An English and German website for a Cologne consultancy that connects European and Indian businesses: clear offer, clickable process, short enquiry form.",
+    "description": [
+      "Logxivia Trade Consulting, based in Cologne, helps companies in Europe and India find reliable suppliers, buyers and partners.",
+      "I built a static website that explains the offer in the order a buyer thinks: four services, a four-step process visitors click through, sectors and a fit checklist, why Logxivia, and a short enquiry form.",
+      "Every page exists in English and German, with an Imprint and privacy policy in both, essential cookies only, and a spam-protected form that emails each enquiry with the visitor's language."
+    ],
+    "challenge": "A consultancy selling a hard-to-picture service to two markets: German buyers expect German, Indian partners expect English, and both want to understand the process before calling. In Germany the site also needs an Imprint, a privacy policy and careful cookie consent.",
+    "solution": "A static Next.js site in English and German with its own URL per language. The home page walks through the promise, four services, a clickable four-step process, sectors, a fit checklist, without vs. with Logxivia and the founder, then a short enquiry form with consent and a honeypot. Legal pages in both languages; essential cookies only.",
+    "highlights": [
+      "English and German on every page, one click apart",
+      "Clickable four-step process",
+      "Short enquiry form with privacy consent and spam trap",
+      "Imprint and privacy policy in both languages",
+      "Essential cookies only; static pages, nothing to patch"
+    ],
+    "features": [
+      {
+        "title": "Speaks to both markets",
+        "benefit": "Every page in English and German; one click switches language and keeps the visitor on the same page.",
+        "video": "/projects/logxivia/features/english-and-german.mp4",
+        "poster": "/projects/logxivia/features/english-and-german.jpg"
+      },
+      {
+        "title": "Consulting they can picture",
+        "benefit": "Four clickable steps, from sharing requirements to introductions, with a progress ring.",
+        "video": "/projects/logxivia/features/four-step-process.mp4",
+        "poster": "/projects/logxivia/features/four-step-process.jpg"
+      },
+      {
+        "title": "Enquiries without the spam",
+        "benefit": "A short form with privacy consent and a hidden spam trap; the message arrives by email with the visitor's language.",
+        "video": "/projects/logxivia/features/enquiry-form.mp4",
+        "poster": "/projects/logxivia/features/enquiry-form.jpg"
+      },
+      {
+        "title": "The offer, up front",
+        "benefit": "One promise and four services, each in one paragraph.",
+        "video": "/projects/logxivia/features/offer-and-services.mp4",
+        "poster": "/projects/logxivia/features/offer-and-services.jpg"
+      },
+      {
+        "title": "Visitors qualify themselves",
+        "benefit": "Who Logxivia works with, its four sectors and a \"right fit\" checklist.",
+        "video": "/projects/logxivia/features/who-and-industries.mp4",
+        "poster": "/projects/logxivia/features/who-and-industries.jpg"
+      },
+      {
+        "title": "The value, side by side",
+        "benefit": "Without structure vs. with Logxivia, then the firm and its founder.",
+        "video": "/projects/logxivia/features/approach-and-founder.mp4",
+        "poster": "/projects/logxivia/features/approach-and-founder.jpg"
+      },
+      {
+        "title": "Ready for German law",
+        "benefit": "Imprint and privacy policy in both languages; essential cookies only."
+      }
+    ],
+    "audience": [
+      "Consultants and agents selling across borders",
+      "Indian exporters selling into Germany and Europe",
+      "Service firms with bilingual audiences"
+    ],
+    "tags": [
+      "Next.js",
+      "React",
+      "next-intl",
+      "Tailwind CSS",
+      "PHP",
+      "PHPMailer",
+      "sharp"
+    ],
+    "industry": "B2B consulting · international trade (Europe–India)",
+    "platform": "Web (responsive, English and German)",
+    "role": "Design and development, bilingual setup, enquiry form, legal pages, deployment",
+    "year": "2026",
+    "liveUrl": "https://logxivia.com",
+    "poster": "/projects/logxivia/poster.jpg",
+    "previewVideo": "/projects/logxivia/preview.mp4",
+    "video": {
+      "src": "/projects/logxivia/walkthrough.mp4",
+      "poster": "/projects/logxivia/poster.jpg",
+      "duration": "1:44"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/01-hero.jpg",
+        "alt": "Logxivia hero",
+        "caption": "Hero — the promise and one clear next step."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/02-services.jpg",
+        "alt": "Four services",
+        "caption": "Services — four offers, one paragraph each."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/03-how-we-work-step-3.jpg",
+        "alt": "Clickable four-step process",
+        "caption": "Process — four steps visitors click through."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/04-industries.jpg",
+        "alt": "Four specialist sectors",
+        "caption": "Industries — the four sectors Logxivia specialises in."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/05-approach.jpg",
+        "alt": "Without vs. with Logxivia",
+        "caption": "Approach — without structure vs. with Logxivia."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/06-founder.jpg",
+        "alt": "Founder profile (demo name)",
+        "caption": "Founder — who is behind the firm (name changed in demo)."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/07-contact-form.jpg",
+        "alt": "Enquiry form with consent",
+        "caption": "Enquiry — a short form with privacy consent."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/08-hero-german.jpg",
+        "alt": "German version of the site",
+        "caption": "Deutsch — the whole site in German, one click away."
+      },
+      {
+        "type": "image",
+        "src": "/projects/logxivia/gallery/09-imprint.jpg",
+        "alt": "Imprint page",
+        "caption": "Imprint — the legal page German law requires."
+      }
+    ]
+  },
+  {
+    "slug": "novem",
+    "name": "NOVEM",
+    "kind": "Desktop app",
+    "headline": "Know what sells, who is leaving, and what to do next.",
+    "summary": "A desktop app for online store owners. Drop in your sales exports and it shows what is working, which customers are slipping away, and what to do next — all on your own computer.",
+    "description": [
+      "Most online stores run on exports and spreadsheets. The built-in reports say revenue went down, but not why, or what to do about it — and proper analytics tools are priced for companies that already employ an analyst.",
+      "NOVEM reads the exports a store already has (CSV, Excel, Google Sheets, Shopify or PostgreSQL), checks every row, and turns them into a dashboard, customer segments, ad-spend checks, 30-day forecasts and a ranked list of next steps with an estimated value against each.",
+      "It runs entirely on the owner's laptop. Customer names and emails are scrambled on import, there is no account to create, and nothing is uploaded anywhere."
+    ],
+    "challenge": "Small online stores have plenty of data in exports but no analyst. Built-in reports stop at 'revenue went down', enterprise BI is too expensive, and most analytics services want the customer list on their servers.",
+    "solution": "A local-first desktop app with a full import pipeline (detect, map, clean, hash personal data, score quality, merge) and an analytics engine that segments customers, predicts who will stop buying, checks ad spend against stock, forecasts the next 30 days and turns the findings into recommended actions — explained in plain language.",
+    "highlights": [
+      "Imports a Shopify export with columns matched automatically and every row validated",
+      "Scores each customer's chance of buying again",
+      "Flags ad campaigns still spending on out-of-stock products",
+      "Recommended actions ranked by estimated rupee value",
+      "What-if simulator for price and acquisition changes",
+      "Runs offline on your own computer — no account, nothing uploaded"
+    ],
+    "features": [
+      {
+        "title": "Know what to do next, and what it's worth",
+        "benefit": "Recommended actions ranked by estimated rupee value, with the numbers behind each.",
+        "video": "/projects/novem/features/recommended-actions.mp4",
+        "poster": "/projects/novem/features/recommended-actions.jpg"
+      },
+      {
+        "title": "Spot customers about to stop buying",
+        "benefit": "Each customer's chance of buying again, from their own purchase history.",
+        "video": "/projects/novem/features/customers-at-risk.mp4",
+        "poster": "/projects/novem/features/customers-at-risk.jpg"
+      },
+      {
+        "title": "Stop paying for ads you can't fulfil",
+        "benefit": "Campaigns still spending on out-of-stock products, with what each has cost.",
+        "video": "/projects/novem/features/wasted-ad-spend.mp4",
+        "poster": "/projects/novem/features/wasted-ad-spend.jpg"
+      },
+      {
+        "title": "Try a change before you make it",
+        "benefit": "Projected revenue for price, volume, acquisition and discount changes, with assumptions shown.",
+        "video": "/projects/novem/features/what-if-simulator.mp4",
+        "poster": "/projects/novem/features/what-if-simulator.jpg"
+      },
+      {
+        "title": "Import a Shopify export in a minute",
+        "benefit": "Columns matched, every row checked, fixes listed before anything is saved.",
+        "video": "/projects/novem/features/import-a-shopify-export.mp4",
+        "poster": "/projects/novem/features/import-a-shopify-export.jpg"
+      },
+      {
+        "title": "The whole store on one screen",
+        "benefit": "Revenue, orders, customers and order value against the previous period.",
+        "video": "/projects/novem/features/dashboard-at-a-glance.mp4",
+        "poster": "/projects/novem/features/dashboard-at-a-glance.jpg"
+      },
+      {
+        "title": "See the next 30 days",
+        "benefit": "Forecasts for revenue, orders, customers and order value with a likely range.",
+        "video": "/projects/novem/features/revenue-forecast.mp4",
+        "poster": "/projects/novem/features/revenue-forecast.jpg"
+      },
+      {
+        "title": "Your customer data stays with you",
+        "benefit": "Runs offline; names and emails are hashed on import; no account."
+      }
+    ],
+    "audience": [
+      "Owners of small and mid-sized online stores (Shopify, WooCommerce, own website)",
+      "Marketplace sellers (Amazon, Flipkart, Meesho exports)",
+      "D2C brands with a marketer but no data analyst",
+      "Agencies preparing monthly reviews for several store clients"
+    ],
+    "tags": [
+      "Tauri",
+      "Rust",
+      "React",
+      "TypeScript",
+      "Ant Design",
+      "ECharts",
+      "Zustand",
+      "Vite",
+      "Python",
+      "FastAPI",
+      "DuckDB",
+      "SQLite",
+      "pandas",
+      "scikit-learn",
+      "Prophet",
+      "lifetimes",
+      "mlxtend",
+      "SHAP",
+      "Ollama",
+      "PyInstaller",
+      "Shopify API"
+    ],
+    "industry": "E-commerce / D2C retail",
+    "platform": "Windows desktop app (NSIS installer)",
+    "role": "Product design, full-stack engineering (React + Tauri desktop app, Python analytics engine), data science models and Windows packaging",
+    "year": "2026",
+    "poster": "/projects/novem/poster.jpg",
+    "previewVideo": "/projects/novem/preview.mp4",
+    "video": {
+      "src": "/projects/novem/walkthrough.mp4",
+      "poster": "/projects/novem/poster.jpg",
+      "duration": "2:49"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/01-dashboard.jpg",
+        "alt": "NOVEM dashboard showing revenue, orders, customers and average order value against the previous 30 days, with a daily revenue trend",
+        "caption": "Dashboard — the store's month against the month before, with the daily trend."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/02-import-validation.jpg",
+        "alt": "NOVEM import validation scoring a Shopify export 100 with 266 of 266 rows ready and a list of automatic fixes",
+        "caption": "Import — every row checked, and the fixes listed before anything is saved."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/03-customer-segments.jpg",
+        "alt": "NOVEM customer segments from champions to lost, with new versus returning customers per day",
+        "caption": "Customers — grouped from champions to lost."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/04-customers-at-risk.jpg",
+        "alt": "NOVEM at-risk customers table with each customer's chance of buying again and estimated value",
+        "caption": "At-risk customers — each one's chance of buying again."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/05-wasted-ad-spend.jpg",
+        "alt": "NOVEM flagging ad campaigns still spending on out-of-stock products",
+        "caption": "Marketing — ads still running for products that are out of stock."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/06-recommended-actions.jpg",
+        "alt": "NOVEM recommended actions, each with an estimated rupee value, impact and effort",
+        "caption": "Actions — next steps ranked by what they could be worth."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/07-what-if-simulator.jpg",
+        "alt": "NOVEM what-if simulator projecting revenue after a 5% price rise and 15% more new customers",
+        "caption": "What-if — try a price or acquisition change before making it."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/08-revenue-forecast.jpg",
+        "alt": "NOVEM 30-day revenue forecast with history and expected range",
+        "caption": "Forecast — the next 30 days, with a likely range."
+      },
+      {
+        "type": "image",
+        "src": "/projects/novem/gallery/09-ask-your-data.jpg",
+        "alt": "NOVEM answering plain-English questions about top customers and average order value",
+        "caption": "Ask — plain-English questions, answered from the store's own data."
+      }
+    ]
+  },
+  {
+    "slug": "sk-trading",
+    "name": "S.K Trading — Billing App",
+    "kind": "Desktop app",
+    "headline": "Quotation to GST invoice in one click, with the printed page live",
+    "summary": "A Windows billing app for an industrial valve trader. Quotations, proformas, GST invoices and delivery challans come from one screen, with the printed page building as you type.",
+    "description": [
+      "S.K Trading & Co. supplies valves, pipes and fittings to industry from Navi Mumbai. Every order needs a quotation, a proforma invoice, a GST tax invoice and a delivery challan, each repeating the same customer, items and rates.",
+      "I built a Windows desktop app that makes all four from one screen, offline on the office PC. The printed A4 page sits beside the form and updates as you type. 'Create as…' turns a quotation into a proforma, invoice or challan in one click, and GST splits into CGST + SGST or IGST from the state.",
+      "Customers and products build themselves from past documents, so details and HSN codes fill in and the last rate for each customer is shown. One tick marks an invoice paid, reports are ready for the CA, and documents go out by email or WhatsApp with the PDF ready."
+    ],
+    "challenge": "A valve and pipe stockist was producing four documents per order (quotation, proforma, tax invoice and delivery challan), retyping the same customer, items and rates each time, with GSTINs, HSN codes and the CGST/SGST-vs-IGST split easy to get wrong and no quick view of who still owed money.",
+    "solution": "An offline Windows billing app with one editor for all four documents, a live A4 preview on the company letterhead, one-click conversion between documents, automatic GST, self-building customer and product lists, paid/unpaid tracking, reports for the CA, email and WhatsApp sending, and Google Drive backup.",
+    "highlights": [
+      "Quotation, proforma, tax invoice and delivery challan from one screen.",
+      "A live A4 print preview: what you see is what prints.",
+      "'Create as…' turns a quotation into an invoice or challan in one click.",
+      "CGST/SGST or IGST, rounding and amount in words worked out automatically.",
+      "Customer and product details fill in, with each customer's last rate.",
+      "Paid/unpaid in one tick, with outstanding per customer.",
+      "Works offline, with backup to Google Drive and automatic updates."
+    ],
+    "features": [
+      {
+        "title": "What you see is what prints",
+        "benefit": "The A4 page builds beside the form as you type, so nothing surprises you at the printer.",
+        "video": "/projects/sk-trading/features/live-a4-preview.mp4",
+        "poster": "/projects/sk-trading/features/live-a4-preview.jpg"
+      },
+      {
+        "title": "Quotation to invoice without retyping",
+        "benefit": "'Create as…' carries the customer, items and dispatch details to the next document in one click.",
+        "video": "/projects/sk-trading/features/quotation-to-tax-invoice.mp4",
+        "poster": "/projects/sk-trading/features/quotation-to-tax-invoice.jpg"
+      },
+      {
+        "title": "GST worked out for you",
+        "benefit": "CGST + SGST or IGST from the customer's state, with rounding and amount in words."
+      },
+      {
+        "title": "It remembers customers and products",
+        "benefit": "Details, HSN codes and GST rates fill in, with the rate this customer last paid."
+      },
+      {
+        "title": "Know who still owes you",
+        "benefit": "One tick marks an invoice paid and every customer's outstanding updates.",
+        "video": "/projects/sk-trading/features/paid-and-outstanding.mp4",
+        "poster": "/projects/sk-trading/features/paid-and-outstanding.jpg"
+      },
+      {
+        "title": "Send by WhatsApp or email",
+        "benefit": "Email with the PDF attached, or WhatsApp with the message written and the PDF ready.",
+        "video": "/projects/sk-trading/features/send-on-whatsapp.mp4",
+        "poster": "/projects/sk-trading/features/send-on-whatsapp.jpg"
+      },
+      {
+        "title": "Reports ready for your CA",
+        "benefit": "Sales by customer, product and state, year-on-year, and a B2B invoice register as CSV.",
+        "video": "/projects/sk-trading/features/reports.mp4",
+        "poster": "/projects/sk-trading/features/reports.jpg"
+      },
+      {
+        "title": "WhatsApp campaigns to the right customers",
+        "benefit": "Export segments like 'payment outstanding' for AiSensy, only for customers who agreed.",
+        "video": "/projects/sk-trading/features/audience-export.mp4",
+        "poster": "/projects/sk-trading/features/audience-export.jpg"
+      }
+    ],
+    "audience": [
+      "B2B traders, stockists and distributors",
+      "Owners who want to see billing and outstanding at a glance",
+      "Billing and accounts staff who type quotations and invoices daily"
+    ],
+    "tags": [
+      "Electron",
+      "React",
+      "TypeScript",
+      "SQLite",
+      "better-sqlite3",
+      "Vite",
+      "Nodemailer",
+      "Google Drive API",
+      "electron-updater",
+      "Vitest",
+      "GitHub Actions"
+    ],
+    "industry": "traders-and-manufacturers",
+    "platform": "Desktop app · Windows · works offline",
+    "role": "Design, development, installation and updates",
+    "year": "2026",
+    "poster": "/projects/sk-trading/poster.jpg",
+    "previewVideo": "/projects/sk-trading/preview.mp4",
+    "video": {
+      "src": "/projects/sk-trading/walkthrough.mp4",
+      "poster": "/projects/sk-trading/poster.jpg",
+      "duration": "2:05"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/01-home.jpg",
+        "alt": "Billing app home screen with document totals and a monthly chart",
+        "caption": "Home — this year's quotations, proformas, invoices and challans at a glance."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/02-quotation-editor.jpg",
+        "alt": "Quotation editor with a live A4 print preview",
+        "caption": "Quotation editor — the printed page builds beside the form as you type."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/03-last-rate-hint.jpg",
+        "alt": "Line item showing the rate this customer last paid",
+        "caption": "Products — HSN, unit and GST fill in, with this customer's last rate."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/04-tax-invoice.jpg",
+        "alt": "Tax invoice with bill-to, ship-to and dispatch details",
+        "caption": "Tax invoice — separate consignee, dispatch details and GST split."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/05-send-on-whatsapp.jpg",
+        "alt": "Sending a proforma invoice on WhatsApp",
+        "caption": "Send — WhatsApp or email, with the message written and the PDF ready."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/06-tax-invoices.jpg",
+        "alt": "Tax invoices list with paid and unpaid status",
+        "caption": "Tax invoices — one tick marks paid; the unpaid total updates."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/07-customers.jpg",
+        "alt": "Customer list with outstanding amounts and a profile panel",
+        "caption": "Customers — built from issued documents, with billed and outstanding."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/08-reports-sales.jpg",
+        "alt": "Sales report by customer, product and state",
+        "caption": "Reports — sales by customer, product and state, year on year."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading/gallery/09-audience-export.jpg",
+        "alt": "Customer segments exported for WhatsApp campaigns",
+        "caption": "Audience export — consented customer lists for WhatsApp campaigns."
+      }
+    ]
+  },
+  {
+    "slug": "sk-trading-web",
+    "name": "S.K Trading & Co.",
+    "kind": "Website",
+    "headline": "224 valves, searchable, one click from a quote.",
+    "summary": "A catalogue website for an industrial valve stockist: 224 products searchable by size, material and brand, each ending in a quote request or a pre-filled WhatsApp message.",
+    "description": [
+      "S.K Trading & Co. supplies industrial valves, steam traps, strainers, pipes and fittings from stock in Navi Mumbai, from brands like L&T, KSB, Audco, Kirloskar and Forbes Marshall.",
+      "I turned the company's product export into a catalogue website: a script cleans the data into 14 categories and generates 224 product pages, each with specifications, a quote form that knows the product and a WhatsApp button with the product typed in.",
+      "Search and filters, industry pages, a brand wall, FAQs and a 245-URL sitemap with structured data help the right buyers find the right product, on their own and on Google."
+    ],
+    "challenge": "A wide industrial range lived in an IndiaMART export and in the sales team's heads. Buyers search by size, material and brand, so every enquiry started with a phone call, and a brochure site could not rank for the products actually sold.",
+    "solution": "A Next.js catalogue generated from the company's product data: 224 product pages and 14 category pages with specifications first, search and filters, a quote form and WhatsApp link on every product, industry pages, brand links, FAQs, and structured data on every page.",
+    "highlights": [
+      "224 product pages and 14 category pages generated from the company's data",
+      "Search by size or material; filter by category, brand and IBR",
+      "Quote form and pre-filled WhatsApp on every product",
+      "245 URLs with structured data for Google",
+      "Call and WhatsApp bar always visible on phones"
+    ],
+    "features": [
+      {
+        "title": "Buyers find the right valve themselves",
+        "benefit": "Search 224 products by name, size or material, then filter by category, brand or IBR certification. Filters stay in the link.",
+        "video": "/projects/sk-trading-web/features/catalogue-search-and-filters.mp4",
+        "poster": "/projects/sk-trading-web/features/catalogue-search-and-filters.jpg"
+      },
+      {
+        "title": "Every enquiry names the product",
+        "benefit": "The quote form on each product page already knows which product the buyer is looking at.",
+        "video": "/projects/sk-trading-web/features/quote-request.mp4",
+        "poster": "/projects/sk-trading-web/features/quote-request.jpg"
+      },
+      {
+        "title": "WhatsApp, ready to send",
+        "benefit": "One tap opens WhatsApp with the exact product name typed in.",
+        "video": "/projects/sk-trading-web/features/whatsapp-enquiry.mp4",
+        "poster": "/projects/sk-trading-web/features/whatsapp-enquiry.jpg"
+      },
+      {
+        "title": "A page for every product",
+        "benefit": "Brand, size range, body material, end connection and pressure class: specifications first, prices on request.",
+        "video": "/projects/sk-trading-web/features/product-pages.mp4",
+        "poster": "/projects/sk-trading-web/features/product-pages.jpg"
+      },
+      {
+        "title": "Found on Google",
+        "benefit": "245 URLs, each with its own title, description and structured data for products, FAQs and the business."
+      },
+      {
+        "title": "Speaks each industry's language",
+        "benefit": "Six sectors, from water supply to sugar and paper, each linked to the valves it usually needs.",
+        "video": "/projects/sk-trading-web/features/industries.mp4",
+        "poster": "/projects/sk-trading-web/features/industries.jpg"
+      },
+      {
+        "title": "Trust before the call",
+        "benefit": "Twenty stocked brands linked to their products, plus answers to the questions buyers ask every week.",
+        "video": "/projects/sk-trading-web/features/brands-and-faq.mp4",
+        "poster": "/projects/sk-trading-web/features/brands-and-faq.jpg"
+      }
+    ],
+    "audience": [
+      "Industrial distributors and stockists",
+      "B2B traders with large product ranges",
+      "Suppliers who sell through IndiaMART today"
+    ],
+    "tags": [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Python",
+      "next-sitemap",
+      "nodemailer",
+      "JSON-LD",
+      "Vercel"
+    ],
+    "industry": "Industrial valves and pipeline products (B2B trading)",
+    "platform": "Web (responsive)",
+    "role": "Design, development, catalogue data pipeline, SEO and structured data, enquiry form and deployment",
+    "year": "2025",
+    "liveUrl": "https://sktradingandco.in",
+    "poster": "/projects/sk-trading-web/poster.jpg",
+    "previewVideo": "/projects/sk-trading-web/preview.mp4",
+    "video": {
+      "src": "/projects/sk-trading-web/walkthrough.mp4",
+      "poster": "/projects/sk-trading-web/poster.jpg",
+      "duration": "1:50"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/01-home-hero.jpg",
+        "alt": "S.K Trading home: IBR and non-IBR valves supplied from stock, with products, categories, brands and years at a glance",
+        "caption": "Home — what they stock, at a glance."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/02-product-range.jpg",
+        "alt": "Eleven valve categories with product counts",
+        "caption": "Range — every category with product counts."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/03-catalogue-search.jpg",
+        "alt": "Catalogue search for \"ss316 flanged\"",
+        "caption": "Search — by name, size or material."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/04-catalogue-filtered.jpg",
+        "alt": "Catalogue filtered to L&T ball valves",
+        "caption": "Filters — category, brand and IBR; shareable link."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/05-product-page.jpg",
+        "alt": "Product page for an L&T three-piece SS316 ball valve with specifications",
+        "caption": "Product — specifications first."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/06-product-quote-form.jpg",
+        "alt": "Quote form on the product page, filled with a demo enquiry",
+        "caption": "Quote — the form already knows the product."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/07-whatsapp-prefilled.jpg",
+        "alt": "WhatsApp message pre-filled with the product name (demo)",
+        "caption": "WhatsApp — the product name already typed."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/08-industry-selections.jpg",
+        "alt": "Industry sectors linked to the valve categories they need",
+        "caption": "Industries — the right valves for each sector."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/09-brands.jpg",
+        "alt": "Wall of stocked brands linked to the catalogue",
+        "caption": "Brands — 20 stocked brands linked to their products."
+      }
+    ]
+  },
+  {
+    "slug": "taj-metals",
+    "name": "Taj Metals",
+    "kind": "Website",
+    "headline": "Every product one tap from a WhatsApp quote.",
+    "summary": "A website for a Mumbai tube and pipe supplier, built around WhatsApp: full specifications on every product and a quote message that already names the product.",
+    "description": [
+      "Taj Metals supplies ready-to-hone tubes, hydraulic, seamless, rectangular and ERW pipes and boiler tubes from Mumbai. Its buyers enquire on WhatsApp, usually without naming a product.",
+      "I built the website around WhatsApp: one file holds the number and five message templates, so every button writes the right request, and each product page opens a chat that names the product.",
+      "Product pages carry full specifications; visitors filter by material and standard; FAQs, three buyer guides and structured data help the right buyers find the right pipe."
+    ],
+    "challenge": "Buyers enquire on WhatsApp with messages like \"price?\", so the team spends the first reply asking which product, grade and size. There was no catalogue online for Google to show.",
+    "solution": "A Next.js product website with WhatsApp as the only contact channel. Five message templates in one file power every button; product pages show full specifications and open a chat naming the product. Filters, FAQs, buyer guides, structured data and a sitemap complete it.",
+    "highlights": [
+      "WhatsApp quote that names the product, from every product page",
+      "Full specifications on every product",
+      "Filters by category, material and standard",
+      "FAQs and buyer guides on grades and standards",
+      "No mail server: WhatsApp-only by design"
+    ],
+    "features": [
+      {
+        "title": "Every enquiry starts with the product",
+        "benefit": "\"Get Quote on WhatsApp\" opens a chat that names the product and asks for specs, availability and price.",
+        "video": "/projects/taj-metals/features/whatsapp-product-quote.mp4",
+        "poster": "/projects/taj-metals/features/whatsapp-product-quote.jpg"
+      },
+      {
+        "title": "Specifications before the call",
+        "benefit": "Material, sizes, thickness, length, standard, grade and finish on every product page, plus features and applications."
+      },
+      {
+        "title": "Buyers narrow it down themselves",
+        "benefit": "Filter by category, material and standard; key specs on every card.",
+        "video": "/projects/taj-metals/features/product-filters.mp4",
+        "poster": "/projects/taj-metals/features/product-filters.jpg"
+      },
+      {
+        "title": "A homepage that gets to the point",
+        "benefit": "What they supply, the GSTIN and location, and Chat on WhatsApp up front.",
+        "video": "/projects/taj-metals/features/homepage.mp4",
+        "poster": "/projects/taj-metals/features/homepage.jpg"
+      },
+      {
+        "title": "Answers before the call",
+        "benefit": "Delivery, standards, custom sizes and test certificates, answered on the homepage.",
+        "video": "/projects/taj-metals/features/faq.mp4",
+        "poster": "/projects/taj-metals/features/faq.jpg"
+      },
+      {
+        "title": "Buyer guides that rank",
+        "benefit": "Three guides on materials, grades and standards, for buyers and for Google.",
+        "video": "/projects/taj-metals/features/buyer-guides.mp4",
+        "poster": "/projects/taj-metals/features/buyer-guides.jpg"
+      },
+      {
+        "title": "Why buyers trust them",
+        "benefit": "Reasons to choose, featured products and the industries served.",
+        "video": "/projects/taj-metals/features/why-and-industries.mp4",
+        "poster": "/projects/taj-metals/features/why-and-industries.jpg"
+      }
+    ],
+    "audience": [
+      "Steel, pipe and metal suppliers",
+      "Industrial traders whose buyers use WhatsApp",
+      "MSMEs that want enquiries without running a mail server"
+    ],
+    "tags": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "JSON-LD",
+      "Vercel"
+    ],
+    "industry": "Steel tubes and pipes (industrial supply)",
+    "platform": "Web (responsive)",
+    "role": "Design, development, WhatsApp enquiry system, SEO and structured data, deployment guide",
+    "year": "2026",
+    "liveUrl": "https://tajmetals.in",
+    "poster": "/projects/taj-metals/poster.jpg",
+    "previewVideo": "/projects/taj-metals/preview.mp4",
+    "video": {
+      "src": "/projects/taj-metals/walkthrough.mp4",
+      "poster": "/projects/taj-metals/poster.jpg",
+      "duration": "1:46"
+    },
+    "gallery": [
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/01-home-hero.jpg",
+        "alt": "Taj Metals home: precision steel solutions, demo GSTIN, Chat on WhatsApp",
+        "caption": "Home — what they supply, and one tap to WhatsApp."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/02-product-categories.jpg",
+        "alt": "Six product categories with photos",
+        "caption": "Categories — six product lines."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/03-products-filtered.jpg",
+        "alt": "Products filtered by material",
+        "caption": "Filters — by category, material and standard."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/04-product-page.jpg",
+        "alt": "Hydraulic Honed Tube ST52 product page with specifications",
+        "caption": "Product — full specifications."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/05-product-specs.jpg",
+        "alt": "Key features, applications and Get Quote on WhatsApp",
+        "caption": "Details — features, applications, quote button."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/06-whatsapp-product-quote.jpg",
+        "alt": "WhatsApp message pre-filled with the product name (demo)",
+        "caption": "WhatsApp — the product already named."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/07-faq.jpg",
+        "alt": "Common questions with the first answer open",
+        "caption": "FAQ — answers before the call."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/08-industries.jpg",
+        "alt": "Industries served",
+        "caption": "Industries — who they supply."
+      },
+      {
+        "type": "image",
+        "src": "/projects/taj-metals/gallery/09-blog-post.jpg",
+        "alt": "Hydraulic pipes buying guide",
+        "caption": "Guides — materials, grades and standards."
+      }
+    ]
+  }
+]

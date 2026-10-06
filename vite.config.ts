@@ -38,10 +38,7 @@ export default defineConfig(async ({ mode }) => {
             ],
             // Group UI-related libraries
             'vendor-ui': [
-              '@radix-ui/react-dialog',
-              '@radix-ui/react-dropdown-menu',
-              '@radix-ui/react-tabs',
-              'class-variance-authority',
+              '@radix-ui/react-tooltip',
               'clsx',
               'tailwind-merge',
               'tailwindcss-animate'

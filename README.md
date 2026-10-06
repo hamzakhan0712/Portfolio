@@ -12,7 +12,7 @@ walkthroughs), education, skills and how to get in touch.
 | --- | --- | --- |
 | Home | `/` | Introduction, headline numbers, featured projects, what I work on |
 | Projects | `/projects` | All projects |
-| Project | `/projects/:slug` | Walkthrough video, overview, key features, screenshots, tech stack, architecture |
+| Project | `/projects/:slug` | Walkthrough, overview, problem and solution, key features, feature clips, screenshots, tech stack, architecture |
 | About | `/about` | Short bio and quick facts |
 | Education | `/education` | Education, newest first |
 | Skills | `/skills` | Languages, frameworks and tools by category |
@@ -24,18 +24,28 @@ Old addresses from previous versions (`/experience`, `/services`, `/solutions`, 
 
 ## Editing content
 
-All copy lives in `src/data/` — the pages only render it:
+Projects come from the showcase library (`D:/InitCore006/showcase-library`).
+After the library changes, re-import:
 
-- `projects.ts` — every project: description, highlights, screenshots, video, tags, architecture
+```bash
+npm run import:projects            # or: node scripts/import-showcase.mjs <library-path>
+```
+
+This copies each project's poster, preview, walkthrough, screenshots and
+feature clips into `public/projects/<slug>/` and writes the copy to
+`src/data/projects.json`. Placeholder copy (`[NEEDS CONFIRMATION]`) is dropped.
+Don't edit `projects.json` by hand; the order of projects and the architecture
+diagrams live in `src/data/projects.ts`.
+
+Everything else lives in `src/data/`:
+
 - `experience.ts` — education
 - `skills.ts` — the tool list, by category
 - `recognition.ts` — awards and certifications
 - `site.ts` — name, role, contact details, headline numbers, navigation, strengths
 
-Media goes in `public/projects/<slug>/` (`poster.jpg`, `preview.mp4`,
-`walkthrough.mp4`, `gallery/*.jpg`) and certificate scans in
-`public/credentials/`. Regenerate the social preview card with
-`python scripts/og-image.py` after changing a headline figure.
+Certificate scans go in `public/credentials/`. Regenerate the social preview
+card with `python scripts/og-image.py` after changing a headline figure.
 
 ## Development
 

@@ -1,5 +1,5 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "hamza-khan-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,18 +12,13 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "smoke": "vite build --config smoke/vite.config.ts --ssr smoke/ssr.tsx --outDir smoke/dist --emptyOutDir && node smoke/dist/ssr.js"
+    "smoke": "vite build --config smoke/vite.config.ts --ssr smoke/ssr.tsx --outDir smoke/dist --emptyOutDir && node smoke/dist/ssr.js",
+    "import:projects": "node scripts/import-showcase.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
-    "@radix-ui/react-dialog": "^1.1.2",
-    "@radix-ui/react-dropdown-menu": "^2.1.1",
-    "@radix-ui/react-slot": "^1.1.0",
-    "@radix-ui/react-tabs": "^1.1.0",
-    "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.1.4",
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",
     "lucide-react": "^0.462.0",
@@ -32,7 +27,6 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
-    "react-scroll": "^1.9.3",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
@@ -40,7 +34,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
-    "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
