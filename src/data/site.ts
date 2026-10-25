@@ -7,12 +7,12 @@ import { projects } from "@/data/projects";
 
 export const profile = {
   name: "Hamza Khan",
-  role: "Software Engineer",
+  role: "Full-Stack Software Engineer",
   location: "Mumbai, India",
-  headline: "I build reliable web and desktop software.",
+  headline: "I build complete products, from the database to the interface.",
   intro:
-    "I'm a 2026 Computer Science & Engineering graduate from the University of Mumbai, looking for my first full-time role as a software engineer. I build with Python and Django, React and TypeScript, and I've put that into practice across the projects on this site.",
-  status: "Fresher · open to entry-level roles",
+    "I design and ship full-stack software: Django and FastAPI services over PostgreSQL, interfaces in React, Next.js and TypeScript, and offline-first desktop apps. Every project here runs end to end, and each one has a recorded walkthrough.",
+  status: "Open to full-time roles",
   openTo: ["Remote", "Mumbai", "Navi Mumbai", "Thane"],
   graduated: "2026",
   education:
@@ -21,7 +21,7 @@ export const profile = {
     { name: "English", level: "IELTS Academic 6.5 (CEFR B2)" },
     { name: "Hindi", level: "Native" },
   ],
-  focus: ["Python & Django", "React & TypeScript", "REST APIs", "PostgreSQL", "WebSockets"],
+  focus: ["Python & Django", "FastAPI", "React & TypeScript", "Next.js", "PostgreSQL", "REST APIs", "WebSockets"],
   cv: "/documents/Hamza_Khan_CV.pdf",
   vcard: "/documents/hamza-khan.vcf",
 } as const;
@@ -81,18 +81,22 @@ export const allRoutes: string[] = [
 /** The areas I work in, shown on the home page. */
 export const strengths = [
   {
+    id: "backend",
     title: "Backend & APIs",
     body: "Django, Django REST Framework and FastAPI services backed by well-designed PostgreSQL schemas, with role-based access and real-time features over WebSockets.",
   },
   {
+    id: "frontend",
     title: "Frontend",
     body: "Responsive, accessible interfaces in React, Next.js and TypeScript with Tailwind CSS — from marketing sites to data-heavy dashboards.",
   },
   {
+    id: "desktop",
     title: "Desktop apps",
     body: "Offline-first desktop applications with Tauri and Electron, local SQLite and DuckDB storage, and installers for Windows.",
   },
   {
+    id: "deployment",
     title: "Deployment",
     body: "Docker, CI pipelines with GitHub Actions, and deploying to Azure, DigitalOcean, Vercel and Render.",
   },

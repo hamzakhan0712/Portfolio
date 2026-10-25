@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ExternalLink, Trophy } from "lucide-react";
+import { ExternalLink, Image as ImageIcon, Trophy } from "lucide-react";
 import {
   ChipList,
   ContactBand,
@@ -29,7 +29,7 @@ export default function Recognition() {
           type: "image" as const,
           src: item.image as string,
           alt: item.title,
-          caption: `${item.title} — ${item.issuer}`,
+          caption: `${item.title}, ${item.issuer}`,
         })),
     [],
   );
@@ -40,18 +40,16 @@ export default function Recognition() {
   return (
     <>
       <PageHeader
-        eyebrow="Awards & certificates"
-        title="Competitions won and courses completed"
-        lead={`${recognitions.length} competitions judged by other people, and ${certifications.length} courses and tests completed. The certificates themselves are attached where I have them.`}
+        title="Awards & certificates"
+        lead={`${recognitions.length} competitions decided by judges, and ${certifications.length} courses and tests. Certificates are attached where I have them, with a link to verify where the issuer offers one.`}
       />
 
-      <Section>
+      <Section className="pt-8 sm:pt-10">
         <SectionHeading
-          eyebrow="Competitions"
-          title="Judged against other teams"
-          lead="These were decided by judges, which is why they count for more than the courses further down."
+          title="Competitions"
+          lead="Judged against other teams, which is why they come first."
         />
-        <ul className="mt-10 grid gap-6 md:grid-cols-2">
+        <ul className="mt-5 grid gap-3 md:grid-cols-2">
           {recognitions.map((item) => {
             const imageIndex = indexOfImage(item.image);
             return (
@@ -60,40 +58,34 @@ export default function Recognition() {
                   <button
                     type="button"
                     onClick={() => setLightbox({ open: true, index: imageIndex })}
-                    className="group block overflow-hidden border-b border-border bg-secondary"
+                    className="block overflow-hidden border-b bg-surface"
                     aria-label={`View certificate: ${item.title}`}
                   >
                     <img
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
-                      className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="aspect-[16/10] w-full object-cover object-top"
                     />
                   </button>
                 )}
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="chip-ok">
+                    <span className="tag-accent">
                       <Trophy className="h-3.5 w-3.5" />
                       {item.prize}
                     </span>
-                    <time className="text-[14px] text-muted-foreground tabular">
-                      {item.date}
-                    </time>
-                    {item.location && (
-                      <span className="text-[14px] text-muted-foreground">
-                        · {item.location}
-                      </span>
-                    )}
+                    <time className="text-[13.5px] text-muted-foreground tabular">{item.date}</time>
                   </div>
-                  <h3 className="mt-4 text-[20px] font-semibold leading-snug text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-[15px] font-medium text-primary">{item.issuer}</p>
-                  <p className="mt-3 flex-1 text-[15.5px] leading-relaxed text-muted-foreground">
+                  <h3 className="t-subtitle mt-3">{item.title}</h3>
+                  <p className="mt-0.5 text-[14px] text-muted-foreground">
+                    {item.issuer}
+                    {item.location && `, ${item.location}`}
+                  </p>
+                  <p className="mt-3 flex-1 text-[14.5px] leading-6 text-muted-foreground">
                     {item.description}
                   </p>
-                  <ChipList items={item.skills} className="mt-5" />
+                  <ChipList items={item.skills} className="mt-4" />
                 </div>
               </li>
             );
@@ -101,47 +93,48 @@ export default function Recognition() {
         </ul>
       </Section>
 
-      <Section tone="surface">
+      <Section className="pt-0 sm:pt-0">
         <SectionHeading
-          eyebrow="Certifications"
           title="Courses and tests"
-          lead="Newest first. Where the issuer offers a page that confirms the certificate is genuine, it is linked — a certificate you cannot check is worth less, and you should be able to tell which is which."
+          lead="Newest first. Where the issuer has a page that confirms a certificate, it is linked."
         />
-        <ul className="card mt-10 divide-y divide-border overflow-hidden">
+        <ul className="card mt-5 divide-y divide-divider overflow-hidden">
           {certifications.map((item) => {
             const imageIndex = indexOfImage(item.image);
             return (
-              <li key={item.id} className="grid gap-4 p-6 sm:grid-cols-[1fr_auto] sm:items-start sm:p-7">
+              <li
+                key={item.id}
+                className="grid gap-3 p-5 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6 sm:p-6"
+              >
                 <div className="min-w-0">
-                  <h3 className="text-[17px] font-semibold leading-snug text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-[15px] text-muted-foreground">
-                    {item.issuer} · <time className="tabular">{item.date}</time>
+                  <h3 className="t-body-strong">{item.title}</h3>
+                  <p className="mt-0.5 text-[14px] text-muted-foreground">
+                    {item.issuer}, <time className="tabular">{item.date}</time>
                   </p>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-[14.5px] leading-6 text-muted-foreground">
                     {item.description}
                   </p>
-                  <ChipList items={item.skills} className="mt-4" />
+                  <ChipList items={item.skills} className="mt-3" />
                 </div>
-                <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-end">
+                <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
                   {item.credentialUrl && (
                     <a
                       href={item.credentialUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="btn-secondary btn-sm"
+                      className="btn-standard btn-sm"
                     >
-                      Verify
                       <ExternalLink className="h-3.5 w-3.5" />
+                      Verify
                     </a>
                   )}
                   {imageIndex >= 0 && (
                     <button
                       type="button"
                       onClick={() => setLightbox({ open: true, index: imageIndex })}
-                      className="btn-ghost btn-sm"
+                      className="btn-subtle btn-sm"
                     >
+                      <ImageIcon className="h-3.5 w-3.5" />
                       View certificate
                     </button>
                   )}

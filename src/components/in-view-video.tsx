@@ -55,7 +55,7 @@ export function InViewVideo({
         src={poster}
         alt={alt}
         loading="lazy"
-        className={cn("object-cover object-top", className)}
+        className={cn("bg-black object-contain", className)}
       />
     );
   }
@@ -71,7 +71,8 @@ export function InViewVideo({
       playsInline
       preload="none"
       aria-label={alt}
-      className={cn("bg-black object-cover", className)}
+      // Contain, not cover: a phone recording keeps its whole frame, letterboxed.
+      className={cn("bg-black object-contain", className)}
     />
   );
 }

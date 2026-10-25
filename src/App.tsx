@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-route
 import { MotionConfig } from "framer-motion";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme";
 import { SiteLayout } from "@/components/layout/site-layout";
 import Home from "@/pages/Home";
 
@@ -24,12 +25,12 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
  */
 function PageSkeleton() {
   return (
-    <div className="border-b border-border bg-surface">
-      <div className="container-site animate-pulse py-14 sm:py-20" aria-hidden>
-        <div className="h-4 w-24 rounded bg-secondary" />
-        <div className="mt-4 h-12 w-2/3 rounded bg-secondary" />
-        <div className="mt-5 h-5 w-full max-w-2xl rounded bg-secondary/70" />
-        <div className="mt-2 h-5 w-5/6 max-w-xl rounded bg-secondary/70" />
+    <div>
+      <div className="container-site animate-pulse pt-10 sm:pt-14" aria-hidden>
+        <div className="h-11 w-2/3 max-w-lg rounded bg-secondary-solid" />
+        <div className="mt-4 h-5 w-full max-w-2xl rounded bg-secondary-solid" />
+        <div className="mt-2 h-5 w-5/6 max-w-xl rounded bg-secondary-solid" />
+        <div className="mt-10 h-64 rounded-lg bg-secondary-solid" />
       </div>
       <span className="sr-only">Loading page</span>
     </div>
@@ -49,36 +50,38 @@ const lazyPage = (element: JSX.Element) => (
 const App = () => (
   // reducedMotion="user" makes every framer-motion animation honour the OS
   // setting — the media query in index.css cannot reach JS-driven motion.
-  <MotionConfig reducedMotion="user">
-    <TooltipProvider>
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<SiteLayout />}>
-            <Route index element={<Home />} />
-            <Route path="projects" element={lazyPage(<Projects />)} />
-            <Route path="projects/:slug" element={lazyPage(<ProjectPage />)} />
-            <Route path="about" element={lazyPage(<About />)} />
-            <Route path="education" element={lazyPage(<Education />)} />
-            <Route path="skills" element={lazyPage(<Skills />)} />
-            <Route path="recognition" element={lazyPage(<Recognition />)} />
-            <Route path="contact" element={lazyPage(<Contact />)} />
+  <ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <TooltipProvider>
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<SiteLayout />}>
+              <Route index element={<Home />} />
+              <Route path="projects" element={lazyPage(<Projects />)} />
+              <Route path="projects/:slug" element={lazyPage(<ProjectPage />)} />
+              <Route path="about" element={lazyPage(<About />)} />
+              <Route path="education" element={lazyPage(<Education />)} />
+              <Route path="skills" element={lazyPage(<Skills />)} />
+              <Route path="recognition" element={lazyPage(<Recognition />)} />
+              <Route path="contact" element={lazyPage(<Contact />)} />
 
-            {/* Addresses from the previous version of the site, so links that
+              {/* Addresses from the previous version of the site, so links that
                 were shared keep working. */}
-            <Route path="experience" element={<Moved to="/education" />} />
-            <Route path="services" element={<Moved to="/projects" />} />
-            <Route path="solutions" element={<Moved to="/projects" />} />
-            <Route path="profile" element={<Moved to="/about" />} />
-            <Route path="authentication" element={<Moved to="/about" />} />
-            <Route path="errors" element={<Moved to="/about" />} />
+              <Route path="experience" element={<Moved to="/education" />} />
+              <Route path="services" element={<Moved to="/projects" />} />
+              <Route path="solutions" element={<Moved to="/projects" />} />
+              <Route path="profile" element={<Moved to="/about" />} />
+              <Route path="authentication" element={<Moved to="/about" />} />
+              <Route path="errors" element={<Moved to="/about" />} />
 
-            <Route path="*" element={lazyPage(<NotFound />)} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </MotionConfig>
+              <Route path="*" element={lazyPage(<NotFound />)} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </MotionConfig>
+  </ThemeProvider>
 );
 
 export default App;

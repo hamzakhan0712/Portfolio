@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
-import {
-  ContactBand,
-  PageHeader,
-  Section,
-  SectionHeading,
-} from "@/components/primitives";
+import { ContactBand, PageHeader, Section, SectionHeading } from "@/components/primitives";
 import { layers, runtimeLanguages, type Tool } from "@/data/skills";
 import { usePageTitle } from "@/lib/page-title";
 
+/**
+ * A tool, drawn like an app tile. The logo always sits on white: many brand
+ * marks are dark and would vanish on the dark theme's cards otherwise.
+ */
 function ToolTile({ tool }: { tool: Tool }) {
   return (
-    <li className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white">
+    <li className="flex items-center gap-3 rounded border bg-control px-3 py-2.5">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-white ring-1 ring-black/5">
         <img
           src={tool.icon}
           alt=""
@@ -21,7 +20,7 @@ function ToolTile({ tool }: { tool: Tool }) {
           className="h-5 w-5 object-contain"
         />
       </span>
-      <span className="text-[15px] font-medium text-foreground">{tool.name}</span>
+      <span className="text-[14px] text-foreground">{tool.name}</span>
     </li>
   );
 }
@@ -32,35 +31,30 @@ export default function Skills() {
   return (
     <>
       <PageHeader
-        eyebrow="Skills"
-        title="Technologies I work with"
-        lead="The languages, frameworks and tools I use to design, build and ship software."
+        title="Skills"
+        lead="The languages, frameworks and tools I use to design, build and ship software across the stack."
       />
 
-      <Section>
-        <SectionHeading eyebrow="Languages" title="Programming languages" />
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <Section className="pt-8 sm:pt-10">
+        <SectionHeading title="Languages" />
+        <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {runtimeLanguages.map((tool) => (
             <ToolTile key={tool.name} tool={tool} />
           ))}
         </ul>
       </Section>
 
-      <Section tone="surface">
-        <SectionHeading eyebrow="Stack" title="Frameworks, databases and tools" />
-        <ol className="mt-10 grid gap-5">
+      <Section className="pt-0 sm:pt-0">
+        <SectionHeading title="Frameworks, databases and tools" />
+        <ul className="mt-5 grid gap-2">
           {layers.map((layer) => (
-            <li key={layer.id} className="card p-6 sm:p-8">
-              <div className="grid gap-6 md:grid-cols-[16rem_1fr] md:gap-10">
+            <li key={layer.id} className="card p-5 sm:p-6">
+              <div className="grid gap-4 md:grid-cols-[14rem_1fr] md:gap-8">
                 <div>
-                  <h3 className="text-[21px] font-semibold text-foreground">
-                    {layer.name}
-                  </h3>
-                  <p className="mt-1 text-[14.5px] text-muted-foreground">
-                    {layer.role}
-                  </p>
+                  <h3 className="t-subtitle">{layer.name}</h3>
+                  <p className="mt-1 text-[14px] leading-6 text-muted-foreground">{layer.role}</p>
                 </div>
-                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {layer.tools.map((tool) => (
                     <ToolTile key={tool.name} tool={tool} />
                   ))}
@@ -68,15 +62,14 @@ export default function Skills() {
               </div>
             </li>
           ))}
-        </ol>
-      </Section>
+        </ul>
 
-      <Section tight>
-        <p className="prose-plain max-w-3xl">
-          See these in use across my <Link to="/projects">projects</Link> — for
-          example <Link to="/projects/novem">Novem</Link> (Tauri, FastAPI,
-          DuckDB) and <Link to="/projects/initcore-crm">InitCore CRM</Link>{" "}
-          (Django, Channels, PostgreSQL).
+        <p className="prose-plain mt-8">
+          See them in use across my <Link to="/projects">projects</Link>: for example{" "}
+          <Link to="/projects/novem">Novem</Link> (Tauri, FastAPI, DuckDB),{" "}
+          <Link to="/projects/initcore-crm">InitCore CRM</Link> (Django, Channels, PostgreSQL) and{" "}
+          <Link to="/projects/sk-trading-web">S.K Trading &amp; Co.</Link> (Next.js on Cloudflare
+          Workers).
         </p>
       </Section>
 

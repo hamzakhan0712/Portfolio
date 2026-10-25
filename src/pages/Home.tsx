@@ -1,108 +1,121 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, MapPin } from "lucide-react";
+import {
+  ChevronRight,
+  Cloud,
+  FileText,
+  Mail,
+  MapPin,
+  MonitorSmartphone,
+  PanelsTopLeft,
+  Server,
+} from "lucide-react";
 import {
   ChipList,
   ContactBand,
   Section,
   SectionHeading,
+  SettingsCard,
 } from "@/components/primitives";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectShowcase } from "@/components/app-window";
 import { metrics, profile, strengths } from "@/data/site";
 import { projects } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
 /**
- * The front page: who this is, the headline numbers, selected projects, what
- * I work on, and how to get in touch.
+ * The front page: who this is and what he builds, shown running; the
+ * headline facts; selected projects; the areas of work; and how to get in
+ * touch.
  */
 
 const featured = projects.slice(0, 6);
 
+const STRENGTH_ICONS = {
+  backend: Server,
+  frontend: PanelsTopLeft,
+  desktop: MonitorSmartphone,
+  deployment: Cloud,
+} as const;
+
 export default function Home() {
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="border-b border-border bg-surface">
-        <div className="container-site grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-[13.5px] font-medium text-foreground shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-ok" />
-              {profile.status}
-            </p>
-            <h1 className="display mt-6">
-              Hi, I&apos;m {profile.name}.
-              <br />
-              <span className="text-primary">{profile.headline}</span>
-            </h1>
-            <p className="lead mt-6 max-w-xl">{profile.intro}</p>
+      {/* ── Hero: the person on the left, the work running on the right ── */}
+      <section className="container-site grid items-center gap-12 pb-12 pt-10 sm:pt-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:pb-16 lg:pt-20">
+        <div>
+          <p className="status-pill">
+            <span className="h-2 w-2 rounded-full bg-ok" aria-hidden />
+            {profile.status}
+          </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/projects" className="btn-primary">
-                View projects
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/contact" className="btn-secondary">
-                Get in touch
-              </Link>
-              <a
-                href={profile.cv}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-ghost"
-              >
-                <FileText className="h-4 w-4" />
-                Download CV
-              </a>
-            </div>
+          <h1 className="t-display mt-6">{profile.name}</h1>
+          <p className="mt-2 font-display text-[1.375rem] font-semibold leading-8 text-muted-foreground sm:text-[1.625rem]">
+            {profile.role}
+          </p>
 
-            <p className="mt-8 inline-flex items-center gap-2 text-[14.5px] text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              {profile.role} · {profile.location}
-            </p>
+          <p className="mt-6 max-w-xl text-[17px] leading-7 text-foreground">{profile.headline}</p>
+          <p className="mt-3 max-w-xl text-[15.5px] leading-7 text-muted-foreground">
+            {profile.intro}
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            <Link to="/projects" className="btn-accent btn-lg">
+              View projects
+            </Link>
+            <Link to="/contact" className="btn-standard btn-lg">
+              <Mail className="h-4 w-4" strokeWidth={1.75} />
+              Contact me
+            </Link>
+            <a href={profile.cv} target="_blank" rel="noreferrer" className="btn-subtle btn-lg">
+              <FileText className="h-4 w-4" strokeWidth={1.75} />
+              Download CV
+            </a>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-            <img
-              src="/photos/portrait.webp"
-              alt={profile.name}
-              width={288}
-              height={384}
-              /* React 18 does not map the camelCase prop; spread the real
-                 lowercase attribute so the LCP hint reaches the DOM. */
-              {...{ fetchpriority: "high" }}
-              className="aspect-[3/4] w-full rounded-3xl object-cover object-top shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] ring-1 ring-border"
-            />
-          </div>
+          <p className="mt-8 inline-flex items-center gap-2 text-[14px] text-muted-foreground">
+            <MapPin className="h-4 w-4" strokeWidth={1.5} />
+            {profile.location}, open to {profile.openTo.join(", ")}
+          </p>
         </div>
+
+        <ProjectShowcase projects={featured} />
       </section>
 
-      {/* ── Numbers ──────────────────────────────────────────────────── */}
-      <Section tight>
-        <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {metrics.map((metric) => (
-            <div key={metric.label} className="card p-6">
-              <dd className="text-[2.25rem] font-semibold leading-none tracking-tight text-foreground tabular">
+      {/* ── The facts, as one card of specifications ──────────────────── */}
+      <Section tight className="pt-0 sm:pt-0">
+        {/* Two by two on phones, one row from large screens; the dividers
+            follow whichever grid is showing. */}
+        <dl className="card grid grid-cols-2 lg:grid-cols-4">
+          {metrics.map((metric, index) => (
+            <div
+              key={metric.label}
+              className={cn(
+                "border-divider p-5 sm:p-6",
+                index % 2 === 1 && "border-l",
+                index < 2 && "border-b lg:border-b-0",
+                index === 2 && "lg:border-l",
+              )}
+            >
+              <dt className="t-caption">{metric.label}</dt>
+              <dd className="mt-1 font-display text-[1.75rem] font-semibold leading-9 text-foreground tabular">
                 {metric.value}
               </dd>
-              <dt className="mt-3 text-[15px] font-medium text-foreground">
-                {metric.label}
-              </dt>
-              <p className="mt-1 text-[13.5px] text-muted-foreground">
+              <dd className="mt-0.5 text-[13px] leading-5 text-muted-foreground">
                 {metric.source}
-              </p>
+              </dd>
             </div>
           ))}
         </dl>
       </Section>
 
       {/* ── Projects ─────────────────────────────────────────────────── */}
-      <Section tone="surface">
+      <Section>
         <SectionHeading
-          eyebrow="Featured projects"
-          title="Things I have built"
-          lead="Web applications, websites and desktop apps — each with screenshots and a video walkthrough."
-          action={{ to: "/projects", label: `View all ${projects.length} projects` }}
+          title="Selected projects"
+          lead="Web applications, websites and desktop apps. Each one has screenshots, short clips and a full video walkthrough."
+          action={{ to: "/projects", label: `All ${projects.length} projects` }}
         />
-        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((project) => (
             <li key={project.slug}>
               <ProjectCard project={project} />
@@ -114,58 +127,54 @@ export default function Home() {
       {/* ── What I work on ───────────────────────────────────────────── */}
       <Section>
         <SectionHeading
-          eyebrow="What I do"
           title="What I work on"
+          lead="Across the stack, from the schema to the screen to the server it runs on."
           action={{ to: "/skills", label: "All skills" }}
         />
-        <ul className="mt-12 grid gap-6 md:grid-cols-2">
+        <ul className="mt-8 grid gap-1 md:grid-cols-2 md:gap-2">
           {strengths.map((item) => (
-            <li key={item.title} className="card p-7">
-              <h3 className="text-[19px] font-semibold text-foreground">
-                {item.title}
-              </h3>
-              <p className="mt-2.5 text-[15.5px] leading-relaxed text-muted-foreground">
-                {item.body}
-              </p>
+            <li key={item.id}>
+              <SettingsCard
+                icon={STRENGTH_ICONS[item.id as keyof typeof STRENGTH_ICONS]}
+                title={item.title}
+                description={item.body}
+                className="h-full"
+              />
             </li>
           ))}
         </ul>
       </Section>
 
       {/* ── About teaser ─────────────────────────────────────────────── */}
-      <Section tone="surface">
-        <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <img
-            src="/photos/full-length.webp"
-            alt={profile.name}
-            loading="lazy"
-            className="mx-auto aspect-[4/5] w-full max-w-sm rounded-3xl object-cover object-top lg:max-w-none"
-          />
-          <div>
-            <p className="eyebrow mb-3">About me</p>
-            <h2 className="heading-section">
-              A fresh graduate who learns by building
-            </h2>
-            <div className="prose-plain mt-6">
+      <Section>
+        <div className="card grid overflow-hidden lg:grid-cols-[0.75fr_1.25fr]">
+          {/* On large screens the text sets the row height; the photo fills it. */}
+          <div className="relative aspect-[4/3] lg:aspect-auto">
+            <img
+              src="/photos/full-length.webp"
+              alt={profile.name}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-[center_15%]"
+            />
+          </div>
+          <div className="p-6 sm:p-10">
+            <h2 className="t-title">About me</h2>
+            <div className="prose-plain mt-4">
               <p>
-                I graduated in 2026 with a B.E. in Computer Science and
-                Engineering from the University of Mumbai (CGPI 8.19 / 10),
-                after a Diploma in Computer Engineering.
+                I graduated in 2026 with a B.E. in Computer Science and Engineering from the
+                University of Mumbai (CGPI 8.19 / 10), after a Diploma in Computer Engineering.
               </p>
               <p>
-                Alongside my studies I built the web applications, websites
-                and desktop apps on this site, and my team reached the Grand
-                Finale of Smart India Hackathon 2025. I&apos;m now looking for
-                my first full-time role as a software engineer.
+                I work across the whole stack: the data model and the API, the interface people use,
+                and the pipeline that ships it. The projects on this site run on Django, FastAPI,
+                .NET, Next.js, Tauri and Electron. My team also reached the Grand Finale of Smart
+                India Hackathon 2025.
               </p>
             </div>
             <ChipList items={profile.focus} className="mt-6" />
-            <Link
-              to="/about"
-              className="group mt-7 inline-flex items-center gap-1.5 text-[15px] font-medium text-primary no-underline"
-            >
+            <Link to="/about" className="link-button mt-6">
               More about me
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -66,7 +66,7 @@ export function SiteLayout() {
     <div className="flex min-h-screen flex-col">
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-[14px] focus:font-medium focus:text-primary-foreground"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:text-[14px] focus:font-medium focus:text-primary-foreground"
       >
         Skip to content
       </a>

@@ -1,60 +1,46 @@
-import {
-  CheckList,
-  ChipList,
-  ContactBand,
-  PageHeader,
-  Section,
-} from "@/components/primitives";
+import { GraduationCap } from "lucide-react";
+import { CheckList, ChipList, ContactBand, PageHeader, Section } from "@/components/primitives";
 import { education, type TimelineEntry } from "@/data/experience";
 import { usePageTitle } from "@/lib/page-title";
 
 /**
- * Education as a timeline, newest first.
+ * Education as a timeline, newest first. The line and the markers are there
+ * because the entries really are a sequence in time.
  */
-function Entry({ entry, current }: { entry: TimelineEntry; current?: boolean }) {
+function Entry({ entry, latest }: { entry: TimelineEntry; latest?: boolean }) {
   return (
-    <li className="relative pl-8 sm:pl-10">
+    <li className="relative pl-10 sm:pl-12">
       <span
         aria-hidden
-        className="absolute left-0 top-2 flex h-4 w-4 items-center justify-center rounded-full border-2 border-primary bg-background sm:left-[2px]"
+        className={
+          latest
+            ? "absolute left-0 top-5 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground sm:left-0.5"
+            : "absolute left-[7px] top-[26px] h-3.5 w-3.5 rounded-full border-2 border-tertiary-foreground bg-background sm:left-[9px]"
+        }
       >
-        {current && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
+        {latest && <GraduationCap className="h-3.5 w-3.5" strokeWidth={2} />}
       </span>
 
-      <div className="card p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <time className="text-[14px] font-medium text-foreground tabular">
+      <div className="card p-5 sm:p-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <time className="text-[13.5px] font-semibold text-foreground tabular">
             {entry.period}
           </time>
-          {current && <span className="chip-ok">Current</span>}
-          <span className="text-[14px] text-muted-foreground">{entry.location}</span>
+          <span className="text-[13.5px] text-muted-foreground">{entry.location}</span>
         </div>
-        <h3 className="mt-3 text-[21px] font-semibold leading-snug text-foreground">
-          {entry.role}
-        </h3>
-        <p className="mt-1 text-[15.5px] text-muted-foreground">{entry.org}</p>
+        <h3 className="t-subtitle mt-2">{entry.role}</h3>
+        <p className="mt-0.5 text-[14.5px] text-muted-foreground">{entry.org}</p>
 
-        <CheckList items={entry.bullets} className="mt-6" />
+        <CheckList items={entry.bullets} className="mt-5" />
 
-        {entry.tech && <ChipList items={entry.tech} className="mt-6" />}
+        {entry.tech && (
+          <>
+            <p className="t-caption mt-5">Subjects</p>
+            <ChipList items={entry.tech} className="mt-2" />
+          </>
+        )}
       </div>
     </li>
-  );
-}
-
-function Timeline({
-  entries,
-  markCurrent = false,
-}: {
-  entries: TimelineEntry[];
-  markCurrent?: boolean;
-}) {
-  return (
-    <ol className="relative mt-10 space-y-8 before:absolute before:bottom-6 before:left-[7px] before:top-6 before:w-px before:bg-border sm:before:left-[9px]">
-      {entries.map((entry, index) => (
-        <Entry key={entry.period} entry={entry} current={markCurrent && index === 0} />
-      ))}
-    </ol>
   );
 }
 
@@ -64,13 +50,16 @@ export default function Education() {
   return (
     <>
       <PageHeader
-        eyebrow="Education"
         title="Education"
-        lead="I graduated in 2026 and am looking for my first full-time role. Newest first."
+        lead="A B.E. in Computer Science & Engineering, after a Diploma in Computer Engineering. Newest first."
       />
 
-      <Section>
-        <Timeline entries={education} />
+      <Section className="pt-8 sm:pt-10">
+        <ol className="relative max-w-4xl space-y-4 before:absolute before:bottom-8 before:left-[13px] before:top-8 before:w-px before:bg-border sm:before:left-[15px]">
+          {education.map((entry, index) => (
+            <Entry key={entry.period} entry={entry} latest={index === 0} />
+          ))}
+        </ol>
       </Section>
 
       <ContactBand />

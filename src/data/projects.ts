@@ -83,9 +83,9 @@ const ORDER = [
   "initcore-commerce",
   "initcore-crm",
   "initcore-realestate",
+  "sk-trading-web",
   "sk-trading",
   "key2yourhome",
-  "sk-trading-web",
   "taj-metals",
   "logxivia",
   "initcore-web",
@@ -259,6 +259,53 @@ const architectures: Record<string, Architecture> = {
     notes: [
       "Packaged as an NSIS installer with electron-updater for updates.",
       "Vitest unit tests plus self-test modes in the packaged app.",
+    ],
+  },
+  "sk-trading-web": {
+    summary:
+      "A prerendered catalogue website and a private admin running on the same Cloudflare Worker, connected to WhatsApp, Facebook, Instagram and email.",
+    tiers: [
+      {
+        label: "Website",
+        detail: "Next.js 16 · prerendered",
+        items: [
+          "Product finder, live search and 20 product pages",
+          "Quote form that carries the product",
+          "Tailwind CSS v4 and shadcn/ui",
+          "Turnstile on the forms",
+        ],
+      },
+      {
+        label: "Worker",
+        detail: "Cloudflare Workers via OpenNext",
+        items: [
+          "Admin APIs, each checking the session",
+          "Stock API, edge-cached for 60 seconds",
+          "Web Push alerts with quiet hours",
+          "Cron every 30 minutes — connection checks",
+        ],
+      },
+      {
+        label: "Storage",
+        detail: "Cloudflare D1 and R2",
+        items: [
+          "D1 — enquiries, contacts, stock, posts, campaigns",
+          "R2 — product photos and videos",
+        ],
+      },
+      {
+        label: "Integrations",
+        detail: "Outbound from the Worker",
+        items: [
+          "WhatsApp Cloud API — chats, templates, campaigns",
+          "Meta Graph API — Facebook and Instagram posts",
+          "Hostinger Reach — email campaigns",
+          "GitHub — every product publish is a versioned rebuild",
+        ],
+      },
+    ],
+    notes: [
+      "43 Playwright tests at 360, 768 and 1280 px, plus typecheck, lint and a content guard that blocks claims the business cannot make.",
     ],
   },
 };

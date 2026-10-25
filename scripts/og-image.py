@@ -13,14 +13,14 @@ import os
 
 W, H = 1200, 630
 
-# The dark palette from src/index.css, resolved out of HSL.
-BG = (9, 13, 21)            # --background  224 40% 6%
-SURFACE = (14, 19, 30)      # --card        223 38% 9%
-BORDER = (31, 40, 56)       # --border      222 28% 17%
-FG = (243, 246, 250)        # --foreground  210 40% 96%
-MUTED = (157, 171, 190)     # --muted-foreground 215 20% 68%
-PRIMARY = (59, 130, 246)    # --primary     217 91% 60%
-OK = (58, 212, 118)         # --ok
+# The dark (Windows 11) palette from src/index.css.
+BG = (32, 32, 32)           # --background  Mica      #202020
+SURFACE = (43, 43, 43)      # --card                  #2B2B2B
+BORDER = (58, 58, 58)       # --border
+FG = (255, 255, 255)        # --foreground
+MUTED = (201, 201, 201)     # --muted-foreground      #C9C9C9
+PRIMARY = (96, 205, 255)    # --primary   light blue  #60CDFF
+OK = (108, 203, 95)         # --ok                    #6CCB5F
 
 FONTS = "C:/Windows/Fonts/"
 
@@ -56,7 +56,7 @@ img = Image.alpha_composite(img.convert("RGBA"), layer).convert("RGB")
 d = ImageDraw.Draw(img)
 
 # ── Status pill ───────────────────────────────────────────────────────────
-pill_text = "Fresher · open to entry-level roles"
+pill_text = "Open to full-time roles"
 pf = regular(22)
 tw = d.textlength(pill_text, font=pf)
 d.rounded_rectangle([64, 64, 64 + tw + 64, 112], radius=24, fill=SURFACE, outline=BORDER)
@@ -65,8 +65,8 @@ d.text((112, 74), pill_text, font=pf, fill=FG)
 
 # ── Name and role ─────────────────────────────────────────────────────────
 d.text((62, 140), "Hamza Khan", font=bold(84), fill=FG)
-d.text((66, 248), "Software Engineer", font=semibold(42), fill=PRIMARY)
-d.text((66, 312), "I build reliable web and desktop software.", font=regular(26), fill=MUTED)
+d.text((66, 248), "Full-Stack Software Engineer", font=semibold(42), fill=PRIMARY)
+d.text((66, 312), "Complete products, from the database to the UI.", font=regular(26), fill=MUTED)
 
 # ── Headline figures ──────────────────────────────────────────────────────
 stats = [("2026", "B.E. graduate"), ("10", "projects"),

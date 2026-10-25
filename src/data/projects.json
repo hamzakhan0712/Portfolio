@@ -1202,145 +1202,169 @@
     "slug": "sk-trading-web",
     "name": "S.K Trading & Co.",
     "kind": "Website",
-    "headline": "224 valves, searchable, one click from a quote.",
-    "summary": "A catalogue website for an industrial valve stockist: 224 products searchable by size, material and brand, each ending in a quote request or a pre-filled WhatsApp message.",
+    "headline": "A website that turns product searches into quote requests, and an admin that follows every one up",
+    "summary": "A fast product catalogue website for an industrial valves and pipes supplier, built around the quote request, with a private admin for enquiries, follow-ups, WhatsApp, Facebook, Instagram, email, contacts and stock.",
     "description": [
-      "S.K Trading & Co. supplies industrial valves, steam traps, strainers, pipes and fittings from stock in Navi Mumbai, from brands like L&T, KSB, Audco, Kirloskar and Forbes Marshall.",
-      "I turned the company's product export into a catalogue website: a script cleans the data into 14 categories and generates 224 product pages, each with specifications, a quote form that knows the product and a WhatsApp button with the product typed in.",
-      "Search and filters, industry pages, a brand wall, FAQs and a 245-URL sitemap with structured data help the right buyers find the right product, on their own and on Google."
+      "S.K Trading & Co. is an independent supplier and stockist of industrial valves, MS pipes and pipe fittings in Navi Mumbai, supplying contractors, resellers and industry since 2019.",
+      "I built its new website: 34 products in three categories, 20 detailed product pages, a product finder on the first screen, and a quote form that opens with the product already filled in.",
+      "Behind it, a private admin works as the owner's command centre: quote requests with status, notes and follow-up reminders; WhatsApp chats and catalogue campaigns; Facebook and Instagram posts made from any product; email campaigns; one contact book; stock status that shows on the website within a minute; and alerts on the phone and desktop."
     ],
-    "challenge": "A wide industrial range lived in an IndiaMART export and in the sales team's heads. Buyers search by size, material and brand, so every enquiry started with a phone call, and a brochure site could not rank for the products actually sold.",
-    "solution": "A Next.js catalogue generated from the company's product data: 224 product pages and 14 category pages with specifications first, search and filters, a quote form and WhatsApp link on every product, industry pages, brand links, FAQs, and structured data on every page.",
+    "challenge": "Industrial buyers don't shop; they ask whether a product is supplied, in which size and standard, and for a quote. The supplier needed a website that answers those questions and makes the quote request the easiest step, strictly honest (a supplier, not a manufacturer or authorised dealer). Then the owner needed to act on every enquiry and reach buyers on WhatsApp, Facebook, Instagram and email without juggling five apps.",
+    "solution": "A prerendered Next.js website on Cloudflare with a product finder, live search, detailed product pages and a quote form that carries the product. Behind it, a private admin on Cloudflare D1 and R2: a dashboard of what needs attention, enquiries and follow-ups, a contact book, WhatsApp Business chats and template campaigns, Facebook and Instagram posting with scheduling, email campaigns through Hostinger Reach, one-click stock status, a product editor with a reviewed publish step, Web Push alerts and a connection map checked every 30 minutes.",
     "highlights": [
-      "224 product pages and 14 category pages generated from the company's data",
-      "Search by size or material; filter by category, brand and IBR",
-      "Quote form and pre-filled WhatsApp on every product",
-      "245 URLs with structured data for Google",
-      "Call and WhatsApp bar always visible on phones"
+      "34 products in 3 categories, 20 detailed product pages",
+      "Quote form pre-filled with the product",
+      "Enquiries with status, notes and follow-up reminders",
+      "WhatsApp chats and catalogue campaigns in the admin",
+      "Facebook and Instagram posts from any product, scheduled",
+      "Phone and desktop alerts, with quiet hours and a 9 am summary",
+      "43 automated tests at 3 screen sizes"
     ],
     "features": [
       {
-        "title": "Buyers find the right valve themselves",
-        "benefit": "Search 224 products by name, size or material, then filter by category, brand or IBR certification. Filters stay in the link.",
-        "video": "/projects/sk-trading-web/features/catalogue-search-and-filters.mp4",
-        "poster": "/projects/sk-trading-web/features/catalogue-search-and-filters.jpg"
+        "title": "Quote requests that start with the product",
+        "benefit": "Request a quote on a product page opens the form with that product already chosen.",
+        "video": "/projects/sk-trading-web/features/request-a-quote.mp4",
+        "poster": "/projects/sk-trading-web/features/request-a-quote.jpg"
       },
       {
-        "title": "Every enquiry names the product",
-        "benefit": "The quote form on each product page already knows which product the buyer is looking at.",
-        "video": "/projects/sk-trading-web/features/quote-request.mp4",
-        "poster": "/projects/sk-trading-web/features/quote-request.jpg"
+        "title": "Find the product in seconds",
+        "benefit": "A product finder on the first screen, a products menu and live search across 34 products.",
+        "video": "/projects/sk-trading-web/features/find-a-product.mp4",
+        "poster": "/projects/sk-trading-web/features/find-a-product.jpg"
       },
       {
-        "title": "WhatsApp, ready to send",
-        "benefit": "One tap opens WhatsApp with the exact product name typed in.",
-        "video": "/projects/sk-trading-web/features/whatsapp-enquiry.mp4",
-        "poster": "/projects/sk-trading-web/features/whatsapp-enquiry.jpg"
+        "title": "One screen for the whole business",
+        "benefit": "What needs attention, this week's numbers and every channel, with a page finder (Ctrl K).",
+        "video": "/projects/sk-trading-web/features/admin-dashboard.mp4",
+        "poster": "/projects/sk-trading-web/features/admin-dashboard.jpg"
       },
       {
-        "title": "A page for every product",
-        "benefit": "Brand, size range, body material, end connection and pressure class: specifications first, prices on request.",
-        "video": "/projects/sk-trading-web/features/product-pages.mp4",
-        "poster": "/projects/sk-trading-web/features/product-pages.jpg"
+        "title": "No quote request slips through",
+        "benefit": "An alert, the enquiry with the product filled in, a status, a note and a follow-up reminder.",
+        "video": "/projects/sk-trading-web/features/enquiry-to-followup.mp4",
+        "poster": "/projects/sk-trading-web/features/enquiry-to-followup.jpg"
       },
       {
-        "title": "Found on Google",
-        "benefit": "245 URLs, each with its own title, description and structured data for products, FAQs and the business."
+        "title": "WhatsApp chats and campaigns",
+        "benefit": "Answer customers in the admin; send the catalogue template to contacts picked by tag, city and consent.",
+        "video": "/projects/sk-trading-web/features/whatsapp-campaign.mp4",
+        "poster": "/projects/sk-trading-web/features/whatsapp-campaign.jpg"
       },
       {
-        "title": "Speaks each industry's language",
-        "benefit": "Six sectors, from water supply to sugar and paper, each linked to the valves it usually needs.",
-        "video": "/projects/sk-trading-web/features/industries.mp4",
-        "poster": "/projects/sk-trading-web/features/industries.jpg"
+        "title": "Social posts from any product",
+        "benefit": "Photos, details and the contact strip fill in from the product; preview Facebook and Instagram, then schedule.",
+        "video": "/projects/sk-trading-web/features/social-post.mp4",
+        "poster": "/projects/sk-trading-web/features/social-post.jpg"
       },
       {
-        "title": "Trust before the call",
-        "benefit": "Twenty stocked brands linked to their products, plus answers to the questions buyers ask every week.",
-        "video": "/projects/sk-trading-web/features/brands-and-faq.mp4",
-        "poster": "/projects/sk-trading-web/features/brands-and-faq.jpg"
+        "title": "Stock status in one click",
+        "benefit": "Set in the admin, shown on the website within a minute, no publish needed.",
+        "video": "/projects/sk-trading-web/features/stock-from-admin.mp4",
+        "poster": "/projects/sk-trading-web/features/stock-from-admin.jpg"
+      },
+      {
+        "title": "The admin on the phone",
+        "benefit": "Alerts on the phone, then the enquiry and the WhatsApp chat, from anywhere.",
+        "video": "/projects/sk-trading-web/features/reel-admin-9x16.mp4",
+        "poster": "/projects/sk-trading-web/features/reel-admin-9x16.jpg"
       }
     ],
     "audience": [
-      "Industrial distributors and stockists",
-      "B2B traders with large product ranges",
-      "Suppliers who sell through IndiaMART today"
+      "Contractors and site engineers",
+      "Purchase teams at industrial companies",
+      "Resellers",
+      "The owner, from a phone"
     ],
     "tags": [
       "Next.js",
       "React",
+      "TypeScript",
       "Tailwind CSS",
-      "Python",
-      "next-sitemap",
-      "nodemailer",
-      "JSON-LD",
-      "Vercel"
+      "shadcn/ui",
+      "Cloudflare Workers",
+      "OpenNext",
+      "Cloudflare D1",
+      "Cloudflare R2",
+      "Turnstile",
+      "WhatsApp Cloud API",
+      "Meta Graph API",
+      "Web Push",
+      "Hostinger Reach",
+      "Playwright"
     ],
-    "industry": "Industrial valves and pipeline products (B2B trading)",
-    "platform": "Web (responsive)",
-    "role": "Design, development, catalogue data pipeline, SEO and structured data, enquiry form and deployment",
-    "year": "2025",
+    "industry": "Industrial supply (valves, pipes and fittings)",
+    "platform": "Web (Next.js on Cloudflare Workers)",
+    "role": "Design, content structure, development, admin and integrations (WhatsApp Cloud API, Meta, Hostinger Reach), Cloudflare hosting and testing",
+    "year": "2026",
     "liveUrl": "https://sktradingandco.in",
     "poster": "/projects/sk-trading-web/poster.jpg",
     "previewVideo": "/projects/sk-trading-web/preview.mp4",
     "video": {
       "src": "/projects/sk-trading-web/walkthrough.mp4",
       "poster": "/projects/sk-trading-web/poster.jpg",
-      "duration": "1:50"
+      "duration": "4:48"
     },
     "gallery": [
       {
         "type": "image",
         "src": "/projects/sk-trading-web/gallery/01-home-hero.jpg",
-        "alt": "S.K Trading home: IBR and non-IBR valves supplied from stock, with products, categories, brands and years at a glance",
-        "caption": "Home — what they stock, at a glance."
+        "alt": "S.K Trading & Co. home page with a Find a product panel",
+        "caption": "Home — what they stock and a product finder in the first screen."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/02-product-range.jpg",
-        "alt": "Eleven valve categories with product counts",
-        "caption": "Range — every category with product counts."
+        "src": "/projects/sk-trading-web/gallery/02-hero-product-finder.jpg",
+        "alt": "Product finder showing the Pipes tab",
+        "caption": "Product finder — valves, pipes and fittings in two clicks."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/03-catalogue-search.jpg",
-        "alt": "Catalogue search for \"ss316 flanged\"",
-        "caption": "Search — by name, size or material."
+        "src": "/projects/sk-trading-web/gallery/03-products-search.jpg",
+        "alt": "Live search results for flange",
+        "caption": "Search — every product, as you type."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/04-catalogue-filtered.jpg",
-        "alt": "Catalogue filtered to L&T ball valves",
-        "caption": "Filters — category, brand and IBR; shareable link."
+        "src": "/projects/sk-trading-web/gallery/04-product-gate-valve.jpg",
+        "alt": "Gate valve product page",
+        "caption": "Product page — photos and the quote, call and WhatsApp buttons."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/05-product-page.jpg",
-        "alt": "Product page for an L&T three-piece SS316 ball valve with specifications",
-        "caption": "Product — specifications first."
+        "src": "/projects/sk-trading-web/gallery/05-contact-request-a-quote.jpg",
+        "alt": "Request a quote form with a sample enquiry",
+        "caption": "Request a quote — the product is already filled in."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/06-product-quote-form.jpg",
-        "alt": "Quote form on the product page, filled with a demo enquiry",
-        "caption": "Quote — the form already knows the product."
+        "src": "/projects/sk-trading-web/gallery/06-admin-dashboard.jpg",
+        "alt": "Admin dashboard with attention list, weekly numbers and a 14-day chart",
+        "caption": "Admin — one screen for the whole business."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/07-whatsapp-prefilled.jpg",
-        "alt": "WhatsApp message pre-filled with the product name (demo)",
-        "caption": "WhatsApp — the product name already typed."
+        "src": "/projects/sk-trading-web/gallery/07-admin-enquiry-sheet.jpg",
+        "alt": "An enquiry opened in the admin with status buttons and a reminder date",
+        "caption": "Enquiries — status, note and follow-up reminder."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/08-industry-selections.jpg",
-        "alt": "Industry sectors linked to the valve categories they need",
-        "caption": "Industries — the right valves for each sector."
+        "src": "/projects/sk-trading-web/gallery/08-admin-whatsapp-chat.jpg",
+        "alt": "WhatsApp chat with a sample customer in the admin",
+        "caption": "WhatsApp — chats next to products and enquiries."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/09-brands.jpg",
-        "alt": "Wall of stocked brands linked to the catalogue",
-        "caption": "Brands — 20 stocked brands linked to their products."
+        "src": "/projects/sk-trading-web/gallery/09-admin-campaign-new.jpg",
+        "alt": "New WhatsApp campaign form with tags and a message preview",
+        "caption": "Campaigns — the catalogue to the right contacts."
+      },
+      {
+        "type": "image",
+        "src": "/projects/sk-trading-web/gallery/10-admin-post-new.jpg",
+        "alt": "New social post filled in from the gate valve product",
+        "caption": "Social — a Facebook and Instagram post from any product."
       }
     ]
   },

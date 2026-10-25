@@ -3,32 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#090d17" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f3f3f3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#202020" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
 
-    <title>Hamza Khan — Software Engineer, Mumbai</title>
-    <meta name="description" content="Hamza Khan is a 2026 Computer Science graduate from Mumbai looking for an entry-level software engineering role. Projects in Python, Django, React and TypeScript." />
-    <meta name="keywords" content="Software Engineer, Hamza Khan, Mumbai, Python, Django, PostgreSQL, FastAPI, React, TypeScript, Next.js, Full-Stack Developer, Backend Developer" />
+    <!-- Theme before first paint: the saved choice, else the system setting.
+         Runs ahead of the stylesheet so a dark-mode visitor never sees a white
+         flash. The key matches next-themes' default ("theme"). -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved === "dark" || ((!saved || saved === "system") &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.add(dark ? "dark" : "light");
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>Hamza Khan — Full-Stack Software Engineer, Mumbai</title>
+    <meta name="description" content="Hamza Khan is a full-stack software engineer in Mumbai. Ten shipped projects — web apps, websites and desktop apps — built with Python, Django, FastAPI, PostgreSQL, React, Next.js and TypeScript." />
+    <meta name="keywords" content="Full-Stack Software Engineer, Software Engineer, Hamza Khan, Mumbai, Python, Django, PostgreSQL, FastAPI, React, TypeScript, Next.js, Full-Stack Developer, Backend Developer" />
     <meta name="author" content="Hamza Khan" />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Hamza Khan — Software Engineer" />
-    <meta property="og:description" content="2026 CS graduate from Mumbai, looking for an entry-level software engineering role. Projects in Python, Django, React and TypeScript." />
+    <meta property="og:title" content="Hamza Khan — Full-Stack Software Engineer" />
+    <meta property="og:description" content="Full-stack software engineer in Mumbai. Web apps, websites and desktop apps in Python, Django, React and TypeScript — each with a recorded walkthrough." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://portfolio-vert-six-26.vercel.app/brand/og-image.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Hamza Khan — Software Engineer" />
+    <meta property="og:image:alt" content="Hamza Khan — Full-Stack Software Engineer" />
     <meta property="og:url" content="https://portfolio-vert-six-26.vercel.app/" />
     <meta property="og:site_name" content="Hamza Khan" />
     <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hamza Khan — Software Engineer" />
-    <meta name="twitter:description" content="2026 CS graduate, looking for an entry-level software engineering role." />
+    <meta name="twitter:title" content="Hamza Khan — Full-Stack Software Engineer" />
+    <meta name="twitter:description" content="Full-stack software engineer in Mumbai. Web apps, websites and desktop apps, each shown running." />
     <meta name="twitter:image" content="https://portfolio-vert-six-26.vercel.app/brand/og-image.png" />
 
     <!-- Favicon -->
@@ -37,13 +53,9 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png">
 
-    <!-- LCP: the hero portrait. Preloaded so it is not discovered late. -->
-    <link rel="preload" as="image" href="/photos/portrait.webp" fetchpriority="high" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- LCP: the first project's frame in the hero window. Preloaded so it
+         is not discovered late. Text uses the system UI face — no web fonts. -->
+    <link rel="preload" as="image" href="/projects/novem/poster.jpg" fetchpriority="high" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://portfolio-vert-six-26.vercel.app/" />
@@ -56,7 +68,7 @@
       "name": "Hamza Khan",
       "url": "https://portfolio-vert-six-26.vercel.app/",
       "image": "https://portfolio-vert-six-26.vercel.app/photos/avatar.webp",
-      "jobTitle": "Software Engineer",
+      "jobTitle": "Full-Stack Software Engineer",
       "alumniOf": [
         { "@type": "CollegeOrUniversity", "name": "Saraswati College of Engineering (University of Mumbai)" },
         { "@type": "EducationalOrganization", "name": "Anjuman-I-Islam’s A. R. Kalsekar Polytechnic (MSBTE)" }

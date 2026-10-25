@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { Fact, PageHeader, Section } from "@/components/primitives";
 import { contact, profile } from "@/data/site";
-import { cn } from "@/lib/utils";
 import { usePageTitle } from "@/lib/page-title";
 
 /**
@@ -61,34 +60,35 @@ function CopyRow({
   };
 
   return (
-    <div className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
-        <Icon className="h-4 w-4" />
-      </span>
+    <div className="flex items-center gap-4 px-4 py-2.5">
+      <Icon aria-hidden className="h-5 w-5 shrink-0 text-foreground" strokeWidth={1.5} />
       <div className="min-w-0 flex-1">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
-          {label}
-        </p>
+        <p className="t-caption">{label}</p>
         {href ? (
           <a
             href={href}
             target={external ? "_blank" : undefined}
             rel={external ? "noreferrer" : undefined}
-            className="block truncate text-[16px] text-foreground no-underline hover:text-primary"
+            className="block truncate text-[14.5px] text-foreground no-underline hover:text-primary"
           >
             {value}
           </a>
         ) : (
-          <p className="truncate text-[16px] text-foreground">{value}</p>
+          <p className="truncate text-[14.5px] text-foreground">{value}</p>
         )}
       </div>
       <button
         type="button"
         onClick={copy}
         aria-label={`Copy ${label}`}
-        className="shrink-0 rounded-full p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+        title={copied ? "Copied" : "Copy"}
+        className="btn-icon text-muted-foreground hover:text-foreground"
       >
-        {copied ? <Check className="h-4 w-4 text-ok" /> : <Copy className="h-4 w-4" />}
+        {copied ? (
+          <Check className="h-4 w-4 text-ok" />
+        ) : (
+          <Copy className="h-4 w-4" strokeWidth={1.5} />
+        )}
       </button>
     </div>
   );
@@ -132,7 +132,7 @@ export default function Contact() {
       }
     } catch (error) {
       console.error("EmailJS error:", error);
-      toast.error("Could not send", {
+      toast.error("Message not sent", {
         description: `Email ${contact.email} directly and it will reach me.`,
       });
     } finally {
@@ -142,23 +142,32 @@ export default function Contact() {
 
   const { errors } = form.formState;
 
-  const fieldClass = (hasError: boolean) =>
-    cn("field-input", hasError && "border-err focus:border-err focus-visible:ring-err/30");
+  /** The accessibility wiring every TextBox needs for its validation message. */
+  const describe = (id: keyof FormValues) => ({
+    "aria-invalid": Boolean(errors[id]),
+    "aria-describedby": errors[id] ? `${id}-error` : undefined,
+  });
+
+  const errorFor = (id: keyof FormValues) =>
+    errors[id] && (
+      <p id={`${id}-error`} className="mt-1.5 text-[13px] text-err">
+        {errors[id]?.message}
+      </p>
+    );
 
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Let's talk"
-        lead="Have a role in mind or just want to connect? Send me a message and I will get back to you, usually within a day."
+        title="Contact"
+        lead="Have a role in mind, or want to talk about a project? Send a message and I will get back to you, usually within a day."
       />
 
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-          <div className="card p-6 sm:p-10">
-            <h2 className="heading-sub">Send a message</h2>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 space-y-6" noValidate>
-              <div className="grid gap-6 sm:grid-cols-2">
+      <Section className="pt-8 sm:pt-10">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-8">
+          <div className="card p-5 sm:p-8">
+            <h2 className="t-subtitle">Send a message</h2>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-5" noValidate>
+              <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="field-label">
                     Your name
@@ -167,13 +176,11 @@ export default function Contact() {
                     id="name"
                     placeholder="Jane Smith"
                     autoComplete="name"
-                    aria-invalid={Boolean(errors.name)}
-                    className={fieldClass(Boolean(errors.name))}
+                    className="field-input"
+                    {...describe("name")}
                     {...form.register("name")}
                   />
-                  {errors.name && (
-                    <p className="mt-2 text-[13.5px] text-err">{errors.name.message}</p>
-                  )}
+                  {errorFor("name")}
                 </div>
                 <div>
                   <label htmlFor="email" className="field-label">
@@ -184,13 +191,11 @@ export default function Contact() {
                     type="email"
                     placeholder="you@company.com"
                     autoComplete="email"
-                    aria-invalid={Boolean(errors.email)}
-                    className={fieldClass(Boolean(errors.email))}
+                    className="field-input"
+                    {...describe("email")}
                     {...form.register("email")}
                   />
-                  {errors.email && (
-                    <p className="mt-2 text-[13.5px] text-err">{errors.email.message}</p>
-                  )}
+                  {errorFor("email")}
                 </div>
               </div>
 
@@ -200,14 +205,12 @@ export default function Contact() {
                 </label>
                 <input
                   id="subject"
-                  placeholder="A role at …"
-                  aria-invalid={Boolean(errors.subject)}
-                  className={fieldClass(Boolean(errors.subject))}
+                  placeholder="A full-stack role at …"
+                  className="field-input"
+                  {...describe("subject")}
                   {...form.register("subject")}
                 />
-                {errors.subject && (
-                  <p className="mt-2 text-[13.5px] text-err">{errors.subject.message}</p>
-                )}
+                {errorFor("subject")}
               </div>
 
               <div>
@@ -218,57 +221,57 @@ export default function Contact() {
                   id="message"
                   rows={7}
                   placeholder="Tell me a little about the role or what you would like to discuss."
-                  aria-invalid={Boolean(errors.message)}
-                  className={cn(fieldClass(Boolean(errors.message)), "resize-y")}
+                  className="field-input resize-y"
+                  {...describe("message")}
                   {...form.register("message")}
                 />
-                {errors.message && (
-                  <p className="mt-2 text-[13.5px] text-err">{errors.message.message}</p>
-                )}
+                {errorFor("message")}
               </div>
 
-              <button type="submit" disabled={sending} className="btn-primary w-full disabled:opacity-60 sm:w-auto">
-                {sending ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Sending…
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-4 w-4" />
-                    Send message
-                  </>
-                )}
-              </button>
-              <p className="text-[13.5px] text-muted-foreground">
-                Sent straight to my inbox. If you would rather not use a form,{" "}
-                <a href={`mailto:${contact.email}`} className="font-medium text-primary">
-                  {contact.email}
-                </a>{" "}
-                reaches the same place.
-              </p>
+              <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:gap-4">
+                <button type="submit" disabled={sending} className="btn-accent btn-lg">
+                  {sending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" strokeWidth={1.75} />
+                      Send message
+                    </>
+                  )}
+                </button>
+                <p className="text-[13px] leading-5 text-muted-foreground">
+                  Goes straight to my inbox. Prefer email?{" "}
+                  <a href={`mailto:${contact.email}`} className="text-primary">
+                    {contact.email}
+                  </a>
+                </p>
+              </div>
             </form>
           </div>
 
-          <aside className="space-y-6">
-            <div className="card p-6 sm:p-8">
-              <div className="flex items-center gap-4">
+          <aside className="space-y-3">
+            <div className="card overflow-hidden">
+              <div className="flex items-center gap-4 p-5">
                 <img
                   src="/photos/avatar.webp"
-                  alt={profile.name}
+                  alt=""
                   width={56}
                   height={56}
                   loading="lazy"
-                  className="h-14 w-14 rounded-full object-cover ring-1 ring-border"
+                  className="h-14 w-14 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-[17px] font-semibold text-foreground">{profile.name}</p>
-                  <p className="text-[14.5px] text-muted-foreground">
-                    Reads every message himself · replies {contact.responseTime}
+                  <p className="t-body-strong">{profile.name}</p>
+                  <p className="text-[13.5px] text-muted-foreground">{profile.role}</p>
+                  <p className="text-[13.5px] text-muted-foreground">
+                    Replies {contact.responseTime}
                   </p>
                 </div>
               </div>
-              <div className="mt-6 divide-y divide-border border-t border-border pt-2">
+              <div className="divide-y divide-divider border-t border-divider">
                 <CopyRow
                   icon={Mail}
                   label="Email"
@@ -297,20 +300,21 @@ export default function Contact() {
                 />
                 <CopyRow icon={MapPin} label="Based in" value={contact.basedIn} />
               </div>
-              <a href={profile.vcard} download className="btn-secondary mt-6 w-full">
-                <ContactCard className="h-4 w-4" />
-                Save my contact card
-              </a>
+              <div className="border-t border-divider p-4">
+                <a href={profile.vcard} download className="btn-standard w-full">
+                  <ContactCard className="h-4 w-4" strokeWidth={1.5} />
+                  Save my contact card
+                </a>
+              </div>
             </div>
 
-            <div className="card p-6 sm:p-8">
-              <dl className="divide-y divide-border">
+            <div className="card p-5">
+              <dl className="divide-y divide-divider">
                 <Fact label="Looking for">
-                  Entry-level, full-time software engineering roles — backend,
-                  full-stack or frontend.
+                  Full-time full-stack software engineering roles: backend, frontend or both.
                 </Fact>
                 <Fact label="Open to">{profile.openTo.join(", ")}</Fact>
-                <Fact label="Response time">Usually within a day.</Fact>
+                <Fact label="Response time">Usually within a day</Fact>
               </dl>
             </div>
           </aside>

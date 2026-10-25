@@ -2,6 +2,12 @@
  * Imports the project showcase library into the site.
  *
  *   node scripts/import-showcase.mjs [path-to-showcase-library]
+ *   node scripts/import-showcase.mjs <path-to-one-project-folder>
+ *
+ * Given a whole library, every project is re-imported and public/projects/ is
+ * rebuilt from scratch. Given a single project folder (one that holds a
+ * project.json itself), only that project is refreshed: its media folder is
+ * replaced and its entry in projects.json is swapped in place.
  *
  * For every project folder that has a project.json, this:
  *   - copies media/website (poster, preview, walkthrough, gallery) and the
@@ -102,23 +108,47 @@ function copy(from, to) {
 }
 
 let ffmpeg = true;
-function grabFrame(video, image) {
+function runFfmpeg(args) {
   if (!ffmpeg) return false;
   try {
-    execFileSync(
-      "ffmpeg",
-      ["-y", "-loglevel", "error", "-ss", "1.5", "-i", video,
-       "-frames:v", "1", "-vf", "scale=1280:-2", "-q:v", "4", image],
-      { stdio: "pipe" },
-    );
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], {
+      stdio: "pipe",
+    });
     return true;
   } catch (error) {
     if (error.code === "ENOENT") {
       ffmpeg = false;
-      console.warn("  ffmpeg not found — feature clips will have no poster");
+      console.warn("  ffmpeg not found — clips get no poster, videos stay as they are");
     }
     return false;
   }
+}
+
+/** A still from 1.5 s in, at most 1280 px on its long side (phone clips stay upright). */
+const grabFrame = (video, image) =>
+  runFfmpeg([
+    "-ss", "1.5", "-i", video, "-frames:v", "1",
+    "-vf", "scale=1280:1280:force_original_aspect_ratio=decrease:force_divisible_by=2",
+    "-q:v", "4", image,
+  ]);
+
+/**
+ * Walkthroughs are streamed from the site's own hosting, so they are kept near
+ * the size of the others (~12 MB). Anything over the budget is re-encoded at
+ * the same resolution with a capped bitrate; captions are burned in, so the
+ * resolution is left alone.
+ */
+const WALKTHROUGH_BUDGET = 20 * 1024 * 1024;
+function fitWalkthrough(file) {
+  if (fs.statSync(file).size <= WALKTHROUGH_BUDGET) return;
+  const tmp = `${file}.tmp.mp4`;
+  const ok = runFfmpeg([
+    "-i", file, "-an", "-c:v", "libx264", "-preset", "slow", "-crf", "28",
+    "-maxrate", "650k", "-bufsize", "1300k", "-pix_fmt", "yuv420p",
+    "-movflags", "+faststart", tmp,
+  ]);
+  if (ok) fs.renameSync(tmp, file);
+  else fs.rmSync(tmp, { force: true });
 }
 
 function importProject(folder) {
@@ -129,11 +159,12 @@ function importProject(folder) {
   const out = path.join(publicDir, slug);
   const url = (rel) => `/projects/${slug}/${rel}`;
 
-  // Website media keeps its layout: media/website/x -> /projects/<slug>/x
+  // Website media keeps its layout: [media/]website/x -> /projects/<slug>/x
   const site = (rel) => {
+    if (!rel) return undefined;
     const from = path.join(folder, rel);
     if (!fs.existsSync(from)) return undefined;
-    const target = rel.replace(/^media\/website\//, "");
+    const target = rel.replace(/^(media\/)?website\//, "");
     copy(from, path.join(out, target));
     return url(target);
   };
@@ -170,6 +201,9 @@ function importProject(folder) {
     })
     .filter((feature) => feature.title && feature.benefit);
 
+  const walkthrough = json.video?.src ? site(json.video.src) : undefined;
+  if (walkthrough) fitWalkthrough(path.join(out, walkthrough.replace(`/projects/${slug}/`, "")));
+
   const year = /^\d{4}$/.test(json.year ?? "") ? json.year : undefined;
   const liveUrl = clean(json.liveUrl);
   const description = Array.isArray(json.description)
@@ -198,7 +232,7 @@ function importProject(folder) {
     previewVideo: site(json.previewVideo),
     video: json.video?.src
       ? {
-          src: site(json.video.src),
+          src: walkthrough,
           poster: site(json.video.poster ?? json.poster),
           duration: json.video.duration,
         }
@@ -212,19 +246,37 @@ if (!fs.existsSync(library)) {
   process.exit(1);
 }
 
-fs.rmSync(publicDir, { recursive: true, force: true });
+const report = (project) =>
+  console.log(
+    `  ${project.slug.padEnd(22)} ${project.gallery.length} screenshots · ${
+      project.features.filter((f) => f.video).length
+    } clips`,
+  );
 
-const projects = findProjects(library)
-  .map((folder) => {
+let projects;
+if (fs.existsSync(path.join(library, "project.json"))) {
+  // One project: refresh its folder and its entry, leave the rest alone.
+  const { slug } = JSON.parse(
+    fs.readFileSync(path.join(library, "project.json"), "utf8"),
+  );
+  fs.rmSync(path.join(publicDir, slug), { recursive: true, force: true });
+  const project = importProject(library);
+  report(project);
+  const existing = fs.existsSync(dataFile)
+    ? JSON.parse(fs.readFileSync(dataFile, "utf8"))
+    : [];
+  projects = [...existing.filter((item) => item.slug !== slug), project];
+} else {
+  fs.rmSync(publicDir, { recursive: true, force: true });
+  projects = findProjects(library).map((folder) => {
     const project = importProject(folder);
-    console.log(
-      `  ${project.slug.padEnd(22)} ${project.gallery.length} screenshots · ${
-        project.features.filter((f) => f.video).length
-      } clips`,
-    );
+    report(project);
     return project;
-  })
-  .sort((a, b) => a.slug.localeCompare(b.slug));
+  });
+}
 
-fs.writeFileSync(dataFile, `${JSON.stringify(projects, null, 2)}\n`);
-console.log(`\n${projects.length} projects → ${path.relative(root, dataFile)}`);
+projects.sort((a, b) => a.slug.localeCompare(b.slug));
+fs.writeFileSync(dataFile, `${JSON.stringify(projects, null, 2)}
+`);
+console.log(`
+${projects.length} projects → ${path.relative(root, dataFile)}`);

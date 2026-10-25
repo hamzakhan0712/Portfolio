@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ExternalLink,
-  Maximize2,
-  Play,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Maximize2, Play } from "lucide-react";
 import {
   CheckList,
   ChipList,
@@ -15,6 +9,7 @@ import {
   PageHeader,
   Section,
 } from "@/components/primitives";
+import { AppWindow } from "@/components/app-window";
 import ArchitectureOverview from "@/components/architecture-overview";
 import InViewVideo from "@/components/in-view-video";
 import MediaLightbox from "@/components/media-lightbox";
@@ -27,7 +22,8 @@ import { usePageTitle } from "@/lib/page-title";
  *
  * Every project page has the same sections: walkthrough, overview, the
  * problem and what was built, key features, features in action, screenshots
- * and architecture. Sections without content are left out.
+ * and architecture. Sections without content are left out, and so are their
+ * entries in the "On this page" list.
  */
 export default function ProjectPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -37,201 +33,226 @@ export default function ProjectPage() {
 
   const [lightbox, setLightbox] = useState({ open: false, index: 0 });
 
-  const screenshots = project?.gallery ?? [];
-
   if (!project) {
     return (
       <>
         <PageHeader
-          eyebrow="Projects"
+          breadcrumb={[{ label: "Projects", to: "/projects" }, { label: "Not found" }]}
           title="No such project"
           lead="The link may be out of date."
         />
         <Section>
-          <p className="prose-plain">
-            All projects are listed under{" "}
-            <Link to="/projects">Projects</Link>.
-          </p>
+          <Link to="/projects" className="btn-standard">
+            <ChevronLeft className="h-4 w-4" />
+            All projects
+          </Link>
         </Section>
       </>
     );
   }
 
   const { name } = project;
+  const screenshots = project.gallery;
   const clips = project.features.filter((feature) => feature.video);
 
   const index = projects.findIndex((item) => item.slug === project.slug);
   const previous = index > 0 ? projects[index - 1] : null;
   const next = index < projects.length - 1 ? projects[index + 1] : null;
 
+  const contents = [
+    { id: "overview", label: "Overview", show: true },
+    { id: "features", label: "Key features", show: project.highlights.length > 0 },
+    { id: "in-action", label: "Features in action", show: clips.length > 0 },
+    { id: "screenshots", label: "Screenshots", show: screenshots.length > 0 },
+    { id: "architecture", label: "Architecture", show: Boolean(project.architecture) },
+  ].filter((item) => item.show);
+
   return (
     <>
       <PageHeader
-        eyebrow="Project"
+        breadcrumb={[{ label: "Projects", to: "/projects" }, { label: name }]}
         title={name}
         lead={project.headline ?? project.summary}
         meta={
           <>
-            <span className="chip-accent">{project.kind}</span>
-            {project.year && <span className="chip">{project.year}</span>}
+            <span className="tag-accent">{project.kind}</span>
+            {project.year && <span className="tag">{project.year}</span>}
             {project.video?.duration && (
-              <span className="chip">
+              <span className="tag">
                 <Play className="h-3 w-3 fill-current" />
                 {project.video.duration} walkthrough
               </span>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="link-button ml-1 text-[13.5px]"
+              >
+                Visit the live site
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             )}
           </>
         }
       />
 
-      <Section>
-        {/* Hero media. The poster pairs with the card thumbnail in the view
-            transition, so the image the visitor clicked grows into this. */}
-        {project.video?.src ? (
-          <figure>
-            <video
-              controls
-              preload="none"
-              poster={project.video.poster ?? project.poster}
-              src={project.video.src}
-              style={{ viewTransitionName: mediaTransitionName(project.slug) }}
-              className="w-full rounded-2xl border border-border bg-black"
-            />
-            <figcaption className="mt-3 text-[14.5px] text-muted-foreground">
-              Video walkthrough of the project.
-            </figcaption>
-          </figure>
-        ) : project.poster ? (
-          <img
-            src={project.poster}
-            alt={`${name} screenshot`}
-            style={{ viewTransitionName: mediaTransitionName(project.slug) }}
-            className="w-full rounded-2xl border border-border object-cover"
-          />
-        ) : null}
-
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
-          <div className="min-w-0">
-            <h2 className="heading-section">Overview</h2>
-            <div className="prose-plain mt-6">
-              {project.description.map((text, i) => (
-                <p key={i}>{text}</p>
-              ))}
-            </div>
-
-            {project.challenge && project.solution && (
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                <div className="card p-6">
-                  <h3 className="text-[16px] font-semibold text-foreground">
-                    The problem
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                    {project.challenge}
-                  </p>
-                </div>
-                <div className="card p-6">
-                  <h3 className="text-[16px] font-semibold text-foreground">
-                    What I built
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                    {project.solution}
-                  </p>
-                </div>
-              </div>
+      <Section className="pt-8 sm:pt-10">
+        {/* Hero media, in a window. The poster pairs with the card thumbnail
+            in the view transition, so the image clicked grows into this. */}
+        {(project.video?.src || project.poster) && (
+          <AppWindow title={`${name} - walkthrough`}>
+            {project.video?.src ? (
+              <video
+                controls
+                preload="none"
+                poster={project.video.poster ?? project.poster}
+                src={project.video.src}
+                aria-label={`Video walkthrough of ${name}`}
+                style={{ viewTransitionName: mediaTransitionName(project.slug) }}
+                className="block aspect-video w-full bg-black"
+              />
+            ) : (
+              <img
+                src={project.poster}
+                alt={`${name} screenshot`}
+                style={{ viewTransitionName: mediaTransitionName(project.slug) }}
+                className="block w-full object-cover"
+              />
             )}
+          </AppWindow>
+        )}
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-12">
+          <div className="min-w-0 space-y-14">
+            <section id="overview">
+              <h2 className="t-title">Overview</h2>
+              <div className="prose-plain mt-4">
+                {project.description.map((text, i) => (
+                  <p key={i}>{text}</p>
+                ))}
+              </div>
+
+              {project.challenge && project.solution && (
+                <div className="mt-8 grid gap-3 md:grid-cols-2">
+                  <div className="card p-5">
+                    <h3 className="t-body-strong">The problem</h3>
+                    <p className="mt-2 text-[14.5px] leading-6 text-muted-foreground">
+                      {project.challenge}
+                    </p>
+                  </div>
+                  <div className="card p-5">
+                    <h3 className="t-body-strong">What I built</h3>
+                    <p className="mt-2 text-[14.5px] leading-6 text-muted-foreground">
+                      {project.solution}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </section>
 
             {project.highlights.length > 0 && (
-              <>
-                <h2 className="heading-section mt-16">Key features</h2>
-                <CheckList items={project.highlights} className="mt-6" />
-              </>
+              <section id="features">
+                <h2 className="t-title">Key features</h2>
+                <CheckList items={project.highlights} columns={2} className="mt-5" />
+              </section>
             )}
 
             {clips.length > 0 && (
-              <>
-                <h2 className="heading-section mt-16">Features in action</h2>
-                <p className="lead mt-3 text-[17px]">
-                  Short clips of the app doing the work.
+              <section id="in-action">
+                <h2 className="t-title">Features in action</h2>
+                <p className="mt-2 text-[15px] text-muted-foreground">
+                  Short clips of the software doing the work. Each plays while it is on screen.
                 </p>
-                <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+                <ul className="mt-5 grid gap-3 md:grid-cols-2">
                   {clips.map((feature) => (
                     <li key={feature.video} className="card overflow-hidden">
                       <InViewVideo
                         src={feature.video ?? null}
                         poster={feature.poster ?? project.poster ?? ""}
                         alt={feature.title}
-                        className="aspect-video w-full border-b border-border"
+                        className="aspect-video w-full border-b"
                       />
-                      <div className="p-5">
-                        <h3 className="text-[16px] font-semibold leading-snug text-foreground">
-                          {feature.title}
-                        </h3>
-                        <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">
+                      <div className="p-4">
+                        <h3 className="t-body-strong">{feature.title}</h3>
+                        <p className="mt-1 text-[14px] leading-6 text-muted-foreground">
                           {feature.benefit}
                         </p>
                       </div>
                     </li>
                   ))}
                 </ul>
-              </>
+              </section>
             )}
 
             {screenshots.length > 0 && (
-              <>
-                <h2 className="heading-section mt-16">Screenshots</h2>
-                <p className="lead mt-3 text-[17px]">
-                  Select any screenshot to open it full size.
+              <section id="screenshots">
+                <h2 className="t-title">Screenshots</h2>
+                <p className="mt-2 text-[15px] text-muted-foreground">
+                  Select a screenshot to open it full size.
                 </p>
-                <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {screenshots.map((item, i) => (
                     <li key={item.src}>
                       <button
                         type="button"
                         onClick={() => setLightbox({ open: true, index: i })}
-                        aria-label={item.alt || `Screenshot ${i + 1}`}
-                        className="group relative block w-full overflow-hidden rounded-xl border border-border transition-colors hover:border-primary/50"
+                        aria-label={`Open screenshot: ${item.alt || i + 1}`}
+                        className="group relative block w-full overflow-hidden rounded-lg border bg-surface"
                       >
                         <img
                           src={item.src}
                           alt={item.alt ?? ""}
                           loading="lazy"
-                          className="aspect-[4/3] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                          className="aspect-[16/10] w-full object-cover object-top"
                         />
-                        <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
-                          <Maximize2 className="h-5 w-5 text-white" />
+                        <span className="acrylic absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded border opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                          <Maximize2 className="h-3.5 w-3.5 text-foreground" />
                         </span>
                       </button>
                     </li>
                   ))}
                 </ul>
-              </>
+              </section>
             )}
 
             {project.architecture && (
-              <>
-                <h2 className="heading-section mt-16">Architecture</h2>
-                <div className="mt-6">
+              <section id="architecture">
+                <h2 className="t-title">Architecture</h2>
+                <div className="mt-5">
                   <ArchitectureOverview architecture={project.architecture} />
                 </div>
-              </>
+              </section>
             )}
           </div>
 
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <div className="card p-6">
-              <dl className="divide-y divide-border">
+          <aside className="space-y-3 lg:sticky lg:top-20 lg:self-start">
+            <nav aria-label="On this page" className="card hidden p-2 lg:block">
+              <p className="px-3 pb-1 pt-2 t-caption">On this page</p>
+              <ul>
+                {contents.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      className="block rounded px-3 py-1.5 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="card p-5">
+              <dl className="divide-y divide-divider">
                 <Fact label="Type">{project.kind}</Fact>
-                {project.platform && (
-                  <Fact label="Platform">{project.platform}</Fact>
-                )}
-                {project.industry && (
-                  <Fact label="Industry">{project.industry}</Fact>
-                )}
-                {project.year && <Fact label="Year">{project.year}</Fact>}
+                {project.platform && <Fact label="Platform">{project.platform}</Fact>}
+                {project.industry && <Fact label="Industry">{project.industry}</Fact>}
                 {project.role && <Fact label="My role">{project.role}</Fact>}
                 {project.audience.length > 0 && (
                   <Fact label="Built for">
-                    <ul className="mt-1 space-y-1">
+                    <ul className="space-y-0.5">
                       {project.audience.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
@@ -247,7 +268,7 @@ export default function ProjectPage() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 font-medium text-primary no-underline hover:underline"
+                      className="inline-flex items-center gap-1.5 text-primary no-underline hover:underline"
                     >
                       {new URL(project.liveUrl).hostname.replace(/^www\./, "")}
                       <ExternalLink className="h-3.5 w-3.5" />
@@ -256,49 +277,37 @@ export default function ProjectPage() {
                 )}
               </dl>
             </div>
-
           </aside>
         </div>
       </Section>
 
       {/* Previous / next, so the work can be read straight through. */}
-      <Section tight tone="surface" className="border-t border-border">
-        <nav
-          aria-label="Other projects"
-          className="grid gap-4 sm:grid-cols-2"
-        >
+      <Section tight>
+        <nav aria-label="Other projects" className="grid gap-2 sm:grid-cols-2">
           {previous ? (
             <Link
               to={`/projects/${previous.slug}`}
-              className="card card-hover group flex items-center gap-4 p-4 no-underline"
+              className="card card-interactive flex items-center gap-4 px-4 py-3 no-underline"
             >
-              <ArrowLeft className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-x-0.5" />
+              <ChevronLeft className="h-4 w-4 shrink-0 text-muted-foreground" />
               <span className="min-w-0">
-                <span className="block text-[12.5px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                  Previous
-                </span>
-                <span className="block truncate text-[16px] font-semibold text-foreground">
-                  {previous.name}
-                </span>
+                <span className="block t-caption">Previous</span>
+                <span className="block truncate text-[15px] text-foreground">{previous.name}</span>
               </span>
             </Link>
           ) : (
-            <span />
+            <span className="hidden sm:block" />
           )}
           {next && (
             <Link
               to={`/projects/${next.slug}`}
-              className="card card-hover group flex items-center justify-end gap-4 p-4 text-right no-underline"
+              className="card card-interactive flex items-center justify-end gap-4 px-4 py-3 text-right no-underline"
             >
               <span className="min-w-0">
-                <span className="block text-[12.5px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                  Next
-                </span>
-                <span className="block truncate text-[16px] font-semibold text-foreground">
-                  {next.name}
-                </span>
+                <span className="block t-caption">Next</span>
+                <span className="block truncate text-[15px] text-foreground">{next.name}</span>
               </span>
-              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
             </Link>
           )}
         </nav>

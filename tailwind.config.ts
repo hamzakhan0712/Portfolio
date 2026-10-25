@@ -1,88 +1,97 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
+/** A colour token from index.css, as an HSL triplet Tailwind can add opacity to. */
+const token = (name: string) => `hsl(var(--${name}))`;
+
+/* Segoe UI Variable is the Windows 11 system face; elsewhere the platform's own
+   UI font stands in, the way Fluent's web components fall back. */
+const systemUi = [
+  "-apple-system",
+  "BlinkMacSystemFont",
+  "Roboto",
+  "Helvetica Neue",
+  "sans-serif",
+];
+
 export default {
+  darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", ...systemUi],
+        display: ["Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", ...systemUi],
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        surface: "hsl(var(--surface))",
+        border: token("border"),
+        divider: token("divider"),
+        input: token("input"),
+        ring: token("ring"),
+        background: token("background"),
+        foreground: token("foreground"),
+        surface: token("surface"),
+        sky: token("sky"),
+        control: {
+          DEFAULT: token("control"),
+          hover: token("control-hover"),
+          pressed: token("control-pressed"),
+        },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: token("primary"),
+          foreground: token("primary-foreground"),
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: token("secondary"),
+          solid: token("secondary-solid"),
+          foreground: token("secondary-foreground"),
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: token("destructive"),
+          foreground: token("destructive-foreground"),
         },
-        /* Semantic status — reach for these only when the thing being
-           coloured genuinely has a state. */
-        ok: {
-          DEFAULT: "hsl(var(--ok))",
-          foreground: "hsl(var(--ok-foreground))",
-        },
-        warn: {
-          DEFAULT: "hsl(var(--warn))",
-          foreground: "hsl(var(--warn-foreground))",
-        },
-        err: {
-          DEFAULT: "hsl(var(--err))",
-          foreground: "hsl(var(--err-foreground))",
-        },
+        /* Semantic status — only for things that genuinely have a state. */
+        ok: { DEFAULT: token("ok"), foreground: token("ok-foreground") },
+        warn: { DEFAULT: token("warn"), foreground: token("warn-foreground") },
+        err: { DEFAULT: token("err"), foreground: token("err-foreground") },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: token("muted"),
+          foreground: token("muted-foreground"),
         },
+        "tertiary-foreground": token("tertiary-foreground"),
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: token("accent"),
+          foreground: token("accent-foreground"),
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: token("popover"),
+          foreground: token("popover-foreground"),
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: token("card"),
+          hover: token("card-hover"),
+          pressed: token("card-pressed"),
+          foreground: token("card-foreground"),
         },
       },
+      /* Fluent's two radii: 4 px on controls, 8 px on surfaces and windows. */
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        DEFAULT: "4px",
+        sm: "2px",
+        md: "4px",
+        lg: "8px",
+        xl: "12px",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+      /* Fluent elevation: cards rest flat; flyouts and windows float. */
+      boxShadow: {
+        flyout: "0 8px 16px rgb(0 0 0 / 0.14), 0 0 2px rgb(0 0 0 / 0.12)",
+        window:
+          "0 32px 64px rgb(0 0 0 / 0.20), 0 2px 21px rgb(0 0 0 / 0.16)",
+        tooltip: "0 4px 8px rgb(0 0 0 / 0.14)",
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      transitionTimingFunction: {
+        /* Windows' "decelerate" curve, used for things arriving on screen. */
+        fluent: "cubic-bezier(0, 0, 0, 1)",
       },
     },
   },
