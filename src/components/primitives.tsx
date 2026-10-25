@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, ChevronRight, FileText, type LucideIcon } from "lucide-react";
+import { Reveal } from "@/components/reveal";
 import { profile } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -11,21 +12,27 @@ import { cn } from "@/lib/utils";
  * same type — without each page re-deciding it.
  */
 
-/** A vertical band of the page. Bands are separated by space, never by lines. */
+/**
+ * A vertical band of the page. Bands are separated by space, never by lines.
+ * Its content rises into view as it is scrolled to; pass `reveal={false}`
+ * when the content animates its own parts (a staggered grid, say).
+ */
 export function Section({
   children,
   tight = false,
+  reveal = true,
   className,
   id,
 }: {
   children: ReactNode;
   tight?: boolean;
+  reveal?: boolean;
   className?: string;
   id?: string;
 }) {
   return (
     <section id={id} className={cn(tight ? "py-10 sm:py-14" : "py-16 sm:py-24", className)}>
-      <div className="container-site">{children}</div>
+      <div className="container-site">{reveal ? <Reveal>{children}</Reveal> : children}</div>
     </section>
   );
 }
@@ -255,7 +262,7 @@ export function Pivot<T extends string>({
       role="radiogroup"
       aria-label={label}
       className={cn(
-        "inline-flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-secondary p-1",
+        "no-scrollbar inline-flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-secondary p-1",
         className,
       )}
     >

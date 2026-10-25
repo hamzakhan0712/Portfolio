@@ -18,7 +18,7 @@ how to get in touch.
 | Project | `/projects/:slug` | Walkthrough, overview, problem and solution, key features, feature clips, screenshots, tech stack, architecture |
 | About | `/about` | Short bio and quick facts |
 | Education | `/education` | Education, newest first |
-| Skills | `/skills` | Languages, frameworks and tools by category |
+| Skills | `/skills` | Core stack ranked by use, every tool by area with the projects that use it, search and filter |
 | Awards | `/recognition` | Competitions and certifications, with certificate scans and verify links |
 | Contact | `/contact` | Message form (EmailJS), direct details, downloadable contact card |
 
@@ -49,7 +49,11 @@ diagrams live in `src/data/projects.ts`.
 Everything else lives in `src/data/`:
 
 - `experience.ts` — education
-- `skills.ts` — the tool list, by category
+- `skills.ts` — the tools, by area. Each tool names the project tags that
+  count as using it; the projects (and the ranked "core stack") are worked out
+  from `projects.json`, and `npm run smoke` fails if a tool has no project
+  behind it. Logos not in `public/icons` come from Simple Icons via
+  `node scripts/brand-icons.mjs <simple-icons package>`
 - `recognition.ts` — awards and certifications
 - `site.ts` — name, role, contact details, headline numbers, navigation, strengths
 

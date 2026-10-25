@@ -22,6 +22,7 @@ import {
   SettingsCard,
 } from "@/components/primitives";
 import { ProjectCard } from "@/components/project-card";
+import { Reveal, RevealItem, RevealList } from "@/components/reveal";
 import { ProjectShowcase } from "@/components/app-window";
 import { metrics, profile, strengths } from "@/data/site";
 import { projects } from "@/data/projects";
@@ -132,45 +133,49 @@ export default function Home() {
       </Section>
 
       {/* ── Projects: one spotlight, then the rest ────────────────────── */}
-      <Section>
-        <SectionHeading
-          title="Selected projects"
-          lead="Web applications, websites and desktop apps. Each one has screenshots, short clips and a full video walkthrough."
-          action={{ to: "/projects", label: `All ${projects.length} projects` }}
-        />
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+      <Section reveal={false}>
+        <Reveal>
+          <SectionHeading
+            title="Selected projects"
+            lead="Web applications, websites and desktop apps. Each one has screenshots, short clips and a full video walkthrough."
+            action={{ to: "/projects", label: `All ${projects.length} projects` }}
+          />
+        </Reveal>
+        <RevealList className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {spotlight && (
-            <li className="sm:col-span-2 lg:col-span-3">
+            <RevealItem className="sm:col-span-2 lg:col-span-3">
               <ProjectCard project={spotlight} spotlight />
-            </li>
+            </RevealItem>
           )}
           {rest.map((project) => (
-            <li key={project.slug}>
+            <RevealItem key={project.slug}>
               <ProjectCard project={project} />
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealList>
       </Section>
 
       {/* ── What I work on ───────────────────────────────────────────── */}
-      <Section className="pt-0 sm:pt-0">
-        <SectionHeading
-          title="What I work on"
-          lead="Across the stack, from the schema to the screen to the server it runs on."
-          action={{ to: "/skills", label: "All skills" }}
-        />
-        <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:gap-5">
+      <Section reveal={false} className="pt-0 sm:pt-0">
+        <Reveal>
+          <SectionHeading
+            title="What I work on"
+            lead="Across the stack, from the schema to the screen to the server it runs on."
+            action={{ to: "/skills", label: "All skills" }}
+          />
+        </Reveal>
+        <RevealList className="mt-10 grid gap-4 md:grid-cols-2 lg:gap-5">
           {strengths.map((item) => (
-            <li key={item.id}>
+            <RevealItem key={item.id}>
               <SettingsCard
                 icon={STRENGTH_ICONS[item.id]}
                 title={item.title}
                 description={item.body}
                 className="h-full"
               />
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealList>
       </Section>
 
       {/* ── About teaser ─────────────────────────────────────────────── */}

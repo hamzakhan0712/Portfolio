@@ -24,6 +24,7 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
 import { projects } from "@/data/projects";
 import { allRoutes } from "@/data/site";
+import { projectsUsing, skillGroups } from "@/data/skills";
 
 function Tree({ url }: { url: string }) {
   return (
@@ -67,6 +68,27 @@ for (const url of routes) {
 
 console.log(
   `\n${routes.length - failures}/${routes.length} routes rendered · ${projects.length} projects in the index`,
+);
+
+// Skills are claims about the work, so check them against it: every listed
+// tool must be used by at least one project. Project tags no tool covers are
+// reported (not failed) — they are candidates for the Skills page.
+const tools = skillGroups.flatMap((group) => group.tools);
+for (const tool of tools) {
+  if (projectsUsing(tool).length === 0) {
+    failures += 1;
+    console.log(
+      `  FAIL  skill "${tool.name}" is used by no project (uses: ${tool.uses.join(", ")})`,
+    );
+  }
+}
+const covered = new Set(tools.flatMap((tool) => tool.uses));
+const uncovered = [...new Set(projects.flatMap((project) => project.tags))].filter(
+  (tag) => !covered.has(tag),
+);
+console.log(
+  `${tools.length} skills checked against the projects` +
+    (uncovered.length ? ` · not on the Skills page: ${uncovered.join(", ")}` : ""),
 );
 
 if (failures > 0) process.exit(1);

@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import {
+  AlertTriangle,
   Check,
+  CheckCircle2,
   Contact as ContactCard,
   Copy,
   Github,
@@ -18,11 +19,18 @@ import {
 } from "lucide-react";
 import { Fact, PageHeader, Section } from "@/components/primitives";
 import { contact, profile } from "@/data/site";
+import {
+  mailtoFor,
+  sendContactMessage,
+  type ContactMessage,
+  type SendResult,
+} from "@/lib/contact-mail";
 import { usePageTitle } from "@/lib/page-title";
 
 /**
- * The contact page. Delivery goes through EmailJS from the browser, so there
- * is no server in the path; a failed send falls back to a plain mailto.
+ * The contact page. Sending lives in lib/contact-mail; this page only reports
+ * the outcome. A failed send never loses the visitor's message: the form
+ * keeps it, and they can send the same text from their own email app.
  */
 
 const formSchema = z.object({
@@ -32,7 +40,8 @@ const formSchema = z.object({
   message: z.string().min(20, "Please write at least a couple of sentences"),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+// The schema checks the same shape the mail module sends.
+type FormValues = ContactMessage;
 
 function CopyRow({
   icon: Icon,
@@ -94,10 +103,65 @@ function CopyRow({
   );
 }
 
+/**
+ * What happened to the last send, in place under the form. Success confirms;
+ * failure says why in plain words and offers two ways to still get the
+ * message through.
+ */
+function SendNotice({
+  outcome: { result, data },
+  onCopy,
+}: {
+  outcome: { result: SendResult; data: FormValues };
+  onCopy: (data: FormValues) => void;
+}) {
+  if (result.ok) {
+    return (
+      <div role="status" className="flex gap-3 rounded-2xl bg-ok/10 p-4 text-[14px] leading-6">
+        <CheckCircle2 aria-hidden className="mt-0.5 h-5 w-5 shrink-0 text-ok" />
+        <p className="text-foreground">
+          <strong className="font-semibold">Message sent.</strong> Thanks, {data.name.split(" ")[0]}{" "}
+          — I usually reply within a day, to {data.email}.
+        </p>
+      </div>
+    );
+  }
+
+  const why =
+    result.reason === "network"
+      ? "It couldn't reach the mail service — check your connection, or send it another way."
+      : result.detail === "Too Many Requests"
+        ? "A message was sent from this browser in the last minute. Wait a moment, or send it another way."
+        : "The form's mail service isn't accepting messages right now. Your message is still here.";
+
+  return (
+    <div role="alert" className="rounded-2xl bg-warn/10 p-4 text-[14px] leading-6">
+      <div className="flex gap-3">
+        <AlertTriangle aria-hidden className="mt-0.5 h-5 w-5 shrink-0 text-warn" />
+        <p className="text-foreground">
+          <strong className="font-semibold">Message not sent.</strong> {why}
+        </p>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2 pl-8">
+        <a href={mailtoFor(data)} className="btn-accent btn-sm">
+          <Mail className="h-3.5 w-3.5" />
+          Send with your email app
+        </a>
+        <button type="button" onClick={() => onCopy(data)} className="btn-standard btn-sm">
+          <Copy className="h-3.5 w-3.5" />
+          Copy message
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Contact() {
   usePageTitle("Contact");
 
   const [sending, setSending] = useState(false);
+  // The last outcome, and the message it was for, so a fallback can reuse it.
+  const [outcome, setOutcome] = useState<{ result: SendResult; data: FormValues } | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -107,36 +171,22 @@ export default function Contact() {
 
   const onSubmit = async (data: FormValues) => {
     setSending(true);
-    try {
-      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
-      const result = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          subject: data.subject,
-          message: data.message,
-          to_name: profile.name,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      );
+    setOutcome(null);
+    const result = await sendContactMessage(data);
+    setSending(false);
+    setOutcome({ result, data });
+    if (result.ok) {
+      form.reset();
+      toast.success("Message sent", { description: "I usually reply within a day." });
+    }
+  };
 
-      if (result.status === 200) {
-        form.reset();
-        toast.success("Message sent", {
-          description: "I usually reply within a day.",
-        });
-      } else {
-        throw new Error(`Unexpected status ${result.status}`);
-      }
-    } catch (error) {
-      console.error("EmailJS error:", error);
-      toast.error("Message not sent", {
-        description: `Email ${contact.email} directly and it will reach me.`,
-      });
-    } finally {
-      setSending(false);
+  const copyMessage = async (data: FormValues) => {
+    try {
+      await navigator.clipboard.writeText(`${data.subject}\n\n${data.message}`);
+      toast.success("Message copied");
+    } catch {
+      toast.error("Could not copy — select the text instead");
     }
   };
 
@@ -227,6 +277,8 @@ export default function Contact() {
                 />
                 {errorFor("message")}
               </div>
+
+              {outcome && <SendNotice outcome={outcome} onCopy={copyMessage} />}
 
               <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:gap-4">
                 <button type="submit" disabled={sending} className="btn-accent btn-lg">

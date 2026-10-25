@@ -1,10 +1,31 @@
+import { projects, type Project } from "@/data/projects";
+
 /**
- * The stack, grouped the way most engineering teams describe it.
+ * Skills, backed by the work.
+ *
+ * Every tool names the project tags that count as using it (`uses`). Which
+ * projects those are is worked out from the project data itself, so the
+ * Skills page can never claim a tool for a project that does not list it —
+ * and a re-imported project updates the page on its own.
+ *
+ * Tools with no project behind them go in `alsoWorkedWith`, shown without a
+ * count, so the difference between "shipped with it" and "have used it" stays
+ * visible.
  */
 
-export type Tool = { name: string; icon: string };
+export type Tool = {
+  name: string;
+  /** A logo in /public/icons; without one the page draws a monogram. */
+  icon?: string;
+  /** Project tags that mean this tool was used. Matched exactly. */
+  uses: string[];
+  /** A capability pooled from several libraries ("PDF generation") rather
+   *  than one tool. Listed in its area, but kept out of the core-stack
+   *  ranking, where pooling would inflate its count. */
+  capability?: true;
+};
 
-export type Layer = {
+export type SkillGroup = {
   id: string;
   name: string;
   /** One line on what the group covers. */
@@ -12,75 +33,195 @@ export type Layer = {
   tools: Tool[];
 };
 
-export const layers: Layer[] = [
+const icon = (file: string) => `/icons/${file}`;
+const brand = (slug: string) => `/icons/brands/${slug}.svg`;
+
+export const skillGroups: SkillGroup[] = [
   {
-    id: "backend",
-    name: "Backend",
-    role: "APIs, business logic and real-time services",
+    id: "languages",
+    name: "Languages",
+    role: "What the code is written in",
     tools: [
-      { name: "Django", icon: "/icons/django.svg" },
-      { name: "DRF", icon: "/icons/api.svg" },
-      { name: "Channels", icon: "/icons/websocket.svg" },
-      { name: "FastAPI", icon: "/icons/FastAPI.svg" },
-      { name: "Flask", icon: "/icons/flask.svg" },
+      { name: "TypeScript", icon: icon("typescript.svg"), uses: ["TypeScript", "Angular 22"] },
+      {
+        name: "Python",
+        icon: icon("python.svg"),
+        uses: ["Python", "Django", "FastAPI", "pandas"],
+      },
+      {
+        name: "JavaScript",
+        icon: icon("javascript.svg"),
+        uses: ["Google Apps Script", "Astro", "Electron"],
+      },
+      { name: "C#", uses: [".NET 10", "ASP.NET Core"] },
+      { name: "SQL", icon: icon("sql.svg"), uses: ["PostgreSQL", "SQLite", "DuckDB"] },
+      { name: "Rust", icon: brand("rust"), uses: ["Rust"] },
+      { name: "PHP", icon: brand("php"), uses: ["PHP"] },
     ],
   },
   {
     id: "frontend",
-    name: "Frontend & Desktop",
-    role: "Interfaces for the web and the desktop",
+    name: "Frontend",
+    role: "Interfaces for the web, from marketing sites to dashboards",
     tools: [
-      { name: "React", icon: "/icons/react.svg" },
-      { name: "Next.js", icon: "/icons/nextjs.svg" },
-      { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
-      { name: "Vite", icon: "/icons/vite.svg" },
-      { name: "Framer Motion", icon: "/icons/framermotion.svg" },
-      { name: "Tauri", icon: "/icons/tauri.svg" },
+      { name: "React", icon: icon("react.svg"), uses: ["React"] },
+      { name: "Next.js", icon: icon("nextjs.svg"), uses: ["Next.js"] },
+      { name: "Tailwind CSS", icon: icon("tailwindcss.svg"), uses: ["Tailwind CSS"] },
+      { name: "Angular", icon: brand("angular"), uses: ["Angular 22", "Angular SSR"] },
+      { name: "Astro", icon: brand("astro"), uses: ["Astro"] },
+      { name: "shadcn/ui", icon: brand("shadcnui"), uses: ["shadcn/ui"] },
+      { name: "Angular Material", icon: brand("materialdesign"), uses: ["Angular Material"] },
+      { name: "Ant Design", icon: icon("antdesign.svg"), uses: ["Ant Design"] },
+      { name: "Flowbite", uses: ["Flowbite"] },
+      { name: "Framer Motion", icon: icon("framermotion.svg"), uses: ["Framer Motion"] },
+      { name: "Zustand", uses: ["Zustand"] },
+      { name: "Chart.js", icon: brand("chartdotjs"), uses: ["Chart.js"] },
+      { name: "ECharts", icon: brand("apacheecharts"), uses: ["ECharts"] },
+      { name: "Leaflet maps", icon: brand("leaflet"), uses: ["Leaflet", "OpenStreetMap"] },
+      { name: "PWA", icon: brand("pwa"), uses: ["PWA"] },
     ],
   },
   {
-    id: "databases",
-    name: "Databases",
-    role: "Schema design, queries and search",
+    id: "backend",
+    name: "Backend & APIs",
+    role: "Services, business logic and real-time features",
     tools: [
-      { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
-      { name: "MySQL", icon: "/icons/mysql.svg" },
-      { name: "SQLite", icon: "/icons/sqlite.svg" },
-      { name: "DuckDB", icon: "/icons/duckdb.svg" },
-      { name: "Elasticsearch", icon: "/icons/elasticsearch.svg" },
+      { name: "Django", icon: icon("django.svg"), uses: ["Django"] },
+      { name: "FastAPI", icon: icon("FastAPI.svg"), uses: ["FastAPI"] },
+      { name: "ASP.NET Core", icon: brand("dotnet"), uses: ["ASP.NET Core", ".NET 10"] },
+      { name: "Node.js", icon: brand("nodedotjs"), uses: ["Electron", "Nodemailer"] },
+      {
+        name: "WebSockets",
+        icon: icon("websocket.svg"),
+        uses: ["WebSockets", "Django Channels", "SignalR"],
+      },
+      { name: "Django Channels", icon: icon("django.svg"), uses: ["Django Channels"] },
+      { name: "SignalR", uses: ["SignalR"] },
+      { name: "Web Push", uses: ["Web Push"] },
+      { name: "WebAuthn passkeys", icon: brand("webauthn"), uses: ["WebAuthn"] },
     ],
   },
   {
-    id: "devops",
-    name: "DevOps & Cloud",
-    role: "Containers, CI and hosting",
+    id: "data",
+    name: "Databases & storage",
+    role: "Schemas, queries and where files live",
     tools: [
-      { name: "Docker", icon: "/icons/docker.svg" },
-      { name: "GitHub Actions", icon: "/icons/cicd.svg" },
-      { name: "Azure", icon: "/icons/azure.svg" },
-      { name: "DigitalOcean", icon: "/icons/DigitalOcean.svg" },
-      { name: "Vercel", icon: "/icons/vercel.svg" },
-      { name: "Render", icon: "/icons/render.svg" },
+      { name: "PostgreSQL", icon: icon("postgresql.svg"), uses: ["PostgreSQL"] },
+      { name: "SQLite", icon: icon("sqlite.svg"), uses: ["SQLite", "better-sqlite3"] },
+      { name: "DuckDB", icon: icon("duckdb.svg"), uses: ["DuckDB"] },
+      { name: "Entity Framework Core", icon: brand("dotnet"), uses: ["EF Core"] },
+      {
+        name: "Cloudflare D1 & R2",
+        icon: brand("cloudflare"),
+        uses: ["Cloudflare D1", "Cloudflare R2"],
+      },
     ],
   },
   {
-    id: "tools",
-    name: "Tools & Libraries",
-    role: "Everyday tooling",
+    id: "ml",
+    name: "Data & AI",
+    role: "Analysis, forecasting and local language models",
     tools: [
-      { name: "Git", icon: "/icons/git.svg" },
-      { name: "Postman", icon: "/icons/postman.svg" },
-      { name: "Pandas", icon: "/icons/Pandas.svg" },
-      { name: "NumPy", icon: "/icons/NumPy.svg" },
-      { name: "scikit-learn", icon: "/icons/scikitlearn.svg" },
+      { name: "pandas", icon: icon("Pandas.svg"), uses: ["pandas"] },
+      { name: "scikit-learn", icon: icon("scikitlearn.svg"), uses: ["scikit-learn"] },
+      { name: "Prophet", icon: icon("prophet.svg"), uses: ["Prophet"] },
+      { name: "SHAP", uses: ["SHAP"] },
+      { name: "mlxtend & lifetimes", uses: ["mlxtend", "lifetimes"] },
+      { name: "Ollama", icon: brand("ollama"), uses: ["Ollama"] },
+      { name: "Excel import & export", uses: ["openpyxl"], capability: true },
+      { name: "PDF generation", uses: ["ReportLab", "pdfkit", "wkhtmltopdf"], capability: true },
+    ],
+  },
+  {
+    id: "desktop",
+    name: "Desktop",
+    role: "Offline-first apps with installers for Windows",
+    tools: [
+      { name: "Tauri", icon: icon("tauri.svg"), uses: ["Tauri"] },
+      { name: "Electron", icon: brand("electron"), uses: ["Electron", "electron-updater"] },
+      { name: "PyInstaller", uses: ["PyInstaller"] },
+    ],
+  },
+  {
+    id: "cloud",
+    name: "Cloud & DevOps",
+    role: "Containers, pipelines, hosting and observability",
+    tools: [
+      { name: "GitHub Actions", icon: brand("githubactions"), uses: ["GitHub Actions"] },
+      { name: "Docker", icon: icon("docker.svg"), uses: ["Docker"] },
+      {
+        name: "Cloudflare",
+        icon: brand("cloudflare"),
+        uses: ["Cloudflare", "Cloudflare Workers", "OpenNext", "Turnstile"],
+      },
+      { name: "Vercel", icon: icon("vercel.svg"), uses: ["Vercel"] },
+      { name: "Hostinger", icon: icon("hostinger.svg"), uses: ["Hostinger", "Hostinger Reach"] },
+      { name: "OpenTelemetry", icon: brand("opentelemetry"), uses: ["OpenTelemetry"] },
+    ],
+  },
+  {
+    id: "testing",
+    name: "Testing",
+    role: "From unit tests to the browser",
+    tools: [
+      { name: "Playwright", uses: ["Playwright"] },
+      { name: "Vitest", icon: brand("vitest"), uses: ["Vitest"] },
+      { name: "xUnit", uses: ["xUnit"] },
+    ],
+  },
+  {
+    id: "integrations",
+    name: "Integrations",
+    role: "Payments, messaging and third-party platforms",
+    tools: [
+      { name: "Razorpay", icon: brand("razorpay"), uses: ["Razorpay"] },
+      { name: "Stripe", icon: brand("stripe"), uses: ["Stripe"] },
+      { name: "WhatsApp Cloud API", icon: brand("whatsapp"), uses: ["WhatsApp Cloud API"] },
+      { name: "Meta Graph API", icon: brand("meta"), uses: ["Meta Graph API"] },
+      { name: "Shopify API", icon: brand("shopify"), uses: ["Shopify API"] },
+      {
+        name: "Google Workspace APIs",
+        icon: brand("googlesheets"),
+        uses: ["Google Sheets API", "Google Drive API", "Google Apps Script"],
+        capability: true,
+      },
+      {
+        name: "Email delivery",
+        uses: ["MailKit", "Nodemailer", "PHPMailer", "Hostinger Reach"],
+        capability: true,
+      },
     ],
   },
 ];
 
-/** Languages are used across every group, so they get their own row. */
-export const runtimeLanguages: Tool[] = [
-  { name: "Python", icon: "/icons/python.svg" },
-  { name: "TypeScript", icon: "/icons/typescript.svg" },
-  { name: "JavaScript", icon: "/icons/javascript.svg" },
-  { name: "SQL", icon: "/icons/sql.svg" },
+/** Used, but not in any project on this site — listed without a count. */
+export const alsoWorkedWith = [
+  "Git",
+  "Flask",
+  "Django REST Framework",
+  "MySQL",
+  "Elasticsearch",
+  "NumPy",
+  "Azure",
+  "DigitalOcean",
+  "Render",
+  "Postman",
 ];
+
+/** The projects that use a tool, in the site's project order. */
+export function projectsUsing(tool: Tool): Project[] {
+  return projects.filter((project) => project.tags.some((tag) => tool.uses.includes(tag)));
+}
+
+export type RankedTool = Tool & { group: string; projects: Project[] };
+
+/** Every tool with its projects, most-used first. Ties keep the listed order. */
+export const rankedTools: RankedTool[] = skillGroups
+  .flatMap((group) =>
+    group.tools.map((tool) => ({ ...tool, group: group.name, projects: projectsUsing(tool) })),
+  )
+  .filter((tool) => tool.projects.length > 0)
+  .sort((a, b) => b.projects.length - a.projects.length);
+
+/** The most-used single tools — the stack I reach for first. */
+export const coreStack = rankedTools.filter((tool) => !tool.capability).slice(0, 8);

@@ -13,6 +13,7 @@ import { AppWindow } from "@/components/app-window";
 import ArchitectureOverview from "@/components/architecture-overview";
 import InViewVideo from "@/components/in-view-video";
 import MediaLightbox from "@/components/media-lightbox";
+import { Reveal } from "@/components/reveal";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { mediaTransitionName } from "@/lib/view-transition";
 import { usePageTitle } from "@/lib/page-title";
@@ -98,7 +99,7 @@ export default function ProjectPage() {
         }
       />
 
-      <Section className="pt-8 sm:pt-10">
+      <Section reveal={false} className="pt-8 sm:pt-10">
         {/* Hero media, in a window. The poster pairs with the card thumbnail
             in the view transition, so the image clicked grows into this. */}
         {(project.video?.src || project.poster) && (
@@ -128,7 +129,7 @@ export default function ProjectPage() {
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-12">
           <div className="min-w-0 space-y-14">
-            <section id="overview">
+            <Reveal as="section" id="overview">
               <h2 className="t-title">Overview</h2>
               <div className="prose-plain mt-4">
                 {project.description.map((text, i) => (
@@ -152,17 +153,17 @@ export default function ProjectPage() {
                   </div>
                 </div>
               )}
-            </section>
+            </Reveal>
 
             {project.highlights.length > 0 && (
-              <section id="features">
+              <Reveal as="section" id="features">
                 <h2 className="t-title">Key features</h2>
                 <CheckList items={project.highlights} columns={2} className="mt-5" />
-              </section>
+              </Reveal>
             )}
 
             {clips.length > 0 && (
-              <section id="in-action">
+              <Reveal as="section" id="in-action">
                 <h2 className="t-title">Features in action</h2>
                 <p className="mt-2 text-[15px] text-muted-foreground">
                   Short clips of the software doing the work. Each plays while it is on screen.
@@ -185,11 +186,11 @@ export default function ProjectPage() {
                     </li>
                   ))}
                 </ul>
-              </section>
+              </Reveal>
             )}
 
             {screenshots.length > 0 && (
-              <section id="screenshots">
+              <Reveal as="section" id="screenshots">
                 <h2 className="t-title">Screenshots</h2>
                 <p className="mt-2 text-[15px] text-muted-foreground">
                   Select a screenshot to open it full size.
@@ -216,16 +217,16 @@ export default function ProjectPage() {
                     </li>
                   ))}
                 </ul>
-              </section>
+              </Reveal>
             )}
 
             {project.architecture && (
-              <section id="architecture">
+              <Reveal as="section" id="architecture">
                 <h2 className="t-title">Architecture</h2>
                 <div className="mt-5">
                   <ArchitectureOverview architecture={project.architecture} />
                 </div>
-              </section>
+              </Reveal>
             )}
           </div>
 

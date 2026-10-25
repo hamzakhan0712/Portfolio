@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { ContactBand, PageHeader, Pivot, Section } from "@/components/primitives";
 import { ProjectCard } from "@/components/project-card";
+import { RevealItem, RevealList } from "@/components/reveal";
 import { projects } from "@/data/projects";
 import { usePageTitle } from "@/lib/page-title";
 
@@ -25,7 +26,7 @@ export default function Projects() {
         lead={`${projects.length} projects across web applications, websites and desktop apps. Each opens a page with a video walkthrough, short clips, screenshots and how it is built.`}
       />
 
-      <Section className="pt-8 sm:pt-10">
+      <Section reveal={false} className="pt-8 sm:pt-10">
         <Pivot
           label="Filter projects by kind"
           value={kind}
@@ -40,13 +41,13 @@ export default function Projects() {
           ]}
         />
 
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealList key={kind} className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((project) => (
-            <li key={project.slug}>
+            <RevealItem key={project.slug}>
               <ProjectCard project={project} />
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealList>
       </Section>
 
       <ContactBand />
