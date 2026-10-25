@@ -99,7 +99,7 @@ export function ThemeMenu({ className }: { className?: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, transition: { duration: 0.08 } }}
             transition={{ duration: 0.25, ease: [0, 0, 0, 1] }}
-            className="acrylic absolute right-0 top-full z-50 mt-2 w-56 rounded-lg border p-1 shadow-flyout"
+            className="glass absolute right-0 top-full z-50 mt-3 w-60 rounded-3xl p-1.5"
           >
             {MODES.map(({ value, label, icon: ModeIcon }) => {
               const checked = theme === value;
@@ -114,7 +114,7 @@ export function ThemeMenu({ className }: { className?: string }) {
                     setOpen(false);
                     button.current?.focus();
                   }}
-                  className="flex h-9 w-full items-center gap-3 rounded px-3 text-left text-[14px] text-foreground transition-colors hover:bg-secondary focus-visible:outline-offset-[-2px]"
+                  className="flex h-10 w-full items-center gap-3 rounded-2xl px-3 text-left text-[14px] text-foreground transition-colors hover:bg-secondary focus-visible:outline-offset-[-2px]"
                 >
                   <ModeIcon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
                   <span className="flex-1">{label}</span>

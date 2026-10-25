@@ -30,8 +30,8 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-surface">
-      <div className="container-site py-12">
+    <footer className="px-3 pb-3 sm:px-4">
+      <div className="mx-auto max-w-6xl rounded-4xl bg-card px-6 py-12 shadow-rest sm:px-10">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="max-w-sm">
             <p className="text-[15px] font-semibold text-foreground">{profile.name}</p>

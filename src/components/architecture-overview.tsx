@@ -13,15 +13,15 @@ export function ArchitectureOverview({ architecture }: { architecture: Architect
   const { summary, tiers, notes } = architecture;
 
   return (
-    <div className="card p-5 sm:p-6">
-      <p className="max-w-[68ch] text-[15px] leading-6 text-foreground">{summary}</p>
+    <div className="card p-3 sm:p-4">
+      <p className="max-w-[68ch] px-2 pt-2 text-[15px] leading-6 text-foreground">{summary}</p>
 
       <ol className="mt-5">
         {tiers.map((tier, index) => (
           <li key={tier.label}>
-            <div className="rounded-lg border bg-background/60 p-4 sm:p-5">
+            <div className="rounded-2xl bg-surface p-4 sm:p-5">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded bg-accent text-[12px] font-semibold text-accent-foreground tabular">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[12px] font-semibold text-accent-foreground tabular">
                   {index + 1}
                 </span>
                 <h4 className="text-[15px] font-semibold text-foreground">{tier.label}</h4>

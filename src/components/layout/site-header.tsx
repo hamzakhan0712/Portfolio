@@ -35,20 +35,18 @@ function activeHref(pathname: string) {
 }
 
 /**
- * The top bar: a Windows NavigationView in top mode. Acrylic over the page,
- * the persona on the left, pages across the middle with the accent pill under
- * the current one, and the theme and CV on the right.
- *
- * Below the large breakpoint the pages move into a left pane, the way
- * NavigationView collapses on a narrow window.
+ * The header: a glass pill floating a little below the top of the window.
+ * The current page sits on a raised pill that glides from item to item. On
+ * narrow screens the pages open in a rounded glass sheet under the bar.
  */
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   const current = activeHref(pathname);
 
-  // A navigation closes the pane; the page behind it must not scroll while it
-  // is open, and Escape closes it.
+  // A navigation closes the sheet; the page behind it must not scroll while
+  // it is open, and Escape closes it.
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     if (!open) return;
@@ -61,34 +59,38 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  // The pane is a sibling of the header, not a child: the header's backdrop
+  // At the very top the bar is lighter; once content passes under it, the
+  // glass gets its full shadow so the two read as separate layers.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // The sheet is a sibling of the header, not a child: the bar's backdrop
   // filter would otherwise become the containing block for its fixed position.
   return (
     <>
-      <header className="acrylic sticky top-0 z-50 border-b">
-        <div className="container-site flex h-14 items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            aria-expanded={open}
-            aria-controls="nav-pane"
-            className="btn-icon -ml-2 lg:hidden"
+      <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4">
+        <div
+          className="glass mx-auto flex h-14 max-w-6xl items-center gap-2 rounded-full px-2 transition-shadow duration-300"
+          style={
+            scrolled
+              ? undefined
+              : { boxShadow: "inset 0 0 0 1px hsl(var(--glass-border)), var(--shadow-rest)" }
+          }
+        >
+          <Link
+            to="/"
+            className="flex min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 no-underline transition-colors hover:bg-secondary"
           >
-            {open ? (
-              <X className="h-[18px] w-[18px]" strokeWidth={1.75} />
-            ) : (
-              <Menu className="h-[18px] w-[18px]" strokeWidth={1.75} />
-            )}
-          </button>
-
-          <Link to="/" className="flex min-w-0 items-center gap-2.5 rounded px-1 py-1 no-underline">
             <img
               src="/photos/avatar.webp"
               alt=""
-              width={32}
-              height={32}
-              className="h-8 w-8 shrink-0 rounded-full object-cover"
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-card"
             />
             <span className="min-w-0 leading-tight">
               <span className="block truncate text-[14px] font-semibold text-foreground">
@@ -100,7 +102,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav aria-label="Main" className="ml-auto hidden items-center lg:flex">
+          <nav aria-label="Main" className="mx-auto hidden items-center gap-0.5 lg:flex">
             {navigation.map((item) => {
               const selected = item.href === current;
               return (
@@ -110,36 +112,48 @@ export function SiteHeader() {
                   end={item.href === "/"}
                   aria-current={selected ? "page" : undefined}
                   className={cn(
-                    "relative flex h-9 items-center rounded px-3 text-[14px] no-underline transition-colors hover:bg-secondary",
-                    selected
-                      ? "font-semibold text-foreground"
-                      : "text-muted-foreground hover:text-foreground",
+                    "relative isolate flex h-9 items-center rounded-full px-3.5 text-[14px] font-medium no-underline transition-colors",
+                    selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {item.label}
                   {selected && (
                     <motion.span
                       layoutId="nav-pill"
-                      transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                      className="absolute bottom-0.5 left-1/2 h-[3px] w-4 -translate-x-1/2 rounded-full bg-primary"
+                      transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                      className="absolute inset-0 -z-10 rounded-full bg-card shadow-rest"
                     />
                   )}
+                  {item.label}
                 </NavLink>
               );
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-1 lg:ml-2">
+          <div className="ml-auto flex items-center gap-1 lg:ml-0">
             <ThemeMenu />
             <a
               href={profile.cv}
               target="_blank"
               rel="noreferrer"
-              className="btn-accent btn-sm ml-1 hidden sm:inline-flex"
+              className="btn-accent btn-sm hidden h-9 px-4 sm:inline-flex"
             >
-              <FileText className="h-4 w-4" strokeWidth={1.75} />
+              <FileText className="h-4 w-4" strokeWidth={2} />
               CV
             </a>
+            <button
+              type="button"
+              onClick={() => setOpen((value) => !value)}
+              aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-expanded={open}
+              aria-controls="nav-sheet"
+              className="btn-icon lg:hidden"
+            >
+              {open ? (
+                <X className="h-5 w-5" strokeWidth={1.75} />
+              ) : (
+                <Menu className="h-5 w-5" strokeWidth={1.75} />
+              )}
+            </button>
           </div>
         </div>
       </header>
@@ -151,20 +165,20 @@ export function SiteHeader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 top-14 z-40 bg-black/30 lg:hidden"
+              className="fixed inset-0 z-40 bg-black/25 backdrop-blur-[2px] lg:hidden"
             />
             <motion.nav
-              id="nav-pane"
+              id="nav-sheet"
               aria-label="Main"
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%", transition: { duration: 0.15, ease: [1, 0, 1, 1] } }}
-              transition={{ duration: 0.3, ease: [0, 0, 0, 1] }}
-              className="acrylic fixed bottom-0 left-0 top-14 z-50 flex w-[min(20rem,85vw)] flex-col border-r p-2 shadow-flyout lg:hidden"
+              initial={{ opacity: 0, y: -12, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98, transition: { duration: 0.15 } }}
+              transition={{ duration: 0.35, ease: [0.1, 0.9, 0.2, 1] }}
+              className="glass fixed inset-x-3 top-[4.75rem] z-50 origin-top rounded-4xl p-2 sm:inset-x-4 lg:hidden"
             >
-              <ul className="grid gap-0.5">
+              <ul className="grid grid-cols-2 gap-1">
                 {navigation.map((item) => {
                   const Icon = ICONS[item.href] ?? Home;
                   const selected = item.href === current;
@@ -175,26 +189,33 @@ export function SiteHeader() {
                         end={item.href === "/"}
                         aria-current={selected ? "page" : undefined}
                         className={cn(
-                          "relative flex h-10 items-center gap-4 rounded px-3 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary",
-                          selected && "bg-secondary font-semibold",
+                          "flex h-14 items-center gap-3 rounded-3xl px-3 text-[15px] font-medium text-foreground no-underline transition-colors hover:bg-secondary",
+                          selected && "bg-card shadow-rest",
                         )}
                       >
-                        {selected && (
-                          <span className="absolute left-0 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full bg-primary" />
-                        )}
-                        <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} />
+                        <span
+                          className={cn(
+                            "flex h-9 w-9 items-center justify-center rounded-2xl",
+                            selected ? "bg-primary text-primary-foreground" : "bg-secondary",
+                          )}
+                        >
+                          <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                        </span>
                         {item.label}
                       </NavLink>
                     </li>
                   );
                 })}
               </ul>
-              <div className="mt-auto border-t border-divider p-2 pt-3">
-                <a href={profile.cv} target="_blank" rel="noreferrer" className="btn-accent w-full">
-                  <FileText className="h-4 w-4" strokeWidth={1.75} />
-                  Download CV
-                </a>
-              </div>
+              <a
+                href={profile.cv}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-accent btn-lg mt-2 w-full"
+              >
+                <FileText className="h-4 w-4" strokeWidth={2} />
+                Download CV
+              </a>
             </motion.nav>
           </>
         )}

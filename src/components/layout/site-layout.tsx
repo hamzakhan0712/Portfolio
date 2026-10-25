@@ -41,10 +41,7 @@ export function SiteLayout() {
         }
         const before = Math.round(window.scrollY);
         window.scrollTo({
-          top: Math.max(
-            0,
-            before + target.getBoundingClientRect().top - ANCHOR_OFFSET,
-          ),
+          top: Math.max(0, before + target.getBoundingClientRect().top - ANCHOR_OFFSET),
           behavior: "auto",
         });
         placedAt = Math.round(window.scrollY);

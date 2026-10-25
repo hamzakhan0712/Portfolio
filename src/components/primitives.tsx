@@ -1,20 +1,17 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, ChevronRight, FileText, Mail, type LucideIcon } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, FileText, type LucideIcon } from "lucide-react";
 import { profile } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 /**
- * The small set of building blocks every page is made from — the Fluent
- * equivalents of a Settings page: a title, cards with hairline strokes, and
- * rows that open somewhere. Keeping them here is what keeps the pages
- * consistent without each one re-deciding spacing, type or shape.
+ * The small set of building blocks every page is made from. Keeping them here
+ * is what keeps the pages consistent — the same curves, the same depth, the
+ * same type — without each page re-deciding it.
  */
 
-
-
-/** A vertical band of the page. Windows pages have no stripes — only space. */
+/** A vertical band of the page. Bands are separated by space, never by lines. */
 export function Section({
   children,
   tight = false,
@@ -27,7 +24,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn(tight ? "py-10 sm:py-12" : "py-14 sm:py-20", className)}>
+    <section id={id} className={cn(tight ? "py-10 sm:py-14" : "py-16 sm:py-24", className)}>
       <div className="container-site">{children}</div>
     </section>
   );
@@ -47,27 +44,27 @@ export function SectionHeading({
 }) {
   return (
     <div
-      className={cn("flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between", className)}
+      className={cn("flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between", className)}
     >
       <div className="max-w-2xl">
         <h2 className="t-title">{title}</h2>
-        {lead && <p className="mt-2 text-[15px] leading-6 text-muted-foreground">{lead}</p>}
+        {lead && <p className="mt-3 text-[16px] leading-7 text-muted-foreground">{lead}</p>}
       </div>
       {action && (
-        <Link to={action.to} className="link-button shrink-0 self-start sm:self-auto">
+        <Link to={action.to} className="btn-standard shrink-0 self-start sm:self-auto">
           {action.label}
-          <ChevronRight className="h-4 w-4" />
+          <ArrowRight className="h-4 w-4" />
         </Link>
       )}
     </div>
   );
 }
 
-/** BreadcrumbBar: where this page sits, with every level but the last a link. */
+/** Where this page sits, with every level but the last a link. */
 export function Breadcrumb({ items }: { items: { label: string; to?: string }[] }) {
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-1 text-[14px]">
+      <ol className="flex flex-wrap items-center gap-1 text-[13.5px]">
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-1">
             {index > 0 && (
@@ -76,12 +73,12 @@ export function Breadcrumb({ items }: { items: { label: string; to?: string }[] 
             {item.to ? (
               <Link
                 to={item.to}
-                className="rounded px-1 py-0.5 text-muted-foreground no-underline transition-colors hover:text-foreground"
+                className="rounded-full px-2 py-0.5 font-medium text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
               >
                 {item.label}
               </Link>
             ) : (
-              <span aria-current="page" className="px-1 py-0.5 text-foreground">
+              <span aria-current="page" className="px-2 py-0.5 font-medium text-foreground">
                 {item.label}
               </span>
             )}
@@ -92,7 +89,7 @@ export function Breadcrumb({ items }: { items: { label: string; to?: string }[] 
   );
 }
 
-/** The top of an inner page: title, lead and an optional row of tags. */
+/** The top of an inner page: title and lead in the aurora light. */
 export function PageHeader({
   title,
   lead,
@@ -107,17 +104,20 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <header className="container-site pt-10 sm:pt-14">
-      {breadcrumb && (
-        <div className="mb-4">
-          <Breadcrumb items={breadcrumb} />
+    <header className="relative isolate -mt-[68px] overflow-hidden pt-[68px]">
+      <div aria-hidden className="aurora opacity-80" />
+      <div className="container-site pb-4 pt-12 sm:pt-20">
+        {breadcrumb && (
+          <div className="mb-5">
+            <Breadcrumb items={breadcrumb} />
+          </div>
+        )}
+        <div className="max-w-3xl">
+          <h1 className="t-title-lg">{title}</h1>
+          {lead && <p className="t-body-lg mt-4">{lead}</p>}
+          {meta && <div className="mt-6 flex flex-wrap items-center gap-2">{meta}</div>}
+          {children}
         </div>
-      )}
-      <div className="max-w-3xl">
-        <h1 className="t-title-lg">{title}</h1>
-        {lead && <p className="t-body-lg mt-3">{lead}</p>}
-        {meta && <div className="mt-5 flex flex-wrap items-center gap-2">{meta}</div>}
-        {children}
       </div>
     </header>
   );
@@ -144,7 +144,7 @@ export function ChipList({
   );
 }
 
-/** Plain-English highlights, each with the accent checkmark. */
+/** Plain-English highlights, each with a check in a soft accent circle. */
 export function CheckList({
   items,
   columns = 1,
@@ -155,10 +155,15 @@ export function CheckList({
   className?: string;
 }) {
   return (
-    <ul className={cn("grid gap-3", columns === 2 && "md:grid-cols-2 md:gap-x-8", className)}>
+    <ul className={cn("grid gap-3.5", columns === 2 && "md:grid-cols-2 md:gap-x-8", className)}>
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <Check aria-hidden className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={2.25} />
+          <span
+            aria-hidden
+            className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground"
+          >
+            <Check className="h-3 w-3" strokeWidth={3} />
+          </span>
           <span className="text-[15px] leading-6 text-muted-foreground">{item}</span>
         </li>
       ))}
@@ -177,8 +182,8 @@ export function Fact({ label, children }: { label: string; children: ReactNode }
 }
 
 /**
- * A row from Windows Settings: an icon, a title, one line of description and,
- * when it goes somewhere, a chevron. Without `to` it is a plain card.
+ * A feature card: an icon in a soft accent tile, a title and a description.
+ * With `to` it is a link and rises on hover.
  */
 export function SettingsCard({
   icon: Icon,
@@ -196,24 +201,31 @@ export function SettingsCard({
   const body = (
     <>
       {Icon && (
-        <Icon aria-hidden className="mt-0.5 h-5 w-5 shrink-0 text-foreground" strokeWidth={1.5} />
+        <span className="icon-tile">
+          <Icon aria-hidden className="h-5 w-5" strokeWidth={1.75} />
+        </span>
       )}
       <span className="min-w-0 flex-1">
-        <span className="block text-[15px] font-normal leading-6 text-foreground">{title}</span>
+        <span className="block text-[16px] font-semibold leading-6 text-foreground">{title}</span>
         {description && (
-          <span className="mt-0.5 block text-[13.5px] leading-5 text-muted-foreground">
+          <span className="mt-1.5 block text-[14px] leading-6 text-muted-foreground">
             {description}
           </span>
         )}
       </span>
-      {to && <ChevronRight aria-hidden className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />}
+      {to && (
+        <ChevronRight
+          aria-hidden
+          className="h-5 w-5 shrink-0 self-center text-muted-foreground transition-transform group-hover:translate-x-0.5"
+        />
+      )}
     </>
   );
 
-  const shape = cn("card flex items-start gap-4 px-5 py-4", className);
+  const shape = cn("card flex items-start gap-4 p-5 sm:p-6", className);
 
   return to ? (
-    <Link to={to} className={cn(shape, "card-interactive no-underline")}>
+    <Link to={to} className={cn(shape, "card-interactive group no-underline")}>
       {body}
     </Link>
   ) : (
@@ -222,8 +234,8 @@ export function SettingsCard({
 }
 
 /**
- * Pivot / SelectorBar: a row of choices with the accent pill under the chosen
- * one. The pill slides between items, as it does in WinUI.
+ * A segmented control: choices on a soft pill track, with the chosen one on a
+ * raised pill that glides between them.
  */
 export function Pivot<T extends string>({
   label,
@@ -239,7 +251,14 @@ export function Pivot<T extends string>({
   className?: string;
 }) {
   return (
-    <div role="radiogroup" aria-label={label} className={cn("flex flex-wrap gap-1", className)}>
+    <div
+      role="radiogroup"
+      aria-label={label}
+      className={cn(
+        "inline-flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-secondary p-1",
+        className,
+      )}
+    >
       {items.map((item) => {
         const selected = item.value === value;
         return (
@@ -250,24 +269,22 @@ export function Pivot<T extends string>({
             aria-checked={selected}
             onClick={() => onChange(item.value)}
             className={cn(
-              "relative h-9 rounded px-3 text-[14px] transition-colors hover:bg-secondary",
-              selected
-                ? "font-semibold text-foreground"
-                : "text-muted-foreground hover:text-foreground",
+              "relative isolate h-9 shrink-0 rounded-full px-4 text-[14px] font-medium transition-colors",
+              selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
-            {item.label}
-            {item.count !== undefined && (
-              <span className="ml-1.5 text-[12.5px] font-normal text-tertiary-foreground tabular">
-                {item.count}
-              </span>
-            )}
             {selected && (
               <motion.span
                 layoutId={`pivot-${label}`}
-                transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                className="absolute bottom-0 left-1/2 h-[3px] w-4 -translate-x-1/2 rounded-full bg-primary"
+                transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                className="absolute inset-0 -z-10 rounded-full bg-card shadow-rest"
               />
+            )}
+            {item.label}
+            {item.count !== undefined && (
+              <span className="ml-1.5 text-[12.5px] text-tertiary-foreground tabular">
+                {item.count}
+              </span>
             )}
           </button>
         );
@@ -276,7 +293,11 @@ export function Pivot<T extends string>({
   );
 }
 
-/** The closing card on most pages. */
+/**
+ * The closing panel on most pages: Microsoft blue, lit from one corner. The
+ * gradient stays dark enough under the text for white to pass AA in both
+ * themes.
+ */
 export function ContactBand({
   title = "Hiring a full-stack engineer?",
   body = "I’m looking for a full-time role where I can own features from the database to the interface. Send me a message — I usually reply within a day.",
@@ -286,30 +307,50 @@ export function ContactBand({
 }) {
   return (
     <Section>
-      <div className="card flex flex-col gap-6 p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-start gap-4">
-          <img
-            src="/photos/avatar.webp"
-            alt=""
-            width={56}
-            height={56}
-            loading="lazy"
-            className="h-14 w-14 shrink-0 rounded-full object-cover"
-          />
-          <div className="max-w-xl">
-            <h2 className="t-subtitle">{title}</h2>
-            <p className="mt-1.5 text-[15px] leading-6 text-muted-foreground">{body}</p>
+      <div className="relative isolate overflow-hidden rounded-4xl bg-[#0050a0] px-6 py-10 text-white shadow-raised sm:px-12 sm:py-14">
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(60% 90% at 100% 0%, #60cdff 0%, transparent 60%), radial-gradient(50% 80% at 85% 100%, #3b82f6 0%, transparent 60%), linear-gradient(120deg, #003e7e 0%, #0060b8 55%, #0a7ad8 100%)",
+          }}
+        />
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex max-w-2xl items-start gap-5">
+            <img
+              src="/photos/avatar.webp"
+              alt=""
+              width={64}
+              height={64}
+              loading="lazy"
+              className="hidden h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-white/25 sm:block"
+            />
+            <div>
+              <h2 className="font-display text-[1.75rem] font-semibold leading-tight text-white sm:text-[2rem]">
+                {title}
+              </h2>
+              <p className="mt-3 text-[16px] leading-7 text-white/85">{body}</p>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-2 lg:shrink-0">
-          <Link to="/contact" className="btn-accent btn-lg">
-            <Mail className="h-4 w-4" strokeWidth={1.75} />
-            Send a message
-          </Link>
-          <a href={profile.cv} target="_blank" rel="noreferrer" className="btn-standard btn-lg">
-            <FileText className="h-4 w-4" strokeWidth={1.75} />
-            Download CV
-          </a>
+          <div className="flex flex-wrap gap-3 lg:shrink-0">
+            <Link
+              to="/contact"
+              className="btn btn-lg bg-white text-[#003e7e] shadow-raised hover:bg-white/90"
+            >
+              Send a message
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={profile.cv}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-lg bg-white/10 text-white ring-1 ring-inset ring-white/30 hover:bg-white/20"
+            >
+              <FileText className="h-4 w-4" />
+              Download CV
+            </a>
+          </div>
         </div>
       </div>
     </Section>

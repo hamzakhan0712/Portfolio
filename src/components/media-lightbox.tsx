@@ -69,7 +69,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
   };
 
   const chrome =
-    "inline-flex h-10 w-10 items-center justify-center rounded text-white transition-colors hover:bg-white/10 active:bg-white/5 focus-visible:outline-white";
+    "inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 active:bg-white/5 focus-visible:outline-white";
 
   return (
     <AnimatePresence>
@@ -138,7 +138,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
                     src={current.src}
                     alt={current.alt || title || ""}
                     draggable={false}
-                    className="max-h-[calc(100vh-13rem)] max-w-full select-none rounded-lg object-contain shadow-window"
+                    className="max-h-[calc(100vh-13rem)] max-w-full select-none rounded-3xl object-contain shadow-window"
                   />
                 ) : (
                   <video
@@ -146,7 +146,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
                     poster={current.poster}
                     controls
                     playsInline
-                    className="max-h-[calc(100vh-13rem)] max-w-full rounded-lg bg-black"
+                    className="max-h-[calc(100vh-13rem)] max-w-full rounded-3xl bg-black"
                   />
                 )}
                 {current.caption && (
@@ -197,7 +197,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
                       aria-label={`Show ${item.alt || `item ${i + 1}`}`}
                       aria-current={i === index}
                       className={cn(
-                        "relative block h-12 w-[4.5rem] overflow-hidden rounded transition-opacity focus-visible:outline-white",
+                        "relative block h-12 w-[4.5rem] overflow-hidden rounded-xl transition-opacity focus-visible:outline-white",
                         i === index ? "opacity-100" : "opacity-50 hover:opacity-90",
                       )}
                     >
@@ -207,7 +207,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
                         className="h-full w-full object-cover object-top"
                       />
                       {i === index && (
-                        <span className="absolute inset-0 rounded border-2 border-[#60cdff]" />
+                        <span className="absolute inset-0 rounded-xl border-2 border-[#60cdff]" />
                       )}
                     </button>
                   </li>

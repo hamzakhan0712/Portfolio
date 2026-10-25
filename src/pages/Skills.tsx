@@ -9,8 +9,8 @@ import { usePageTitle } from "@/lib/page-title";
  */
 function ToolTile({ tool }: { tool: Tool }) {
   return (
-    <li className="flex items-center gap-3 rounded border bg-control px-3 py-2.5">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-white ring-1 ring-black/5">
+    <li className="flex items-center gap-3 rounded-2xl bg-secondary p-2 pr-3 transition-colors hover:bg-secondary-solid">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white shadow-rest">
         <img
           src={tool.icon}
           alt=""

@@ -53,12 +53,12 @@ export default function Recognition() {
           {recognitions.map((item) => {
             const imageIndex = indexOfImage(item.image);
             return (
-              <li key={item.id} className="card flex flex-col overflow-hidden">
+              <li key={item.id} className="card flex flex-col p-2">
                 {imageIndex >= 0 && (
                   <button
                     type="button"
                     onClick={() => setLightbox({ open: true, index: imageIndex })}
-                    className="block overflow-hidden border-b bg-surface"
+                    className="block overflow-hidden rounded-2xl bg-surface"
                     aria-label={`View certificate: ${item.title}`}
                   >
                     <img
@@ -69,7 +69,7 @@ export default function Recognition() {
                     />
                   </button>
                 )}
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <div className="flex flex-1 flex-col p-4 sm:p-5">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="tag-accent">
                       <Trophy className="h-3.5 w-3.5" />

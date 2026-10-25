@@ -103,24 +103,26 @@ export default function ProjectPage() {
             in the view transition, so the image clicked grows into this. */}
         {(project.video?.src || project.poster) && (
           <AppWindow title={`${name} - walkthrough`}>
-            {project.video?.src ? (
-              <video
-                controls
-                preload="none"
-                poster={project.video.poster ?? project.poster}
-                src={project.video.src}
-                aria-label={`Video walkthrough of ${name}`}
-                style={{ viewTransitionName: mediaTransitionName(project.slug) }}
-                className="block aspect-video w-full bg-black"
-              />
-            ) : (
-              <img
-                src={project.poster}
-                alt={`${name} screenshot`}
-                style={{ viewTransitionName: mediaTransitionName(project.slug) }}
-                className="block w-full object-cover"
-              />
-            )}
+            <div className="px-2 pb-2">
+              {project.video?.src ? (
+                <video
+                  controls
+                  preload="none"
+                  poster={project.video.poster ?? project.poster}
+                  src={project.video.src}
+                  aria-label={`Video walkthrough of ${name}`}
+                  style={{ viewTransitionName: mediaTransitionName(project.slug) }}
+                  className="block aspect-video w-full rounded-2xl bg-black"
+                />
+              ) : (
+                <img
+                  src={project.poster}
+                  alt={`${name} screenshot`}
+                  style={{ viewTransitionName: mediaTransitionName(project.slug) }}
+                  className="block w-full rounded-2xl object-cover"
+                />
+              )}
+            </div>
           </AppWindow>
         )}
 
@@ -167,14 +169,14 @@ export default function ProjectPage() {
                 </p>
                 <ul className="mt-5 grid gap-3 md:grid-cols-2">
                   {clips.map((feature) => (
-                    <li key={feature.video} className="card overflow-hidden">
+                    <li key={feature.video} className="card p-2">
                       <InViewVideo
                         src={feature.video ?? null}
                         poster={feature.poster ?? project.poster ?? ""}
                         alt={feature.title}
-                        className="aspect-video w-full border-b"
+                        className="aspect-video w-full rounded-2xl"
                       />
-                      <div className="p-4">
+                      <div className="px-3 pb-3 pt-4">
                         <h3 className="t-body-strong">{feature.title}</h3>
                         <p className="mt-1 text-[14px] leading-6 text-muted-foreground">
                           {feature.benefit}
@@ -199,7 +201,7 @@ export default function ProjectPage() {
                         type="button"
                         onClick={() => setLightbox({ open: true, index: i })}
                         aria-label={`Open screenshot: ${item.alt || i + 1}`}
-                        className="group relative block w-full overflow-hidden rounded-lg border bg-surface"
+                        className="group relative block w-full overflow-hidden rounded-2xl bg-surface shadow-rest transition-[transform,box-shadow] duration-300 ease-fluent hover:-translate-y-0.5 hover:shadow-raised"
                       >
                         <img
                           src={item.src}
@@ -207,7 +209,7 @@ export default function ProjectPage() {
                           loading="lazy"
                           className="aspect-[16/10] w-full object-cover object-top"
                         />
-                        <span className="acrylic absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded border opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <span className="glass absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                           <Maximize2 className="h-3.5 w-3.5 text-foreground" />
                         </span>
                       </button>
@@ -235,7 +237,7 @@ export default function ProjectPage() {
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className="block rounded px-3 py-1.5 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary"
+                      className="block rounded-full px-3 py-1.5 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary"
                     >
                       {item.label}
                     </a>

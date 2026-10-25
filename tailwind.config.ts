@@ -74,24 +74,29 @@ export default {
           foreground: token("card-foreground"),
         },
       },
-      /* Fluent's two radii: 4 px on controls, 8 px on surfaces and windows. */
+      /* Curves with a hierarchy: small things are rounder relative to their
+         size (pills), large surfaces are softer (24–32 px). */
       borderRadius: {
-        DEFAULT: "4px",
-        sm: "2px",
-        md: "4px",
-        lg: "8px",
-        xl: "12px",
+        sm: "6px",
+        DEFAULT: "8px",
+        md: "10px",
+        lg: "14px",
+        xl: "16px",
+        "2xl": "20px",
+        "3xl": "24px",
+        "4xl": "32px",
       },
-      /* Fluent elevation: cards rest flat; flyouts and windows float. */
       boxShadow: {
-        flyout: "0 8px 16px rgb(0 0 0 / 0.14), 0 0 2px rgb(0 0 0 / 0.12)",
-        window:
-          "0 32px 64px rgb(0 0 0 / 0.20), 0 2px 21px rgb(0 0 0 / 0.16)",
-        tooltip: "0 4px 8px rgb(0 0 0 / 0.14)",
+        rest: "var(--shadow-rest)",
+        raised: "var(--shadow-raised)",
+        float: "var(--shadow-float)",
+        flyout: "var(--shadow-float)",
+        window: "var(--shadow-float)",
+        tooltip: "var(--shadow-raised)",
       },
       transitionTimingFunction: {
-        /* Windows' "decelerate" curve, used for things arriving on screen. */
-        fluent: "cubic-bezier(0, 0, 0, 1)",
+        /* Fluent 2's "decelerate max", for things arriving or responding. */
+        fluent: "cubic-bezier(0.1, 0.9, 0.2, 1)",
       },
     },
   },

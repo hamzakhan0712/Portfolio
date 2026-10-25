@@ -73,7 +73,7 @@ export default function About() {
               src="/photos/full-length.webp"
               alt={profile.name}
               loading="lazy"
-              className="aspect-[4/5] w-full rounded-lg border object-cover object-top"
+              className="aspect-[4/5] w-full rounded-4xl object-cover object-top shadow-raised"
             />
             <div className="card p-5">
               <dl className="divide-y divide-divider">

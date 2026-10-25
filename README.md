@@ -1,7 +1,7 @@
 # Hamza Khan — Portfolio
 
 The personal site of Hamza Khan, full-stack software engineer, Mumbai. Live at
-[portfolio-vert-six-26.vercel.app](https://portfolio-vert-six-26.vercel.app/).
+[www.hamza.social](https://www.hamza.social/).
 
 A portfolio in the Windows 11 visual language (Fluent): Mica backdrop, acrylic
 navigation, Segoe UI Variable, and light and dark themes that follow the system

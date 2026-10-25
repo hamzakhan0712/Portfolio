@@ -80,7 +80,7 @@ for value, label in stats:
 
 # ── Foot ──────────────────────────────────────────────────────────────────
 d.line([(66, 548), (660, 548)], fill=BORDER, width=2)
-d.text((66, 566), "Mumbai, India  ·  portfolio-vert-six-26.vercel.app", font=regular(20), fill=MUTED)
+d.text((66, 566), "Mumbai, India  ·  www.hamza.social", font=regular(20), fill=MUTED)
 
 os.makedirs("public/brand", exist_ok=True)
 img.save("public/brand/og-image.png", optimize=True)
