@@ -37,7 +37,11 @@ const formSchema = z.object({
   name: z.string().min(2, "Please enter your name"),
   email: z.string().email("Please enter a valid email address"),
   subject: z.string().min(5, "Please give the message a subject"),
-  message: z.string().min(20, "Please write at least a couple of sentences"),
+  message: z
+    .string()
+    .min(20, "Please write at least a couple of sentences")
+    .max(5000, "Please keep it under 5,000 characters"),
+  website: z.string().optional(),
 });
 
 // The schema checks the same shape the mail module sends.
@@ -129,10 +133,10 @@ function SendNotice({
 
   const why =
     result.reason === "network"
-      ? "It couldn't reach the mail service — check your connection, or send it another way."
-      : result.detail === "Too Many Requests"
-        ? "A message was sent from this browser in the last minute. Wait a moment, or send it another way."
-        : "The form's mail service isn't accepting messages right now. Your message is still here.";
+      ? "It couldn't reach the server. Check your connection, or send it another way."
+      : result.reason === "rate-limited"
+        ? "Several messages were just sent from here. Wait a few minutes, or send it another way."
+        : "The form isn't accepting messages right now. Your message is still here.";
 
   return (
     <div role="alert" className="rounded-2xl bg-warn/10 p-4 text-[14px] leading-6">
@@ -165,7 +169,7 @@ export default function Contact() {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", subject: "", message: "" },
+    defaultValues: { name: "", email: "", subject: "", message: "", website: "" },
     mode: "onTouched",
   });
 
@@ -276,6 +280,18 @@ export default function Contact() {
                   {...form.register("message")}
                 />
                 {errorFor("message")}
+              </div>
+
+              {/* Honeypot: off-screen and out of the tab order, so only bots fill it. */}
+              <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  {...form.register("website")}
+                />
               </div>
 
               {outcome && <SendNotice outcome={outcome} onCopy={copyMessage} />}

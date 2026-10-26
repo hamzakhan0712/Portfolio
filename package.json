@@ -16,7 +16,6 @@
     "import:projects": "node scripts/import-showcase.mjs"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-tooltip": "^1.1.4",
     "clsx": "^2.1.1",

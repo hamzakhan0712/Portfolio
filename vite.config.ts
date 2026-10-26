@@ -1,29 +1,6 @@
-import { defineConfig, loadEnv, type Plugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-
-/**
- * The contact form's EmailJS ids are baked in at build time. A production
- * build without them still succeeds — and ships a form that cannot send — so
- * say so loudly in the build log (Vercel shows it on the deployment).
- */
-function warnOnMissingMailConfig(mode: string): Plugin {
-  const keys = ["VITE_EMAILJS_SERVICE_ID", "VITE_EMAILJS_TEMPLATE_ID", "VITE_EMAILJS_PUBLIC_KEY"];
-  return {
-    name: "warn-on-missing-mail-config",
-    apply: "build",
-    buildStart() {
-      const env = loadEnv(mode, process.cwd(), "VITE_");
-      const missing = keys.filter((key) => !env[key]?.trim());
-      if (missing.length > 0) {
-        this.warn(
-          `Contact form will not send: ${missing.join(", ")} not set. ` +
-            "Add them in Vercel → Settings → Environment Variables and redeploy.",
-        );
-      }
-    },
-  };
-}
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
@@ -37,7 +14,7 @@ export default defineConfig(async ({ mode }) => {
       host: "::",
       port: 8080,
     },
-    plugins: [react(), warnOnMissingMailConfig(mode), ...devPlugins],
+    plugins: [react(), ...devPlugins],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

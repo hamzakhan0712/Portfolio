@@ -20,7 +20,7 @@ how to get in touch.
 | Education | `/education` | Education, newest first |
 | Skills | `/skills` | Core stack ranked by use, every tool by area with the projects that use it, search and filter |
 | Awards | `/recognition` | Competitions and certifications, with certificate scans and verify links |
-| Contact | `/contact` | Message form (EmailJS), direct details, downloadable contact card |
+| Contact | `/contact` | Message form (sent by `api/contact.ts` through Resend), direct details, downloadable contact card |
 
 Old addresses from previous versions (`/experience`, `/services`, `/solutions`, `/profile`,
 `/authentication`, `/errors`) redirect to their new homes.
@@ -71,9 +71,12 @@ npm run lint
 npm run smoke      # renders every route server-side and fails on any error
 ```
 
-Contact-form delivery needs three EmailJS values in `.env` (see
-`.env.example`). Without them the form reports an error and points the visitor
-to the email address instead.
+The contact form posts to `api/contact.ts`, a Vercel Function that sends
+through [Resend](https://resend.com). It needs `RESEND_API_KEY` and
+`CONTACT_TO_EMAIL` in Vercel's environment variables (see `.env.example`).
+`npm run dev` doesn't run the function; use `npx vercel dev` to test sending
+locally. Without the settings, the form says so and offers the visitor their
+own email app instead.
 
 ## Design
 
@@ -86,7 +89,7 @@ first paint by a small script in `index.html`, then managed by next-themes.
 ## Stack
 
 React 18, TypeScript, Vite, Tailwind CSS, React Router, Framer Motion (selection
-pills, menus and the lightbox), next-themes, react-hook-form + zod, EmailJS. Deployed on Vercel
+pills, menus and the lightbox), next-themes, react-hook-form + zod, Resend (via a Vercel Function). Deployed on Vercel
 (`vercel.json` holds the SPA rewrite and cache headers).
 
 ## License
