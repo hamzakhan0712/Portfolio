@@ -74,17 +74,18 @@ export default {
           foreground: token("card-foreground"),
         },
       },
-      /* Curves with a hierarchy: small things are rounder relative to their
-         size (pills), large surfaces are softer (24–32 px). */
+      /* Windows 11 corner radii: 4 px on controls (buttons, fields, tags),
+         8 px on surfaces that hold them (cards, flyouts, windows). Anything
+         nested inside a card steps down to 6 px so the curves stay concentric. */
       borderRadius: {
-        sm: "6px",
-        DEFAULT: "8px",
-        md: "10px",
-        lg: "14px",
-        xl: "16px",
-        "2xl": "20px",
-        "3xl": "24px",
-        "4xl": "32px",
+        sm: "2px",
+        DEFAULT: "4px",
+        md: "4px",
+        lg: "6px",
+        xl: "6px",
+        "2xl": "6px",
+        "3xl": "8px",
+        "4xl": "8px",
       },
       boxShadow: {
         rest: "var(--shadow-rest)",

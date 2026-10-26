@@ -80,7 +80,7 @@ export function Breadcrumb({ items }: { items: { label: string; to?: string }[] 
             {item.to ? (
               <Link
                 to={item.to}
-                className="rounded-full px-2 py-0.5 font-medium text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
+                className="rounded px-2 py-0.5 font-medium text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
               >
                 {item.label}
               </Link>
@@ -262,7 +262,7 @@ export function Pivot<T extends string>({
       role="radiogroup"
       aria-label={label}
       className={cn(
-        "no-scrollbar inline-flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-secondary p-1",
+        "no-scrollbar inline-flex max-w-full gap-0.5 overflow-x-auto rounded-lg bg-secondary p-1",
         className,
       )}
     >
@@ -276,7 +276,7 @@ export function Pivot<T extends string>({
             aria-checked={selected}
             onClick={() => onChange(item.value)}
             className={cn(
-              "relative isolate h-9 shrink-0 rounded-full px-4 text-[14px] font-medium transition-colors",
+              "relative isolate h-8 shrink-0 rounded px-4 text-[14px] font-medium transition-colors",
               selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -284,7 +284,7 @@ export function Pivot<T extends string>({
               <motion.span
                 layoutId={`pivot-${label}`}
                 transition={{ type: "spring", stiffness: 420, damping: 36 }}
-                className="absolute inset-0 -z-10 rounded-full bg-card shadow-rest"
+                className="absolute inset-0 -z-10 rounded bg-card shadow-rest"
               />
             )}
             {item.label}

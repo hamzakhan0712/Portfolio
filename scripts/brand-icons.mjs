@@ -6,19 +6,19 @@
  *
  * Logos come from Simple Icons (CC0). Each is a single path; it is written
  * filled with the brand's own colour so it reads on the white icon tile in
- * both themes. Only the slugs listed here are copied. Tools without a logo
- * there get a monogram tile on the page instead.
+ * both themes. Only the slugs listed here are copied.
+ *
+ * Simple Icons leaves out a few Microsoft marks; csharp.svg and
+ * playwright.svg come from Devicon (MIT), icons/<name>/<name>-original.svg.
+ * Tools with no published logo at all use a glyph instead (see skills.ts).
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SLUGS = [
-  "angular",
   "dotnet",
   "astro",
-  "rust",
-  "php",
   "electron",
   "vitest",
   "cloudflare",
@@ -36,9 +36,7 @@ const SLUGS = [
   "githubactions",
   "googlesheets",
   "nodedotjs",
-  "pwa",
   "webauthn",
-  "materialdesign",
   "openstreetmap",
   "shadcnui",
 ];

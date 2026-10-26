@@ -81,6 +81,10 @@ for (const tool of tools) {
       `  FAIL  skill "${tool.name}" is used by no project (uses: ${tool.uses.join(", ")})`,
     );
   }
+  if (!tool.icon && !tool.glyph) {
+    failures += 1;
+    console.log(`  FAIL  skill "${tool.name}" has no logo or glyph`);
+  }
 }
 const covered = new Set(tools.flatMap((tool) => tool.uses));
 const uncovered = [...new Set(projects.flatMap((project) => project.tags))].filter(

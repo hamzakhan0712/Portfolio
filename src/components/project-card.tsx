@@ -25,13 +25,13 @@ export function ProjectCard({
   const badges = (
     <div className="absolute bottom-3 left-3 flex gap-1.5">
       {project.video?.duration && (
-        <span className="glass inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-semibold text-foreground">
+        <span className="glass inline-flex items-center gap-1 rounded px-2 py-1 text-[12px] font-semibold text-foreground">
           <Play className="h-3 w-3 fill-current" />
           {project.video.duration}
         </span>
       )}
       {shots > 0 && (
-        <span className="glass inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-semibold text-foreground">
+        <span className="glass inline-flex items-center gap-1 rounded px-2 py-1 text-[12px] font-semibold text-foreground">
           <Images className="h-3 w-3" />
           {shots}
         </span>
@@ -92,7 +92,7 @@ export function ProjectCard({
           )}
         >
           {project.name}
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary text-foreground transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-secondary text-foreground transition-colors duration-200 group-hover:bg-primary group-hover:text-primary-foreground">
             <ArrowUpRight className="h-4 w-4" />
           </span>
         </h3>

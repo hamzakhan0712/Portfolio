@@ -210,7 +210,7 @@ export default function ProjectPage() {
                           loading="lazy"
                           className="aspect-[16/10] w-full object-cover object-top"
                         />
-                        <span className="glass absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <span className="glass absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                           <Maximize2 className="h-3.5 w-3.5 text-foreground" />
                         </span>
                       </button>
@@ -238,7 +238,7 @@ export default function ProjectPage() {
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className="block rounded-full px-3 py-1.5 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary"
+                      className="block rounded px-3 py-1.5 text-[14px] text-foreground no-underline transition-colors hover:bg-secondary"
                     >
                       {item.label}
                     </a>

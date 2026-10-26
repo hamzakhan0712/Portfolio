@@ -270,7 +270,7 @@
   /* ── Buttons: pills ─────────────────────────────────────────────────── */
 
   .btn {
-    @apply inline-flex h-10 select-none items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-[14px] font-semibold no-underline transition-all duration-200 ease-fluent active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex h-10 select-none items-center justify-center gap-2 whitespace-nowrap rounded px-5 text-[14px] font-semibold no-underline transition-all duration-200 ease-fluent active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-lg {
@@ -302,11 +302,11 @@
   }
 
   .btn-icon {
-    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-foreground transition-colors duration-150 hover:bg-secondary active:scale-95;
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded text-foreground transition-colors duration-150 hover:bg-secondary active:scale-95;
   }
 
   .link-button {
-    @apply inline-flex items-center gap-1.5 rounded-full text-[14px] font-semibold text-primary no-underline transition-colors hover:text-primary/80;
+    @apply inline-flex items-center gap-1.5 rounded text-[14px] font-semibold text-primary no-underline transition-colors hover:text-primary/80;
   }
 
   /* ── Surfaces ───────────────────────────────────────────────────────── */
@@ -360,15 +360,15 @@
   /* ── Chips ──────────────────────────────────────────────────────────── */
 
   .tag {
-    @apply inline-flex items-center gap-1 rounded-full bg-secondary px-2.5 py-0.5 text-[12.5px] font-medium leading-5 text-muted-foreground;
+    @apply inline-flex items-center gap-1 rounded bg-secondary px-2 py-0.5 text-[12.5px] font-medium leading-5 text-muted-foreground;
   }
 
   .tag-accent {
-    @apply inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-0.5 text-[12.5px] font-semibold leading-5 text-accent-foreground;
+    @apply inline-flex items-center gap-1 rounded bg-accent px-2 py-0.5 text-[12.5px] font-semibold leading-5 text-accent-foreground;
   }
 
   .status-pill {
-    @apply glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium text-foreground;
+    @apply glass inline-flex items-center gap-2 rounded px-3 py-1.5 text-[13px] font-medium text-foreground;
     box-shadow: inset 0 0 0 1px hsl(var(--glass-border)), var(--shadow-rest);
   }
 
@@ -379,7 +379,7 @@
   }
 
   .field-input {
-    @apply w-full rounded-xl border border-input/60 bg-control px-4 py-2.5 text-[15px] text-foreground transition-[border-color,box-shadow] duration-150 placeholder:text-tertiary-foreground hover:border-input focus:border-primary focus-visible:outline-none;
+    @apply w-full rounded border border-input/60 bg-control px-4 py-2.5 text-[15px] text-foreground transition-[border-color,box-shadow] duration-150 placeholder:text-tertiary-foreground hover:border-input focus:border-primary focus-visible:outline-none;
   }
 
   .field-input:focus {

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, Search, X } from "lucide-react";
 import {
-  ChipList,
   ContactBand,
   PageHeader,
   Pivot,
@@ -31,9 +30,25 @@ import { cn } from "@/lib/utils";
 /** Which tool is open, and where it was opened, so its panel appears there. */
 type Selection = { name: string; from: string } | null;
 
-/** A logo on a white tile, or a monogram where there is no logo. */
+/** A logo on a white tile — or, where the tool has none, its glyph in the
+ *  tool's colour — with a monogram only as a last resort. */
 function ToolIcon({ tool, size = "md" }: { tool: Tool; size?: "md" | "lg" }) {
-  const box = size === "lg" ? "h-12 w-12 rounded-2xl" : "h-9 w-9 rounded-xl";
+  const box = size === "lg" ? "h-12 w-12 rounded-lg" : "h-9 w-9 rounded";
+  if (tool.glyph) {
+    const Glyph = tool.glyph;
+    return (
+      <span
+        aria-hidden
+        className={cn("flex shrink-0 items-center justify-center bg-white shadow-rest", box)}
+      >
+        <Glyph
+          strokeWidth={1.75}
+          style={{ color: tool.tint }}
+          className={size === "lg" ? "h-7 w-7" : "h-5 w-5"}
+        />
+      </span>
+    );
+  }
   if (tool.icon) {
     return (
       <span className={cn("flex shrink-0 items-center justify-center bg-white shadow-rest", box)}>
@@ -248,7 +263,7 @@ export default function Skills() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Find a technology"
-              className="field-input rounded-full pl-10"
+              className="field-input pl-10"
             />
           </label>
           <Pivot
@@ -311,7 +326,7 @@ export default function Skills() {
                               {tool.name}
                             </span>
                             <span
-                              className="rounded-full bg-card px-2 py-0.5 text-[12px] font-semibold text-muted-foreground tabular"
+                              className="rounded bg-card px-1.5 py-0.5 text-[12px] font-semibold text-muted-foreground tabular"
                               title={`Used in ${count} ${count === 1 ? "project" : "projects"}`}
                             >
                               {count}
@@ -345,7 +360,26 @@ export default function Skills() {
           <p className="mt-1.5 max-w-2xl text-[14.5px] leading-6 text-muted-foreground">
             Tools I have used outside the projects shown here, so they carry no count.
           </p>
-          <ChipList items={alsoWorkedWith} className="mt-4" />
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {alsoWorkedWith.map((item) => (
+              <li
+                key={item.name}
+                className="inline-flex items-center gap-2 rounded bg-secondary py-1 pl-1 pr-2.5 text-[13.5px] font-medium text-foreground"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-sm bg-white">
+                  <img
+                    src={item.icon}
+                    alt=""
+                    width={16}
+                    height={16}
+                    loading="lazy"
+                    className="h-4 w-4 object-contain"
+                  />
+                </span>
+                {item.name}
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 

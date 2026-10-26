@@ -1,3 +1,17 @@
+import {
+  BellRing,
+  ChartSpline,
+  FileSpreadsheet,
+  FileText,
+  LayoutTemplate,
+  ListChecks,
+  Mail,
+  Package,
+  PawPrint,
+  RadioTower,
+  ChartBar,
+  type LucideIcon,
+} from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 
 /**
@@ -15,8 +29,12 @@ import { projects, type Project } from "@/data/projects";
 
 export type Tool = {
   name: string;
-  /** A logo in /public/icons; without one the page draws a monogram. */
+  /** A logo in /public/icons. */
   icon?: string;
+  /** For libraries and capabilities with no published logo: a Fluent-style
+   *  glyph drawn in `tint`, so every tool still gets a mark. */
+  glyph?: LucideIcon;
+  tint?: string;
   /** Project tags that mean this tool was used. Matched exactly. */
   uses: string[];
   /** A capability pooled from several libraries ("PDF generation") rather
@@ -53,10 +71,8 @@ export const skillGroups: SkillGroup[] = [
         icon: icon("javascript.svg"),
         uses: ["Google Apps Script", "Astro", "Electron"],
       },
-      { name: "C#", uses: [".NET 10", "ASP.NET Core"] },
+      { name: "C#", icon: brand("csharp"), uses: [".NET 10", "ASP.NET Core"] },
       { name: "SQL", icon: icon("sql.svg"), uses: ["PostgreSQL", "SQLite", "DuckDB"] },
-      { name: "Rust", icon: brand("rust"), uses: ["Rust"] },
-      { name: "PHP", icon: brand("php"), uses: ["PHP"] },
     ],
   },
   {
@@ -67,18 +83,15 @@ export const skillGroups: SkillGroup[] = [
       { name: "React", icon: icon("react.svg"), uses: ["React"] },
       { name: "Next.js", icon: icon("nextjs.svg"), uses: ["Next.js"] },
       { name: "Tailwind CSS", icon: icon("tailwindcss.svg"), uses: ["Tailwind CSS"] },
-      { name: "Angular", icon: brand("angular"), uses: ["Angular 22", "Angular SSR"] },
       { name: "Astro", icon: brand("astro"), uses: ["Astro"] },
       { name: "shadcn/ui", icon: brand("shadcnui"), uses: ["shadcn/ui"] },
-      { name: "Angular Material", icon: brand("materialdesign"), uses: ["Angular Material"] },
       { name: "Ant Design", icon: icon("antdesign.svg"), uses: ["Ant Design"] },
-      { name: "Flowbite", uses: ["Flowbite"] },
+      { name: "Flowbite", glyph: LayoutTemplate, tint: "#1C64F2", uses: ["Flowbite"] },
       { name: "Framer Motion", icon: icon("framermotion.svg"), uses: ["Framer Motion"] },
-      { name: "Zustand", uses: ["Zustand"] },
+      { name: "Zustand", glyph: PawPrint, tint: "#8B5A2B", uses: ["Zustand"] },
       { name: "Chart.js", icon: brand("chartdotjs"), uses: ["Chart.js"] },
       { name: "ECharts", icon: brand("apacheecharts"), uses: ["ECharts"] },
       { name: "Leaflet maps", icon: brand("leaflet"), uses: ["Leaflet", "OpenStreetMap"] },
-      { name: "PWA", icon: brand("pwa"), uses: ["PWA"] },
     ],
   },
   {
@@ -96,8 +109,8 @@ export const skillGroups: SkillGroup[] = [
         uses: ["WebSockets", "Django Channels", "SignalR"],
       },
       { name: "Django Channels", icon: icon("django.svg"), uses: ["Django Channels"] },
-      { name: "SignalR", uses: ["SignalR"] },
-      { name: "Web Push", uses: ["Web Push"] },
+      { name: "SignalR", glyph: RadioTower, tint: "#512BD4", uses: ["SignalR"] },
+      { name: "Web Push", glyph: BellRing, tint: "#0067C0", uses: ["Web Push"] },
       { name: "WebAuthn passkeys", icon: brand("webauthn"), uses: ["WebAuthn"] },
     ],
   },
@@ -108,7 +121,6 @@ export const skillGroups: SkillGroup[] = [
     tools: [
       { name: "PostgreSQL", icon: icon("postgresql.svg"), uses: ["PostgreSQL"] },
       { name: "SQLite", icon: icon("sqlite.svg"), uses: ["SQLite", "better-sqlite3"] },
-      { name: "DuckDB", icon: icon("duckdb.svg"), uses: ["DuckDB"] },
       { name: "Entity Framework Core", icon: brand("dotnet"), uses: ["EF Core"] },
       {
         name: "Cloudflare D1 & R2",
@@ -125,11 +137,28 @@ export const skillGroups: SkillGroup[] = [
       { name: "pandas", icon: icon("Pandas.svg"), uses: ["pandas"] },
       { name: "scikit-learn", icon: icon("scikitlearn.svg"), uses: ["scikit-learn"] },
       { name: "Prophet", icon: icon("prophet.svg"), uses: ["Prophet"] },
-      { name: "SHAP", uses: ["SHAP"] },
-      { name: "mlxtend & lifetimes", uses: ["mlxtend", "lifetimes"] },
+      { name: "SHAP", glyph: ChartBar, tint: "#FF0D57", uses: ["SHAP"] },
+      {
+        name: "mlxtend & lifetimes",
+        glyph: ChartSpline,
+        tint: "#3776AB",
+        uses: ["mlxtend", "lifetimes"],
+      },
       { name: "Ollama", icon: brand("ollama"), uses: ["Ollama"] },
-      { name: "Excel import & export", uses: ["openpyxl"], capability: true },
-      { name: "PDF generation", uses: ["ReportLab", "pdfkit", "wkhtmltopdf"], capability: true },
+      {
+        name: "Excel import & export",
+        glyph: FileSpreadsheet,
+        tint: "#107C41",
+        uses: ["openpyxl"],
+        capability: true,
+      },
+      {
+        name: "PDF generation",
+        glyph: FileText,
+        tint: "#D13438",
+        uses: ["ReportLab", "pdfkit", "wkhtmltopdf"],
+        capability: true,
+      },
     ],
   },
   {
@@ -139,7 +168,7 @@ export const skillGroups: SkillGroup[] = [
     tools: [
       { name: "Tauri", icon: icon("tauri.svg"), uses: ["Tauri"] },
       { name: "Electron", icon: brand("electron"), uses: ["Electron", "electron-updater"] },
-      { name: "PyInstaller", uses: ["PyInstaller"] },
+      { name: "PyInstaller", glyph: Package, tint: "#3776AB", uses: ["PyInstaller"] },
     ],
   },
   {
@@ -164,9 +193,9 @@ export const skillGroups: SkillGroup[] = [
     name: "Testing",
     role: "From unit tests to the browser",
     tools: [
-      { name: "Playwright", uses: ["Playwright"] },
+      { name: "Playwright", icon: brand("playwright"), uses: ["Playwright"] },
       { name: "Vitest", icon: brand("vitest"), uses: ["Vitest"] },
-      { name: "xUnit", uses: ["xUnit"] },
+      { name: "xUnit", glyph: ListChecks, tint: "#512BD4", uses: ["xUnit"] },
     ],
   },
   {
@@ -187,6 +216,8 @@ export const skillGroups: SkillGroup[] = [
       },
       {
         name: "Email delivery",
+        glyph: Mail,
+        tint: "#0067C0",
         uses: ["MailKit", "Nodemailer", "PHPMailer", "Hostinger Reach"],
         capability: true,
       },
@@ -195,17 +226,17 @@ export const skillGroups: SkillGroup[] = [
 ];
 
 /** Used, but not in any project on this site — listed without a count. */
-export const alsoWorkedWith = [
-  "Git",
-  "Flask",
-  "Django REST Framework",
-  "MySQL",
-  "Elasticsearch",
-  "NumPy",
-  "Azure",
-  "DigitalOcean",
-  "Render",
-  "Postman",
+export const alsoWorkedWith: { name: string; icon: string }[] = [
+  { name: "Git", icon: icon("git.svg") },
+  { name: "Flask", icon: icon("flask.svg") },
+  { name: "Django REST Framework", icon: icon("django.svg") },
+  { name: "MySQL", icon: icon("mysql.svg") },
+  { name: "Elasticsearch", icon: icon("elasticsearch.svg") },
+  { name: "NumPy", icon: icon("NumPy.svg") },
+  { name: "Azure", icon: icon("azure.svg") },
+  { name: "DigitalOcean", icon: icon("DigitalOcean.svg") },
+  { name: "Render", icon: icon("render.svg") },
+  { name: "Postman", icon: icon("postman.svg") },
 ];
 
 /** The projects that use a tool, in the site's project order. */

@@ -74,7 +74,7 @@ export function SiteHeader() {
     <>
       <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4">
         <div
-          className="glass mx-auto flex h-14 max-w-6xl items-center gap-2 rounded-full px-2 transition-shadow duration-300"
+          className="glass mx-auto flex h-14 max-w-6xl items-center gap-2 rounded-3xl px-2 transition-shadow duration-300"
           style={
             scrolled
               ? undefined
@@ -83,7 +83,7 @@ export function SiteHeader() {
         >
           <Link
             to="/"
-            className="flex min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-3 no-underline transition-colors hover:bg-secondary"
+            className="flex min-w-0 items-center gap-2.5 rounded py-1 pl-1 pr-3 no-underline transition-colors hover:bg-secondary"
           >
             <img
               src="/photos/avatar.webp"
@@ -112,7 +112,7 @@ export function SiteHeader() {
                   end={item.href === "/"}
                   aria-current={selected ? "page" : undefined}
                   className={cn(
-                    "relative isolate flex h-9 items-center rounded-full px-3.5 text-[14px] font-medium no-underline transition-colors",
+                    "relative isolate flex h-9 items-center rounded px-3.5 text-[14px] font-medium no-underline transition-colors",
                     selected ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                   )}
                 >
@@ -120,7 +120,7 @@ export function SiteHeader() {
                     <motion.span
                       layoutId="nav-pill"
                       transition={{ type: "spring", stiffness: 420, damping: 36 }}
-                      className="absolute inset-0 -z-10 rounded-full bg-card shadow-rest"
+                      className="absolute inset-0 -z-10 rounded bg-card shadow-rest"
                     />
                   )}
                   {item.label}
@@ -189,7 +189,7 @@ export function SiteHeader() {
                         end={item.href === "/"}
                         aria-current={selected ? "page" : undefined}
                         className={cn(
-                          "flex h-14 items-center gap-3 rounded-3xl px-3 text-[15px] font-medium text-foreground no-underline transition-colors hover:bg-secondary",
+                          "flex h-12 items-center gap-3 rounded px-3 text-[15px] font-medium text-foreground no-underline transition-colors hover:bg-secondary",
                           selected && "bg-card shadow-rest",
                         )}
                       >

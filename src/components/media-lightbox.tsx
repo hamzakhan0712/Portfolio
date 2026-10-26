@@ -69,7 +69,7 @@ export function MediaLightbox({ items, startIndex = 0, open, onClose, title }: M
   };
 
   const chrome =
-    "inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 active:bg-white/5 focus-visible:outline-white";
+    "inline-flex h-10 w-10 items-center justify-center rounded text-white transition-colors hover:bg-white/10 active:bg-white/5 focus-visible:outline-white";
 
   return (
     <AnimatePresence>
