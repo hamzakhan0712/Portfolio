@@ -1,7 +1,23 @@
 import { useId, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRight, Search, X } from "lucide-react";
+import {
+  BrainCircuit,
+  Beaker,
+  ChevronDown,
+  ChevronRight,
+  Cloud,
+  Code,
+  Database,
+  Monitor,
+  PanelsTopLeft,
+  Plug,
+  Search,
+  Server,
+  Wrench,
+  X,
+  type Icon,
+} from "@/components/icons";
 import {
   ContactBand,
   PageHeader,
@@ -27,13 +43,25 @@ import { cn } from "@/lib/utils";
  * them; search and the area filter narrow the list.
  */
 
+const AREA_ICONS: Record<string, Icon> = {
+  languages: Code,
+  frontend: PanelsTopLeft,
+  backend: Server,
+  data: Database,
+  ml: BrainCircuit,
+  desktop: Monitor,
+  cloud: Cloud,
+  testing: Beaker,
+  integrations: Plug,
+};
+
 /** Which tool is open, and where it was opened, so its panel appears there. */
 type Selection = { name: string; from: string } | null;
 
 /** A logo on a white tile — or, where the tool has none, its glyph in the
  *  tool's colour — with a monogram only as a last resort. */
 function ToolIcon({ tool, size = "md" }: { tool: Tool; size?: "md" | "lg" }) {
-  const box = size === "lg" ? "h-12 w-12 rounded-lg" : "h-9 w-9 rounded";
+  const box = size === "lg" ? "h-12 w-12 rounded-lg" : "h-8 w-8 rounded";
   if (tool.glyph) {
     const Glyph = tool.glyph;
     return (
@@ -152,6 +180,9 @@ export default function Skills() {
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState("all");
   const panelId = useId();
+  const [openGroups, setOpenGroups] = useState<string[]>(["languages"]);
+  const toggleGroup = (id: string) =>
+    setOpenGroups((current) => (current.includes(id) ? current.filter((g) => g !== id) : [...current, id]));
 
   const toggle = (name: string, from: string) =>
     setSelection((current) =>
@@ -294,56 +325,84 @@ export default function Skills() {
             </button>
           </div>
         ) : (
-          <ul className="mt-6 grid gap-4">
+          /* Windows Settings expanders: one row per area, opening onto its
+             tools; each tool row opens onto the projects that use it. */
+          <ul className="mt-6 space-y-1">
             {groups.map((item) => {
               const open = openTool(item.id, item.tools);
+              const expanded = Boolean(needle) || group !== "all" || openGroups.includes(item.id);
+              const AreaIcon = AREA_ICONS[item.id] ?? Wrench;
               return (
-                <li key={item.id} className="card p-4 sm:p-6">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-1">
-                    <h3 className="t-subtitle">{item.name}</h3>
-                    <p className="text-[14px] text-muted-foreground">{item.role}</p>
-                  </div>
-                  <ul className="mt-4 grid grid-cols-1 gap-2 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    {item.tools.map((tool) => {
-                      const count = projectsUsing(tool).length;
-                      const selected = open?.name === tool.name;
-                      return (
-                        <li key={tool.name}>
-                          <button
-                            type="button"
-                            onClick={() => toggle(tool.name, item.id)}
-                            aria-expanded={selected}
-                            aria-controls={selected ? `${panelId}-${item.id}` : undefined}
-                            className={cn(
-                              "flex w-full items-center gap-3 rounded-2xl p-2 pr-3 text-left transition-[background-color,box-shadow] duration-200",
-                              selected
-                                ? "bg-card shadow-raised ring-2 ring-primary"
-                                : "bg-secondary hover:bg-secondary-solid",
-                            )}
-                          >
-                            <ToolIcon tool={tool} />
-                            <span className="min-w-0 flex-1 truncate text-[14px] font-medium text-foreground">
-                              {tool.name}
-                            </span>
-                            <span
-                              className="rounded bg-card px-1.5 py-0.5 text-[12px] font-semibold text-muted-foreground tabular"
-                              title={`Used in ${count} ${count === 1 ? "project" : "projects"}`}
-                            >
-                              {count}
-                            </span>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                <li key={item.id} className="card overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => toggleGroup(item.id)}
+                    aria-expanded={expanded}
+                    className="flex w-full items-center gap-4 px-4 py-3.5 text-left transition-colors hover:bg-card-hover sm:px-5"
+                  >
+                    <AreaIcon className="h-5 w-5 shrink-0 text-foreground" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[14.5px] font-medium text-foreground">{item.name}</span>
+                      <span className="block text-[13px] text-muted-foreground">{item.role}</span>
+                    </span>
+                    <span className="hidden text-[13px] text-muted-foreground sm:block">
+                      {item.tools.length} {item.tools.length === 1 ? "tool" : "tools"}
+                    </span>
+                    <ChevronDown
+                      className={cn("h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200", expanded && "rotate-180")}
+                    />
+                  </button>
                   <AnimatePresence initial={false}>
-                    {open && (
-                      <ToolDetail
-                        key={open.name}
-                        tool={open}
-                        id={`${panelId}-${item.id}`}
-                        onClose={() => setSelection(null)}
-                      />
+                    {expanded && (
+                      <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        transition={{ duration: 0.25, ease: [0.1, 0.9, 0.2, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <ul className="divide-y divide-divider border-t border-divider bg-surface/60">
+                          {item.tools.map((tool) => {
+                            const count = projectsUsing(tool).length;
+                            const selected = open?.name === tool.name;
+                            return (
+                              <li key={tool.name}>
+                                <button
+                                  type="button"
+                                  onClick={() => toggle(tool.name, item.id)}
+                                  aria-expanded={selected}
+                                  aria-controls={selected ? `${panelId}-${item.id}` : undefined}
+                                  className={cn(
+                                    "flex w-full items-center gap-4 py-2.5 pl-12 pr-4 text-left transition-colors hover:bg-secondary sm:pl-14 sm:pr-5",
+                                    selected && "bg-secondary",
+                                  )}
+                                >
+                                  <ToolIcon tool={tool} />
+                                  <span className="min-w-0 flex-1 truncate text-[14px] text-foreground">{tool.name}</span>
+                                  <span className="text-[13px] text-muted-foreground tabular">
+                                    {count} {count === 1 ? "project" : "projects"}
+                                  </span>
+                                  <ChevronRight
+                                    className={cn("h-4 w-4 shrink-0 text-muted-foreground transition-transform", selected && "rotate-90")}
+                                  />
+                                </button>
+                                <AnimatePresence initial={false}>
+                                  {selected && open && (
+                                    <div className="px-4 pb-3 sm:px-5">
+                                      <ToolDetail
+                                        key={open.name}
+                                        tool={open}
+                                        id={`${panelId}-${item.id}`}
+                                        onClose={() => setSelection(null)}
+                                      />
+                                    </div>
+                                  )}
+                                </AnimatePresence>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </li>

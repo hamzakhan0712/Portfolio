@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
-import { ChipList, ContactBand, Fact, PageHeader, Section } from "@/components/primitives";
-import { profile } from "@/data/site";
+import {
+  ChipList,
+  ContactBand,
+  Fact,
+  PageHeader,
+  PageTabs,
+  Section,
+} from "@/components/primitives";
+import { aboutTabs, profile } from "@/data/site";
 import { usePageTitle } from "@/lib/page-title";
 
 export default function About() {
@@ -11,13 +18,14 @@ export default function About() {
       <PageHeader
         title="About me"
         lead="Who I am, how I work across the stack, and the role I'm looking for."
-      />
+      >
+        <PageTabs label="About" items={aboutTabs} className="mt-6" />
+      </PageHeader>
 
       <Section className="pt-8 sm:pt-10">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-14">
           <div className="min-w-0 space-y-12">
             <section className="prose-plain">
-              <h2 className="t-title mb-4 text-foreground">Hi, I&apos;m Hamza</h2>
               <p>
                 I&apos;m a <strong>full-stack software engineer</strong> based in Mumbai. I build
                 complete products: the data model and the API behind them, the interface people
@@ -73,7 +81,7 @@ export default function About() {
               src="/photos/full-length.webp"
               alt={profile.name}
               loading="lazy"
-              className="aspect-[4/5] w-full rounded-4xl object-cover object-top shadow-raised"
+              className="aspect-square w-full rounded-3xl object-cover object-[center_12%] shadow-raised"
             />
             <div className="card p-5">
               <dl className="divide-y divide-divider">

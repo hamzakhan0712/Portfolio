@@ -2,21 +2,21 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { notify } from "@/components/notify";
 import {
   AlertTriangle,
   Check,
   CheckCircle2,
-  Contact as ContactCard,
+  ContactCard,
   Copy,
   Github,
   Linkedin,
-  Loader2,
   Mail,
   MapPin,
   Phone,
+  ProgressRing,
   Send,
-} from "lucide-react";
+} from "@/components/icons";
 import { Fact, PageHeader, Section } from "@/components/primitives";
 import { contact, profile } from "@/data/site";
 import {
@@ -68,7 +68,7 @@ function CopyRow({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
-      toast.error("Could not copy — select the text instead");
+      notify("Could not copy", { kind: "error", body: "Select the text instead." });
     }
   };
 
@@ -181,16 +181,16 @@ export default function Contact() {
     setOutcome({ result, data });
     if (result.ok) {
       form.reset();
-      toast.success("Message sent", { description: "I usually reply within a day." });
+      notify("Message sent", { body: "Thanks — I usually reply within a day." });
     }
   };
 
   const copyMessage = async (data: FormValues) => {
     try {
       await navigator.clipboard.writeText(`${data.subject}\n\n${data.message}`);
-      toast.success("Message copied");
+      notify("Message copied");
     } catch {
-      toast.error("Could not copy — select the text instead");
+      notify("Could not copy", { kind: "error", body: "Select the text instead." });
     }
   };
 
@@ -218,105 +218,117 @@ export default function Contact() {
 
       <Section className="pt-8 sm:pt-10">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-8">
-          <div className="card p-5 sm:p-8">
-            <h2 className="t-subtitle">Send a message</h2>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-5" noValidate>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="field-label">
-                    Your name
-                  </label>
-                  <input
-                    id="name"
-                    placeholder="Jane Smith"
-                    autoComplete="name"
-                    className="field-input"
-                    {...describe("name")}
-                    {...form.register("name")}
-                  />
-                  {errorFor("name")}
-                </div>
-                <div>
-                  <label htmlFor="email" className="field-label">
-                    Email address
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="you@company.com"
-                    autoComplete="email"
-                    className="field-input"
-                    {...describe("email")}
-                    {...form.register("email")}
-                  />
-                  {errorFor("email")}
-                </div>
+          {/* An Outlook compose window: To, From, Subject, then the body. */}
+          <div className="card overflow-hidden">
+            <form onSubmit={form.handleSubmit(onSubmit)} noValidate>
+              <div className="flex items-center gap-2 border-b border-divider bg-surface/60 px-3 py-2">
+                <button type="submit" disabled={sending} className="btn-accent btn-sm">
+                  {sending ? (
+                    <>
+                      <ProgressRing className="h-4 w-4" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      Send
+                    </>
+                  )}
+                </button>
+                <span className="ml-auto pr-1 text-[12.5px] text-muted-foreground">New message</span>
               </div>
 
-              <div>
-                <label htmlFor="subject" className="field-label">
-                  Subject
-                </label>
-                <input
-                  id="subject"
-                  placeholder="A full-stack role at …"
-                  className="field-input"
-                  {...describe("subject")}
-                  {...form.register("subject")}
-                />
-                {errorFor("subject")}
-              </div>
+              <div className="divide-y divide-divider">
+                <div className="flex items-center gap-3 px-4 py-2.5">
+                  <span className="w-16 shrink-0 text-[14px] text-muted-foreground">To</span>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-secondary py-0.5 pl-0.5 pr-3 text-[13.5px] text-foreground">
+                    <img src="/photos/avatar.webp" alt="" className="h-6 w-6 rounded-full object-cover" />
+                    {profile.name}
+                  </span>
+                </div>
 
-              <div>
-                <label htmlFor="message" className="field-label">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={7}
-                  placeholder="Tell me a little about the role or what you would like to discuss."
-                  className="field-input resize-y"
-                  {...describe("message")}
-                  {...form.register("message")}
-                />
-                {errorFor("message")}
+                <div className="px-4 py-2.5">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                    <label htmlFor="name" className="w-16 shrink-0 text-[14px] text-muted-foreground">
+                      From
+                    </label>
+                    <input
+                      id="name"
+                      placeholder="Your name"
+                      autoComplete="name"
+                      className="compose-input sm:w-44"
+                      {...describe("name")}
+                      {...form.register("name")}
+                    />
+                    <label htmlFor="email" className="sr-only">
+                      Email address
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      autoComplete="email"
+                      className="compose-input flex-1"
+                      {...describe("email")}
+                      {...form.register("email")}
+                    />
+                  </div>
+                  <div className="sm:pl-[4.75rem]">
+                    {errorFor("name")}
+                    {errorFor("email")}
+                  </div>
+                </div>
+
+                <div className="px-4 py-2.5">
+                  <div className="flex items-center gap-3">
+                    <label htmlFor="subject" className="w-16 shrink-0 text-[14px] text-muted-foreground">
+                      Subject
+                    </label>
+                    <input
+                      id="subject"
+                      placeholder="A full-stack role at …"
+                      className="compose-input flex-1"
+                      {...describe("subject")}
+                      {...form.register("subject")}
+                    />
+                  </div>
+                  <div className="pl-[4.75rem]">{errorFor("subject")}</div>
+                </div>
+
+                <div className="px-4 py-3">
+                  <label htmlFor="message" className="sr-only">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={10}
+                    placeholder="Tell me a little about the role or what you would like to discuss."
+                    className="block w-full resize-y bg-transparent text-[15px] leading-7 text-foreground outline-none placeholder:text-tertiary-foreground"
+                    {...describe("message")}
+                    {...form.register("message")}
+                  />
+                  {errorFor("message")}
+                </div>
               </div>
 
               {/* Honeypot: off-screen and out of the tab order, so only bots fill it. */}
               <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
                 <label htmlFor="website">Website</label>
-                <input
-                  id="website"
-                  type="text"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  {...form.register("website")}
-                />
+                <input id="website" type="text" tabIndex={-1} autoComplete="off" {...form.register("website")} />
               </div>
 
-              {outcome && <SendNotice outcome={outcome} onCopy={copyMessage} />}
+              {outcome && (
+                <div className="px-4 pb-4">
+                  <SendNotice outcome={outcome} onCopy={copyMessage} />
+                </div>
+              )}
 
-              <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:gap-4">
-                <button type="submit" disabled={sending} className="btn-accent btn-lg">
-                  {sending ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Sending…
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" strokeWidth={1.75} />
-                      Send message
-                    </>
-                  )}
-                </button>
-                <p className="text-[13px] leading-5 text-muted-foreground">
-                  Goes straight to my inbox. Prefer email?{" "}
-                  <a href={`mailto:${contact.email}`} className="text-primary">
-                    {contact.email}
-                  </a>
-                </p>
-              </div>
+              <p className="border-t border-divider px-4 py-3 text-[13px] leading-5 text-muted-foreground">
+                Goes straight to my inbox. Prefer email?{" "}
+                <a href={`mailto:${contact.email}`} className="text-primary">
+                  {contact.email}
+                </a>
+              </p>
             </form>
           </div>
 

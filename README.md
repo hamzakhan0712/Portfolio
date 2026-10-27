@@ -96,3 +96,10 @@ pills, menus and the lightbox), next-themes, react-hook-form + zod, Resend (via 
 
 MIT — see `LICENSE`. The photographs, screenshots, videos and written content
 are Hamza Khan's and are not covered by the licence.
+
+## Maintenance scripts
+
+- `node scripts/fluent-icons.mjs <fluent> <devicon>` regenerates `src/components/icons.tsx` (Fluent UI System Icons, plus the GitHub and LinkedIn marks).
+- `node scripts/to-webp.mjs` converts project images to WebP after an import (keeps each `poster.jpg` for link previews).
+- `scripts/page-meta.mjs` runs after every build: per-page titles and preview images, and a check that the CSP in `vercel.json` still allows the inline theme script.
+- Optional: set `VITE_CLARITY_ID` to turn on Microsoft Clarity.

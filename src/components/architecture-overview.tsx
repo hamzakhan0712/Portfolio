@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown } from "@/components/icons";
 import type { Architecture } from "@/data/projects";
 
 /**

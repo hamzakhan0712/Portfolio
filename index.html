@@ -16,8 +16,13 @@
           var saved = localStorage.getItem("theme");
           var dark = saved === "dark" || ((!saved || saved === "system") &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
-          document.documentElement.classList.add(dark ? "dark" : "light");
-          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+          var root = document.documentElement;
+          root.classList.add(dark ? "dark" : "light");
+          root.style.colorScheme = dark ? "dark" : "light";
+          var accent = localStorage.getItem("accent");
+          if (accent && accent !== "blue") root.setAttribute("data-accent", accent);
+          if (localStorage.getItem("motion") === "reduce") root.setAttribute("data-reduce-motion", "");
+          if (localStorage.getItem("text") === "large") root.setAttribute("data-large-text", "");
         } catch (e) {}
       })();
     </script>
@@ -55,7 +60,6 @@
 
     <!-- LCP: the first project's frame in the hero window. Preloaded so it
          is not discovered late. Text uses the system UI face — no web fonts. -->
-    <link rel="preload" as="image" href="/projects/novem/poster.jpg" fetchpriority="high" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.hamza.social/" />

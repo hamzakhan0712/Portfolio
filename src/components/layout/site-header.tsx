@@ -2,36 +2,39 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Award,
   FileText,
   FolderKanban,
-  GraduationCap,
   Home,
   Mail,
   Menu,
+  Search,
   User,
   Wrench,
   X,
-  type LucideIcon,
-} from "lucide-react";
+  type Icon,
+} from "@/components/icons";
 import { navigation, profile } from "@/data/site";
-import { ThemeMenu } from "@/components/theme";
+import { QuickSettings } from "@/components/theme";
+import { openSearch } from "@/components/command-search";
+import { PresenceAvatar } from "@/components/presence";
 import { cn } from "@/lib/utils";
 
-const ICONS: Record<string, LucideIcon> = {
+const ICONS: Record<string, Icon> = {
   "/": Home,
   "/projects": FolderKanban,
   "/about": User,
-  "/education": GraduationCap,
   "/skills": Wrench,
-  "/recognition": Award,
   "/contact": Mail,
 };
 
-/** Which navigation item a path belongs to — /projects/novem lights up Projects. */
+/** Which navigation item a path belongs to — /projects/novem lights up
+ *  Projects, /education lights up About. */
 function activeHref(pathname: string) {
   if (pathname === "/") return "/";
-  return navigation.find((item) => item.href !== "/" && pathname.startsWith(item.href))?.href;
+  const within = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  return navigation.find(
+    (item) => item.href !== "/" && (within(item.href) || item.also?.some(within)),
+  )?.href;
 }
 
 /**
@@ -85,13 +88,7 @@ export function SiteHeader() {
             to="/"
             className="flex min-w-0 items-center gap-2.5 rounded py-1 pl-1 pr-3 no-underline transition-colors hover:bg-secondary"
           >
-            <img
-              src="/photos/avatar.webp"
-              alt=""
-              width={36}
-              height={36}
-              className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-card"
-            />
+            <PresenceAvatar size={36} />
             <span className="min-w-0 leading-tight">
               <span className="block truncate text-[14px] font-semibold text-foreground">
                 {profile.name}
@@ -130,7 +127,21 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex items-center gap-1 lg:ml-0">
-            <ThemeMenu />
+            {/* The Windows search box: a field-shaped button that opens search. */}
+            <button
+              type="button"
+              onClick={openSearch}
+              aria-label="Search (Ctrl+K)"
+              className="hidden h-9 items-center gap-2 rounded bg-control px-3 text-[13px] text-muted-foreground shadow-[inset_0_0_0_1px_hsl(var(--border))] transition-colors hover:bg-control-hover xl:inline-flex"
+            >
+              <Search className="h-4 w-4" />
+              Search
+              <kbd className="ml-3 rounded bg-secondary px-1.5 text-[11px]">Ctrl K</kbd>
+            </button>
+            <button type="button" onClick={openSearch} aria-label="Search" className="btn-icon xl:hidden">
+              <Search className="h-5 w-5" />
+            </button>
+            <QuickSettings />
             <a
               href={profile.cv}
               target="_blank"
@@ -178,7 +189,7 @@ export function SiteHeader() {
               transition={{ duration: 0.35, ease: [0.1, 0.9, 0.2, 1] }}
               className="glass fixed inset-x-3 top-[4.75rem] z-50 origin-top rounded-4xl p-2 sm:inset-x-4 lg:hidden"
             >
-              <ul className="grid grid-cols-2 gap-1">
+              <ul className="grid gap-1">
                 {navigation.map((item) => {
                   const Icon = ICONS[item.href] ?? Home;
                   const selected = item.href === current;

@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, ChevronRight, FileText, type LucideIcon } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, FileText, type Icon } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
 import { profile } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn(tight ? "py-10 sm:py-14" : "py-16 sm:py-24", className)}>
+    <section id={id} className={cn(tight ? "py-8 sm:py-10" : "py-12 sm:py-16", className)}>
       <div className="container-site">{reveal ? <Reveal>{children}</Reveal> : children}</div>
     </section>
   );
@@ -96,7 +96,7 @@ export function Breadcrumb({ items }: { items: { label: string; to?: string }[] 
   );
 }
 
-/** The top of an inner page: title and lead in the aurora light. */
+/** The top of an inner page: breadcrumb, title and lead, on the Mica backdrop. */
 export function PageHeader({
   title,
   lead,
@@ -111,9 +111,8 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <header className="relative isolate -mt-[68px] overflow-hidden pt-[68px]">
-      <div aria-hidden className="aurora opacity-80" />
-      <div className="container-site pb-4 pt-12 sm:pt-20">
+    <header>
+      <div className="container-site pb-2 pt-10 sm:pt-16">
         {breadcrumb && (
           <div className="mb-5">
             <Breadcrumb items={breadcrumb} />
@@ -199,7 +198,7 @@ export function SettingsCard({
   to,
   className,
 }: {
-  icon?: LucideIcon;
+  icon?: Icon;
   title: string;
   description?: ReactNode;
   to?: string;
@@ -241,8 +240,39 @@ export function SettingsCard({
 }
 
 /**
- * A segmented control: choices on a soft pill track, with the chosen one on a
- * raised pill that glides between them.
+ * Fades the end of a horizontally scrolling row while more of it is hidden,
+ * so a cut-off item reads as "scroll for more" rather than as a mistake.
+ */
+function useOverflowFade<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [fade, setFade] = useState({ start: false, end: false });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () =>
+      setFade({
+        start: el.scrollLeft > 2,
+        end: el.scrollLeft + el.clientWidth < el.scrollWidth - 2,
+      });
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      observer.disconnect();
+    };
+  }, []);
+  const mask =
+    fade.start || fade.end
+      ? `linear-gradient(to right, ${fade.start ? "transparent, black 32px" : "black"}, ${fade.end ? "black calc(100% - 32px), transparent" : "black"})`
+      : undefined;
+  return { ref, style: mask ? { maskImage: mask, WebkitMaskImage: mask } : undefined };
+}
+
+/**
+ * A segmented control: choices on a soft track, with the chosen one on a
+ * raised segment that glides between them.
  */
 export function Pivot<T extends string>({
   label,
@@ -257,8 +287,11 @@ export function Pivot<T extends string>({
   onChange: (value: T) => void;
   className?: string;
 }) {
+  const overflow = useOverflowFade<HTMLDivElement>();
   return (
     <div
+      ref={overflow.ref}
+      style={overflow.style}
       role="radiogroup"
       aria-label={label}
       className={cn(
@@ -361,5 +394,60 @@ export function ContactBand({
         </div>
       </div>
     </Section>
+  );
+}
+
+/**
+ * Tabs across the top of a group of related pages — About, Education,
+ * Recognition — in the style of the Pivot, so the group reads as one place
+ * with several views, as in Windows Settings.
+ */
+export function PageTabs({
+  label,
+  items,
+  className,
+}: {
+  label: string;
+  items: { to: string; label: string }[];
+  className?: string;
+}) {
+  const overflow = useOverflowFade<HTMLElement>();
+  return (
+    <nav
+      ref={overflow.ref}
+      style={overflow.style}
+      aria-label={label}
+      className={cn(
+        "no-scrollbar inline-flex max-w-full gap-0.5 overflow-x-auto rounded-lg bg-secondary p-1",
+        className,
+      )}
+    >
+      {items.map((item) => (
+        <NavLink
+          key={item.to}
+          to={item.to}
+          end
+          className={({ isActive }) =>
+            cn(
+              "relative isolate flex h-8 shrink-0 items-center rounded px-4 text-[14px] font-medium no-underline transition-colors",
+              isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+            )
+          }
+        >
+          {({ isActive }) => (
+            <>
+              {isActive && (
+                <motion.span
+                  layoutId={`tabs-${label}`}
+                  transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                  className="absolute inset-0 -z-10 rounded bg-card shadow-rest"
+                />
+              )}
+              {item.label}
+            </>
+          )}
+        </NavLink>
+      ))}
+    </nav>
   );
 }

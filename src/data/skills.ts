@@ -10,8 +10,8 @@ import {
   PawPrint,
   RadioTower,
   ChartBar,
-  type LucideIcon,
-} from "lucide-react";
+  type Icon,
+} from "@/components/icons";
 import { projects, type Project } from "@/data/projects";
 
 /**
@@ -33,7 +33,7 @@ export type Tool = {
   icon?: string;
   /** For libraries and capabilities with no published logo: a Fluent-style
    *  glyph drawn in `tint`, so every tool still gets a mark. */
-  glyph?: LucideIcon;
+  glyph?: Icon;
   tint?: string;
   /** Project tags that mean this tool was used. Matched exactly. */
   uses: string[];
@@ -256,3 +256,22 @@ export const rankedTools: RankedTool[] = skillGroups
 
 /** The most-used single tools — the stack I reach for first. */
 export const coreStack = rankedTools.filter((tool) => !tool.capability).slice(0, 8);
+
+/**
+ * A project's stack in the Skills page's own names, in the order the project
+ * lists it — so a card's tags and the Skills page always agree. Tags no skill
+ * covers stay on the project page's full stack list.
+ */
+export function skillNamesFor(project: Project, limit: number): string[] {
+  const names: string[] = [];
+  for (const tag of project.tags) {
+    for (const group of skillGroups) {
+      for (const tool of group.tools) {
+        if (!tool.capability && tool.uses.includes(tag) && !names.includes(tool.name)) {
+          names.push(tool.name);
+        }
+      }
+    }
+  }
+  return names.slice(0, limit);
+}

@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { CommandSearch } from "@/components/command-search";
+import { Notifications } from "@/components/notify";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 
@@ -68,10 +71,20 @@ export function SiteLayout() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="content" className="flex-1">
+      {/* Windows' page entrance: each page slides up a short way as it opens. */}
+      <motion.main
+        key={pathname}
+        id="content"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.1, 0.9, 0.2, 1] }}
+        className="flex-1"
+      >
         <Outlet />
-      </main>
+      </motion.main>
       <SiteFooter />
+      <CommandSearch />
+      <Notifications />
     </div>
   );
 }

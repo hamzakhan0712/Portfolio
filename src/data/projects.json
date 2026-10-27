@@ -25,7 +25,7 @@
         "title": "Ship from one screen",
         "benefit": "Move the order on, add carrier and tracking, and the customer's order page updates straight away.",
         "video": "/projects/initcore-commerce/features/ship-from-the-back-office.mp4",
-        "poster": "/projects/initcore-commerce/features/ship-from-the-back-office.jpg"
+        "poster": "/projects/initcore-commerce/features/ship-from-the-back-office.webp"
       },
       {
         "title": "What needs attention, at a glance",
@@ -35,31 +35,31 @@
         "title": "One-page checkout",
         "benefit": "Saved address, express or store pickup, promo codes, points, COD or online payment.",
         "video": "/projects/initcore-commerce/features/one-page-checkout.mp4",
-        "poster": "/projects/initcore-commerce/features/one-page-checkout.jpg"
+        "poster": "/projects/initcore-commerce/features/one-page-checkout.webp"
       },
       {
         "title": "Delivery dates before you buy",
         "benefit": "Live stock, dated delivery windows, store pickup and the lowest price in 30 days.",
         "video": "/projects/initcore-commerce/features/product-page-delivery-dates.mp4",
-        "poster": "/projects/initcore-commerce/features/product-page-delivery-dates.jpg"
+        "poster": "/projects/initcore-commerce/features/product-page-delivery-dates.webp"
       },
       {
         "title": "Search that forgives typos",
         "benefit": "Suggestions as you type; \"iphne\" still finds the iPhone.",
         "video": "/projects/initcore-commerce/features/search-forgives-typos.mp4",
-        "poster": "/projects/initcore-commerce/features/search-forgives-typos.jpg"
+        "poster": "/projects/initcore-commerce/features/search-forgives-typos.webp"
       },
       {
         "title": "Reports you can act on",
         "benefit": "Sales by day, week or month with CSV, plus a visit-to-order funnel.",
         "video": "/projects/initcore-commerce/features/reports-and-analytics.mp4",
-        "poster": "/projects/initcore-commerce/features/reports-and-analytics.jpg"
+        "poster": "/projects/initcore-commerce/features/reports-and-analytics.webp"
       },
       {
         "title": "Store locator and pickup",
         "benefit": "A map with live opening hours, and free pickup at checkout.",
         "video": "/projects/initcore-commerce/features/store-locator.mp4",
-        "poster": "/projects/initcore-commerce/features/store-locator.jpg"
+        "poster": "/projects/initcore-commerce/features/store-locator.webp"
       }
     ],
     "audience": [
@@ -93,65 +93,65 @@
     "platform": "Web (responsive, installable PWA) — storefront + admin portal",
     "role": "Product design, full-stack development, testing and deployment setup",
     "year": "2026",
-    "poster": "/projects/initcore-commerce/poster.jpg",
+    "poster": "/projects/initcore-commerce/poster.webp",
     "previewVideo": "/projects/initcore-commerce/preview.mp4",
     "video": {
       "src": "/projects/initcore-commerce/walkthrough.mp4",
-      "poster": "/projects/initcore-commerce/poster.jpg",
+      "poster": "/projects/initcore-commerce/poster.webp",
       "duration": "2:18"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/01-homepage.jpg",
+        "src": "/projects/initcore-commerce/gallery/01-homepage.webp",
         "alt": "Store homepage with banner and departments",
         "caption": "Homepage — sections the owner arranges from the back office."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/02-product-page.jpg",
+        "src": "/projects/initcore-commerce/gallery/02-product-page.webp",
         "alt": "Product page with price, stock and delivery dates",
         "caption": "Product page — price, saving, stock and a dated delivery window."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/03-checkout.jpg",
+        "src": "/projects/initcore-commerce/gallery/03-checkout.webp",
         "alt": "One-page checkout",
         "caption": "Checkout — saved address and delivery options on one page."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/04-order-tracking.jpg",
+        "src": "/projects/initcore-commerce/gallery/04-order-tracking.webp",
         "alt": "Customer order tracking page",
         "caption": "Order page — every step with its date and time, plus parcel tracking."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/05-store-locator.jpg",
+        "src": "/projects/initcore-commerce/gallery/05-store-locator.webp",
         "alt": "Store locator with map",
         "caption": "Store locator — search by city or PIN, see who's open now."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/06-admin-dashboard.jpg",
+        "src": "/projects/initcore-commerce/gallery/06-admin-dashboard.webp",
         "alt": "Back-office dashboard",
         "caption": "Dashboard — revenue, orders and what needs attention today."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/07-admin-order.jpg",
+        "src": "/projects/initcore-commerce/gallery/07-admin-order.webp",
         "alt": "Back-office order page with parcel history",
         "caption": "Order in the back office — items, discounts, payment and parcel updates."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/08-admin-reports.jpg",
+        "src": "/projects/initcore-commerce/gallery/08-admin-reports.webp",
         "alt": "Sales reports",
         "caption": "Reports — net sales, orders, discounts and refunds by day, week or month."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-commerce/gallery/09-admin-analytics.jpg",
+        "src": "/projects/initcore-commerce/gallery/09-admin-analytics.webp",
         "alt": "Shopping funnel and traffic sources",
         "caption": "Analytics — the funnel from visit to order and where orders came from."
       }
@@ -184,43 +184,43 @@
         "title": "A verified payment becomes an invoice",
         "benefit": "Verify the payment and the invoice PDF is ready, with GSTIN, the tax split, the amount in words and the package dates.",
         "video": "/projects/initcore-crm/features/payment-to-invoice.mp4",
-        "poster": "/projects/initcore-crm/features/payment-to-invoice.jpg"
+        "poster": "/projects/initcore-crm/features/payment-to-invoice.webp"
       },
       {
         "title": "No call ends without a next step",
         "benefit": "Agents record the outcome and a remark, and set a call-back reminder that counts down on the lead.",
         "video": "/projects/initcore-crm/features/call-outcome-and-reminder.mp4",
-        "poster": "/projects/initcore-crm/features/call-outcome-and-reminder.jpg"
+        "poster": "/projects/initcore-crm/features/call-outcome-and-reminder.webp"
       },
       {
         "title": "One screen for the whole centre's sales",
         "benefit": "Today's sales, this month's sales, sales by team leader and a 30-day trend.",
         "video": "/projects/initcore-crm/features/owner-dashboard.mp4",
-        "poster": "/projects/initcore-crm/features/owner-dashboard.jpg"
+        "poster": "/projects/initcore-crm/features/owner-dashboard.webp"
       },
       {
         "title": "Agents ranked against their target",
         "benefit": "Achievement against monthly target with leads, conversion rate and invoices beside it.",
         "video": "/projects/initcore-crm/features/targets-attendance-reports.mp4",
-        "poster": "/projects/initcore-crm/features/targets-attendance-reports.jpg"
+        "poster": "/projects/initcore-crm/features/targets-attendance-reports.webp"
       },
       {
         "title": "A new lead sheet is working in minutes",
         "benefit": "Upload CSV or Excel, match the columns once, import — no duplicate numbers.",
         "video": "/projects/initcore-crm/features/lead-import.mp4",
-        "poster": "/projects/initcore-crm/features/lead-import.jpg"
+        "poster": "/projects/initcore-crm/features/lead-import.webp"
       },
       {
         "title": "Leads shared out in bulk, with a trail",
         "benefit": "Assign to a team or an agent at once; every move is in the lead's history.",
         "video": "/projects/initcore-crm/features/bulk-assign.mp4",
-        "poster": "/projects/initcore-crm/features/bulk-assign.jpg"
+        "poster": "/projects/initcore-crm/features/bulk-assign.webp"
       },
       {
         "title": "See who is on break, live",
         "benefit": "Agents start breaks from their screen and the Monitor updates without a refresh.",
         "video": "/projects/initcore-crm/features/live-break-monitor.mp4",
-        "poster": "/projects/initcore-crm/features/live-break-monitor.jpg"
+        "poster": "/projects/initcore-crm/features/live-break-monitor.webp"
       }
     ],
     "audience": [
@@ -246,65 +246,65 @@
     "platform": "Web app (Django, PostgreSQL, WebSockets) — runs in any browser",
     "role": "Design and development of the full system: data model, screens, invoicing, live monitor and reports",
     "year": "2024",
-    "poster": "/projects/initcore-crm/poster.jpg",
+    "poster": "/projects/initcore-crm/poster.webp",
     "previewVideo": "/projects/initcore-crm/preview.mp4",
     "video": {
       "src": "/projects/initcore-crm/walkthrough.mp4",
-      "poster": "/projects/initcore-crm/poster.jpg",
+      "poster": "/projects/initcore-crm/poster.webp",
       "duration": "2:58"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/01-dashboard.jpg",
+        "src": "/projects/initcore-crm/gallery/01-dashboard.webp",
         "alt": "Owner dashboard showing total sales, paid customers, leads, attendance rate, sales by team leader and a 30-day sales chart",
         "caption": "Dashboard — the day's and month's sales, by team leader, at a glance."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/02-lead-import-mapping.jpg",
+        "src": "/projects/initcore-crm/gallery/02-lead-import-mapping.webp",
         "alt": "Lead import screen matching spreadsheet columns to lead fields",
         "caption": "Lead import — match the sheet's columns once, then import."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/03-assign-leads.jpg",
+        "src": "/projects/initcore-crm/gallery/03-assign-leads.webp",
         "alt": "Fresh leads selected for bulk assignment to a team",
         "caption": "Bulk assign — tick the leads, pick a team, proceed."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/04-dispose-call.jpg",
+        "src": "/projects/initcore-crm/gallery/04-dispose-call.webp",
         "alt": "Dispose Lead dialog with call outcome, call-back reminder and remark",
         "caption": "Call outcome — every call ends with a result, a remark and a reminder."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/05-break-monitor.jpg",
+        "src": "/projects/initcore-crm/gallery/05-break-monitor.webp",
         "alt": "Monitor page listing agents currently on break",
         "caption": "Break monitor — who is on break right now, updating live."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/06-paid-customers.jpg",
+        "src": "/projects/initcore-crm/gallery/06-paid-customers.webp",
         "alt": "Paid customers list with verified and unverified payments",
         "caption": "Payments — verify a payment to create its invoice."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/07-invoice-pdf.jpg",
+        "src": "/projects/initcore-crm/gallery/07-invoice-pdf.webp",
         "alt": "Invoice PDF with GSTIN, tax amount and amount in words for a demo company",
         "caption": "Invoice PDF — created by the app the moment a payment is verified."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/08-sales-leaderboard.jpg",
+        "src": "/projects/initcore-crm/gallery/08-sales-leaderboard.webp",
         "alt": "Sales leaderboard ranking agents against monthly target",
         "caption": "Sales — agents ranked against target, with conversion and invoices."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-crm/gallery/09-reports.jpg",
+        "src": "/projects/initcore-crm/gallery/09-reports.webp",
         "alt": "Report of one agent's leads by call outcome with a pie chart",
         "caption": "Reports — how each agent's calls ended, outcome by outcome."
       }
@@ -336,37 +336,37 @@
         "title": "Every bed, tracked on its own",
         "benefit": "Know which beds you can rent out today, and what each one earns.",
         "video": "/projects/initcore-realestate/features/bed-tracking.mp4",
-        "poster": "/projects/initcore-realestate/features/bed-tracking.jpg"
+        "poster": "/projects/initcore-realestate/features/bed-tracking.webp"
       },
       {
         "title": "Invite a tenant to a specific bed",
         "benefit": "The prospect fills in their own details and the bed is held for them, so it is never offered twice.",
         "video": "/projects/initcore-realestate/features/invite-tenant-to-bed.mp4",
-        "poster": "/projects/initcore-realestate/features/invite-tenant-to-bed.jpg"
+        "poster": "/projects/initcore-realestate/features/invite-tenant-to-bed.webp"
       },
       {
         "title": "The month on one screen",
         "benefit": "Income, occupancy, rent collected and open tickets at a glance.",
         "video": "/projects/initcore-realestate/features/owner-dashboard.mp4",
-        "poster": "/projects/initcore-realestate/features/owner-dashboard.jpg"
+        "poster": "/projects/initcore-realestate/features/owner-dashboard.webp"
       },
       {
         "title": "Rent you can see",
         "benefit": "Every payment tied to a tenant, room and bed, with overdue rent flagged.",
         "video": "/projects/initcore-realestate/features/rent-payments.mp4",
-        "poster": "/projects/initcore-realestate/features/rent-payments.jpg"
+        "poster": "/projects/initcore-realestate/features/rent-payments.webp"
       },
       {
         "title": "Tenant and landlord portals",
         "benefit": "Tenants see their agreement and payments; landlords see their buildings and rent collected.",
         "video": "/projects/initcore-realestate/features/tenant-and-landlord-portals.mp4",
-        "poster": "/projects/initcore-realestate/features/tenant-and-landlord-portals.jpg"
+        "poster": "/projects/initcore-realestate/features/tenant-and-landlord-portals.webp"
       },
       {
         "title": "Repairs that don't get lost",
         "benefit": "Tickets with a priority, an owner and a deadline.",
         "video": "/projects/initcore-realestate/features/support-tickets.mp4",
-        "poster": "/projects/initcore-realestate/features/support-tickets.jpg"
+        "poster": "/projects/initcore-realestate/features/support-tickets.webp"
       }
     ],
     "audience": [
@@ -390,65 +390,65 @@
     "industry": "real-estate",
     "platform": "Web application",
     "role": "Planning, design and full development",
-    "poster": "/projects/initcore-realestate/poster.jpg",
+    "poster": "/projects/initcore-realestate/poster.webp",
     "previewVideo": "/projects/initcore-realestate/preview.mp4",
     "video": {
       "src": "/projects/initcore-realestate/walkthrough.mp4",
-      "poster": "/projects/initcore-realestate/poster.jpg",
+      "poster": "/projects/initcore-realestate/poster.webp",
       "duration": "2:59"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/01-dashboard.jpg",
+        "src": "/projects/initcore-realestate/gallery/01-dashboard.webp",
         "alt": "Co-living management dashboard with income, occupancy and bed status",
         "caption": "Dashboard: this month's income, occupancy, rent collected and open tickets."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/02-bed-spaces.jpg",
+        "src": "/projects/initcore-realestate/gallery/02-bed-spaces.webp",
         "alt": "Bed-level occupancy across all properties",
         "caption": "Bed spaces: every bed across the portfolio, available, occupied, reserved or under repair."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/03-send-invitation.jpg",
+        "src": "/projects/initcore-realestate/gallery/03-send-invitation.webp",
         "alt": "Inviting a prospective tenant to a specific bed by email",
         "caption": "Bed invitation: email a prospect a link for one specific bed."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/04-tenant-registration.jpg",
+        "src": "/projects/initcore-realestate/gallery/04-tenant-registration.webp",
         "alt": "Prospect's registration page showing the reserved bed and rent",
         "caption": "Registration: the prospect sees the reserved bed, rent and deposit, and fills in their details."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/05-application-review.jpg",
+        "src": "/projects/initcore-realestate/gallery/05-application-review.webp",
         "alt": "Reviewing a tenant application next to the linked bed",
         "caption": "Application review: the applicant's details beside the bed they applied for."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/06-payments.jpg",
+        "src": "/projects/initcore-realestate/gallery/06-payments.webp",
         "alt": "Rent payments dashboard with upcoming, pending and overdue amounts",
         "caption": "Payments: collected, upcoming, pending and overdue rent, payment by payment."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/07-tenant-portal.jpg",
+        "src": "/projects/initcore-realestate/gallery/07-tenant-portal.webp",
         "alt": "Tenant portal with contract status and upcoming rent",
         "caption": "Tenant portal: agreement status, amount due, total paid and next rent."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/08-landlord-portal.jpg",
+        "src": "/projects/initcore-realestate/gallery/08-landlord-portal.webp",
         "alt": "Landlord portal with properties and rent collected",
         "caption": "Landlord portal: their properties, tenants, free beds and rent collected."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-realestate/gallery/09-support.jpg",
+        "src": "/projects/initcore-realestate/gallery/09-support.webp",
         "alt": "Support tickets with priority and overdue status",
         "caption": "Support: tenant issues as tickets with priority, owner and deadline."
       }
@@ -478,37 +478,37 @@
         "title": "Starting prices, up front",
         "benefit": "Know the price range before the first call.",
         "video": "/projects/initcore-web/features/honest-pricing.mp4",
-        "poster": "/projects/initcore-web/features/honest-pricing.jpg"
+        "poster": "/projects/initcore-web/features/honest-pricing.webp"
       },
       {
         "title": "Real work, on video",
         "benefit": "See software that exists, not mock-ups.",
         "video": "/projects/initcore-web/features/real-work-on-video.mp4",
-        "poster": "/projects/initcore-web/features/real-work-on-video.jpg"
+        "poster": "/projects/initcore-web/features/real-work-on-video.webp"
       },
       {
         "title": "Promises you can hold us to",
         "benefit": "Know how we work before you pay.",
         "video": "/projects/initcore-web/features/our-promise.mp4",
-        "poster": "/projects/initcore-web/features/our-promise.jpg"
+        "poster": "/projects/initcore-web/features/our-promise.webp"
       },
       {
         "title": "\"Why not just use AI?\"",
         "benefit": "An honest answer, including what AI does well.",
         "video": "/projects/initcore-web/features/why-not-just-ai.mp4",
-        "poster": "/projects/initcore-web/features/why-not-just-ai.jpg"
+        "poster": "/projects/initcore-web/features/why-not-just-ai.webp"
       },
       {
         "title": "A quote in one click",
         "benefit": "The package is already chosen on the form.",
         "video": "/projects/initcore-web/features/quote-in-one-click.mp4",
-        "poster": "/projects/initcore-web/features/quote-in-one-click.jpg"
+        "poster": "/projects/initcore-web/features/quote-in-one-click.webp"
       },
       {
         "title": "Case studies and guides",
         "benefit": "The full story, and buying advice with real numbers.",
         "video": "/projects/initcore-web/features/case-studies-and-guides.mp4",
-        "poster": "/projects/initcore-web/features/case-studies-and-guides.jpg"
+        "poster": "/projects/initcore-web/features/case-studies-and-guides.webp"
       }
     ],
     "audience": [
@@ -524,65 +524,65 @@
     "role": "Content, design, development, video, search set-up and hosting",
     "year": "2026",
     "liveUrl": "https://initcore.in",
-    "poster": "/projects/initcore-web/poster.jpg",
+    "poster": "/projects/initcore-web/poster.webp",
     "previewVideo": "/projects/initcore-web/preview.mp4",
     "video": {
       "src": "/projects/initcore-web/walkthrough.mp4",
-      "poster": "/projects/initcore-web/poster.jpg",
+      "poster": "/projects/initcore-web/poster.webp",
       "duration": "2:15"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/01-home-hero.jpg",
+        "src": "/projects/initcore-web/gallery/01-home-hero.webp",
         "alt": "InitCore home page",
         "caption": "Home — what we build, with real software playing."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/02-pricing.jpg",
+        "src": "/projects/initcore-web/gallery/02-pricing.webp",
         "alt": "Pricing page",
         "caption": "Pricing — four packages with starting prices."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/03-promise.jpg",
+        "src": "/projects/initcore-web/gallery/03-promise.webp",
         "alt": "Promise band",
         "caption": "Our promise — the motto and six promises."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/04-selected-work.jpg",
+        "src": "/projects/initcore-web/gallery/04-selected-work.webp",
         "alt": "Selected work",
         "caption": "Work — every project on video."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/05-ai-comparison.jpg",
+        "src": "/projects/initcore-web/gallery/05-ai-comparison.webp",
         "alt": "AI comparison",
         "caption": "Why not just AI? — an honest comparison."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/06-case-study.jpg",
+        "src": "/projects/initcore-web/gallery/06-case-study.webp",
         "alt": "Novem case study",
         "caption": "Case study — the full story with video."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/07-solutions.jpg",
+        "src": "/projects/initcore-web/gallery/07-solutions.webp",
         "alt": "Ready-made suites",
         "caption": "Solutions — start from software already built."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/08-guides.jpg",
+        "src": "/projects/initcore-web/gallery/08-guides.webp",
         "alt": "Guides",
         "caption": "Guides — honest answers before you spend."
       },
       {
         "type": "image",
-        "src": "/projects/initcore-web/gallery/09-contact.jpg",
+        "src": "/projects/initcore-web/gallery/09-contact.webp",
         "alt": "Enquiry form",
         "caption": "Contact — the package is already chosen."
       }
@@ -613,13 +613,13 @@
         "title": "Floor plan to WhatsApp in one tap",
         "benefit": "\"Get price\" opens WhatsApp with the unit, project and area already typed, so the sales team knows what the buyer wants.",
         "video": "/projects/key2yourhome/features/floor-plan-to-whatsapp.mp4",
-        "poster": "/projects/key2yourhome/features/floor-plan-to-whatsapp.jpg"
+        "poster": "/projects/key2yourhome/features/floor-plan-to-whatsapp.webp"
       },
       {
         "title": "The Sheet is the website",
         "benefit": "Edit a row in Google Sheets and the site rebuilds and publishes itself.",
         "video": "/projects/key2yourhome/features/sheet-to-website.mp4",
-        "poster": "/projects/key2yourhome/features/sheet-to-website.jpg"
+        "poster": "/projects/key2yourhome/features/sheet-to-website.webp"
       },
       {
         "title": "Unit plans buyers can open",
@@ -629,25 +629,25 @@
         "title": "A full page for every project",
         "benefit": "Gallery, facts, amenities, connectivity, MahaRERA number and FAQ, with price and contact options always beside the page.",
         "video": "/projects/key2yourhome/features/project-page.mp4",
-        "poster": "/projects/key2yourhome/features/project-page.jpg"
+        "poster": "/projects/key2yourhome/features/project-page.webp"
       },
       {
         "title": "Search by city, BHK and budget",
         "benefit": "Results update instantly and the filters stay in the link, so a shortlist can be shared.",
         "video": "/projects/key2yourhome/features/search-and-filters.mp4",
-        "poster": "/projects/key2yourhome/features/search-and-filters.jpg"
+        "poster": "/projects/key2yourhome/features/search-and-filters.webp"
       },
       {
         "title": "No enquiry gets lost",
         "benefit": "Callback requests become rows in the Sheet, with source page and campaign, and an email to sales.",
         "video": "/projects/key2yourhome/features/callback-to-sheet.mp4",
-        "poster": "/projects/key2yourhome/features/callback-to-sheet.jpg"
+        "poster": "/projects/key2yourhome/features/callback-to-sheet.webp"
       },
       {
         "title": "Local pages for Google",
         "benefit": "A guide for each city with live listings, a profile for each builder, structured data and a sitemap.",
         "video": "/projects/key2yourhome/features/area-and-builder-pages.mp4",
-        "poster": "/projects/key2yourhome/features/area-and-builder-pages.jpg"
+        "poster": "/projects/key2yourhome/features/area-and-builder-pages.webp"
       }
     ],
     "audience": [
@@ -669,65 +669,65 @@
     "role": "Website design and build, Google Sheet content model, lead capture, automated deployment and operator documentation",
     "year": "2026",
     "liveUrl": "https://key2yourhome.net",
-    "poster": "/projects/key2yourhome/poster.jpg",
+    "poster": "/projects/key2yourhome/poster.webp",
     "previewVideo": "/projects/key2yourhome/preview.mp4",
     "video": {
       "src": "/projects/key2yourhome/walkthrough.mp4",
-      "poster": "/projects/key2yourhome/poster.jpg",
+      "poster": "/projects/key2yourhome/poster.webp",
       "duration": "1:55"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/01-home-hero.jpg",
+        "src": "/projects/key2yourhome/gallery/01-home-hero.webp",
         "alt": "Homepage hero with a trending project, price and MahaRERA number",
         "caption": "Homepage — trending projects first, with price and MahaRERA number."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/02-projects-explorer.jpg",
+        "src": "/projects/key2yourhome/gallery/02-projects-explorer.webp",
         "alt": "Projects page with instant search and filters",
         "caption": "Projects — search and filter by city, type, BHK and budget."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/03-project-detail.jpg",
+        "src": "/projects/key2yourhome/gallery/03-project-detail.webp",
         "alt": "Project page with photo gallery",
         "caption": "Project page — a full gallery for every project."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/04-project-at-a-glance.jpg",
+        "src": "/projects/key2yourhome/gallery/04-project-at-a-glance.webp",
         "alt": "Project facts beside the price and WhatsApp panel",
         "caption": "At a glance — key facts, with price, WhatsApp and callback always beside them."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/05-unit-plans.jpg",
+        "src": "/projects/key2yourhome/gallery/05-unit-plans.webp",
         "alt": "Unit plans with floor plans, carpet area and starting price",
         "caption": "Unit plans — carpet area, starting price and availability for each configuration."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/06-floor-plan-full-screen.jpg",
+        "src": "/projects/key2yourhome/gallery/06-floor-plan-full-screen.webp",
         "alt": "Floor plan open full-screen",
         "caption": "Floor plans — open any layout full-screen."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/07-whatsapp-prefilled-message.jpg",
+        "src": "/projects/key2yourhome/gallery/07-whatsapp-prefilled-message.webp",
         "alt": "Pre-filled WhatsApp message for the 2 BHK",
         "caption": "Get price — WhatsApp opens with the unit and project already typed."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/08-area-thane.jpg",
+        "src": "/projects/key2yourhome/gallery/08-area-thane.webp",
         "alt": "Local guide page for Thane",
         "caption": "Area pages — a local guide for each city with its live listings."
       },
       {
         "type": "image",
-        "src": "/projects/key2yourhome/gallery/09-nri-services.jpg",
+        "src": "/projects/key2yourhome/gallery/09-nri-services.webp",
         "alt": "NRI services page",
         "caption": "NRI services — what the team handles for buyers abroad."
       }
@@ -758,37 +758,37 @@
         "title": "Speaks to both markets",
         "benefit": "Every page in English and German; one click switches language and keeps the visitor on the same page.",
         "video": "/projects/logxivia/features/english-and-german.mp4",
-        "poster": "/projects/logxivia/features/english-and-german.jpg"
+        "poster": "/projects/logxivia/features/english-and-german.webp"
       },
       {
         "title": "Consulting they can picture",
         "benefit": "Four clickable steps, from sharing requirements to introductions, with a progress ring.",
         "video": "/projects/logxivia/features/four-step-process.mp4",
-        "poster": "/projects/logxivia/features/four-step-process.jpg"
+        "poster": "/projects/logxivia/features/four-step-process.webp"
       },
       {
         "title": "Enquiries without the spam",
         "benefit": "A short form with privacy consent and a hidden spam trap; the message arrives by email with the visitor's language.",
         "video": "/projects/logxivia/features/enquiry-form.mp4",
-        "poster": "/projects/logxivia/features/enquiry-form.jpg"
+        "poster": "/projects/logxivia/features/enquiry-form.webp"
       },
       {
         "title": "The offer, up front",
         "benefit": "One promise and four services, each in one paragraph.",
         "video": "/projects/logxivia/features/offer-and-services.mp4",
-        "poster": "/projects/logxivia/features/offer-and-services.jpg"
+        "poster": "/projects/logxivia/features/offer-and-services.webp"
       },
       {
         "title": "Visitors qualify themselves",
         "benefit": "Who Logxivia works with, its four sectors and a \"right fit\" checklist.",
         "video": "/projects/logxivia/features/who-and-industries.mp4",
-        "poster": "/projects/logxivia/features/who-and-industries.jpg"
+        "poster": "/projects/logxivia/features/who-and-industries.webp"
       },
       {
         "title": "The value, side by side",
         "benefit": "Without structure vs. with Logxivia, then the firm and its founder.",
         "video": "/projects/logxivia/features/approach-and-founder.mp4",
-        "poster": "/projects/logxivia/features/approach-and-founder.jpg"
+        "poster": "/projects/logxivia/features/approach-and-founder.webp"
       },
       {
         "title": "Ready for German law",
@@ -814,65 +814,65 @@
     "role": "Design and development, bilingual setup, enquiry form, legal pages, deployment",
     "year": "2026",
     "liveUrl": "https://logxivia.com",
-    "poster": "/projects/logxivia/poster.jpg",
+    "poster": "/projects/logxivia/poster.webp",
     "previewVideo": "/projects/logxivia/preview.mp4",
     "video": {
       "src": "/projects/logxivia/walkthrough.mp4",
-      "poster": "/projects/logxivia/poster.jpg",
+      "poster": "/projects/logxivia/poster.webp",
       "duration": "1:44"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/01-hero.jpg",
+        "src": "/projects/logxivia/gallery/01-hero.webp",
         "alt": "Logxivia hero",
         "caption": "Hero — the promise and one clear next step."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/02-services.jpg",
+        "src": "/projects/logxivia/gallery/02-services.webp",
         "alt": "Four services",
         "caption": "Services — four offers, one paragraph each."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/03-how-we-work-step-3.jpg",
+        "src": "/projects/logxivia/gallery/03-how-we-work-step-3.webp",
         "alt": "Clickable four-step process",
         "caption": "Process — four steps visitors click through."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/04-industries.jpg",
+        "src": "/projects/logxivia/gallery/04-industries.webp",
         "alt": "Four specialist sectors",
         "caption": "Industries — the four sectors Logxivia specialises in."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/05-approach.jpg",
+        "src": "/projects/logxivia/gallery/05-approach.webp",
         "alt": "Without vs. with Logxivia",
         "caption": "Approach — without structure vs. with Logxivia."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/06-founder.jpg",
+        "src": "/projects/logxivia/gallery/06-founder.webp",
         "alt": "Founder profile (demo name)",
         "caption": "Founder — who is behind the firm (name changed in demo)."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/07-contact-form.jpg",
+        "src": "/projects/logxivia/gallery/07-contact-form.webp",
         "alt": "Enquiry form with consent",
         "caption": "Enquiry — a short form with privacy consent."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/08-hero-german.jpg",
+        "src": "/projects/logxivia/gallery/08-hero-german.webp",
         "alt": "German version of the site",
         "caption": "Deutsch — the whole site in German, one click away."
       },
       {
         "type": "image",
-        "src": "/projects/logxivia/gallery/09-imprint.jpg",
+        "src": "/projects/logxivia/gallery/09-imprint.webp",
         "alt": "Imprint page",
         "caption": "Imprint — the legal page German law requires."
       }
@@ -904,43 +904,43 @@
         "title": "Know what to do next, and what it's worth",
         "benefit": "Recommended actions ranked by estimated rupee value, with the numbers behind each.",
         "video": "/projects/novem/features/recommended-actions.mp4",
-        "poster": "/projects/novem/features/recommended-actions.jpg"
+        "poster": "/projects/novem/features/recommended-actions.webp"
       },
       {
         "title": "Spot customers about to stop buying",
         "benefit": "Each customer's chance of buying again, from their own purchase history.",
         "video": "/projects/novem/features/customers-at-risk.mp4",
-        "poster": "/projects/novem/features/customers-at-risk.jpg"
+        "poster": "/projects/novem/features/customers-at-risk.webp"
       },
       {
         "title": "Stop paying for ads you can't fulfil",
         "benefit": "Campaigns still spending on out-of-stock products, with what each has cost.",
         "video": "/projects/novem/features/wasted-ad-spend.mp4",
-        "poster": "/projects/novem/features/wasted-ad-spend.jpg"
+        "poster": "/projects/novem/features/wasted-ad-spend.webp"
       },
       {
         "title": "Try a change before you make it",
         "benefit": "Projected revenue for price, volume, acquisition and discount changes, with assumptions shown.",
         "video": "/projects/novem/features/what-if-simulator.mp4",
-        "poster": "/projects/novem/features/what-if-simulator.jpg"
+        "poster": "/projects/novem/features/what-if-simulator.webp"
       },
       {
         "title": "Import a Shopify export in a minute",
         "benefit": "Columns matched, every row checked, fixes listed before anything is saved.",
         "video": "/projects/novem/features/import-a-shopify-export.mp4",
-        "poster": "/projects/novem/features/import-a-shopify-export.jpg"
+        "poster": "/projects/novem/features/import-a-shopify-export.webp"
       },
       {
         "title": "The whole store on one screen",
         "benefit": "Revenue, orders, customers and order value against the previous period.",
         "video": "/projects/novem/features/dashboard-at-a-glance.mp4",
-        "poster": "/projects/novem/features/dashboard-at-a-glance.jpg"
+        "poster": "/projects/novem/features/dashboard-at-a-glance.webp"
       },
       {
         "title": "See the next 30 days",
         "benefit": "Forecasts for revenue, orders, customers and order value with a likely range.",
         "video": "/projects/novem/features/revenue-forecast.mp4",
-        "poster": "/projects/novem/features/revenue-forecast.jpg"
+        "poster": "/projects/novem/features/revenue-forecast.webp"
       },
       {
         "title": "Your customer data stays with you",
@@ -980,65 +980,65 @@
     "platform": "Windows desktop app (NSIS installer)",
     "role": "Product design, full-stack engineering (React + Tauri desktop app, Python analytics engine), data science models and Windows packaging",
     "year": "2026",
-    "poster": "/projects/novem/poster.jpg",
+    "poster": "/projects/novem/poster.webp",
     "previewVideo": "/projects/novem/preview.mp4",
     "video": {
       "src": "/projects/novem/walkthrough.mp4",
-      "poster": "/projects/novem/poster.jpg",
+      "poster": "/projects/novem/poster.webp",
       "duration": "2:49"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/novem/gallery/01-dashboard.jpg",
+        "src": "/projects/novem/gallery/01-dashboard.webp",
         "alt": "NOVEM dashboard showing revenue, orders, customers and average order value against the previous 30 days, with a daily revenue trend",
         "caption": "Dashboard — the store's month against the month before, with the daily trend."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/02-import-validation.jpg",
+        "src": "/projects/novem/gallery/02-import-validation.webp",
         "alt": "NOVEM import validation scoring a Shopify export 100 with 266 of 266 rows ready and a list of automatic fixes",
         "caption": "Import — every row checked, and the fixes listed before anything is saved."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/03-customer-segments.jpg",
+        "src": "/projects/novem/gallery/03-customer-segments.webp",
         "alt": "NOVEM customer segments from champions to lost, with new versus returning customers per day",
         "caption": "Customers — grouped from champions to lost."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/04-customers-at-risk.jpg",
+        "src": "/projects/novem/gallery/04-customers-at-risk.webp",
         "alt": "NOVEM at-risk customers table with each customer's chance of buying again and estimated value",
         "caption": "At-risk customers — each one's chance of buying again."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/05-wasted-ad-spend.jpg",
+        "src": "/projects/novem/gallery/05-wasted-ad-spend.webp",
         "alt": "NOVEM flagging ad campaigns still spending on out-of-stock products",
         "caption": "Marketing — ads still running for products that are out of stock."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/06-recommended-actions.jpg",
+        "src": "/projects/novem/gallery/06-recommended-actions.webp",
         "alt": "NOVEM recommended actions, each with an estimated rupee value, impact and effort",
         "caption": "Actions — next steps ranked by what they could be worth."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/07-what-if-simulator.jpg",
+        "src": "/projects/novem/gallery/07-what-if-simulator.webp",
         "alt": "NOVEM what-if simulator projecting revenue after a 5% price rise and 15% more new customers",
         "caption": "What-if — try a price or acquisition change before making it."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/08-revenue-forecast.jpg",
+        "src": "/projects/novem/gallery/08-revenue-forecast.webp",
         "alt": "NOVEM 30-day revenue forecast with history and expected range",
         "caption": "Forecast — the next 30 days, with a likely range."
       },
       {
         "type": "image",
-        "src": "/projects/novem/gallery/09-ask-your-data.jpg",
+        "src": "/projects/novem/gallery/09-ask-your-data.webp",
         "alt": "NOVEM answering plain-English questions about top customers and average order value",
         "caption": "Ask — plain-English questions, answered from the store's own data."
       }
@@ -1071,13 +1071,13 @@
         "title": "What you see is what prints",
         "benefit": "The A4 page builds beside the form as you type, so nothing surprises you at the printer.",
         "video": "/projects/sk-trading/features/live-a4-preview.mp4",
-        "poster": "/projects/sk-trading/features/live-a4-preview.jpg"
+        "poster": "/projects/sk-trading/features/live-a4-preview.webp"
       },
       {
         "title": "Quotation to invoice without retyping",
         "benefit": "'Create as…' carries the customer, items and dispatch details to the next document in one click.",
         "video": "/projects/sk-trading/features/quotation-to-tax-invoice.mp4",
-        "poster": "/projects/sk-trading/features/quotation-to-tax-invoice.jpg"
+        "poster": "/projects/sk-trading/features/quotation-to-tax-invoice.webp"
       },
       {
         "title": "GST worked out for you",
@@ -1091,25 +1091,25 @@
         "title": "Know who still owes you",
         "benefit": "One tick marks an invoice paid and every customer's outstanding updates.",
         "video": "/projects/sk-trading/features/paid-and-outstanding.mp4",
-        "poster": "/projects/sk-trading/features/paid-and-outstanding.jpg"
+        "poster": "/projects/sk-trading/features/paid-and-outstanding.webp"
       },
       {
         "title": "Send by WhatsApp or email",
         "benefit": "Email with the PDF attached, or WhatsApp with the message written and the PDF ready.",
         "video": "/projects/sk-trading/features/send-on-whatsapp.mp4",
-        "poster": "/projects/sk-trading/features/send-on-whatsapp.jpg"
+        "poster": "/projects/sk-trading/features/send-on-whatsapp.webp"
       },
       {
         "title": "Reports ready for your CA",
         "benefit": "Sales by customer, product and state, year-on-year, and a B2B invoice register as CSV.",
         "video": "/projects/sk-trading/features/reports.mp4",
-        "poster": "/projects/sk-trading/features/reports.jpg"
+        "poster": "/projects/sk-trading/features/reports.webp"
       },
       {
         "title": "WhatsApp campaigns to the right customers",
         "benefit": "Export segments like 'payment outstanding' for AiSensy, only for customers who agreed.",
         "video": "/projects/sk-trading/features/audience-export.mp4",
-        "poster": "/projects/sk-trading/features/audience-export.jpg"
+        "poster": "/projects/sk-trading/features/audience-export.webp"
       }
     ],
     "audience": [
@@ -1134,65 +1134,65 @@
     "platform": "Desktop app · Windows · works offline",
     "role": "Design, development, installation and updates",
     "year": "2026",
-    "poster": "/projects/sk-trading/poster.jpg",
+    "poster": "/projects/sk-trading/poster.webp",
     "previewVideo": "/projects/sk-trading/preview.mp4",
     "video": {
       "src": "/projects/sk-trading/walkthrough.mp4",
-      "poster": "/projects/sk-trading/poster.jpg",
+      "poster": "/projects/sk-trading/poster.webp",
       "duration": "2:05"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/01-home.jpg",
+        "src": "/projects/sk-trading/gallery/01-home.webp",
         "alt": "Billing app home screen with document totals and a monthly chart",
         "caption": "Home — this year's quotations, proformas, invoices and challans at a glance."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/02-quotation-editor.jpg",
+        "src": "/projects/sk-trading/gallery/02-quotation-editor.webp",
         "alt": "Quotation editor with a live A4 print preview",
         "caption": "Quotation editor — the printed page builds beside the form as you type."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/03-last-rate-hint.jpg",
+        "src": "/projects/sk-trading/gallery/03-last-rate-hint.webp",
         "alt": "Line item showing the rate this customer last paid",
         "caption": "Products — HSN, unit and GST fill in, with this customer's last rate."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/04-tax-invoice.jpg",
+        "src": "/projects/sk-trading/gallery/04-tax-invoice.webp",
         "alt": "Tax invoice with bill-to, ship-to and dispatch details",
         "caption": "Tax invoice — separate consignee, dispatch details and GST split."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/05-send-on-whatsapp.jpg",
+        "src": "/projects/sk-trading/gallery/05-send-on-whatsapp.webp",
         "alt": "Sending a proforma invoice on WhatsApp",
         "caption": "Send — WhatsApp or email, with the message written and the PDF ready."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/06-tax-invoices.jpg",
+        "src": "/projects/sk-trading/gallery/06-tax-invoices.webp",
         "alt": "Tax invoices list with paid and unpaid status",
         "caption": "Tax invoices — one tick marks paid; the unpaid total updates."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/07-customers.jpg",
+        "src": "/projects/sk-trading/gallery/07-customers.webp",
         "alt": "Customer list with outstanding amounts and a profile panel",
         "caption": "Customers — built from issued documents, with billed and outstanding."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/08-reports-sales.jpg",
+        "src": "/projects/sk-trading/gallery/08-reports-sales.webp",
         "alt": "Sales report by customer, product and state",
         "caption": "Reports — sales by customer, product and state, year on year."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading/gallery/09-audience-export.jpg",
+        "src": "/projects/sk-trading/gallery/09-audience-export.webp",
         "alt": "Customer segments exported for WhatsApp campaigns",
         "caption": "Audience export — consented customer lists for WhatsApp campaigns."
       }
@@ -1225,49 +1225,49 @@
         "title": "Quote requests that start with the product",
         "benefit": "Request a quote on a product page opens the form with that product already chosen.",
         "video": "/projects/sk-trading-web/features/request-a-quote.mp4",
-        "poster": "/projects/sk-trading-web/features/request-a-quote.jpg"
+        "poster": "/projects/sk-trading-web/features/request-a-quote.webp"
       },
       {
         "title": "Find the product in seconds",
         "benefit": "A product finder on the first screen, a products menu and live search across 34 products.",
         "video": "/projects/sk-trading-web/features/find-a-product.mp4",
-        "poster": "/projects/sk-trading-web/features/find-a-product.jpg"
+        "poster": "/projects/sk-trading-web/features/find-a-product.webp"
       },
       {
         "title": "One screen for the whole business",
         "benefit": "What needs attention, this week's numbers and every channel, with a page finder (Ctrl K).",
         "video": "/projects/sk-trading-web/features/admin-dashboard.mp4",
-        "poster": "/projects/sk-trading-web/features/admin-dashboard.jpg"
+        "poster": "/projects/sk-trading-web/features/admin-dashboard.webp"
       },
       {
         "title": "No quote request slips through",
         "benefit": "An alert, the enquiry with the product filled in, a status, a note and a follow-up reminder.",
         "video": "/projects/sk-trading-web/features/enquiry-to-followup.mp4",
-        "poster": "/projects/sk-trading-web/features/enquiry-to-followup.jpg"
+        "poster": "/projects/sk-trading-web/features/enquiry-to-followup.webp"
       },
       {
         "title": "WhatsApp chats and campaigns",
         "benefit": "Answer customers in the admin; send the catalogue template to contacts picked by tag, city and consent.",
         "video": "/projects/sk-trading-web/features/whatsapp-campaign.mp4",
-        "poster": "/projects/sk-trading-web/features/whatsapp-campaign.jpg"
+        "poster": "/projects/sk-trading-web/features/whatsapp-campaign.webp"
       },
       {
         "title": "Social posts from any product",
         "benefit": "Photos, details and the contact strip fill in from the product; preview Facebook and Instagram, then schedule.",
         "video": "/projects/sk-trading-web/features/social-post.mp4",
-        "poster": "/projects/sk-trading-web/features/social-post.jpg"
+        "poster": "/projects/sk-trading-web/features/social-post.webp"
       },
       {
         "title": "Stock status in one click",
         "benefit": "Set in the admin, shown on the website within a minute, no publish needed.",
         "video": "/projects/sk-trading-web/features/stock-from-admin.mp4",
-        "poster": "/projects/sk-trading-web/features/stock-from-admin.jpg"
+        "poster": "/projects/sk-trading-web/features/stock-from-admin.webp"
       },
       {
         "title": "The admin on the phone",
         "benefit": "Alerts on the phone, then the enquiry and the WhatsApp chat, from anywhere.",
         "video": "/projects/sk-trading-web/features/reel-admin-9x16.mp4",
-        "poster": "/projects/sk-trading-web/features/reel-admin-9x16.jpg"
+        "poster": "/projects/sk-trading-web/features/reel-admin-9x16.webp"
       }
     ],
     "audience": [
@@ -1298,71 +1298,71 @@
     "role": "Design, content structure, development, admin and integrations (WhatsApp Cloud API, Meta, Hostinger Reach), Cloudflare hosting and testing",
     "year": "2026",
     "liveUrl": "https://sktradingandco.in",
-    "poster": "/projects/sk-trading-web/poster.jpg",
+    "poster": "/projects/sk-trading-web/poster.webp",
     "previewVideo": "/projects/sk-trading-web/preview.mp4",
     "video": {
       "src": "/projects/sk-trading-web/walkthrough.mp4",
-      "poster": "/projects/sk-trading-web/poster.jpg",
+      "poster": "/projects/sk-trading-web/poster.webp",
       "duration": "4:48"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/01-home-hero.jpg",
+        "src": "/projects/sk-trading-web/gallery/01-home-hero.webp",
         "alt": "S.K Trading & Co. home page with a Find a product panel",
         "caption": "Home — what they stock and a product finder in the first screen."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/02-hero-product-finder.jpg",
+        "src": "/projects/sk-trading-web/gallery/02-hero-product-finder.webp",
         "alt": "Product finder showing the Pipes tab",
         "caption": "Product finder — valves, pipes and fittings in two clicks."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/03-products-search.jpg",
+        "src": "/projects/sk-trading-web/gallery/03-products-search.webp",
         "alt": "Live search results for flange",
         "caption": "Search — every product, as you type."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/04-product-gate-valve.jpg",
+        "src": "/projects/sk-trading-web/gallery/04-product-gate-valve.webp",
         "alt": "Gate valve product page",
         "caption": "Product page — photos and the quote, call and WhatsApp buttons."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/05-contact-request-a-quote.jpg",
+        "src": "/projects/sk-trading-web/gallery/05-contact-request-a-quote.webp",
         "alt": "Request a quote form with a sample enquiry",
         "caption": "Request a quote — the product is already filled in."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/06-admin-dashboard.jpg",
+        "src": "/projects/sk-trading-web/gallery/06-admin-dashboard.webp",
         "alt": "Admin dashboard with attention list, weekly numbers and a 14-day chart",
         "caption": "Admin — one screen for the whole business."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/07-admin-enquiry-sheet.jpg",
+        "src": "/projects/sk-trading-web/gallery/07-admin-enquiry-sheet.webp",
         "alt": "An enquiry opened in the admin with status buttons and a reminder date",
         "caption": "Enquiries — status, note and follow-up reminder."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/08-admin-whatsapp-chat.jpg",
+        "src": "/projects/sk-trading-web/gallery/08-admin-whatsapp-chat.webp",
         "alt": "WhatsApp chat with a sample customer in the admin",
         "caption": "WhatsApp — chats next to products and enquiries."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/09-admin-campaign-new.jpg",
+        "src": "/projects/sk-trading-web/gallery/09-admin-campaign-new.webp",
         "alt": "New WhatsApp campaign form with tags and a message preview",
         "caption": "Campaigns — the catalogue to the right contacts."
       },
       {
         "type": "image",
-        "src": "/projects/sk-trading-web/gallery/10-admin-post-new.jpg",
+        "src": "/projects/sk-trading-web/gallery/10-admin-post-new.webp",
         "alt": "New social post filled in from the gate valve product",
         "caption": "Social — a Facebook and Instagram post from any product."
       }
@@ -1393,7 +1393,7 @@
         "title": "Every enquiry starts with the product",
         "benefit": "\"Get Quote on WhatsApp\" opens a chat that names the product and asks for specs, availability and price.",
         "video": "/projects/taj-metals/features/whatsapp-product-quote.mp4",
-        "poster": "/projects/taj-metals/features/whatsapp-product-quote.jpg"
+        "poster": "/projects/taj-metals/features/whatsapp-product-quote.webp"
       },
       {
         "title": "Specifications before the call",
@@ -1403,31 +1403,31 @@
         "title": "Buyers narrow it down themselves",
         "benefit": "Filter by category, material and standard; key specs on every card.",
         "video": "/projects/taj-metals/features/product-filters.mp4",
-        "poster": "/projects/taj-metals/features/product-filters.jpg"
+        "poster": "/projects/taj-metals/features/product-filters.webp"
       },
       {
         "title": "A homepage that gets to the point",
         "benefit": "What they supply, the GSTIN and location, and Chat on WhatsApp up front.",
         "video": "/projects/taj-metals/features/homepage.mp4",
-        "poster": "/projects/taj-metals/features/homepage.jpg"
+        "poster": "/projects/taj-metals/features/homepage.webp"
       },
       {
         "title": "Answers before the call",
         "benefit": "Delivery, standards, custom sizes and test certificates, answered on the homepage.",
         "video": "/projects/taj-metals/features/faq.mp4",
-        "poster": "/projects/taj-metals/features/faq.jpg"
+        "poster": "/projects/taj-metals/features/faq.webp"
       },
       {
         "title": "Buyer guides that rank",
         "benefit": "Three guides on materials, grades and standards, for buyers and for Google.",
         "video": "/projects/taj-metals/features/buyer-guides.mp4",
-        "poster": "/projects/taj-metals/features/buyer-guides.jpg"
+        "poster": "/projects/taj-metals/features/buyer-guides.webp"
       },
       {
         "title": "Why buyers trust them",
         "benefit": "Reasons to choose, featured products and the industries served.",
         "video": "/projects/taj-metals/features/why-and-industries.mp4",
-        "poster": "/projects/taj-metals/features/why-and-industries.jpg"
+        "poster": "/projects/taj-metals/features/why-and-industries.webp"
       }
     ],
     "audience": [
@@ -1449,65 +1449,65 @@
     "role": "Design, development, WhatsApp enquiry system, SEO and structured data, deployment guide",
     "year": "2026",
     "liveUrl": "https://tajmetals.in",
-    "poster": "/projects/taj-metals/poster.jpg",
+    "poster": "/projects/taj-metals/poster.webp",
     "previewVideo": "/projects/taj-metals/preview.mp4",
     "video": {
       "src": "/projects/taj-metals/walkthrough.mp4",
-      "poster": "/projects/taj-metals/poster.jpg",
+      "poster": "/projects/taj-metals/poster.webp",
       "duration": "1:46"
     },
     "gallery": [
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/01-home-hero.jpg",
+        "src": "/projects/taj-metals/gallery/01-home-hero.webp",
         "alt": "Taj Metals home: precision steel solutions, demo GSTIN, Chat on WhatsApp",
         "caption": "Home — what they supply, and one tap to WhatsApp."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/02-product-categories.jpg",
+        "src": "/projects/taj-metals/gallery/02-product-categories.webp",
         "alt": "Six product categories with photos",
         "caption": "Categories — six product lines."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/03-products-filtered.jpg",
+        "src": "/projects/taj-metals/gallery/03-products-filtered.webp",
         "alt": "Products filtered by material",
         "caption": "Filters — by category, material and standard."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/04-product-page.jpg",
+        "src": "/projects/taj-metals/gallery/04-product-page.webp",
         "alt": "Hydraulic Honed Tube ST52 product page with specifications",
         "caption": "Product — full specifications."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/05-product-specs.jpg",
+        "src": "/projects/taj-metals/gallery/05-product-specs.webp",
         "alt": "Key features, applications and Get Quote on WhatsApp",
         "caption": "Details — features, applications, quote button."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/06-whatsapp-product-quote.jpg",
+        "src": "/projects/taj-metals/gallery/06-whatsapp-product-quote.webp",
         "alt": "WhatsApp message pre-filled with the product name (demo)",
         "caption": "WhatsApp — the product already named."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/07-faq.jpg",
+        "src": "/projects/taj-metals/gallery/07-faq.webp",
         "alt": "Common questions with the first answer open",
         "caption": "FAQ — answers before the call."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/08-industries.jpg",
+        "src": "/projects/taj-metals/gallery/08-industries.webp",
         "alt": "Industries served",
         "caption": "Industries — who they supply."
       },
       {
         "type": "image",
-        "src": "/projects/taj-metals/gallery/09-blog-post.jpg",
+        "src": "/projects/taj-metals/gallery/09-blog-post.webp",
         "alt": "Hydraulic pipes buying guide",
         "caption": "Guides — materials, grades and standards."
       }

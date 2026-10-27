@@ -20,8 +20,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", ...systemUi],
-        display: ["Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", ...systemUi],
+        sans: ["Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", "Selawik", ...systemUi],
+        display: ["Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", "Selawik", ...systemUi],
       },
       colors: {
         border: token("border"),

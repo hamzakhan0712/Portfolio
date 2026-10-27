@@ -130,6 +130,43 @@ function emailHtml({ name, email, subject, message }: Message, receivedAt: strin
 </html>`;
 }
 
+/** The visitor's copy: a thank-you and what they sent, in the same card. */
+function confirmationHtml({ name, subject, message }: Message) {
+  const font = "'Segoe UI Variable Text','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif";
+  const e = escapeHtml;
+  return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Got your message</title></head>
+<body style="margin:0;padding:0;background:#f3f3f3;font-family:${font};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f3f3;"><tr><td align="center" style="padding:32px 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;">
+      <tr><td style="padding:0 4px 16px;font-size:14px;font-weight:600;color:#1a1a1a;"><span style="display:inline-block;width:10px;height:10px;background:#0067c0;border-radius:2px;margin-right:8px;vertical-align:middle;"></span><span style="vertical-align:middle;">Hamza Khan</span></td></tr>
+      <tr><td style="background:#ffffff;border:1px solid #e5e5e5;border-radius:8px;padding:32px;">
+        <h1 style="margin:0 0 12px;font-size:24px;line-height:32px;font-weight:600;color:#1a1a1a;">Thanks, ${e(name.split(" ")[0])}. I got your message.</h1>
+        <p style="margin:0 0 24px;font-size:15px;line-height:24px;color:#424242;">I usually reply within a day. If it's urgent, just reply to this email.</p>
+        <p style="margin:0 0 8px;font-size:13px;color:#616161;">What you sent</p>
+        <div style="background:#f9f9f9;border:1px solid #ebebeb;border-radius:4px;padding:16px 20px;font-size:15px;line-height:24px;color:#1a1a1a;">
+          <strong>${e(subject)}</strong><br><br><span style="white-space:pre-wrap;">${e(message)}</span>
+        </div>
+      </td></tr>
+      <tr><td style="padding:20px 4px 0;font-size:12px;line-height:18px;color:#616161;">Sent because you used the contact form on <a href="https://www.hamza.social" style="color:#0067c0;text-decoration:none;">hamza.social</a>.</td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+}
+
+function confirmationText({ name, subject, message }: Message) {
+  return [
+    `Thanks, ${name.split(" ")[0]}. I got your message and usually reply within a day.`,
+    "",
+    "What you sent:",
+    subject,
+    "",
+    message,
+    "",
+    "— Hamza Khan, hamza.social",
+  ].join("\n");
+}
+
 function emailText({ name, email, subject, message }: Message, receivedAt: string) {
   return [
     "New message from your contact form",
@@ -218,6 +255,24 @@ export async function POST(request: Request) {
   if (!res.ok) {
     console.error(`contact: Resend answered ${res.status}: ${await res.text()}`);
     return reply(502, "rejected");
+  }
+
+  // A confirmation to the visitor, in the same style. Only with a sender on
+  // a verified domain: Resend's test sender can't mail anyone else. A failure
+  // here doesn't fail the send — my copy already arrived.
+  if (process.env.CONTACT_FROM_EMAIL?.trim()) {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        reply_to: to,
+        subject: `Got your message: ${subject}`,
+        text: confirmationText(fields),
+        html: confirmationHtml(fields),
+      }),
+    }).catch((error) => console.error("contact: confirmation failed", error));
   }
   return reply(200);
 }

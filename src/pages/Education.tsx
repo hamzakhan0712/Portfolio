@@ -1,5 +1,13 @@
-import { GraduationCap } from "lucide-react";
-import { CheckList, ChipList, ContactBand, PageHeader, Section } from "@/components/primitives";
+import { GraduationCap } from "@/components/icons";
+import {
+  CheckList,
+  ChipList,
+  ContactBand,
+  PageHeader,
+  PageTabs,
+  Section,
+} from "@/components/primitives";
+import { aboutTabs } from "@/data/site";
 import { education, type TimelineEntry } from "@/data/experience";
 import { usePageTitle } from "@/lib/page-title";
 
@@ -52,7 +60,9 @@ export default function Education() {
       <PageHeader
         title="Education"
         lead="A B.E. in Computer Science & Engineering, after a Diploma in Computer Engineering. Newest first."
-      />
+      >
+        <PageTabs label="About" items={aboutTabs} className="mt-6" />
+      </PageHeader>
 
       <Section className="pt-8 sm:pt-10">
         <ol className="relative max-w-4xl space-y-4 before:absolute before:bottom-8 before:left-[13px] before:top-8 before:w-px before:bg-border sm:before:left-[15px]">

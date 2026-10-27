@@ -79,8 +79,8 @@ export type Project = {
 
 /** The order projects are listed in. The first six are featured on Home. */
 const ORDER = [
-  "novem",
   "initcore-commerce",
+  "novem",
   "initcore-crm",
   "initcore-realestate",
   "sk-trading-web",
@@ -318,10 +318,16 @@ export const projects: Project[] = [
   ...ORDER.filter((slug) => bySlug.has(slug)),
   // Anything the library adds later still shows, at the end.
   ...[...bySlug.keys()].filter((slug) => !ORDER.includes(slug)),
-].map((slug) => ({
-  ...bySlug.get(slug)!,
-  architecture: architectures[slug],
-}));
+].map((slug) => {
+  const project = bySlug.get(slug)!;
+  return {
+    ...project,
+    // The library writes some headlines without a full stop; the site
+    // shows them as sentences, so finish them consistently.
+    headline: project.headline?.replace(/([^.!?])\s*$/, "$1."),
+    architecture: architectures[slug],
+  };
+});
 
 export const getProjectBySlug = (slug: string | undefined) =>
   projects.find((project) => project.slug === slug);

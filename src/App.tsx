@@ -1,9 +1,8 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "@/components/theme";
+import { ThemeProvider, usePrefs } from "@/components/theme";
 import { SiteLayout } from "@/components/layout/site-layout";
 import Home from "@/pages/Home";
 
@@ -47,13 +46,17 @@ const lazyPage = (element: JSX.Element) => (
   <Suspense fallback={<PageSkeleton />}>{element}</Suspense>
 );
 
+/** Motion follows the OS setting, or the site's own "Reduce motion" toggle —
+ *  the media query in index.css cannot reach JS-driven motion. */
+function Motion({ children }: { children: JSX.Element }) {
+  const { prefs } = usePrefs();
+  return <MotionConfig reducedMotion={prefs.reduceMotion ? "always" : "user"}>{children}</MotionConfig>;
+}
+
 const App = () => (
-  // reducedMotion="user" makes every framer-motion animation honour the OS
-  // setting — the media query in index.css cannot reach JS-driven motion.
   <ThemeProvider>
-    <MotionConfig reducedMotion="user">
+    <Motion>
       <TooltipProvider>
-        <Sonner />
         <BrowserRouter>
           <Routes>
             <Route element={<SiteLayout />}>
@@ -80,7 +83,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
-    </MotionConfig>
+    </Motion>
   </ThemeProvider>
 );
 

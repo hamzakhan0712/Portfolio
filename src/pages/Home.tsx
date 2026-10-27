@@ -4,16 +4,16 @@ import {
   ArrowRight,
   Award,
   Cloud,
-  FileText,
   FolderKanban,
-  GraduationCap,
+  Globe,
   MapPin,
+  Monitor,
   MonitorSmartphone,
   PanelsTopLeft,
   Server,
   Sparkles,
-  type LucideIcon,
-} from "lucide-react";
+  type Icon,
+} from "@/components/icons";
 import {
   ChipList,
   ContactBand,
@@ -24,6 +24,7 @@ import {
 import { ProjectCard } from "@/components/project-card";
 import { Reveal, RevealItem, RevealList } from "@/components/reveal";
 import { ProjectShowcase } from "@/components/app-window";
+import { PresenceAvatar } from "@/components/presence";
 import { metrics, profile, strengths } from "@/data/site";
 import { projects } from "@/data/projects";
 
@@ -38,14 +39,19 @@ import { projects } from "@/data/projects";
 const featured = projects.slice(0, 6);
 const [spotlight, ...rest] = projects.slice(0, 7);
 
-const STRENGTH_ICONS: Record<string, LucideIcon> = {
+const STRENGTH_ICONS: Record<string, Icon> = {
   backend: Server,
   frontend: PanelsTopLeft,
   desktop: MonitorSmartphone,
   deployment: Cloud,
 };
 
-const METRIC_ICONS: LucideIcon[] = [GraduationCap, FolderKanban, Award, Sparkles];
+const METRIC_ICONS: Record<string, Icon> = {
+  shipped: FolderKanban,
+  live: Globe,
+  desktop: Monitor,
+  award: Award,
+};
 
 /* The page's one orchestrated moment: the hero arrives in two beats. */
 const rise = (delay: number) => ({
@@ -58,17 +64,15 @@ export default function Home() {
   return (
     <>
       {/* ── Hero: the person on the left, the work running on the right ── */}
-      {/* Pulled up under the floating header so the aurora runs to the top edge. */}
-      <section className="relative isolate -mt-[68px] overflow-hidden pt-[68px]">
-        <div aria-hidden className="aurora" />
-        <div className="container-site grid items-center gap-12 pb-16 pt-12 sm:pt-20 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:pb-24 lg:pt-24">
+      <section>
+        <div className="container-site grid grid-cols-1 items-center gap-12 pb-12 pt-10 sm:pt-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:pb-16 lg:pt-20">
           <motion.div {...rise(0)}>
-            <p className="status-pill">
-              <span className="relative flex h-2 w-2" aria-hidden>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-ok" />
+            <p className="inline-flex items-center gap-3 text-[14px]">
+              <PresenceAvatar size={40} />
+              <span className="leading-tight">
+                <span className="block font-semibold text-foreground">Available</span>
+                <span className="block text-muted-foreground">{profile.status}</span>
               </span>
-              {profile.status}
             </p>
 
             <h1 className="t-display mt-7">{profile.name}</h1>
@@ -76,11 +80,8 @@ export default function Home() {
               {profile.role}
             </p>
 
-            <p className="mt-7 max-w-xl text-[18px] leading-8 text-foreground">
+            <p className="mt-7 max-w-xl text-[18px] leading-8 text-muted-foreground">
               {profile.headline}
-            </p>
-            <p className="mt-3 max-w-xl text-[15.5px] leading-7 text-muted-foreground">
-              {profile.intro}
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -91,15 +92,11 @@ export default function Home() {
               <Link to="/contact" className="btn-standard btn-lg">
                 Contact me
               </Link>
-              <a href={profile.cv} target="_blank" rel="noreferrer" className="btn-subtle btn-lg">
-                <FileText className="h-4 w-4" />
-                CV
-              </a>
             </div>
 
-            <p className="mt-8 inline-flex items-center gap-2 text-[14px] text-muted-foreground">
-              <MapPin className="h-4 w-4" strokeWidth={1.75} />
-              {profile.location}, open to {profile.openTo.join(", ")}
+            <p className="mt-8 flex items-start gap-2 text-[14px] leading-6 text-muted-foreground">
+              <MapPin className="mt-1 h-4 w-4 shrink-0" />
+              {profile.locationLine}
             </p>
           </motion.div>
 
@@ -112,8 +109,8 @@ export default function Home() {
       {/* ── The facts, as bento tiles ─────────────────────────────────── */}
       <Section tight className="pt-0 sm:pt-0">
         <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-          {metrics.map((metric, index) => {
-            const Icon = METRIC_ICONS[index] ?? Sparkles;
+          {metrics.map((metric) => {
+            const Icon = METRIC_ICONS[metric.id] ?? Sparkles;
             return (
               <div key={metric.label} className="card flex flex-col p-5 sm:p-6">
                 <span className="icon-tile h-10 w-10 rounded-xl">
@@ -194,14 +191,13 @@ export default function Home() {
             <h2 className="t-title">About me</h2>
             <div className="prose-plain mt-5">
               <p>
-                I graduated in 2026 with a B.E. in Computer Science and Engineering from the
-                University of Mumbai (CGPI 8.19 / 10), after a Diploma in Computer Engineering.
-              </p>
-              <p>
                 I work across the whole stack: the data model and the API, the interface people use,
                 and the pipeline that ships it. The projects on this site run on Django, FastAPI,
-                .NET, Next.js, Tauri and Electron. My team also reached the Grand Finale of Smart
-                India Hackathon 2025.
+                .NET, Next.js, Tauri and Electron.
+              </p>
+              <p>
+                I graduated in 2026 with a B.E. in Computer Science and Engineering from the
+                University of Mumbai, after a Diploma in Computer Engineering.
               </p>
             </div>
             <ChipList items={profile.focus} className="mt-6" />
