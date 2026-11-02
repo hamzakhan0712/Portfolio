@@ -286,7 +286,7 @@ export default function Contact() {
                     </label>
                     <input
                       id="subject"
-                      placeholder="A full-stack role at …"
+                      placeholder="A full stack role at …"
                       className="compose-input flex-1"
                       {...describe("subject")}
                       {...form.register("subject")}
@@ -391,7 +391,7 @@ export default function Contact() {
             <div className="card p-5">
               <dl className="divide-y divide-divider">
                 <Fact label="Looking for">
-                  Full-time full-stack software engineering roles: backend, frontend or both.
+                  Full-time full stack developer roles: backend, frontend or both.
                 </Fact>
                 <Fact label="Open to">{profile.openTo.join(", ")}</Fact>
                 <Fact label="Response time">Usually within a day</Fact>

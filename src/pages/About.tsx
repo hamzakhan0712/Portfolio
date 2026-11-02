@@ -27,7 +27,7 @@ export default function About() {
           <div className="min-w-0 space-y-12">
             <section className="prose-plain">
               <p>
-                I&apos;m a <strong>full-stack software engineer</strong> based in Mumbai. I build
+                I&apos;m a <strong>full stack developer</strong> based in Mumbai. I build
                 complete products: the data model and the API behind them, the interface people
                 actually use, and the pipeline that ships them.
               </p>
@@ -64,7 +64,7 @@ export default function About() {
             <section className="prose-plain">
               <h2 className="t-title mb-4 text-foreground">What I&apos;m looking for</h2>
               <p>
-                A full-time full-stack engineering role on a team that ships, where I can own
+                A full-time full stack developer role on a team that ships, where I can own
                 features end to end and keep learning from experienced engineers. Remote, or on-site
                 in{" "}
                 {profile.openTo

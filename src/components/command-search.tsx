@@ -5,7 +5,7 @@ import { ArrowRight, FolderKanban, Search, Wrench } from "@/components/icons";
 import { ProjectIcon } from "@/components/project-icon";
 import { projects } from "@/data/projects";
 import { aboutTabs, navigation } from "@/data/site";
-import { rankedTools } from "@/data/skills";
+import { presentedTools } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
 /**
@@ -36,7 +36,7 @@ const ALL: Result[] = [
     to: `/projects/${project.slug}`,
     project,
   })),
-  ...rankedTools.map((tool) => ({
+  ...presentedTools.map((tool) => ({
     id: `tech-${tool.name}`,
     group: "Technologies" as const,
     label: tool.name,

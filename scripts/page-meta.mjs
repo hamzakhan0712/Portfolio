@@ -37,7 +37,7 @@ const sentence = (text) => text?.trim().replace(/([^.!?])$/, "$1.");
 
 const pages = [
   { route: "/projects", title: "Projects", description: `${projects.length} web apps, websites and desktop apps, each with a video walkthrough, short clips and screenshots.` },
-  { route: "/skills", title: "Skills", description: "Every technology I use, each one linked to the projects it was used in." },
+  { route: "/skills", title: "Skills", description: "The stack I work in, each tool linked to the projects it was used in." },
   { route: "/about", title: "About", description: "Who I am, how I work across the stack, and the role I'm looking for." },
   { route: "/education", title: "Education", description: "A B.E. in Computer Science & Engineering from the University of Mumbai, after a Diploma in Computer Engineering." },
   { route: "/recognition", title: "Recognition", description: "Hackathons, competitions and certificates, with links to verify them." },

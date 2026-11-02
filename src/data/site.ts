@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 
 export const profile = {
   name: "Hamza Khan",
-  role: "Full-Stack Software Engineer",
+  role: "Full Stack Developer",
   location: "Mumbai, India",
   headline: `I've shipped ${projects.length} products — online stores, CRMs, billing and analytics apps — and built each one from the database to the screen.`,
   /** Said once, under the hero; the footer and About don't repeat it. */

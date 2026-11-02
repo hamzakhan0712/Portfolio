@@ -1,6 +1,6 @@
 # Hamza Khan — Portfolio
 
-The personal site of Hamza Khan, full-stack software engineer, Mumbai. Live at
+The personal site of Hamza Khan, full stack developer, Mumbai. Live at
 [www.hamza.social](https://www.hamza.social/).
 
 A portfolio in the Windows 11 visual language (Fluent): Mica backdrop, acrylic
@@ -18,7 +18,7 @@ how to get in touch.
 | Project | `/projects/:slug` | Walkthrough, overview, problem and solution, key features, feature clips, screenshots, tech stack, architecture |
 | About | `/about` | Short bio and quick facts |
 | Education | `/education` | Education, newest first |
-| Skills | `/skills` | Core stack ranked by use, every tool by area with the projects that use it, search and filter |
+| Skills | `/skills` | Core stack, supporting tools and tools used for specific projects, each with the projects that use it |
 | Awards | `/recognition` | Competitions and certifications, with certificate scans and verify links |
 | Contact | `/contact` | Message form (sent by `api/contact.ts` through Resend), direct details, downloadable contact card |
 
@@ -49,10 +49,11 @@ diagrams live in `src/data/projects.ts`.
 Everything else lives in `src/data/`:
 
 - `experience.ts` — education
-- `skills.ts` — the tools, by area. Each tool names the project tags that
-  count as using it; the projects (and the ranked "core stack") are worked out
-  from `projects.json`, and `npm run smoke` fails if a tool has no project
-  behind it. Logos not in `public/icons` come from Simple Icons via
+- `skills.ts` — every tool, used for project tags and filters. Each tool names
+  the project tags that count as using it, worked out from `projects.json`, and
+  `npm run smoke` fails if a tool has no project behind it. The Skills page and
+  site search only show the short lists at the end of this file
+  (`coreStack`, `supportingTools`, `projectTools`). Logos not in `public/icons` come from Simple Icons via
   `node scripts/brand-icons.mjs <simple-icons package>`
 - `recognition.ts` — awards and certifications
 - `site.ts` — name, role, contact details, headline numbers, navigation, strengths

@@ -65,7 +65,7 @@ d.text((112, 74), pill_text, font=pf, fill=FG)
 
 # ── Name and role ─────────────────────────────────────────────────────────
 d.text((62, 140), "Hamza Khan", font=bold(84), fill=FG)
-d.text((66, 248), "Full-Stack Software Engineer", font=semibold(42), fill=PRIMARY)
+d.text((66, 248), "Full Stack Developer", font=semibold(42), fill=PRIMARY)
 d.text((66, 312), "Complete products, from the database to the UI.", font=regular(26), fill=MUTED)
 
 # ── Headline figures ──────────────────────────────────────────────────────

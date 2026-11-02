@@ -339,7 +339,7 @@ export function Pivot<T extends string>({
  * themes.
  */
 export function ContactBand({
-  title = "Hiring a full-stack engineer?",
+  title = "Hiring a full stack developer?",
   body = "I’m looking for a full-time role where I can own features from the database to the interface. Send me a message — I usually reply within a day.",
 }: {
   title?: string;

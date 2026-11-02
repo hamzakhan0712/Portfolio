@@ -158,7 +158,7 @@ export default function Home() {
           <SectionHeading
             title="What I work on"
             lead="Across the stack, from the schema to the screen to the server it runs on."
-            action={{ to: "/skills", label: "All skills" }}
+            action={{ to: "/skills", label: "Skills" }}
           />
         </Reveal>
         <RevealList className="mt-10 grid gap-4 md:grid-cols-2 lg:gap-5">

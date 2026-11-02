@@ -10,6 +10,7 @@ import {
   PawPrint,
   RadioTower,
   ChartBar,
+  Code,
   type Icon,
 } from "@/components/icons";
 import { projects, type Project } from "@/data/projects";
@@ -19,12 +20,13 @@ import { projects, type Project } from "@/data/projects";
  *
  * Every tool names the project tags that count as using it (`uses`). Which
  * projects those are is worked out from the project data itself, so the
- * Skills page can never claim a tool for a project that does not list it —
- * and a re-imported project updates the page on its own.
+ * site can never claim a tool for a project that does not list it — and a
+ * re-imported project updates the page on its own.
  *
- * Tools with no project behind them go in `alsoWorkedWith`, shown without a
- * count, so the difference between "shipped with it" and "have used it" stays
- * visible.
+ * `skillGroups` is the full catalogue: it names the tags on project cards and
+ * pages, so each project still shows its real stack. The Skills page and site
+ * search show only the short lists at the end of this file, which are the
+ * stack I present myself on rather than everything I have touched.
  */
 
 export type Tool = {
@@ -83,6 +85,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "React", icon: icon("react.svg"), uses: ["React"] },
       { name: "Next.js", icon: icon("nextjs.svg"), uses: ["Next.js"] },
       { name: "Tailwind CSS", icon: icon("tailwindcss.svg"), uses: ["Tailwind CSS"] },
+      { name: "Angular", glyph: Code, tint: "#DD0031", uses: ["Angular 22"] },
       { name: "Astro", icon: brand("astro"), uses: ["Astro"] },
       { name: "shadcn/ui", icon: brand("shadcnui"), uses: ["shadcn/ui"] },
       { name: "Ant Design", icon: icon("antdesign.svg"), uses: ["Ant Design"] },
@@ -225,20 +228,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-/** Used, but not in any project on this site — listed without a count. */
-export const alsoWorkedWith: { name: string; icon: string }[] = [
-  { name: "Git", icon: icon("git.svg") },
-  { name: "Flask", icon: icon("flask.svg") },
-  { name: "Django REST Framework", icon: icon("django.svg") },
-  { name: "MySQL", icon: icon("mysql.svg") },
-  { name: "Elasticsearch", icon: icon("elasticsearch.svg") },
-  { name: "NumPy", icon: icon("NumPy.svg") },
-  { name: "Azure", icon: icon("azure.svg") },
-  { name: "DigitalOcean", icon: icon("DigitalOcean.svg") },
-  { name: "Render", icon: icon("render.svg") },
-  { name: "Postman", icon: icon("postman.svg") },
-];
-
 /** The projects that use a tool, in the site's project order. */
 export function projectsUsing(tool: Tool): Project[] {
   return projects.filter((project) => project.tags.some((tag) => tool.uses.includes(tag)));
@@ -254,8 +243,51 @@ export const rankedTools: RankedTool[] = skillGroups
   .filter((tool) => tool.projects.length > 0)
   .sort((a, b) => b.projects.length - a.projects.length);
 
-/** The most-used single tools — the stack I reach for first. */
-export const coreStack = rankedTools.filter((tool) => !tool.capability).slice(0, 8);
+/** Picks tools by name. A name that matches nothing fails loudly (and `npm run
+ *  smoke` with it), so renaming a tool can't quietly empty the Skills page. */
+const pick = (names: string[]): RankedTool[] =>
+  names.map((name) => {
+    const tool = rankedTools.find((item) => item.name === name);
+    if (!tool) throw new Error(`Skills page lists "${name}", which no project uses.`);
+    return tool;
+  });
+
+/** What I build with first, and can talk about in depth. Chosen, not ranked:
+ *  a project count alone would put Tailwind above Django and leave out FastAPI. */
+export const coreStack = pick([
+  "Python",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Django",
+  "FastAPI",
+  "PostgreSQL",
+  "Tailwind CSS",
+]);
+
+/** The everyday tools that go with the core stack. */
+export const supportingTools = pick([
+  "JavaScript",
+  "SQL",
+  "SQLite",
+  "GitHub Actions",
+  "Playwright",
+  "Vitest",
+]);
+
+/** Used because a project called for them, and labelled that way. */
+export const projectTools = pick([
+  "Electron",
+  "Tauri",
+  "ASP.NET Core",
+  "Angular",
+  "Docker",
+  "Cloudflare",
+  "WebSockets",
+]);
+
+/** Everything the site presents as a skill: the Skills page and site search. */
+export const presentedTools = [...coreStack, ...supportingTools, ...projectTools];
 
 /**
  * A project's stack in the Skills page's own names, in the order the project
