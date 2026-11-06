@@ -39,8 +39,9 @@ const pages = [
   { route: "/projects", title: "Projects", description: `${projects.length} web apps, websites and desktop apps, each with a video walkthrough, short clips and screenshots.` },
   { route: "/skills", title: "Skills", description: "The stack I work in, each tool linked to the projects it was used in." },
   { route: "/about", title: "About", description: "Who I am, how I work across the stack, and the role I'm looking for." },
+  { route: "/experience", title: "Experience", description: "Freelance software engineer since 2024: client projects from requirements to deployment and handover." },
   { route: "/education", title: "Education", description: "A B.E. in Computer Science & Engineering from the University of Mumbai, after a Diploma in Computer Engineering." },
-  { route: "/recognition", title: "Recognition", description: "Hackathons, competitions and certificates, with links to verify them." },
+  { route: "/recognition", title: "Recognition", description: "Smart India Hackathon 2025 grand finalist and SCOE Avishkar 2025 2nd place, with the certificates." },
   { route: "/contact", title: "Contact", description: "Send a message about a role or a project. I usually reply within a day." },
   ...projects.map((project) => ({
     route: `/projects/${project.slug}`,

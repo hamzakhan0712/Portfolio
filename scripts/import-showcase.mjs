@@ -32,6 +32,15 @@ const library = path.resolve(
 const publicDir = path.join(root, "public", "projects");
 const dataFile = path.join(root, "src", "data", "projects.json");
 
+/**
+ * Library projects that stay off the portfolio. initcore-web is the studio's
+ * own sales site (packages and prices), which reads as a side business to
+ * an employer — it is not engineering work to show.
+ */
+const EXCLUDE = new Set(["initcore-web"]);
+const slugOf = (folder) =>
+  JSON.parse(fs.readFileSync(path.join(folder, "project.json"), "utf8")).slug;
+
 const PLACEHOLDER = /\[NEEDS CONFIRMATION[^\]]*\]/g;
 const isPlaceholder = (text) =>
   typeof text !== "string" || /^\s*\[NEEDS CONFIRMATION/.test(text);
@@ -96,8 +105,10 @@ function findProjects(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith("_")) continue;
     const folder = path.join(dir, entry.name);
-    if (fs.existsSync(path.join(folder, "project.json"))) found.push(folder);
-    else found.push(...findProjects(folder));
+    if (fs.existsSync(path.join(folder, "project.json"))) {
+      if (EXCLUDE.has(slugOf(folder))) console.log(`  ${slugOf(folder).padEnd(22)} skipped (EXCLUDE)`);
+      else found.push(folder);
+    } else found.push(...findProjects(folder));
   }
   return found;
 }
@@ -256,9 +267,11 @@ const report = (project) =>
 let projects;
 if (fs.existsSync(path.join(library, "project.json"))) {
   // One project: refresh its folder and its entry, leave the rest alone.
-  const { slug } = JSON.parse(
-    fs.readFileSync(path.join(library, "project.json"), "utf8"),
-  );
+  const slug = slugOf(library);
+  if (EXCLUDE.has(slug)) {
+    console.error(`${slug} is in EXCLUDE in this script; remove it there to import it.`);
+    process.exit(1);
+  }
   fs.rmSync(path.join(publicDir, slug), { recursive: true, force: true });
   const project = importProject(library);
   report(project);

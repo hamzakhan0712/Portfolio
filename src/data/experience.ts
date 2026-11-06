@@ -1,4 +1,6 @@
-/** Education, newest first. */
+import { clientProjects, independentProjects } from "@/data/projects";
+
+/** Work and education, newest first. */
 
 export type TimelineEntry = {
   type: "work" | "education";
@@ -10,9 +12,39 @@ export type TimelineEntry = {
   span: string;
   bullets: string[];
   tech?: string[];
+  /** Project slugs this entry covers, linked from the entry. */
+  projects?: string[];
 };
 
 export const timeline: TimelineEntry[] = [
+  {
+    type: "work",
+    role: "Software Engineer (Freelance)",
+    org: "Self-employed",
+    location: "Mumbai · remote",
+    period: "2024 – Present",
+    span: "2024 → present",
+    bullets: [
+      `Sole engineer on ${clientProjects.length} client projects across real estate, industrial supply and Europe–India trade consulting — owning requirements, data model, build, deployment and handover on each.`,
+      "Shipped on three platforms: Next.js and Astro websites on Cloudflare Workers, Vercel and Hostinger; a Next.js admin with WhatsApp Cloud API and Meta Graph API integrations; and an Electron desktop app installed on the client's machines with automatic updates.",
+      "Designed content-as-data setups so client staff update live sites without a developer — a Google Sheet that rebuilds the Key2YourHome site, and an admin that publishes S.K Trading's products and stock.",
+      "Automated GST billing for an industrial trader: quotation → proforma → tax invoice → delivery challan, with CGST/SGST vs IGST worked out from place of supply.",
+      "Worked directly with non-technical owners, turning billing, enquiry handling and sales processes into working software with written handover guides.",
+      `Alongside client work, built ${independentProjects.length} independent products, including NOVEM, a local-first analytics desktop app on Tauri, FastAPI and DuckDB.`,
+    ],
+    tech: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Astro",
+      "Electron",
+      "SQLite",
+      "Cloudflare Workers",
+      "Playwright",
+      "GitHub Actions",
+    ],
+    projects: clientProjects.map((project) => project.slug),
+  },
   {
     type: "education",
     role: "B.E. — Computer Science and Engineering (Data Science)",
@@ -21,9 +53,8 @@ export const timeline: TimelineEntry[] = [
     period: "2023 – Jul 2026",
     span: "2023 → 2026-07",
     bullets: [
-      "Graduated Summer 2026 with CGPI 8.19 / 10 — 3318 / 4500 aggregate (73.73%).",
-      "Direct second-year entry on the strength of the diploma; completed semesters III–VIII, each cleared on the first attempt.",
-      "Strongest semesters: SGPI 9.32 (Sem V), 8.71 (Sem VIII) and 8.50 (Sem VII).",
+      "Graduated in 2026 with CGPI 8.19 / 10.",
+      "Joined in the second year (lateral entry) after the diploma.",
     ],
     tech: [
       "Big Data Analytics",
@@ -47,11 +78,7 @@ export const timeline: TimelineEntry[] = [
     location: "New Panvel, Navi Mumbai",
     period: "2021 – Jun 2023",
     span: "2021 → 2023-06",
-    bullets: [
-      "First Class with 72.63% aggregate — 1271 / 1750 marks across 191 credits.",
-      "No backlogs at any point in the course; final semester scored 75.53% (First Class with Distinction).",
-      "Direct second-year entry after HSC Science, with semesters I–II exempted.",
-    ],
+    bullets: ["First Class, 72.63% aggregate."],
     tech: [
       "Programming with Python",
       "Mobile Application Development",
@@ -60,18 +87,7 @@ export const timeline: TimelineEntry[] = [
       "Capstone Project",
     ],
   },
-  {
-    type: "education",
-    role: "HSC (Science) & SSC",
-    org: "Maharashtra State Board · Mumbai Divisional Board",
-    location: "Mumbai, India",
-    period: "2019 – 2021",
-    span: "2019 → 2021",
-    bullets: [
-      "HSC (Science), 2021 — 87.50%, with Chemistry 94 and Physics 91.",
-      "SSC, 2019 — 81.20%, passed in the Distinction grade.",
-    ],
-  },
 ];
 
 export const education = timeline.filter((entry) => entry.type === "education");
+export const work = timeline.filter((entry) => entry.type === "work");

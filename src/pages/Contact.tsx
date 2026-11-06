@@ -391,7 +391,7 @@ export default function Contact() {
             <div className="card p-5">
               <dl className="divide-y divide-divider">
                 <Fact label="Looking for">
-                  Full-time full stack developer roles: backend, frontend or both.
+                  Full-time software engineer roles: backend, frontend or full stack.
                 </Fact>
                 <Fact label="Open to">{profile.openTo.join(", ")}</Fact>
                 <Fact label="Response time">Usually within a day</Fact>

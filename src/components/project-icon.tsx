@@ -11,7 +11,6 @@ const MARKS: Record<string, { mark: string; color: string }> = {
   "initcore-commerce": { mark: "IC", color: "#0067C0" },
   "initcore-crm": { mark: "CR", color: "#8764B8" },
   "initcore-realestate": { mark: "RE", color: "#00897B" },
-  "initcore-web": { mark: "In", color: "#005A9E" },
   key2yourhome: { mark: "K2", color: "#C2500F" },
   logxivia: { mark: "Lx", color: "#03787C" },
   novem: { mark: "N", color: "#107C10" },

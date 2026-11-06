@@ -47,9 +47,9 @@ const STRENGTH_ICONS: Record<string, Icon> = {
 };
 
 const METRIC_ICONS: Record<string, Icon> = {
-  shipped: FolderKanban,
+  client: FolderKanban,
   live: Globe,
-  desktop: Monitor,
+  independent: Monitor,
   award: Award,
 };
 
@@ -191,9 +191,10 @@ export default function Home() {
             <h2 className="t-title">About me</h2>
             <div className="prose-plain mt-5">
               <p>
-                I work across the whole stack: the data model and the API, the interface people use,
-                and the pipeline that ships it. The projects on this site run on Django, FastAPI,
-                .NET, Next.js, Tauri and Electron.
+                I&apos;ve worked as a freelance software engineer since 2024, building client
+                software end to end: the data model and the API, the interface people use, and the
+                pipeline that ships it. The projects on this site run on Django, FastAPI, .NET,
+                Next.js, Tauri and Electron.
               </p>
               <p>
                 I graduated in 2026 with a B.E. in Computer Science and Engineering from the

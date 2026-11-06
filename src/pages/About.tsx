@@ -8,6 +8,9 @@ import {
   Section,
 } from "@/components/primitives";
 import { aboutTabs, profile } from "@/data/site";
+import { clientProjects, independentProjects } from "@/data/projects";
+
+const liveClientSites = clientProjects.filter((project) => project.liveUrl).length;
 import { usePageTitle } from "@/lib/page-title";
 
 export default function About() {
@@ -27,18 +30,24 @@ export default function About() {
           <div className="min-w-0 space-y-12">
             <section className="prose-plain">
               <p>
-                I&apos;m a <strong>full stack developer</strong> based in Mumbai. I build
-                complete products: the data model and the API behind them, the interface people
-                actually use, and the pipeline that ships them.
+                I&apos;m a <strong>software engineer</strong> based in Mumbai, working across the
+                full stack. I build complete products: the data model and the API behind them, the
+                interface people actually use, and the pipeline that ships them.
+              </p>
+              <p>
+                Since 2024 I&apos;ve worked{" "}
+                <Link to="/experience">freelance</Link>, as the sole engineer on{" "}
+                {clientProjects.length} client projects, {liveClientSites} of them live on the
+                client&apos;s own domain, including the{" "}
+                <Link to="/projects/sk-trading-web">S.K Trading &amp; Co.</Link> catalogue and the
+                admin behind it. Alongside that I built {independentProjects.length} products of my
+                own, such as <Link to="/projects/novem">NOVEM</Link>, a local-first analytics desktop
+                app. Every one is under <Link to="/projects">Projects</Link>, with screenshots and a
+                video walkthrough.
               </p>
               <p>
                 I graduated in 2026 with a B.E. in Computer Science &amp; Engineering from the
                 University of Mumbai (CGPI 8.19 / 10), after a Diploma in Computer Engineering.
-                Alongside my studies I built the web applications, websites and desktop apps under{" "}
-                <Link to="/projects">Projects</Link>, each with screenshots and a video walkthrough.
-                Five of them are live on the web, including the{" "}
-                <Link to="/projects/sk-trading-web">S.K Trading &amp; Co.</Link> catalogue and the
-                admin behind it.
               </p>
               <p>
                 My team reached the Grand Finale of Smart India Hackathon 2025, and we won 2nd place
@@ -64,7 +73,7 @@ export default function About() {
             <section className="prose-plain">
               <h2 className="t-title mb-4 text-foreground">What I&apos;m looking for</h2>
               <p>
-                A full-time full stack developer role on a team that ships, where I can own
+                A full-time software engineering role on a team that ships, where I can own
                 features end to end and keep learning from experienced engineers. Remote, or on-site
                 in{" "}
                 {profile.openTo

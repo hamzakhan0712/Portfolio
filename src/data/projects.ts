@@ -75,7 +75,12 @@ export type Project = {
   gallery: MediaItem[];
   /** Runtime shape, rendered as a diagram on the detail page. */
   architecture?: Architecture;
+  /** Who the work was for. Drives the headline numbers and the Experience page. */
+  engagement: Engagement;
 };
+
+/** "client" — built for a paying client; "independent" — my own product. */
+export type Engagement = "client" | "independent";
 
 /** The order projects are listed in. The first six are featured on Home. */
 const ORDER = [
@@ -88,8 +93,20 @@ const ORDER = [
   "key2yourhome",
   "taj-metals",
   "logxivia",
-  "initcore-web",
 ];
+
+/** Kept here, not in projects.json, so a re-import can't drop it. Matches the CV. */
+const engagements: Record<string, Engagement> = {
+  "initcore-commerce": "independent",
+  novem: "independent",
+  "initcore-crm": "independent",
+  "initcore-realestate": "independent",
+  "sk-trading-web": "client",
+  "sk-trading": "client",
+  key2yourhome: "client",
+  "taj-metals": "client",
+  logxivia: "client",
+};
 
 const architectures: Record<string, Architecture> = {
   novem: {
@@ -311,7 +328,7 @@ const architectures: Record<string, Architecture> = {
 };
 
 const bySlug = new Map(
-  (imported as Omit<Project, "architecture">[]).map((p) => [p.slug, p]),
+  (imported as Omit<Project, "architecture" | "engagement">[]).map((p) => [p.slug, p]),
 );
 
 export const projects: Project[] = [
@@ -326,8 +343,13 @@ export const projects: Project[] = [
     // shows them as sentences, so finish them consistently.
     headline: project.headline?.replace(/([^.!?])\s*$/, "$1."),
     architecture: architectures[slug],
+    // A project the library adds later is treated as independent until labelled.
+    engagement: engagements[slug] ?? "independent",
   };
 });
+
+export const clientProjects = projects.filter((p) => p.engagement === "client");
+export const independentProjects = projects.filter((p) => p.engagement === "independent");
 
 export const getProjectBySlug = (slug: string | undefined) =>
   projects.find((project) => project.slug === slug);

@@ -60,7 +60,11 @@ export default function Recognition() {
     <>
       <PageHeader
         title="Recognition"
-        lead={`${recognitions.length} competitions decided by judges, and ${certifications.length} courses and tests. Certificates are attached where I have them, with a link to verify where the issuer offers one.`}
+        lead={
+          certifications.length > 0
+            ? `${recognitions.length} competitions decided by judges, and ${certifications.length} certifications. Certificates are attached, with a link to verify where the issuer offers one.`
+            : `${recognitions.length} competitions decided by judges, with the certificates attached.`
+        }
       >
         <PageTabs label="About" items={aboutTabs} className="mt-6" />
       </PageHeader>
@@ -118,57 +122,59 @@ export default function Recognition() {
         </ul>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
-        <SectionHeading
-          title="Courses and tests"
-          lead="Newest first. Where the issuer has a page that confirms a certificate, it is linked."
-        />
-        <ul className="card mt-5 divide-y divide-divider overflow-hidden">
-          {certifications.map((item) => {
-            const imageIndex = indexOfImage(item.image);
-            return (
-              <li
-                key={item.id}
-                className="grid gap-3 p-5 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6 sm:p-6"
-              >
-                <div className="min-w-0">
-                  <h3 className="t-body-strong">{item.title}</h3>
-                  <p className="mt-0.5 text-[14px] text-muted-foreground">
-                    {item.issuer}, <time className="tabular">{item.date}</time>
-                  </p>
-                  <p className="mt-2 text-[14.5px] leading-6 text-muted-foreground">
-                    {item.description}
-                  </p>
-                  <ChipList items={item.skills} className="mt-3" />
-                </div>
-                <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
-                  {item.credentialUrl && (
-                    <a
-                      href={item.credentialUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn-standard btn-sm"
-                    >
-                      <ExternalLink className="h-3.5 w-3.5" />
-                      Verify
-                    </a>
-                  )}
-                  {imageIndex >= 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setLightbox({ open: true, index: imageIndex })}
-                      className="btn-subtle btn-sm"
-                    >
-                      <ImageIcon className="h-3.5 w-3.5" />
-                      View certificate
-                    </button>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </Section>
+      {certifications.length > 0 && (
+        <Section className="pt-0 sm:pt-0">
+          <SectionHeading
+            title="Certifications"
+            lead="Newest first. Where the issuer has a page that confirms a certificate, it is linked."
+          />
+          <ul className="card mt-5 divide-y divide-divider overflow-hidden">
+            {certifications.map((item) => {
+              const imageIndex = indexOfImage(item.image);
+              return (
+                <li
+                  key={item.id}
+                  className="grid gap-3 p-5 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6 sm:p-6"
+                >
+                  <div className="min-w-0">
+                    <h3 className="t-body-strong">{item.title}</h3>
+                    <p className="mt-0.5 text-[14px] text-muted-foreground">
+                      {item.issuer}, <time className="tabular">{item.date}</time>
+                    </p>
+                    <p className="mt-2 text-[14.5px] leading-6 text-muted-foreground">
+                      {item.description}
+                    </p>
+                    <ChipList items={item.skills} className="mt-3" />
+                  </div>
+                  <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
+                    {item.credentialUrl && (
+                      <a
+                        href={item.credentialUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-standard btn-sm"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        Verify
+                      </a>
+                    )}
+                    {imageIndex >= 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setLightbox({ open: true, index: imageIndex })}
+                        className="btn-subtle btn-sm"
+                      >
+                        <ImageIcon className="h-3.5 w-3.5" />
+                        View certificate
+                      </button>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </Section>
+      )}
 
       <ContactBand />
 

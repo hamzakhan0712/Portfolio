@@ -43,6 +43,8 @@ need `ffmpeg` on PATH.
 This copies each project's poster, preview, walkthrough, screenshots and
 feature clips into `public/projects/<slug>/` and writes the copy to
 `src/data/projects.json`. Placeholder copy (`[NEEDS CONFIRMATION]`) is dropped.
+Projects listed in `EXCLUDE` at the top of the import script (currently
+`initcore-web`, the studio's own sales site) are skipped.
 Don't edit `projects.json` by hand; the order of projects and the architecture
 diagrams live in `src/data/projects.ts`.
 
