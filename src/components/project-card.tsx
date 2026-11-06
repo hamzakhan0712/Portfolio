@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Copy, ExternalLink, FolderKanban, Images, Play } from "@/components/icons";
 import { notify } from "@/components/notify";
-import type { Project } from "@/data/projects";
+import { ENGAGEMENT_LABEL, type Project } from "@/data/projects";
 import { skillNamesFor } from "@/data/skills";
 import InViewVideo from "@/components/in-view-video";
 import { mediaTransitionName, navigateWithTransition } from "@/lib/view-transition";
@@ -205,8 +205,9 @@ export function ProjectCard({
           spotlight && "lg:justify-center lg:px-8 lg:py-8",
         )}
       >
-        <div>
+        <div className="flex flex-wrap gap-1.5">
           <span className="tag-accent">{project.kind}</span>
+          <span className="tag">{ENGAGEMENT_LABEL[project.engagement]}</span>
         </div>
         <h3
           className={cn(

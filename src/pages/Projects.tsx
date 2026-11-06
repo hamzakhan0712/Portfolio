@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import { X } from "@/components/icons";
-import { ContactBand, PageHeader, Pivot, Section } from "@/components/primitives";
+import { ArrowUpRight, Github, X } from "@/components/icons";
+import { ContactBand, PageHeader, Pivot, Section, SectionHeading } from "@/components/primitives";
 import { ProjectCard } from "@/components/project-card";
 import { RevealItem, RevealList } from "@/components/reveal";
-import { projects } from "@/data/projects";
+import { projects, publicCode } from "@/data/projects";
 import { rankedTools } from "@/data/skills";
 import { usePageTitle } from "@/lib/page-title";
 
@@ -75,6 +75,34 @@ export default function Projects() {
             </RevealItem>
           ))}
         </RevealList>
+      </Section>
+
+      {/* The projects above are private (client-owned, or my own products);
+          this is code anyone can read. */}
+      <Section className="pt-0 sm:pt-0">
+        <SectionHeading
+          title="Public code"
+          lead="The projects above are private: client code belongs to the client. These repositories are open to read."
+        />
+        <ul className="mt-6 grid gap-3 md:grid-cols-3">
+          {publicCode.map((repo) => (
+            <li key={repo.url}>
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="card card-interactive flex h-full flex-col p-5 no-underline"
+              >
+                <span className="flex items-center gap-2 t-body-strong text-foreground">
+                  <Github className="h-4 w-4 shrink-0" />
+                  {repo.name}
+                  <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />
+                </span>
+                <span className="mt-2 text-[14px] leading-6 text-muted-foreground">{repo.summary}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <ContactBand />

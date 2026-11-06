@@ -62,11 +62,6 @@
         "poster": "/projects/initcore-commerce/features/store-locator.webp"
       }
     ],
-    "audience": [
-      "Retailers with one or more physical shops",
-      "D2C brands moving off marketplaces",
-      "Store owners and managers who run daily operations"
-    ],
     "tags": [
       "Angular 22",
       "Angular SSR",
@@ -223,11 +218,6 @@
         "poster": "/projects/initcore-crm/features/live-break-monitor.webp"
       }
     ],
-    "audience": [
-      "Owners of outbound call centres and tele-sales teams (up to 25 staff)",
-      "Businesses that sell packages, plans or memberships by phone",
-      "Operations managers and team leaders running a calling floor"
-    ],
     "tags": [
       "Django",
       "Python",
@@ -368,12 +358,6 @@
         "video": "/projects/initcore-realestate/features/support-tickets.mp4",
         "poster": "/projects/initcore-realestate/features/support-tickets.webp"
       }
-    ],
-    "audience": [
-      "Co-living operators",
-      "PG and hostel owners",
-      "Student housing providers",
-      "Property managers who run buildings for landlords"
     ],
     "tags": [
       "Django",
@@ -516,11 +500,6 @@
         "poster": "/projects/key2yourhome/features/area-and-builder-pages.webp"
       }
     ],
-    "audience": [
-      "Real estate channel partners and brokers",
-      "Small developers and property sales teams",
-      "Businesses whose product or price list lives in a spreadsheet"
-    ],
     "tags": [
       "Astro",
       "Tailwind CSS",
@@ -660,11 +639,6 @@
         "title": "Ready for German law",
         "benefit": "Imprint and privacy policy in both languages; essential cookies only."
       }
-    ],
-    "audience": [
-      "Consultants and agents selling across borders",
-      "Indian exporters selling into Germany and Europe",
-      "Service firms with bilingual audiences"
     ],
     "tags": [
       "Next.js",
@@ -812,12 +786,6 @@
         "title": "Your customer data stays with you",
         "benefit": "Runs offline; names and emails are hashed on import; no account."
       }
-    ],
-    "audience": [
-      "Owners of small and mid-sized online stores (Shopify, WooCommerce, own website)",
-      "Marketplace sellers (Amazon, Flipkart, Meesho exports)",
-      "D2C brands with a marketer but no data analyst",
-      "Agencies preparing monthly reviews for several store clients"
     ],
     "tags": [
       "Tauri",
@@ -978,11 +946,6 @@
         "poster": "/projects/sk-trading/features/audience-export.webp"
       }
     ],
-    "audience": [
-      "B2B traders, stockists and distributors",
-      "Owners who want to see billing and outstanding at a glance",
-      "Billing and accounts staff who type quotations and invoices daily"
-    ],
     "tags": [
       "Electron",
       "React",
@@ -1135,12 +1098,6 @@
         "video": "/projects/sk-trading-web/features/reel-admin-9x16.mp4",
         "poster": "/projects/sk-trading-web/features/reel-admin-9x16.webp"
       }
-    ],
-    "audience": [
-      "Contractors and site engineers",
-      "Purchase teams at industrial companies",
-      "Resellers",
-      "The owner, from a phone"
     ],
     "tags": [
       "Next.js",
@@ -1295,11 +1252,6 @@
         "video": "/projects/taj-metals/features/why-and-industries.mp4",
         "poster": "/projects/taj-metals/features/why-and-industries.webp"
       }
-    ],
-    "audience": [
-      "Steel, pipe and metal suppliers",
-      "Industrial traders whose buyers use WhatsApp",
-      "MSMEs that want enquiries without running a mail server"
     ],
     "tags": [
       "Next.js",

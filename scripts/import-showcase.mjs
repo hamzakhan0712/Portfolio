@@ -232,7 +232,6 @@ function importProject(folder) {
     solution: clean(json.solution),
     highlights: cleanList(json.highlights),
     features,
-    audience: cleanList(json.audience),
     tags: cleanTags(json.tags),
     industry: clean(json.industry),
     platform: clean(json.platform),

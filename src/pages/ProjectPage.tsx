@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Copy,
   ExternalLink,
+  Github,
   Maximize2,
   Play,
 } from "@/components/icons";
@@ -18,7 +19,7 @@ import MediaLightbox from "@/components/media-lightbox";
 import MediaPlayer from "@/components/media-player";
 import { ProjectIcon } from "@/components/project-icon";
 import { notify } from "@/components/notify";
-import { getProjectBySlug, projects, type Project } from "@/data/projects";
+import { ENGAGEMENT_LABEL, getProjectBySlug, projects, type Project } from "@/data/projects";
 import { skillNamesFor } from "@/data/skills";
 import { mediaTransitionName } from "@/lib/view-transition";
 import { usePageTitle } from "@/lib/page-title";
@@ -96,6 +97,7 @@ export default function ProjectPage() {
 
   const contents = [
     { id: "description", label: "Description", show: true },
+    { id: "engineering", label: "Engineering", show: Boolean(project.engineering?.length) },
     { id: "features", label: "Features", show: project.highlights.length > 0 },
     { id: "in-action", label: "Features in action", show: clips.length > 0 },
     { id: "built-with", label: "Built with", show: project.tags.length > 0 },
@@ -171,6 +173,7 @@ export default function ProjectPage() {
               <Link to={`/projects?kind=${encodeURIComponent(project.kind)}`} className="text-primary no-underline hover:underline">
                 {project.kind}
               </Link>
+              {` · ${ENGAGEMENT_LABEL[project.engagement]}`}
               {project.year && ` · ${project.year}`}
               {project.video?.duration && ` · ${project.video.duration} walkthrough`}
             </p>
@@ -185,6 +188,12 @@ export default function ProjectPage() {
                 <a href="#project-media" className="btn-accent btn-lg min-w-[9rem]">
                   <Play className="h-4 w-4" />
                   Watch walkthrough
+                </a>
+              )}
+              {project.repo && (
+                <a href={project.repo} target="_blank" rel="noreferrer" className="btn-standard btn-lg">
+                  <Github className="h-4 w-4" />
+                  View code
                 </a>
               )}
               <button type="button" onClick={() => share(project)} className="btn-standard btn-lg">
@@ -299,6 +308,20 @@ export default function ProjectPage() {
               )}
             </section>
 
+            {project.engineering && project.engineering.length > 0 && (
+              <section id="engineering" className="scroll-mt-24">
+                <h2 className="t-title">Engineering</h2>
+                <p className="mt-2 text-[15px] text-muted-foreground">
+                  How it&apos;s built: the decisions, constraints and testing behind it.
+                </p>
+                <ul className="mt-5 list-disc space-y-3 pl-5 text-[15px] leading-7 text-muted-foreground marker:text-primary">
+                  {project.engineering.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             {project.highlights.length > 0 && (
               <section id="features" className="scroll-mt-24">
                 <h2 className="t-title">Features</h2>
@@ -396,18 +419,27 @@ export default function ProjectPage() {
               <h2 className="text-[14px] font-semibold text-foreground">Additional information</h2>
               <dl className="mt-2 divide-y divide-divider">
                 <Fact label="Type">{project.kind}</Fact>
+                <Fact label="Engagement">{ENGAGEMENT_LABEL[project.engagement]}</Fact>
                 {project.year && <Fact label="Released">{project.year}</Fact>}
                 {project.industry && <Fact label="Industry">{project.industry}</Fact>}
                 {project.role && <Fact label="My role">{project.role}</Fact>}
-                {project.audience.length > 0 && (
-                  <Fact label="Built for">
-                    <ul className="space-y-0.5">
-                      {project.audience.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </Fact>
-                )}
+                <Fact label="Source code">
+                  {project.repo ? (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary no-underline hover:underline"
+                    >
+                      {project.repo.replace(/^https:\/\/(www\.)?github\.com\//, "")}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  ) : project.engagement === "client" ? (
+                    "Private: the code belongs to the client"
+                  ) : (
+                    "Private repository"
+                  )}
+                </Fact>
                 {project.liveUrl && (
                   <Fact label="Live site">
                     <a

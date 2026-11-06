@@ -56,8 +56,6 @@ export type Project = {
   solution?: string;
   highlights: string[];
   features: ProjectFeature[];
-  /** Who it is for. */
-  audience: string[];
   tags: string[];
   industry?: string;
   platform?: string;
@@ -77,23 +75,136 @@ export type Project = {
   architecture?: Architecture;
   /** Who the work was for. Drives the headline numbers and the Experience page. */
   engagement: Engagement;
+  /** How it's built, for an engineer reading: decisions, constraints, testing. */
+  engineering?: string[];
+  /** Public source code. Without it the page says the repository is private. */
+  repo?: string;
 };
+
+/**
+ * Public repositories, by slug. None of the projects is public yet: client
+ * code belongs to the client, and my own products are private. Add a slug
+ * here when a repository is opened up and the page shows "View code".
+ */
+const repos: Record<string, string> = {};
+
+/** Code that is public on GitHub, outside the project showcase. */
+export const publicCode = [
+  {
+    name: "This portfolio",
+    url: "https://github.com/hamzakhan0712/Portfolio",
+    summary:
+      "React, TypeScript and Vite, with a server-rendered smoke test of every route, a build step that writes per-page link previews, and a CSP hash check.",
+  },
+  {
+    name: "SUSTECH 2025 conference site",
+    url: "https://github.com/hamzakhan0712/SUSTECH2025-Conference",
+    summary:
+      "Site for an international conference at Saraswati College of Engineering. All copy lives in one data module, so organisers update it without touching markup.",
+  },
+  {
+    name: "ICTMT 2025 conference site",
+    url: "https://github.com/hamzakhan0712/ICTMT2025-Conference",
+    summary: "A second conference site on the same data-module pattern, in React, Vite and Tailwind CSS.",
+  },
+];
 
 /** "client" — built for a paying client; "independent" — my own product. */
 export type Engagement = "client" | "independent";
 
-/** The order projects are listed in. The first six are featured on Home. */
+export const ENGAGEMENT_LABEL: Record<Engagement, string> = {
+  client: "Client project",
+  independent: "Independent product",
+};
+
+/**
+ * The order projects are listed in: engineering depth first, with client work
+ * mixed in early so the first screen isn't only my own products. The first
+ * six are featured on Home; brochure websites come last.
+ */
 const ORDER = [
-  "initcore-commerce",
   "novem",
-  "initcore-crm",
-  "initcore-realestate",
   "sk-trading-web",
+  "initcore-commerce",
+  "initcore-crm",
   "sk-trading",
+  "initcore-realestate",
   "key2yourhome",
   "taj-metals",
   "logxivia",
 ];
+
+/** The library writes a few industries as slugs; these are the readable names. */
+const industries: Record<string, string> = {
+  "initcore-realestate": "Real estate (co-living)",
+  "sk-trading": "Industrial supply (valves, pipes and fittings)",
+};
+
+/**
+ * Engineering notes, written for an engineer rather than a client. Kept here
+ * (not in the library) because the library is client-facing copy. Each point
+ * matches the CV and the project's own write-up.
+ */
+const engineering: Record<string, string[]> = {
+  novem: [
+    "A Tauri (Rust) shell around a React + TypeScript client, talking to a local Python FastAPI engine of 23 routers and about 170 endpoints.",
+    "Demand forecasting with Prophet; RFM segmentation and churn scoring with scikit-learn; customer lifetime value with BG/NBD and Gamma-Gamma; market-basket rules with mlxtend; SHAP so each recommendation can explain itself.",
+    "Nothing leaves the machine: DuckDB for analytical tables scoped by store, SQLite for settings, import lineage and encrypted credentials, a local Ollama model, and customer emails SHA-256 hashed on import.",
+    "Degrades gracefully: forecasting falls back to linear-trend extrapolation, sentiment from a transformer to TextBlob to keywords, and the assistant to rule-based answers when optional parts are missing.",
+    "Release builds freeze the engine with PyInstaller inside an NSIS installer. CI runs Ruff, pytest on Python 3.11 and 3.12, tsc --noEmit, ESLint at zero warnings, Vitest and a production build on every push.",
+  ],
+  "sk-trading-web": [
+    "A prerendered Next.js 16 site and the private admin run on one Cloudflare Worker through OpenNext, with data in D1 and media in R2.",
+    "Every admin API checks the session. The public stock API is edge-cached for 60 seconds, so a stock change shows on the site within a minute without a rebuild.",
+    "Outbound integrations from the Worker: WhatsApp Cloud API chats and template campaigns, Meta Graph API posts to Facebook and Instagram with scheduling, and Hostinger Reach email campaigns.",
+    "A cron trigger checks every connection each 30 minutes; Web Push alerts respect quiet hours and roll up into a 9 am summary.",
+    "Product edits go through a reviewed publish step that triggers a versioned rebuild through GitHub.",
+    "43 Playwright tests at 360, 768 and 1280 px, plus typecheck, lint and a content guard that blocks claims the business can't make (it is a supplier, not a manufacturer).",
+  ],
+  "initcore-commerce": [
+    "An ASP.NET Core (.NET 10) API in Clean Architecture layers with EF Core over PostgreSQL; the Angular storefront and admin are rendered on the server and install as a PWA.",
+    "Typo-tolerant search on PostgreSQL full-text and trigram indexes.",
+    "Background jobs for an email outbox, a low-stock digest and monitoring; SignalR for live chat; Razorpay payments and refunds alongside cash on delivery.",
+    "Seven staff permission areas with an audit log, and passkey sign-in with WebAuthn.",
+    "Runs as Docker Compose services (database, API, web, nginx edge and backups) and is tested from unit to browser level with xUnit, Vitest and Playwright.",
+  ],
+  "initcore-crm": [
+    "A 17-model Django data model covering lead import, call outcomes, payments, GST invoicing, attendance and breaks, in one deployment.",
+    "Role-scoped querysets: one set of views serves owner, team leader and agent, with data scope, visible pages and verification rights all derived from the role.",
+    "CSV and Excel import with a column-mapping step before any write and uniqueness enforced on phone numbers, so repeated imports can't create duplicates.",
+    "Verifying a payment renders a GST invoice, with the amount in words in Indian numbering, to PDF through pdfkit and wkhtmltopdf.",
+    "The live break monitor runs over Django Channels and WebSockets, served by Daphne (ASGI).",
+  ],
+  "sk-trading": [
+    "Electron with a typed IPC bridge between the React + TypeScript renderer and the Node main process; documents live in local SQLite through better-sqlite3.",
+    "A split editor with a live A4 preview; PDFs print from an offscreen window, so the preview is exactly what prints.",
+    "Tax logic splits CGST/SGST or IGST from the place of supply, with rounding and the total in words.",
+    "Customer and product records are derived from issued documents rather than typed in, which gives outstanding balances and the last rate quoted per item.",
+    "Ships as an NSIS installer with electron-updater, backs up to Google Drive or a network folder, and is covered by Vitest unit tests plus self-test modes in the packaged app.",
+  ],
+  "initcore-realestate": [
+    "Five role-scoped portals (owner, property manager, maintenance supervisor, landlord and tenant) from one data model and one install.",
+    "Inventory modelled to the bed, each with its own type, occupancy, rent and availability; occupancy and collection rates are computed against beds, not units.",
+    "The tenancy lifecycle end to end: contract dates, rent, deposit and room assignment, with agreements ending within 30 days flagged to staff and tenant.",
+    "Invitation-based onboarding with expiry, a five-stage lead pipeline with ownership and activity trail, and ticket-based maintenance with priority and assignment.",
+  ],
+  key2yourhome: [
+    "A static Astro site that reads every listing from one Google Sheet at build time. A Sheet edit rebuilds and deploys it through GitHub Actions to Hostinger, so there is no server, database or admin panel to maintain.",
+    "Callback requests are written back to the Sheet by a Google Apps Script, with source page and campaign, and emailed to sales.",
+    "Filters live in the URL so a shortlist can be shared; each unit's WhatsApp link is pre-filled with the unit, project and area.",
+    "About 12 KB of JavaScript, tracking only after consent, and JSON-LD structured data with a sitemap for the city and builder pages.",
+  ],
+  "taj-metals": [
+    "Next.js on Vercel with WhatsApp as the only contact channel: one file holds the number and five message templates that every button uses, so there is no mail server to run.",
+    "Each product page carries full specifications and opens a chat that already names the product.",
+    "Filters by category, material and standard, plus JSON-LD structured data, a sitemap and buyer guides for search.",
+  ],
+  logxivia: [
+    "A static Next.js site in English and German with next-intl: its own URL per language, and switching keeps the visitor on the same page.",
+    "The enquiry form posts to PHP and PHPMailer, with privacy consent and a honeypot, and each enquiry arrives with the visitor's language.",
+    "Images optimised at build time with sharp; essential cookies only; Imprint and privacy policy in both languages for German law.",
+  ],
+};
 
 /** Kept here, not in projects.json, so a re-import can't drop it. Matches the CV. */
 const engagements: Record<string, Engagement> = {
@@ -325,10 +436,103 @@ const architectures: Record<string, Architecture> = {
       "43 Playwright tests at 360, 768 and 1280 px, plus typecheck, lint and a content guard that blocks claims the business cannot make.",
     ],
   },
+  key2yourhome: {
+    summary:
+      "A static Astro site built from a Google Sheet: the Sheet holds the content, a rebuild publishes it, and Apps Script writes enquiries back.",
+    tiers: [
+      {
+        label: "Content",
+        detail: "Google Sheets",
+        items: ["Listings, projects, unit plans and prices", "Edited by the sales team"],
+      },
+      {
+        label: "Build",
+        detail: "Astro · GitHub Actions",
+        items: [
+          "Reads the Sheet at build time (Google Sheets API)",
+          "A page per project, city and builder",
+          "JSON-LD structured data and sitemap",
+        ],
+      },
+      {
+        label: "Site",
+        detail: "Static · Hostinger",
+        items: [
+          "About 12 KB of JavaScript",
+          "Filters kept in the URL",
+          "WhatsApp links pre-filled with unit and project",
+          "Tracking only after consent",
+        ],
+      },
+      {
+        label: "Enquiries",
+        detail: "Google Apps Script",
+        items: [
+          "Callback requests written to the Sheet with source page and campaign",
+          "Email to sales",
+        ],
+      },
+    ],
+    notes: ["A Sheet edit rebuilds and redeploys the site, so there is no server, database or admin panel to run."],
+  },
+  "taj-metals": {
+    summary: "A Next.js product website on Vercel, with WhatsApp as the only contact channel.",
+    tiers: [
+      {
+        label: "Pages",
+        detail: "Next.js · React · TypeScript",
+        items: [
+          "Product pages with full specifications",
+          "Filters by category, material and standard",
+          "FAQs and three buyer guides",
+        ],
+      },
+      {
+        label: "Enquiries",
+        detail: "WhatsApp links",
+        items: [
+          "One file holds the number and five message templates",
+          "Each product page opens a chat naming the product",
+        ],
+      },
+      {
+        label: "Hosting",
+        detail: "Vercel",
+        items: ["JSON-LD structured data and sitemap"],
+      },
+    ],
+    notes: ["No mail server or form backend: every enquiry goes to WhatsApp, by design."],
+  },
+  logxivia: {
+    summary:
+      "A static bilingual Next.js site, with a small PHP endpoint that emails each enquiry.",
+    tiers: [
+      {
+        label: "Pages",
+        detail: "Next.js · next-intl",
+        items: [
+          "English and German, each with its own URLs",
+          "The language switch keeps the visitor on the same page",
+          "Clickable four-step process",
+          "Imprint and privacy policy in both languages",
+        ],
+      },
+      {
+        label: "Build",
+        detail: "Static",
+        items: ["Images optimised with sharp", "Essential cookies only"],
+      },
+      {
+        label: "Enquiry form",
+        detail: "PHP · PHPMailer",
+        items: ["Privacy consent and a honeypot", "Emails each enquiry with the visitor's language"],
+      },
+    ],
+  },
 };
 
 const bySlug = new Map(
-  (imported as Omit<Project, "architecture" | "engagement">[]).map((p) => [p.slug, p]),
+  (imported as Omit<Project, "architecture" | "engagement" | "engineering" | "repo">[]).map((p) => [p.slug, p]),
 );
 
 export const projects: Project[] = [
@@ -342,6 +546,9 @@ export const projects: Project[] = [
     // The library writes some headlines without a full stop; the site
     // shows them as sentences, so finish them consistently.
     headline: project.headline?.replace(/([^.!?])\s*$/, "$1."),
+    industry: industries[slug] ?? project.industry,
+    engineering: engineering[slug],
+    repo: repos[slug],
     architecture: architectures[slug],
     // A project the library adds later is treated as independent until labelled.
     engagement: engagements[slug] ?? "independent",
