@@ -65,7 +65,7 @@ export default function About() {
               <p>
                 On the backend I mostly reach for Python with Django or FastAPI over PostgreSQL; on
                 the frontend, React, Next.js and TypeScript. When a project needs something else I
-                learn it: .NET and Angular, Tauri, Electron and Cloudflare Workers all run projects
+                learn it: Tauri, Electron and Cloudflare Workers all run projects
                 on this site.
               </p>
             </section>

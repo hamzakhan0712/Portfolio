@@ -125,7 +125,6 @@ export const ENGAGEMENT_LABEL: Record<Engagement, string> = {
 const ORDER = [
   "novem",
   "sk-trading-web",
-  "initcore-commerce",
   "initcore-crm",
   "sk-trading",
   "initcore-realestate",
@@ -160,13 +159,6 @@ const engineering: Record<string, string[]> = {
     "A cron trigger checks every connection each 30 minutes; Web Push alerts respect quiet hours and roll up into a 9 am summary.",
     "Product edits go through a reviewed publish step that triggers a versioned rebuild through GitHub.",
     "43 Playwright tests at 360, 768 and 1280 px, plus typecheck, lint and a content guard that blocks claims the business can't make (it is a supplier, not a manufacturer).",
-  ],
-  "initcore-commerce": [
-    "An ASP.NET Core (.NET 10) API in Clean Architecture layers with EF Core over PostgreSQL; the Angular storefront and admin are rendered on the server and install as a PWA.",
-    "Typo-tolerant search on PostgreSQL full-text and trigram indexes.",
-    "Background jobs for an email outbox, a low-stock digest and monitoring; SignalR for live chat; Razorpay payments and refunds alongside cash on delivery.",
-    "Seven staff permission areas with an audit log, and passkey sign-in with WebAuthn.",
-    "Runs as Docker Compose services (database, API, web, nginx edge and backups) and is tested from unit to browser level with xUnit, Vitest and Playwright.",
   ],
   "initcore-crm": [
     "A 17-model Django data model covering lead import, call outcomes, payments, GST invoicing, attendance and breaks, in one deployment.",
@@ -208,7 +200,6 @@ const engineering: Record<string, string[]> = {
 
 /** Kept here, not in projects.json, so a re-import can't drop it. Matches the CV. */
 const engagements: Record<string, Engagement> = {
-  "initcore-commerce": "independent",
   novem: "independent",
   "initcore-crm": "independent",
   "initcore-realestate": "independent",
@@ -253,40 +244,6 @@ const architectures: Record<string, Architecture> = {
     notes: [
       "Release builds freeze the engine with PyInstaller and ship it inside an NSIS installer.",
       "CI gates every push: Ruff, pytest, tsc --noEmit, ESLint, Vitest and a production build.",
-    ],
-  },
-  "initcore-commerce": {
-    summary:
-      "Online store and back office: an Angular storefront and admin portal, rendered on the server, over a .NET API with PostgreSQL.",
-    tiers: [
-      {
-        label: "Frontend",
-        detail: "Angular · SSR on Node",
-        items: [
-          "Storefront and admin portal",
-          "Angular Material",
-          "Installable PWA",
-        ],
-      },
-      {
-        label: "API",
-        detail: ".NET · Clean Architecture",
-        items: [
-          "Pricing engine, orders and stock",
-          "SignalR — live chat",
-          "Background jobs — email outbox, low-stock digest, monitoring",
-          "Razorpay payments and refunds",
-        ],
-      },
-      {
-        label: "Storage",
-        detail: "PostgreSQL · EF Core",
-        items: ["Full-text and trigram search", "Image uploads in three sizes"],
-      },
-    ],
-    notes: [
-      "Runs as Docker Compose services: database, API, web, nginx edge and backups.",
-      "Tested from unit to browser level: xUnit, Vitest and Playwright.",
     ],
   },
   "initcore-crm": {

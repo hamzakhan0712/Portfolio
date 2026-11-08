@@ -8,8 +8,8 @@
  * filled with the brand's own colour so it reads on the white icon tile in
  * both themes. Only the slugs listed here are copied.
  *
- * Simple Icons leaves out a few Microsoft marks; csharp.svg and
- * playwright.svg come from Devicon (MIT), icons/<name>/<name>-original.svg.
+ * Simple Icons leaves out the Playwright mark;
+ * playwright.svg comes from Devicon (MIT), icons/<name>/<name>-original.svg.
  * Tools with no published logo at all use a glyph instead (see skills.ts).
  */
 import fs from "node:fs";
@@ -17,26 +17,21 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SLUGS = [
-  "dotnet",
   "astro",
   "electron",
   "vitest",
   "cloudflare",
   "cloudflareworkers",
   "stripe",
-  "razorpay",
   "whatsapp",
   "meta",
   "ollama",
   "chartdotjs",
   "apacheecharts",
-  "leaflet",
-  "opentelemetry",
   "shopify",
   "githubactions",
   "googlesheets",
   "nodedotjs",
-  "webauthn",
   "openstreetmap",
   "shadcnui",
 ];

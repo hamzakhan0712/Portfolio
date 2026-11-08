@@ -9,7 +9,7 @@ export const profile = {
   name: "Hamza Khan",
   role: "Software Engineer",
   location: "Mumbai, India",
-  headline: `Freelance software engineer since 2024. I've delivered ${clientProjects.length} client projects and built ${independentProjects.length} products of my own — CRMs, billing, commerce and analytics apps — each from the database to the screen.`,
+  headline: `Freelance software engineer since 2024. I've delivered ${clientProjects.length} client projects and built ${independentProjects.length} products of my own — CRMs, billing and analytics apps — each from the database to the screen.`,
   /** Said once, under the hero; the footer and About don't repeat it. */
   locationLine: "Based in Mumbai. Open to remote roles, or on-site across Mumbai, Navi Mumbai and Thane.",
   status: "Open to full-time roles",
@@ -119,6 +119,6 @@ export const strengths = [
   {
     id: "deployment",
     title: "Deployment",
-    body: "Docker, CI pipelines with GitHub Actions, and deploying to Vercel, Cloudflare and Hostinger.",
+    body: "CI pipelines with GitHub Actions, and deploying to Vercel, Cloudflare and Hostinger.",
   },
 ];

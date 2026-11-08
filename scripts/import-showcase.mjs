@@ -37,7 +37,7 @@ const dataFile = path.join(root, "src", "data", "projects.json");
  * own sales site (packages and prices), which reads as a side business to
  * an employer — it is not engineering work to show.
  */
-const EXCLUDE = new Set(["initcore-web"]);
+const EXCLUDE = new Set(["initcore-web", "initcore-commerce"]);
 const slugOf = (folder) =>
   JSON.parse(fs.readFileSync(path.join(folder, "project.json"), "utf8")).slug;
 

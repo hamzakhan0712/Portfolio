@@ -44,7 +44,7 @@ This copies each project's poster, preview, walkthrough, screenshots and
 feature clips into `public/projects/<slug>/` and writes the copy to
 `src/data/projects.json`. Placeholder copy (`[NEEDS CONFIRMATION]`) is dropped.
 Projects listed in `EXCLUDE` at the top of the import script (currently
-`initcore-web`, the studio's own sales site) are skipped.
+`initcore-web`, the studio's own sales site, and `initcore-commerce`) are skipped.
 Don't edit `projects.json` by hand. `src/data/projects.ts` holds what the
 client-facing library doesn't: the order of projects, client vs independent
 labels, the engineering notes and the architecture diagrams.

@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
  */
 
 const MARKS: Record<string, { mark: string; color: string }> = {
-  "initcore-commerce": { mark: "IC", color: "#0067C0" },
   "initcore-crm": { mark: "CR", color: "#8764B8" },
   "initcore-realestate": { mark: "RE", color: "#00897B" },
   key2yourhome: { mark: "K2", color: "#C2500F" },

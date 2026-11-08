@@ -4,13 +4,10 @@ import {
   FileSpreadsheet,
   FileText,
   LayoutTemplate,
-  ListChecks,
   Mail,
   Package,
   PawPrint,
-  RadioTower,
   ChartBar,
-  Code,
   type Icon,
 } from "@/components/icons";
 import { projects, type Project } from "@/data/projects";
@@ -62,7 +59,7 @@ export const skillGroups: SkillGroup[] = [
     name: "Languages",
     role: "What the code is written in",
     tools: [
-      { name: "TypeScript", icon: icon("typescript.svg"), uses: ["TypeScript", "Angular 22"] },
+      { name: "TypeScript", icon: icon("typescript.svg"), uses: ["TypeScript"] },
       {
         name: "Python",
         icon: icon("python.svg"),
@@ -73,7 +70,6 @@ export const skillGroups: SkillGroup[] = [
         icon: icon("javascript.svg"),
         uses: ["Google Apps Script", "Astro", "Electron"],
       },
-      { name: "C#", icon: brand("csharp"), uses: [".NET 10", "ASP.NET Core"] },
       { name: "SQL", icon: icon("sql.svg"), uses: ["PostgreSQL", "SQLite", "DuckDB"] },
     ],
   },
@@ -85,7 +81,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "React", icon: icon("react.svg"), uses: ["React"] },
       { name: "Next.js", icon: icon("nextjs.svg"), uses: ["Next.js"] },
       { name: "Tailwind CSS", icon: icon("tailwindcss.svg"), uses: ["Tailwind CSS"] },
-      { name: "Angular", glyph: Code, tint: "#DD0031", uses: ["Angular 22"] },
       { name: "Astro", icon: brand("astro"), uses: ["Astro"] },
       { name: "shadcn/ui", icon: brand("shadcnui"), uses: ["shadcn/ui"] },
       { name: "Ant Design", icon: icon("antdesign.svg"), uses: ["Ant Design"] },
@@ -94,7 +89,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "Zustand", glyph: PawPrint, tint: "#8B5A2B", uses: ["Zustand"] },
       { name: "Chart.js", icon: brand("chartdotjs"), uses: ["Chart.js"] },
       { name: "ECharts", icon: brand("apacheecharts"), uses: ["ECharts"] },
-      { name: "Leaflet maps", icon: brand("leaflet"), uses: ["Leaflet", "OpenStreetMap"] },
     ],
   },
   {
@@ -104,17 +98,14 @@ export const skillGroups: SkillGroup[] = [
     tools: [
       { name: "Django", icon: icon("django.svg"), uses: ["Django"] },
       { name: "FastAPI", icon: icon("FastAPI.svg"), uses: ["FastAPI"] },
-      { name: "ASP.NET Core", icon: brand("dotnet"), uses: ["ASP.NET Core", ".NET 10"] },
       { name: "Node.js", icon: brand("nodedotjs"), uses: ["Electron", "Nodemailer"] },
       {
         name: "WebSockets",
         icon: icon("websocket.svg"),
-        uses: ["WebSockets", "Django Channels", "SignalR"],
+        uses: ["WebSockets", "Django Channels"],
       },
       { name: "Django Channels", icon: icon("django.svg"), uses: ["Django Channels"] },
-      { name: "SignalR", glyph: RadioTower, tint: "#512BD4", uses: ["SignalR"] },
       { name: "Web Push", glyph: BellRing, tint: "#0067C0", uses: ["Web Push"] },
-      { name: "WebAuthn passkeys", icon: brand("webauthn"), uses: ["WebAuthn"] },
     ],
   },
   {
@@ -124,7 +115,6 @@ export const skillGroups: SkillGroup[] = [
     tools: [
       { name: "PostgreSQL", icon: icon("postgresql.svg"), uses: ["PostgreSQL"] },
       { name: "SQLite", icon: icon("sqlite.svg"), uses: ["SQLite", "better-sqlite3"] },
-      { name: "Entity Framework Core", icon: brand("dotnet"), uses: ["EF Core"] },
       {
         name: "Cloudflare D1 & R2",
         icon: brand("cloudflare"),
@@ -177,10 +167,9 @@ export const skillGroups: SkillGroup[] = [
   {
     id: "cloud",
     name: "Cloud & DevOps",
-    role: "Containers, pipelines, hosting and observability",
+    role: "Pipelines and hosting",
     tools: [
       { name: "GitHub Actions", icon: brand("githubactions"), uses: ["GitHub Actions"] },
-      { name: "Docker", icon: icon("docker.svg"), uses: ["Docker"] },
       {
         name: "Cloudflare",
         icon: brand("cloudflare"),
@@ -188,7 +177,6 @@ export const skillGroups: SkillGroup[] = [
       },
       { name: "Vercel", icon: icon("vercel.svg"), uses: ["Vercel"] },
       { name: "Hostinger", icon: icon("hostinger.svg"), uses: ["Hostinger", "Hostinger Reach"] },
-      { name: "OpenTelemetry", icon: brand("opentelemetry"), uses: ["OpenTelemetry"] },
     ],
   },
   {
@@ -198,7 +186,6 @@ export const skillGroups: SkillGroup[] = [
     tools: [
       { name: "Playwright", icon: brand("playwright"), uses: ["Playwright"] },
       { name: "Vitest", icon: brand("vitest"), uses: ["Vitest"] },
-      { name: "xUnit", glyph: ListChecks, tint: "#512BD4", uses: ["xUnit"] },
     ],
   },
   {
@@ -206,7 +193,6 @@ export const skillGroups: SkillGroup[] = [
     name: "Integrations",
     role: "Payments, messaging and third-party platforms",
     tools: [
-      { name: "Razorpay", icon: brand("razorpay"), uses: ["Razorpay"] },
       { name: "Stripe", icon: brand("stripe"), uses: ["Stripe"] },
       { name: "WhatsApp Cloud API", icon: brand("whatsapp"), uses: ["WhatsApp Cloud API"] },
       { name: "Meta Graph API", icon: brand("meta"), uses: ["Meta Graph API"] },
@@ -221,7 +207,7 @@ export const skillGroups: SkillGroup[] = [
         name: "Email delivery",
         glyph: Mail,
         tint: "#0067C0",
-        uses: ["MailKit", "Nodemailer", "PHPMailer", "Hostinger Reach"],
+        uses: ["Nodemailer", "PHPMailer", "Hostinger Reach"],
         capability: true,
       },
     ],
@@ -279,9 +265,6 @@ export const supportingTools = pick([
 export const projectTools = pick([
   "Electron",
   "Tauri",
-  "ASP.NET Core",
-  "Angular",
-  "Docker",
   "Cloudflare",
   "WebSockets",
 ]);

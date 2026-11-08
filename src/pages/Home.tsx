@@ -193,7 +193,7 @@ export default function Home() {
               <p>
                 I&apos;ve worked as a freelance software engineer since 2024, building client
                 software end to end: the data model and the API, the interface people use, and the
-                pipeline that ships it. The projects on this site run on Django, FastAPI, .NET,
+                pipeline that ships it. The projects on this site run on Django, FastAPI,
                 Next.js, Tauri and Electron.
               </p>
               <p>
