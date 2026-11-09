@@ -51,8 +51,7 @@
       "knowsAbout": ["Python", "Django", "Django REST Framework", "FastAPI", "Flask", "React", "Next.js", "TypeScript", "PostgreSQL", "SQL", "Electron", "Cloudflare Workers", "Data Science"],
       "sameAs": [
         "https://www.linkedin.com/in/hamza-khan-3a2b0024a/",
-        "https://github.com/hamzakhan0712",
-        "https://initcore.in"
+        "https://github.com/hamzakhan0712"
       ]
     }
   }
@@ -96,7 +95,7 @@
     .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
 
     /* Header */
-    header { padding: 56px 0 32px; }
+    header.wrap { padding-top: 64px; padding-bottom: 32px; }
     .intro { display: flex; gap: 24px; align-items: center; }
     .photo { width: 112px; height: 112px; border-radius: 50%; flex: none; object-fit: cover; background: var(--surface); }
     h1 { font-size: 2.1rem; line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
@@ -147,10 +146,10 @@
     .skills dt { font-weight: 600; }
     .skills dd { margin: 0; color: var(--ink); }
 
-    footer { padding: 28px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer.wrap { padding-top: 28px; padding-bottom: 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
 
     @media (max-width: 560px) {
-      header { padding-top: 36px; }
+      header.wrap { padding-top: 40px; }
       .intro { flex-direction: column; align-items: flex-start; gap: 16px; }
       .photo { width: 92px; height: 92px; }
       h1 { font-size: 1.8rem; }
@@ -228,12 +227,12 @@
 
       <article class="job">
         <div class="job-head">
-          <h3>Founder &amp; Freelance Software Engineer · InitCore</h3>
+          <h3>Freelance Software Engineer</h3>
           <span class="date">Apr 2024 – Present</span>
         </div>
-        <div class="meta">Mumbai · <a href="https://initcore.in" target="_blank" rel="noopener">initcore.in</a></div>
+        <div class="meta">Self-employed · Mumbai · Clients in India and Germany</div>
         <ul>
-          <li>Run a one-person software studio: scope, build, deploy and maintain software for six small businesses in India and Germany, plus two academic conference websites.</li>
+          <li>Scoped, built, deployed and maintained software for six small businesses in India and Germany, plus two academic conference websites.</li>
           <li>Shipped a billing system for a trading company as an Electron desktop app and a Capacitor Android app, with versioned installers and auto-updates, now on version 5.</li>
           <li>Built a Django and PostgreSQL call-center CRM with role-scoped views, GST invoice PDFs and a live break monitor over WebSockets.</li>
           <li>Built business websites on Cloudflare Workers and Vercel (Next.js, Astro) with WhatsApp lead capture, structured data for search and Playwright tests.</li>

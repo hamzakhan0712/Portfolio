@@ -44,18 +44,17 @@ EXPERIENCE = [
             "maintenance requests.",
             "Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by "
             "employee role.",
-            "Worked directly with the founders in Berlin across time zones, reporting progress and "
-            "adjusting scope as requirements changed.",
+            "Worked directly with the Berlin-based founders, reporting progress and adjusting scope as needs changed.",
         ],
     },
     {
-        "role": "Founder & Freelance Software Engineer",
-        "org": "InitCore, Mumbai",
-        "meta": "initcore.in",
+        "role": "Freelance Software Engineer",
+        "org": "Self-employed, Mumbai",
+        "meta": "Clients in India and Germany",
         "dates": "Apr 2024 – Present",
         "bullets": [
-            "Run a one-person software studio: scope, build, deploy and maintain software for six small "
-            "businesses in India and Germany, plus two academic conference websites.",
+            "Scoped, built, deployed and maintained software for six small businesses in India and Germany, "
+            "plus two academic conference websites.",
             "Shipped a billing system for a trading company as an Electron desktop app and a Capacitor "
             "Android app (React, TypeScript, SQLite): GST tax invoices, quotations, proforma invoices and "
             "delivery challans, with versioned installers and auto-updates, now on version 5.",
@@ -102,7 +101,7 @@ SKILLS = [
 
 EDUCATION = [
     ("B.E. Computer Science & Engineering (Data Science)",
-     "Saraswati College of Engineering, Univ. of Mumbai", "2023 – 2026", "CGPI 8.19"),
+     "Saraswati College of Engineering, Mumbai", "2023 – 2026", "CGPI 8.19"),
     ("Diploma in Computer Engineering",
      "Abdul Razzaq Kalsekar Polytechnic, MSBTE", "2021 – 2023", "72.63%, First Class"),
 ]
@@ -134,30 +133,31 @@ def build_html():
         <span class="muted">· {e(p['meta'])}</span></span></div><ul>{lis}</ul></div>"""
     skills = "".join(f"<div><b>{e(k)}:</b> {e(v)}</div>" for k, v in SKILLS)
     edu = "".join(
-        f"""<div class="row"><span><b>{e(d)}</b>, {e(s)} <span class="muted">· {e(g)}</span></span>
+        f"""<div class="row edu"><span><b>{e(d)}</b>, {e(s)} <span class="muted">· {e(g)}</span></span>
         <span class="date">{e(y)}</span></div>""" for d, s, y, g in EDUCATION
     )
     ach = "".join(f"<li>{e(a)}</li>" for a in ACHIEVEMENTS)
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hamza Khan — Resume</title>
 <style>
-@page {{ size: A4; margin: 11mm 13mm; }}
+@page {{ size: A4; margin: 14mm 15mm 10mm; }}
 * {{ box-sizing: border-box; }}
-body {{ font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 10pt; line-height: 1.32; color: #111; margin: 0; }}
+body {{ font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 10pt; line-height: 1.33; color: #111; margin: 0; }}
 a {{ color: inherit; text-decoration: none; }}
-h1 {{ font-size: 20pt; margin: 0; letter-spacing: .3px; }}
-.title {{ font-size: 11pt; color: #333; margin: 1px 0 3px; }}
+h1 {{ font-size: 22pt; margin: 0; letter-spacing: .3px; }}
+.title {{ font-size: 11.5pt; color: #333; margin: 2px 0 6px; }}
 .contact {{ font-size: 9pt; color: #333; }}
 .contact a {{ white-space: nowrap; }}
 h2 {{ font-size: 10.5pt; text-transform: uppercase; letter-spacing: .8px; color: #1d3a6e;
-      border-bottom: 1px solid #c9d2e0; padding-bottom: 1px; margin: 9px 0 4px; }}
+      border-bottom: 1px solid #c9d2e0; padding-bottom: 2px; margin: 13px 0 5px; }}
 .row {{ display: flex; justify-content: space-between; gap: 10px; }}
 .date {{ white-space: nowrap; color: #333; }}
 .muted {{ color: #555; }}
-.item {{ margin-bottom: 4px; }}
+.item {{ margin-bottom: 7px; }}
 ul {{ margin: 1px 0 0; padding-left: 15px; }}
 li {{ margin: 1px 0; }}
 p {{ margin: 0; }}
-.skills div {{ margin: 1px 0; }}
+.skills div {{ margin: 2px 0; }}
+.edu {{ margin-bottom: 3px; }}
 </style></head><body>
 <h1>{e(NAME)}</h1><div class="title">{e(TITLE)}</div><div class="contact">{contact}</div>
 <h2>Summary</h2><p>{e(SUMMARY)}</p>
@@ -197,7 +197,7 @@ def run(p, text, bold=False, size=10, color=None):
 
 
 def heading(doc, text):
-    p = para(doc, space_before=7, space_after=2)
+    p = para(doc, space_before=11, space_after=3)
     run(p, text.upper(), bold=True, size=10.5, color=ACCENT)
     border = OxmlElement("w:pBdr")
     bottom = OxmlElement("w:bottom")
@@ -246,9 +246,9 @@ def build_docx(path: Path):
     doc = Document()
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Mm(210), Mm(297)
-    sec.left_margin = sec.right_margin = Mm(13)
-    sec.top_margin = sec.bottom_margin = Mm(11)
-    width = 210 - 26
+    sec.left_margin = sec.right_margin = Mm(16)
+    sec.top_margin, sec.bottom_margin = Mm(17), Mm(15)
+    width = 210 - 32
     style = doc.styles["Normal"]
     style.font.name, style.font.size = "Calibri", Pt(10)
     style.element.rPr.rFonts.set(qn("w:eastAsia"), "Calibri")
