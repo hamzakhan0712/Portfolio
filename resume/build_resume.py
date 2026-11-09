@@ -117,7 +117,7 @@ def e(s):
     return html.escape(s)
 
 
-def build_html():
+def build_html(web=False):
     contact = e(CONTACT[0][0]) + "<br>" + " &nbsp;·&nbsp; ".join(
         f'<a href="{e(u)}">{e(t)}</a>' for t, u in CONTACT[1:]
     )
@@ -137,7 +137,12 @@ def build_html():
         <span class="date">{e(y)}</span></div>""" for d, s, y, g in EDUCATION
     )
     ach = "".join(f"<li>{e(a)}</li>" for a in ACHIEVEMENTS)
+    head_extra, toolbar = "", ""
+    if web:
+        head_extra = WEB_HEAD
+        toolbar = WEB_TOOLBAR
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hamza Khan — Resume</title>
+{head_extra}
 <style>
 @page {{ size: A4; margin: 14mm 15mm 10mm; }}
 * {{ box-sizing: border-box; }}
@@ -159,6 +164,7 @@ p {{ margin: 0; }}
 .skills div {{ margin: 2px 0; }}
 .edu {{ margin-bottom: 3px; }}
 </style></head><body>
+{toolbar}<main class="sheet">
 <h1>{e(NAME)}</h1><div class="title">{e(TITLE)}</div><div class="contact">{contact}</div>
 <h2>Summary</h2><p>{e(SUMMARY)}</p>
 <h2>Experience</h2>{exp}
@@ -166,6 +172,7 @@ p {{ margin: 0; }}
 <h2>Skills</h2><div class="skills">{skills}</div>
 <h2>Education</h2>{edu}
 <h2>Achievements</h2><ul>{ach}</ul>
+</main>
 </body></html>"""
 
 
@@ -304,11 +311,55 @@ def build_docx(path: Path):
     doc.save(path)
 
 
+WEB_HEAD = """<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Resume of Hamza Khan, software engineer in Thane, Mumbai: Python, Django, FastAPI, React.">
+<link rel="canonical" href="https://www.hamza.social/resume">
+<meta name="color-scheme" content="light">
+<style>
+@media screen {
+  html { background: #eef1f5; }
+  body { font-size: 15px !important; line-height: 1.5 !important; }
+  .bar { position: sticky; top: 0; z-index: 2; background: rgba(255,255,255,.95); backdrop-filter: blur(6px);
+         border-bottom: 1px solid #dde3ea; }
+  .bar-in { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 14px; }
+  .bar a { color: #1d3a6e; text-decoration: none; font-weight: 600; padding: 7px 12px; border-radius: 8px; }
+  .bar .back { margin-right: auto; padding-left: 0; }
+  .bar .btn { border: 1px solid #c9d2e0; background: #fff; }
+  .bar .btn.primary { background: #1d3a6e; border-color: #1d3a6e; color: #fff; }
+  .sheet { max-width: 860px; margin: 24px auto 48px; background: #fff; padding: 48px 56px;
+           border-radius: 6px; box-shadow: 0 1px 3px rgba(16,24,40,.08), 0 8px 24px rgba(16,24,40,.06); }
+  .contact a { color: #1f4f9c !important; }
+  h1 { font-size: 30px !important; }
+  .title { font-size: 17px !important; }
+  .contact { font-size: 14px !important; line-height: 1.7; }
+  h2 { font-size: 14px !important; margin-top: 24px !important; }
+  .item { margin-bottom: 12px !important; }
+  li { margin: 3px 0 !important; }
+}
+@media screen and (max-width: 640px) {
+  .sheet { margin: 0; padding: 24px 16px 40px; border-radius: 0; box-shadow: none; }
+  .row { flex-wrap: wrap; gap: 0 10px !important; }
+  .contact a { white-space: normal !important; overflow-wrap: anywhere; }
+  .bar .print { display: none; }
+}
+@media print { .bar { display: none; } }
+</style>"""
+
+WEB_TOOLBAR = """<nav class="bar" aria-label="Resume actions"><div class="bar-in">
+<a class="back" href="/">&larr; Portfolio</a>
+<a class="btn print" href="#" onclick="window.print();return false;">Print</a>
+<a class="btn primary" href="Hamza-Khan-Resume.pdf" download>Download PDF</a>
+</div></nav>"""
+
+
 if __name__ == "__main__":
     pdf = OUT_DIR / "Hamza-Khan-Resume.pdf"
     docx_path = OUT_DIR / "Hamza-Khan-Resume.docx"
     build_pdf(pdf)
     build_docx(docx_path)
-    if len(sys.argv) > 1:  # optional extra copy of the PDF, e.g. into the website
-        Path(sys.argv[1]).write_bytes(pdf.read_bytes())
+    if len(sys.argv) > 1:  # optional: the website's public/ folder gets the PDF and a web view
+        site = Path(sys.argv[1])
+        (site / "Hamza-Khan-Resume.pdf").write_bytes(pdf.read_bytes())
+        (site / "resume.html").write_text(build_html(web=True), encoding="utf-8")
     print("wrote", pdf, docx_path)

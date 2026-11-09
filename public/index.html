@@ -7,9 +7,8 @@
   <meta name="description" content="Hamza Khan is a software engineer in Thane, Mumbai who builds products for startups and small businesses with Python, Django, FastAPI and React. Open to software engineer, Python developer and full-stack roles in Mumbai, Navi Mumbai, Thane or remote.">
   <link rel="canonical" href="https://www.hamza.social/">
   <meta name="author" content="Hamza Khan">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1318" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Hamza Khan — Software Engineer">
@@ -21,6 +20,9 @@
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d3a6e'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='28' fill='white' text-anchor='middle'%3EHK%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -59,304 +61,391 @@
 
   <style>
     :root {
-      --bg: #ffffff;
-      --surface: #f6f7f9;
-      --ink: #14181f;
-      --muted: #5b6472;
-      --line: #e3e6eb;
-      --accent: #1d3a6e;
-      --accent-ink: #ffffff;
-      --link: #1f4f9c;
-      --chip: #eef1f6;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1318;
-        --surface: #161b22;
-        --ink: #e8ebf0;
-        --muted: #9aa3b0;
-        --line: #262d37;
-        --accent: #8fb3ff;
-        --accent-ink: #0f1318;
-        --link: #8fb3ff;
-        --chip: #1d242e;
-      }
+      --page: #f6f7f9;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --body: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --navy: #1d3a6e;
+      --link: #1d4ed8;
+      --chip: #eef2f7;
+      --green: #15803d;
+      --green-bg: #ecfdf3;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 4px 16px rgba(15, 23, 42, .05);
     }
     * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 72px; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0; background: var(--page); color: var(--body);
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     }
     a { color: var(--link); text-underline-offset: 3px; }
-    a:hover { text-decoration-thickness: 2px; }
-    .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3, strong { color: var(--ink); }
+    .wrap { max-width: 1000px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
 
-    /* Header */
-    header.wrap { padding-top: 64px; padding-bottom: 32px; }
-    .intro { display: flex; gap: 24px; align-items: center; }
-    .photo { width: 112px; height: 112px; border-radius: 50%; flex: none; object-fit: cover; background: var(--surface); }
-    h1 { font-size: 2.1rem; line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
-    .role { font-size: 1.15rem; margin: 4px 0 2px; }
-    .stack { color: var(--muted); margin: 0; }
-    .where { margin: 20px 0 0; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line);
-      color: var(--ink); text-decoration: none; font-weight: 500; font-size: .95rem;
-    }
-    .btn:hover { border-color: var(--muted); }
-    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-    .btn svg { width: 17px; height: 17px; flex: none; }
-    .open-to { margin: 20px 0 0; font-size: .9rem; color: var(--muted); }
-    .open-to strong { color: var(--ink); font-weight: 600; }
+    /* Top bar: the resume and email are always one click away */
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .92);
+              backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
+    .topbar .wrap { display: flex; align-items: center; gap: 20px; height: 60px; }
+    .brand { font-weight: 700; color: var(--ink); text-decoration: none; margin-right: auto; }
+    .topnav { display: flex; gap: 20px; font-size: .92rem; }
+    .topnav a { color: var(--body); text-decoration: none; }
+    .topnav a:hover { color: var(--ink); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+           border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none;
+           font-weight: 600; font-size: .95rem; white-space: nowrap; }
+    .btn:hover { border-color: #cbd5e1; }
+    .btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .btn.primary:hover { background: #16305c; }
+    .btn.sm { padding: 7px 14px; font-size: .88rem; }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+
+    /* Hero */
+    .hero { padding: 56px 0 32px; }
+    .hero-grid { display: grid; grid-template-columns: 160px 1fr; gap: 36px; align-items: center; }
+    .photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; display: block;
+             box-shadow: 0 0 0 6px #fff, var(--shadow); }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600;
+              color: var(--green); background: var(--green-bg); border: 1px solid #c6f0d5;
+              padding: 4px 12px; border-radius: 999px; }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+    h1 { font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.1; margin: 14px 0 6px; letter-spacing: -0.025em; }
+    .headline { font-size: 1.2rem; color: var(--ink); font-weight: 500; margin: 0 0 10px; }
+    .pitch { font-size: 1.05rem; margin: 0 0 22px; max-width: 640px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* At a glance: the facts a recruiter screens for, readable in seconds */
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 8px 0 0; padding: 0; list-style: none; }
+    .facts li { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px; box-shadow: var(--shadow); }
+    .facts b { display: block; font-size: 1.6rem; line-height: 1.2; color: var(--navy); letter-spacing: -0.02em; }
+    .facts span { display: block; font-size: .88rem; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+
+    .core { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .core .label { font-size: .85rem; color: var(--muted); margin-right: 4px; font-weight: 500; }
+    .chip { display: inline-block; font-size: .82rem; padding: 4px 11px; border-radius: 999px; background: var(--chip); color: #1e293b; font-weight: 500; }
+    .core .chip { background: #fff; border: 1px solid var(--line); font-size: .88rem; }
 
     /* Sections */
-    section { padding: 28px 0; border-top: 1px solid var(--line); }
-    h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0 0 18px; font-weight: 600; }
+    section { padding: 48px 0 8px; }
+    .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    h2 { font-size: 1.45rem; margin: 0; letter-spacing: -0.015em; }
+    .sec-note { color: var(--muted); font-size: .92rem; margin: 0; }
     h3 { font-size: 1.08rem; margin: 0; line-height: 1.35; }
     p { margin: 0 0 12px; }
-    ul { margin: 8px 0 0; padding-left: 20px; }
-    li { margin: 4px 0; }
-    li::marker { color: var(--muted); }
+    ul.bul { margin: 10px 0 0; padding-left: 20px; }
+    ul.bul li { margin: 6px 0; }
+    ul.bul li::marker { color: #94a3b8; }
+    .muted { color: var(--muted); }
 
-    .job { margin-bottom: 26px; }
-    .job:last-child { margin-bottom: 0; }
-    .job-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .meta { color: var(--muted); font-size: .93rem; }
-    .date { color: var(--muted); font-size: .93rem; white-space: nowrap; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
 
-    .projects { display: grid; gap: 16px; }
-    .card { border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: var(--surface); }
-    .card h3 { margin-bottom: 2px; }
-    .card .meta { margin-bottom: 8px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
-    .chips li { margin: 0; font-size: .8rem; padding: 2px 9px; border-radius: 999px; background: var(--chip); color: var(--muted); }
-    .links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .93rem; }
-    .note { color: var(--muted); font-size: .9rem; }
+    /* Experience timeline */
+    .job { position: relative; padding-left: 28px; }
+    .job + .job { margin-top: 30px; }
+    .job::before { content: ""; position: absolute; left: 0; top: 7px; width: 11px; height: 11px; border-radius: 50%;
+                   background: #fff; border: 3px solid var(--navy); }
+    .job:not(:last-child)::after { content: ""; position: absolute; left: 6px; top: 24px; bottom: -26px; width: 2px; background: var(--line); }
+    .job-head { display: flex; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; }
+    .date { color: var(--muted); font-size: .92rem; white-space: nowrap; font-weight: 500; }
+    .org { color: var(--muted); font-size: .95rem; margin-top: 2px; }
 
-    .more { list-style: none; padding: 0; margin: 0; }
-    .more li { padding: 10px 0; border-bottom: 1px dashed var(--line); margin: 0; }
-    .more li:last-child { border-bottom: 0; }
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+               box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .shot { aspect-ratio: 16 / 9; background: #e2e8f0; border-bottom: 1px solid var(--line); overflow: hidden; }
+    .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+    .project-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+    .kind { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--navy); margin-bottom: 6px; }
+    .project p.what { margin: 6px 0 0; }
+    .project ul.bul { font-size: .95rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: auto; padding-top: 16px; font-size: .93rem; font-weight: 600; }
+    .links a { text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+    .links .note { color: var(--muted); font-weight: 500; }
 
-    .skills { display: grid; grid-template-columns: 170px 1fr; gap: 8px 16px; margin: 0; }
-    .skills dt { font-weight: 600; }
-    .skills dd { margin: 0; color: var(--ink); }
+    .more { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .more li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+    .more a { font-weight: 600; text-decoration: none; }
+    .more a:hover { text-decoration: underline; }
+    .more .muted { display: block; font-size: .85rem; margin-top: 2px; }
 
-    footer.wrap { padding-top: 28px; padding-bottom: 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    /* Skills */
+    .skills { display: grid; grid-template-columns: 180px 1fr; gap: 14px 24px; margin: 0; }
+    .skills dt { font-weight: 600; color: var(--ink); padding-top: 3px; }
+    .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 
-    @media (max-width: 560px) {
-      header.wrap { padding-top: 40px; }
-      .intro { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .photo { width: 92px; height: 92px; }
-      h1 { font-size: 1.8rem; }
-      .skills { grid-template-columns: 1fr; gap: 2px; }
-      .skills dd { margin-bottom: 10px; }
-      .wrap { padding: 0 16px; }
+    /* Education */
+    .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .edu-grid h3 { margin-bottom: 4px; }
+    .award { display: flex; gap: 12px; align-items: flex-start; }
+    .award + .award { margin-top: 14px; }
+    .award .ico { flex: none; width: 34px; height: 34px; border-radius: 10px; background: #fff7e6; color: #b45309;
+                  display: grid; place-items: center; font-size: 1rem; }
+
+    /* Closing call to action */
+    .cta { margin: 56px 0 0; background: var(--navy); color: #dbe5f5; border-radius: 20px; padding: 40px; text-align: center; }
+    .cta h2 { color: #fff; margin-bottom: 8px; }
+    .cta p { max-width: 560px; margin: 0 auto 22px; }
+    .cta .actions { justify-content: center; }
+    .cta .btn { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .35); }
+    .cta .btn.primary { background: #fff; color: var(--navy); border-color: #fff; }
+
+    footer { padding: 32px 0 48px; color: var(--muted); font-size: .88rem; text-align: center; }
+
+    @media (max-width: 860px) {
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .projects, .more, .edu-grid { grid-template-columns: 1fr; }
+      .topnav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding-left: 16px; padding-right: 16px; }
+      .hero { padding-top: 32px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+      .photo { width: 112px; height: 112px; }
+      .facts b { font-size: 1.35rem; }
+      .facts li { padding: 14px; }
+      .panel { padding: 20px; }
+      .skills { grid-template-columns: 1fr; gap: 6px; }
+      .skills dd { margin-bottom: 12px; }
+      .cta { padding: 28px 20px; }
+      .actions .btn { flex: 1 1 auto; justify-content: center; }
     }
     @media print {
-      .actions, footer { display: none; }
-      .card { background: none; break-inside: avoid; }
-      a { color: inherit; text-decoration: none; }
+      .topbar, .actions, .cta { display: none; }
+      body { background: #fff; }
     }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="intro">
+  <div class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">Hamza Khan</a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </nav>
+      <a class="btn primary sm" href="/resume">View resume</a>
+    </div>
+  </div>
+
+  <header class="hero wrap" id="top">
+    <div class="hero-grid">
       <picture>
         <source srcset="hamza-khan.webp" type="image/webp">
-        <img class="photo" src="hamza-khan.jpg" alt="Portrait of Hamza Khan" width="112" height="112">
+        <img class="photo" src="hamza-khan.jpg" alt="Portrait of Hamza Khan" width="160" height="160">
       </picture>
       <div>
+        <span class="status">Open to full-time roles · Mumbai, Navi Mumbai, Thane or remote</span>
         <h1>Hamza Khan</h1>
-        <p class="role">Software Engineer</p>
-        <p class="stack">Python · Django · FastAPI · React · TypeScript</p>
+        <p class="headline">Software Engineer · Python, Django, FastAPI, React</p>
+        <p class="pitch">I build and ship software for real businesses: web apps, CRMs, and a desktop and Android billing app that a trading company runs on. I take the work from the first conversation through to deployment and support.</p>
+        <div class="actions">
+          <a class="btn primary" href="/resume">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg>
+            View resume
+          </a>
+          <a class="btn" href="mailto:hamza81khan81@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email me
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" rel="me noopener" target="_blank">
+            <svg viewBox="0 0 24 24" fill="#0a66c2" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.850 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.230.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/hamzakhan0712" rel="me noopener" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.300.7-1.600-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </div>
-
-    <p class="where">Based in Thane, Maharashtra. Open to roles in Mumbai, Navi Mumbai and Thane, or remote.</p>
-
-    <div class="actions">
-      <a class="btn primary" href="Hamza-Khan-Resume.pdf" download>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
-        Download resume
-      </a>
-      <a class="btn" href="mailto:hamza81khan81@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-        hamza81khan81@gmail.com
-      </a>
-      <a class="btn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" rel="me noopener" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-        LinkedIn
-      </a>
-      <a class="btn" href="https://github.com/hamzakhan0712" rel="me noopener" target="_blank">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
-        GitHub
-      </a>
-    </div>
-
-    <p class="open-to"><strong>Open to:</strong> Software Engineer · Python Developer · Full-Stack Developer · Backend Developer · Django Developer · Web Developer</p>
   </header>
 
   <main class="wrap">
-    <section aria-labelledby="about">
-      <h2 id="about">About</h2>
-      <p>I build products for startups and small businesses. I have shipped software for six businesses in India and Germany, from Django CRMs to a desktop and Android billing app, and I take the work from the first conversation through to deployment and support.</p>
-      <p>I am most at home in Python (Django, FastAPI), with React and TypeScript on the front end. I graduated in 2026 with a B.E. in Computer Science &amp; Engineering (Data Science) and I am looking for a software engineering role.</p>
-    </section>
+    <ul class="facts" aria-label="At a glance">
+      <li><b>2.5 years</b><span>building software for clients, freelance and contract</span></li>
+      <li><b>6 businesses</b><span>shipped for, in India and Germany</span></li>
+      <li><b>CGPI 8.19</b><span>B.E. Computer Science (Data Science), 2026</span></li>
+      <li><b>SIH 2025</b><span>Grand Finalist, Smart India Hackathon</span></li>
+    </ul>
 
-    <section aria-labelledby="experience">
-      <h2 id="experience">Experience</h2>
+    <div class="core" aria-label="Core skills">
+      <span class="label">Core skills</span>
+      <span class="chip">Python</span><span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">Git</span>
+    </div>
+    <p class="muted" style="font-size:.85rem;margin-top:14px">Also a fit for: Python Developer · Full-Stack Developer · Backend Developer · Django Developer · Web Developer</p>
 
-      <article class="job">
-        <div class="job-head">
-          <h3>Full Stack Developer · Brandenbed Living Spaces UG</h3>
-          <span class="date">Sep 2025 – Nov 2025</span>
-        </div>
-        <div class="meta">Berlin, Germany · Remote contract</div>
-        <ul>
-          <li>Built modules of the company's internal property-management web application in Django and Django REST Framework, covering properties, tenants, landlords, leads, rent payments and maintenance requests.</li>
-          <li>Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by employee role.</li>
-          <li>Worked directly with the founders in Berlin across time zones, reporting progress and adjusting scope as requirements changed.</li>
-        </ul>
-      </article>
-
-      <article class="job">
-        <div class="job-head">
-          <h3>Freelance Software Engineer</h3>
-          <span class="date">Apr 2024 – Present</span>
-        </div>
-        <div class="meta">Self-employed · Mumbai · Clients in India and Germany</div>
-        <ul>
-          <li>Scoped, built, deployed and maintained software for six small businesses in India and Germany, plus two academic conference websites.</li>
-          <li>Shipped a billing system for a trading company as an Electron desktop app and a Capacitor Android app, with versioned installers and auto-updates, now on version 5.</li>
-          <li>Built a Django and PostgreSQL call-center CRM with role-scoped views, GST invoice PDFs and a live break monitor over WebSockets.</li>
-          <li>Built business websites on Cloudflare Workers and Vercel (Next.js, Astro) with WhatsApp lead capture, structured data for search and Playwright tests.</li>
-        </ul>
-      </article>
-    </section>
-
-    <section aria-labelledby="projects">
-      <h2 id="projects">Selected projects</h2>
-      <div class="projects">
-
-        <article class="card">
-          <h3>NOVEM — E-Commerce Intelligence Platform</h3>
-          <div class="meta">Final-year degree project · 2026</div>
-          <p>A local-first desktop app that turns a store's exports (CSV, Excel, Google Sheets, Shopify, PostgreSQL) into KPIs, customer segments, forecasts and plain-language insights. The database, the models and the LLM all run on the user's own machine.</p>
-          <ul>
-            <li>Python analytics engine with ~170 endpoints across 23 FastAPI routers, using DuckDB for analytics and SQLite for app state.</li>
-            <li>RFM segmentation, churn and lifetime-value models, market-basket rules, and Prophet forecasts with confidence bands.</li>
-            <li>AI copilot that answers questions about the store's own data with a local Ollama model (RAG). Customer PII is hashed on import.</li>
-            <li>Shipped as a Windows installer: Tauri shell, React UI, Python engine frozen with PyInstaller. CI runs Ruff, pytest, ESLint and Vitest.</li>
-          </ul>
-          <ul class="chips" aria-label="Tech stack">
-            <li>Python</li><li>FastAPI</li><li>DuckDB</li><li>pandas</li><li>Prophet</li><li>Ollama</li><li>React</li><li>TypeScript</li><li>Tauri</li>
-          </ul>
-          <div class="links"><span class="note">Source code available on request</span></div>
-        </article>
-
-        <article class="card">
-          <h3>Billing software for S.K Trading &amp; Co</h3>
-          <div class="meta">Client project · Desktop, Android and web · 2026</div>
-          <p>Quotations, proforma invoices, GST tax invoices and delivery challans for a trading company, used on office laptops and on the phone.</p>
-          <ul>
-            <li>Electron desktop app and Capacitor Android app sharing one React and TypeScript codebase, with a local SQLite database.</li>
-            <li>Print-ready PDF documents, email sending, and auto-updating installers across 5 major versions (77+ commits).</li>
-            <li>Also built the company's product-catalogue website: Next.js on Cloudflare Workers.</li>
-          </ul>
-          <ul class="chips" aria-label="Tech stack">
-            <li>Electron</li><li>Capacitor</li><li>React</li><li>TypeScript</li><li>SQLite</li><li>Next.js</li><li>Cloudflare Workers</li>
-          </ul>
-          <div class="links">
-            <a href="https://sktradingandco.in" target="_blank" rel="noopener">Website ↗</a>
-            <a href="https://github.com/InitCore006/shtrading-releases" target="_blank" rel="noopener">App releases ↗</a>
+    <section id="experience" aria-labelledby="h-exp">
+      <div class="sec-head"><h2 id="h-exp">Experience</h2></div>
+      <div class="panel">
+        <article class="job">
+          <div class="job-head">
+            <h3>Full Stack Developer</h3>
+            <span class="date">Sep 2025 – Nov 2025</span>
           </div>
+          <div class="org">Brandenbed Living Spaces UG · Berlin, Germany · Remote contract</div>
+          <ul class="bul">
+            <li>Built modules of the company's internal property-management web application in <strong>Django</strong> and <strong>Django REST Framework</strong>: properties, tenants, landlords, leads, rent payments and maintenance requests.</li>
+            <li>Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by employee role.</li>
+            <li>Worked directly with the Berlin-based founders, reporting progress and adjusting scope as needs changed.</li>
+          </ul>
         </article>
 
-        <article class="card">
-          <h3>Key2YourHome — Real-estate deals platform</h3>
-          <div class="meta">Client project · 2026</div>
-          <p>A fast, search-friendly property listings site for a real-estate channel partner, built to turn visitors into WhatsApp enquiries.</p>
-          <ul>
-            <li>Static-first Astro site that uses Google Sheets as the CMS, so the business updates listings without a developer.</li>
-            <li>Moving in phases to Cloudflare Workers, D1 and R2 with a private admin panel and lead alerts.</li>
-            <li>Playwright tests at phone, tablet and desktop widths.</li>
+        <article class="job">
+          <div class="job-head">
+            <h3>Freelance Software Engineer</h3>
+            <span class="date">Apr 2024 – Present</span>
+          </div>
+          <div class="org">Self-employed · Mumbai · Clients in India and Germany</div>
+          <ul class="bul">
+            <li>Scoped, built, deployed and maintained software for <strong>six small businesses</strong> in India and Germany, plus two academic conference websites.</li>
+            <li>Shipped a billing system as an <strong>Electron desktop app and Android app</strong> with versioned installers and auto-updates, now on version 5.</li>
+            <li>Built a <strong>Django and PostgreSQL CRM</strong> with role-scoped views, GST invoice PDFs and a live WebSocket break monitor.</li>
+            <li>Built business websites on Cloudflare Workers and Vercel (Next.js, Astro) with lead capture, search-friendly markup and Playwright tests.</li>
           </ul>
-          <ul class="chips" aria-label="Tech stack">
-            <li>Astro</li><li>TypeScript</li><li>Tailwind CSS</li><li>Cloudflare D1</li><li>R2</li><li>Playwright</li>
-          </ul>
-          <div class="links"><a href="https://key2yourhome.net" target="_blank" rel="noopener">key2yourhome.net ↗</a></div>
-        </article>
-
-        <article class="card">
-          <h3>Call-center CRM</h3>
-          <div class="meta">Freelance project · 2024</div>
-          <p>A Django application for a small outbound call-center team: import leads, split them across teams and agents, track every call, record payments and issue GST invoices.</p>
-          <ul>
-            <li>CSV/XLSX lead import with a column-mapping step and duplicate protection; full history of every lead change and transfer.</li>
-            <li>One set of views serving admins, team leaders and agents, each scoped to the data their role may see.</li>
-            <li>Attendance computed from login and logout, plus a live break monitor over WebSockets (Django Channels).</li>
-          </ul>
-          <ul class="chips" aria-label="Tech stack">
-            <li>Python</li><li>Django</li><li>PostgreSQL</li><li>Django Channels</li><li>pandas</li>
-          </ul>
-          <div class="links"><span class="note">Source code available on request</span></div>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="more">
-      <h2 id="more">More work</h2>
-      <ul class="more">
-        <li><a href="https://logxivia.com" target="_blank" rel="noopener"><strong>Logxivia</strong></a> — English/German website for a trading startup in Germany. <span class="meta">Next.js, next-intl</span></li>
-        <li><a href="https://www.tajmetals.in" target="_blank" rel="noopener"><strong>Taj Metals</strong></a> — Product catalogue website for a metals business, with WhatsApp enquiries. <span class="meta">Next.js, Framer Motion</span></li>
-        <li><a href="https://github.com/hamzakhan0712/ICTMT2025-Conference" target="_blank" rel="noopener"><strong>ICTMT 2025</strong></a> and <a href="https://github.com/hamzakhan0712/SUSTECH2025-Conference" target="_blank" rel="noopener"><strong>SUSTECH 2025</strong></a> — Websites for two academic conferences hosted by my college. <span class="meta">React, Vite, Tailwind CSS</span></li>
-        <li><a href="https://github.com/hamzakhan0712/FlaskSearch-API" target="_blank" rel="noopener"><strong>FlaskSearch API</strong></a> — Full-text search API over a document catalogue. <span class="meta">Flask, Elasticsearch</span></li>
+    <section id="projects" aria-labelledby="h-proj">
+      <div class="sec-head">
+        <h2 id="h-proj">Selected projects</h2>
+        <p class="sec-note">Real software, used by real people</p>
+      </div>
+      <div class="projects">
+
+        <article class="project">
+          <div class="shot"><img src="img/novem.webp" alt="NOVEM dashboard showing revenue, orders, customers and a 30-day revenue trend" width="960" height="487" loading="lazy"></div>
+          <div class="project-body">
+            <div class="kind">Final-year project · Python + AI</div>
+            <h3>NOVEM — E-Commerce Intelligence Platform</h3>
+            <p class="what">A desktop app that turns a store's sales exports into KPIs, customer segments, forecasts and plain-language insights. Everything runs offline on the user's laptop.</p>
+            <ul class="bul">
+              <li>~170 endpoints across 23 <strong>FastAPI</strong> routers; DuckDB for analytics.</li>
+              <li>Churn and lifetime-value models, Prophet forecasts, and an AI copilot on a local LLM (RAG).</li>
+              <li>Ships as a Windows installer; CI runs Ruff, pytest, ESLint and Vitest.</li>
+            </ul>
+            <ul class="chips" aria-label="Tech stack"><li class="chip">Python</li><li class="chip">FastAPI</li><li class="chip">DuckDB</li><li class="chip">pandas</li><li class="chip">React</li><li class="chip">Tauri</li></ul>
+            <div class="links"><span class="note">Code walkthrough available on request</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="shot"><img src="img/skt.webp" alt="S.K Trading and Co website home page with product finder" width="960" height="404" loading="lazy"></div>
+          <div class="project-body">
+            <div class="kind">Client project · Desktop, Android and web</div>
+            <h3>Billing software for S.K Trading &amp; Co</h3>
+            <p class="what">GST invoices, quotations, proforma invoices and delivery challans for a valves and pipes supplier, used on office laptops and phones.</p>
+            <ul class="bul">
+              <li>One <strong>React + TypeScript</strong> codebase running as an Electron desktop app and a Capacitor Android app.</li>
+              <li>Local SQLite database, print-ready PDFs, email sending and auto-updates across 5 major versions.</li>
+              <li>Also built the company's product-catalogue website on Next.js and Cloudflare.</li>
+            </ul>
+            <ul class="chips" aria-label="Tech stack"><li class="chip">Electron</li><li class="chip">Capacitor</li><li class="chip">React</li><li class="chip">TypeScript</li><li class="chip">SQLite</li><li class="chip">Next.js</li></ul>
+            <div class="links">
+              <a href="https://sktradingandco.in" target="_blank" rel="noopener">Live website ↗</a>
+              <a href="https://github.com/InitCore006/shtrading-releases" target="_blank" rel="noopener">App releases ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="shot"><img src="img/crm.webp" alt="Call-center CRM dashboard with sales totals, team leader breakdown and monthly sales chart" width="960" height="434" loading="lazy"></div>
+          <div class="project-body">
+            <div class="kind">Freelance project · Python backend</div>
+            <h3>Call-center CRM</h3>
+            <p class="what">A <strong>Django</strong> app for an outbound sales team: import leads, assign them to teams and agents, track every call, record payments and issue GST invoices.</p>
+            <ul class="bul">
+              <li>CSV/XLSX import with column mapping and duplicate protection; full history of every lead.</li>
+              <li>One set of views for admins, team leaders and agents, each scoped to their own data.</li>
+              <li>Attendance from login times and a live break monitor over WebSockets (Django Channels).</li>
+            </ul>
+            <ul class="chips" aria-label="Tech stack"><li class="chip">Python</li><li class="chip">Django</li><li class="chip">PostgreSQL</li><li class="chip">Channels</li><li class="chip">pandas</li></ul>
+            <div class="links"><span class="note">Code walkthrough available on request</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="shot"><img src="img/k2y.webp" alt="Key2YourHome website showing a featured Navi Mumbai property listing" width="960" height="507" loading="lazy"></div>
+          <div class="project-body">
+            <div class="kind">Client project · Web platform</div>
+            <h3>Key2YourHome — Real-estate deals platform</h3>
+            <p class="what">A fast, search-friendly property site for a real-estate channel partner in Navi Mumbai, built to turn visitors into WhatsApp enquiries.</p>
+            <ul class="bul">
+              <li><strong>Astro</strong> static site that uses Google Sheets as the CMS, so the owner edits listings without a developer.</li>
+              <li>Moving in phases to Cloudflare Workers, D1 and R2 with a private admin and lead alerts.</li>
+              <li>Playwright tests at phone, tablet and desktop widths.</li>
+            </ul>
+            <ul class="chips" aria-label="Tech stack"><li class="chip">Astro</li><li class="chip">TypeScript</li><li class="chip">Tailwind CSS</li><li class="chip">Cloudflare D1</li><li class="chip">Playwright</li></ul>
+            <div class="links"><a href="https://key2yourhome.net" target="_blank" rel="noopener">Live website ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <ul class="more" aria-label="More work">
+        <li><a href="https://logxivia.com" target="_blank" rel="noopener">Logxivia ↗</a><span class="muted">English/German website for a trading startup in Germany · Next.js, next-intl</span></li>
+        <li><a href="https://www.tajmetals.in" target="_blank" rel="noopener">Taj Metals ↗</a><span class="muted">Product catalogue website for a metals business · Next.js</span></li>
+        <li><a href="https://github.com/hamzakhan0712/ICTMT2025-Conference" target="_blank" rel="noopener">ICTMT 2025</a> &amp; <a href="https://github.com/hamzakhan0712/SUSTECH2025-Conference" target="_blank" rel="noopener">SUSTECH 2025</a><span class="muted">Websites for two academic conferences at my college · React, Vite</span></li>
+        <li><a href="https://github.com/hamzakhan0712/FlaskSearch-API" target="_blank" rel="noopener">FlaskSearch API ↗</a><span class="muted">Full-text search API over a document catalogue · Flask, Elasticsearch</span></li>
       </ul>
     </section>
 
-    <section aria-labelledby="skills">
-      <h2 id="skills">Skills</h2>
-      <dl class="skills">
-        <dt>Languages</dt><dd>Python, TypeScript, JavaScript, SQL, HTML, CSS</dd>
-        <dt>Backend</dt><dd>Django, Django REST Framework, FastAPI, Flask, Django Channels, REST APIs</dd>
-        <dt>Frontend</dt><dd>React, Next.js, Astro, Tailwind CSS</dd>
-        <dt>Data</dt><dd>PostgreSQL, SQLite, DuckDB, pandas, Prophet, Elasticsearch</dd>
-        <dt>Desktop &amp; mobile</dt><dd>Electron, Tauri, Capacitor (Android)</dd>
-        <dt>Cloud &amp; tools</dt><dd>Cloudflare Workers, D1, R2, Vercel, Git, GitHub Actions, Playwright, pytest</dd>
-      </dl>
+    <section id="skills" aria-labelledby="h-skills">
+      <div class="sec-head"><h2 id="h-skills">Skills</h2></div>
+      <div class="panel">
+        <dl class="skills">
+          <dt>Languages</dt><dd><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span></dd>
+          <dt>Backend</dt><dd><span class="chip">Django</span><span class="chip">Django REST Framework</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Django Channels</span><span class="chip">REST APIs</span></dd>
+          <dt>Frontend</dt><dd><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Astro</span><span class="chip">Tailwind CSS</span></dd>
+          <dt>Data</dt><dd><span class="chip">PostgreSQL</span><span class="chip">SQLite</span><span class="chip">DuckDB</span><span class="chip">pandas</span><span class="chip">Prophet</span><span class="chip">Elasticsearch</span></dd>
+          <dt>Desktop &amp; mobile</dt><dd><span class="chip">Electron</span><span class="chip">Tauri</span><span class="chip">Capacitor (Android)</span></dd>
+          <dt>Cloud &amp; tools</dt><dd><span class="chip">Cloudflare Workers</span><span class="chip">D1</span><span class="chip">R2</span><span class="chip">Vercel</span><span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Playwright</span><span class="chip">pytest</span></dd>
+        </dl>
+      </div>
     </section>
 
-    <section aria-labelledby="education">
-      <h2 id="education">Education &amp; achievements</h2>
-      <article class="job">
-        <div class="job-head">
+    <section id="education" aria-labelledby="h-edu">
+      <div class="sec-head"><h2 id="h-edu">Education &amp; achievements</h2></div>
+      <div class="edu-grid">
+        <div class="panel">
           <h3>B.E. Computer Science &amp; Engineering (Data Science)</h3>
-          <span class="date">2023 – 2026</span>
-        </div>
-        <div class="meta">Saraswati College of Engineering, Navi Mumbai · University of Mumbai · CGPI 8.19 / 10</div>
-      </article>
-      <article class="job">
-        <div class="job-head">
+          <p class="muted" style="margin:0">Saraswati College of Engineering, Navi Mumbai · University of Mumbai</p>
+          <p style="margin:8px 0 0"><strong>CGPI 8.19</strong> <span class="muted">· 2023 – 2026</span></p>
+          <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
           <h3>Diploma in Computer Engineering</h3>
-          <span class="date">2021 – 2023</span>
+          <p class="muted" style="margin:0">Abdul Razzaq Kalsekar Polytechnic, New Panvel · MSBTE</p>
+          <p style="margin:8px 0 0"><strong>72.63%, First Class</strong> <span class="muted">· 2021 – 2023</span></p>
         </div>
-        <div class="meta">Abdul Razzaq Kalsekar Polytechnic, New Panvel · MSBTE · 72.63%, First Class</div>
-      </article>
-      <ul>
-        <li><strong>Grand Finalist</strong>, Smart India Hackathon 2025 (Software Edition), Ministry of Education, Government of India, Dec 2025</li>
-        <li><strong>2nd Place</strong>, SCOE AVISHKAR 2025 project competition, Apr 2025</li>
-      </ul>
+        <div class="panel">
+          <div class="award">
+            <div class="ico" aria-hidden="true">★</div>
+            <div><h3>Grand Finalist, Smart India Hackathon 2025</h3><p class="muted" style="margin:0">Software Edition · Ministry of Education, Government of India · Dec 2025</p></div>
+          </div>
+          <div class="award">
+            <div class="ico" aria-hidden="true">★</div>
+            <div><h3>2nd Place, SCOE AVISHKAR 2025</h3><p class="muted" style="margin:0">College project competition · Apr 2025</p></div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <div class="cta">
+      <h2>Hiring for a software engineering role?</h2>
+      <p>I'm looking for a team where I can build product and keep learning. Email is the quickest way to reach me.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a>
+        <a class="btn" href="/resume">View resume</a>
+        <a class="btn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
   </main>
 
-  <footer class="wrap">
-    <p>Hamza Khan · Thane, Maharashtra · <a href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a></p>
-  </footer>
+  <footer class="wrap">Hamza Khan · Software Engineer · Thane, Maharashtra</footer>
 </body>
 </html>

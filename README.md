@@ -9,6 +9,6 @@ no build step. Vercel serves `public/` as-is (see `vercel.json`).
 
 To preview locally: `npx serve public`
 
-Resume: edit `resume/build_resume.py`, then run `python resume/build_resume.py public/Hamza-Khan-Resume.pdf`
+Resume: edit `resume/build_resume.py`, then run `python resume/build_resume.py public`
 (needs `pip install python-docx` and Microsoft Edge). It writes the PDF and DOCX to
-`D:\Documents\Profession Documents` and copies the PDF into the site.
+`D:\Documents\Profession Documents` and copies the PDF plus a browser-readable `resume.html` into the site.
