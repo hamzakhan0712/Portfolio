@@ -26,7 +26,7 @@ CONTACT = [
 ]
 
 SUMMARY = (
-    "Software engineer with 2.5+ years of shipping production software for businesses in India and "
+    "Software engineer with 2.5+ years shipping production software for businesses in India and "
     "Germany: Django and FastAPI backends, React and Next.js front ends, and an Electron and Android "
     "billing app now on its fifth major version. I own the work end to end, from requirements and "
     "architecture through testing, deployment and support. Looking for a software engineering role."
@@ -265,30 +265,37 @@ def build_docx(path: Path):
     run(p, NAME, bold=True, size=20)
     p = para(doc, space_after=2)
     run(p, TITLE, size=11, color=RGBColor(0x33, 0x33, 0x33))
-    p = para(doc)
-    for i, (t, u) in enumerate(CONTACT):
-        if i:
-            run(p, "  ·  ", size=9)
-        if u:
-            hyperlink(p, t, u)
-        else:
-            run(p, t, size=9)
+    # same two lines as the PDF: location and phone, then email and links
+    lines = [[CONTACT[0]] + [c for c in CONTACT[1:] if c[1].startswith("tel:")],
+             [c for c in CONTACT[1:] if not c[1].startswith("tel:")]]
+    for line in lines:
+        p = para(doc)
+        for i, (t, u) in enumerate(line):
+            if i:
+                run(p, "  ·  ", size=9)
+            if u:
+                hyperlink(p, t, u)
+            else:
+                run(p, t, size=9)
 
     heading(doc, "Summary")
     run(para(doc), SUMMARY)
 
     heading(doc, "Experience")
-    for j in EXPERIENCE:
-        right_tab_line(doc, [(j["role"], True, None), (", " + j["org"], False, None),
-                             (" · " + j["meta"], False, RGBColor(0x55, 0x55, 0x55))], j["dates"], width)
+    for i, j in enumerate(EXPERIENCE):
+        p = right_tab_line(doc, [(j["role"], True, None), (", " + j["org"], False, None),
+                                 (" · " + j["meta"], False, RGBColor(0x55, 0x55, 0x55))], j["dates"], width)
+        if i:
+            p.paragraph_format.space_before = Pt(6)
         for b in j["bullets"]:
             bullet(doc, b)
-        para(doc, space_after=2)
 
     heading(doc, "Projects")
-    for pj in PROJECTS:
-        right_tab_line(doc, [(pj["name"], True, None),
-                             (" · " + pj["meta"], False, RGBColor(0x55, 0x55, 0x55))], "", width)
+    for i, pj in enumerate(PROJECTS):
+        p = right_tab_line(doc, [(pj["name"], True, None),
+                                 (" · " + pj["meta"], False, RGBColor(0x55, 0x55, 0x55))], "", width)
+        if i:
+            p.paragraph_format.space_before = Pt(6)
         for b in pj["bullets"]:
             bullet(doc, b)
 
@@ -315,7 +322,22 @@ def build_docx(path: Path):
 WEB_HEAD = """<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Resume of Hamza Khan, software engineer in Thane, Mumbai: Python, Django, FastAPI, React.">
 <link rel="canonical" href="https://www.hamza.social/resume">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Hamza Khan">
 <meta name="color-scheme" content="light">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Hamza Khan">
+<meta property="og:title" content="Hamza Khan, Software Engineer: Resume">
+<meta property="og:description" content="Resume of Hamza Khan, software engineer in Thane, Mumbai. Python, Django, FastAPI and React.">
+<meta property="og:url" content="https://www.hamza.social/resume">
+<meta property="og:image" content="https://www.hamza.social/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.hamza.social/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
 @media screen {
   html { background: #eef1f5; }
