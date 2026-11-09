@@ -70,7 +70,7 @@ EXPERIENCE = [
 
 PROJECTS = [
     {
-        "name": "NOVEM — E-Commerce Intelligence Platform",
+        "name": "NOVEM, e-commerce analytics platform",
         "meta": "Python, FastAPI, DuckDB, Prophet, React, Tauri",
         "bullets": [
             "Local-first desktop app that turns store exports (CSV, Excel, Shopify, PostgreSQL) into KPIs, "
@@ -81,7 +81,7 @@ PROJECTS = [
         ],
     },
     {
-        "name": "Key2YourHome — Real-estate deals platform",
+        "name": "Key2YourHome, real-estate listings platform",
         "meta": "key2yourhome.net · Astro, Tailwind CSS, Cloudflare Workers, D1, R2",
         "bullets": [
             "Static-first property site using Google Sheets as the CMS, moving in phases to Cloudflare D1 "
@@ -142,7 +142,7 @@ def build_html(web=False):
     if web:
         head_extra = WEB_HEAD
         toolbar = WEB_TOOLBAR
-    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hamza Khan — Resume</title>
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hamza Khan | Resume</title>
 {head_extra}
 <style>
 @page {{ size: A4; margin: 14mm 15mm 10mm; }}
@@ -308,7 +308,7 @@ def build_docx(path: Path):
         bullet(doc, a)
 
     doc.core_properties.author = NAME
-    doc.core_properties.title = "Hamza Khan — Resume"
+    doc.core_properties.title = "Hamza Khan, Resume"
     doc.save(path)
 
 
