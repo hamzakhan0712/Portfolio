@@ -17,16 +17,12 @@ MUTED = (75, 85, 99)
 WHITE = (255, 255, 255)
 
 
-FACE = PUBLIC / "hamza-khan.jpg"  # square head-and-shoulders crop
+FACE = PUBLIC / "hamza-khan-face.jpg"  # square headshot centred on the face (made with face detection)
 
 
 def face(size: int, circle: bool = True) -> Image.Image:
-    """Hamza's face, cropped to the head, as a round (or square) icon."""
-    im = Image.open(FACE).convert("RGB")
-    w, h = im.size
-    side = int(w * 0.62)  # tighter crop so the face reads at small sizes
-    left, top = (w - side) // 2, int(h * 0.04)
-    im = im.crop((left, top, left + side, top + side)).resize((size * 4, size * 4), Image.LANCZOS)
+    """Hamza's face as a round (or square) icon. The source is already centred, so no extra cropping."""
+    im = Image.open(FACE).convert("RGB").resize((size * 4, size * 4), Image.LANCZOS)
     if circle:
         mask = Image.new("L", im.size, 0)
         ImageDraw.Draw(mask).ellipse((0, 0, im.size[0] - 1, im.size[1] - 1), fill=255)
@@ -43,6 +39,9 @@ def icons():
     face(512).save(PUBLIC / "icon-512.png")
     face(180, circle=False).save(PUBLIC / "apple-touch-icon.png")  # iOS rounds the corners itself
     face(96).save(PUBLIC / "img" / "avatar.webp", quality=85)  # top-bar logo (shown at 32px, sharp on 3x screens)
+    square = Image.open(FACE).convert("RGB").resize((480, 480), Image.LANCZOS)  # phone hero photo + structured data
+    square.save(PUBLIC / "hamza-khan.webp", quality=82)
+    square.save(PUBLIC / "hamza-khan.jpg", quality=84, optimize=True)
     svg = PUBLIC / "favicon.svg"
     if svg.exists():
         svg.unlink()  # the old HK monogram; the face icons replace it
