@@ -19,34 +19,20 @@ TITLE = "Software Engineer · Python, Django, FastAPI, React"
 CONTACT = [
     ("Thane, Maharashtra · open to Mumbai, Navi Mumbai, Thane or remote", None),
     ("hamza81khan81@gmail.com", "mailto:hamza81khan81@gmail.com"),
+    ("+91 91379 66960", "tel:+919137966960"),
     ("hamza.social", "https://www.hamza.social"),
     ("linkedin.com/in/hamza-khan-3a2b0024a", "https://www.linkedin.com/in/hamza-khan-3a2b0024a/"),
     ("github.com/hamzakhan0712", "https://github.com/hamzakhan0712"),
 ]
 
 SUMMARY = (
-    "Software engineer who builds products for startups and small businesses. I have shipped "
-    "software for six businesses in India and Germany, from Django CRMs to a desktop and Android "
-    "billing app, and I take work from the first conversation through to deployment and support. "
-    "Most at home in Python (Django, FastAPI), with React and TypeScript on the front end. "
-    "Looking for a software engineering role."
+    "Software engineer with 2.5+ years of shipping production software for businesses in India and "
+    "Germany: Django and FastAPI backends, React and Next.js front ends, and an Electron and Android "
+    "billing app now on its fifth major version. I own the work end to end, from requirements and "
+    "architecture through testing, deployment and support. Looking for a software engineering role."
 )
 
 EXPERIENCE = [
-    {
-        "role": "Full Stack Developer",
-        "org": "Brandenbed Living Spaces UG, Berlin, Germany",
-        "meta": "Remote contract",
-        "dates": "Sep 2025 – Nov 2025",
-        "bullets": [
-            "Built modules of the company's internal property-management web application in Django and "
-            "Django REST Framework, covering properties, tenants, landlords, leads, rent payments and "
-            "maintenance requests.",
-            "Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by "
-            "employee role.",
-            "Worked directly with the Berlin-based founders, reporting progress and adjusting scope as needs changed.",
-        ],
-    },
     {
         "role": "Freelance Software Engineer",
         "org": "Self-employed, Mumbai",
@@ -66,12 +52,26 @@ EXPERIENCE = [
             "English/German site for a Germany-based trading startup.",
         ],
     },
+    {
+        "role": "Full Stack Developer",
+        "org": "Brandenbed Living Spaces UG, Berlin, Germany",
+        "meta": "Remote contract",
+        "dates": "Sep 2025 – Nov 2025",
+        "bullets": [
+            "Built modules of the company's internal property-management web application in Django and "
+            "Django REST Framework, covering properties, tenants, landlords, leads, rent payments and "
+            "maintenance requests.",
+            "Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by "
+            "employee role.",
+            "Worked directly with the Berlin-based founders, reporting progress and adjusting scope as needs changed.",
+        ],
+    },
 ]
 
 PROJECTS = [
     {
         "name": "NOVEM — E-Commerce Intelligence Platform",
-        "meta": "Final-year project · Python, FastAPI, DuckDB, Prophet, React, Tauri",
+        "meta": "Python, FastAPI, DuckDB, Prophet, React, Tauri",
         "bullets": [
             "Local-first desktop app that turns store exports (CSV, Excel, Shopify, PostgreSQL) into KPIs, "
             "RFM segments, churn and lifetime-value models and Prophet forecasts, served by ~170 endpoints "
@@ -118,9 +118,10 @@ def e(s):
 
 
 def build_html(web=False):
-    contact = e(CONTACT[0][0]) + "<br>" + " &nbsp;·&nbsp; ".join(
-        f'<a href="{e(u)}">{e(t)}</a>' for t, u in CONTACT[1:]
-    )
+    # line 1: location and phone; line 2: email and links
+    first = [e(CONTACT[0][0])] + [f'<a href="{e(u)}">{e(t)}</a>' for t, u in CONTACT[1:] if u.startswith("tel:")]
+    rest = [f'<a href="{e(u)}">{e(t)}</a>' for t, u in CONTACT[1:] if not u.startswith("tel:")]
+    contact = " &nbsp;·&nbsp; ".join(first) + "<br>" + " &nbsp;·&nbsp; ".join(rest)
     exp = ""
     for j in EXPERIENCE:
         lis = "".join(f"<li>{e(b)}</li>" for b in j["bullets"])
