@@ -1,4 +1,4 @@
-"""Builds favicons, app icons, the web manifest and the 1200x630 link-preview image into public/.
+"""Builds face favicons, app icons, the top-bar avatar, the web manifest and the 1200x630 link-preview image into public/.
 
 Run: python scripts/build_brand_assets.py
 """
@@ -17,32 +17,35 @@ MUTED = (75, 85, 99)
 WHITE = (255, 255, 255)
 
 
-def monogram(size: int) -> Image.Image:
-    """Python-blue rounded square with Python-yellow 'HK'."""
-    scale = 4  # draw large, then downsample for smooth edges
-    s = size * scale
-    im = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    d.rounded_rectangle((0, 0, s - 1, s - 1), radius=int(s * 0.2), fill=PY_BLUE)
-    font = ImageFont.truetype(FONT_BOLD, int(s * 0.46))
-    d.text((s / 2, s / 2 + s * 0.02), "HK", font=font, fill=PY_YELLOW, anchor="mm")
+FACE = PUBLIC / "hamza-khan.jpg"  # square head-and-shoulders crop
+
+
+def face(size: int, circle: bool = True) -> Image.Image:
+    """Hamza's face, cropped to the head, as a round (or square) icon."""
+    im = Image.open(FACE).convert("RGB")
+    w, h = im.size
+    side = int(w * 0.62)  # tighter crop so the face reads at small sizes
+    left, top = (w - side) // 2, int(h * 0.04)
+    im = im.crop((left, top, left + side, top + side)).resize((size * 4, size * 4), Image.LANCZOS)
+    if circle:
+        mask = Image.new("L", im.size, 0)
+        ImageDraw.Draw(mask).ellipse((0, 0, im.size[0] - 1, im.size[1] - 1), fill=255)
+        out = Image.new("RGBA", im.size, (0, 0, 0, 0))
+        out.paste(im, (0, 0), mask)
+        im = out
     return im.resize((size, size), Image.LANCZOS)
 
 
 def icons():
-    monogram(48).save(PUBLIC / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
-    monogram(96).save(PUBLIC / "favicon-96.png")
-    monogram(192).save(PUBLIC / "icon-192.png")
-    monogram(512).save(PUBLIC / "icon-512.png")
-    # Apple touch icons should be opaque; iOS rounds the corners itself.
-    apple = Image.new("RGB", (180, 180), PY_BLUE)
-    d = ImageDraw.Draw(apple)
-    d.text((90, 93), "HK", font=ImageFont.truetype(FONT_BOLD, 84), fill=PY_YELLOW, anchor="mm")
-    apple.save(PUBLIC / "apple-touch-icon.png")
-    (PUBLIC / "favicon.svg").write_text(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="13" fill="#2b5b84"/>'
-        '<text x="32" y="42" font-family="Segoe UI, Arial, sans-serif" font-weight="700" font-size="28" fill="#ffd43b" '
-        'text-anchor="middle">HK</text></svg>\n', encoding="utf-8")
+    face(48).save(PUBLIC / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+    face(96).save(PUBLIC / "favicon-96.png")
+    face(192).save(PUBLIC / "icon-192.png")
+    face(512).save(PUBLIC / "icon-512.png")
+    face(180, circle=False).save(PUBLIC / "apple-touch-icon.png")  # iOS rounds the corners itself
+    face(96).save(PUBLIC / "img" / "avatar.webp", quality=85)  # top-bar logo (shown at 32px, sharp on 3x screens)
+    svg = PUBLIC / "favicon.svg"
+    if svg.exists():
+        svg.unlink()  # the old HK monogram; the face icons replace it
     (PUBLIC / "site.webmanifest").write_text("""{
   "name": "Hamza Khan, Software Engineer",
   "short_name": "Hamza Khan",
