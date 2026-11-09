@@ -96,6 +96,8 @@
     .iconbtn { width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; border: 1px solid var(--line); background: #fff; }
     .iconbtn:hover { border-color: #cbd0d6; }
     .iconbtn svg { width: 17px; height: 17px; }
+    .iconbtn.hero-ic { width: 41px; height: 41px; }
+    .iconbtn.hero-ic svg { width: 19px; height: 19px; }
 
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 16px; border-radius: 8px;
            border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; font-weight: 500;
@@ -106,7 +108,7 @@
     .btn.sm { padding: 7px 13px; font-size: .88rem; }
 
     /* Intro */
-    .intro { padding: 56px 0 40px; display: grid; grid-template-columns: 1fr 200px; gap: 48px; align-items: start; }
+    .intro { padding: 56px 0 40px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: stretch; }
     .intro h1 { font-size: 2.5rem; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.02em; }
     .role { font-size: 1.15rem; color: var(--ink); margin: 0 0 18px; }
     .intro p.lead { font-size: 1.06rem; max-width: 620px; }
@@ -116,7 +118,8 @@
     .contact a, .contact span { display: inline-flex; align-items: center; gap: 7px; color: var(--text); text-decoration: none; }
     .contact a:hover { color: var(--link); }
     .contact svg.ic { color: var(--muted); width: 16px; height: 16px; }
-    .photo { width: 200px; height: 200px; border-radius: 12px; object-fit: cover; display: block; }
+    .photo-col picture { display: block; height: 100%; }
+    .photo { width: 100%; height: 100%; min-height: 380px; border-radius: 12px; object-fit: cover; object-position: 50% 18%; display: block; background: #1f1f1f; }
 
     .facts { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 10px; margin: 0; padding: 0; list-style: none; }
     .facts li { padding: 16px 20px; font-size: .9rem; color: var(--muted); }
@@ -177,7 +180,7 @@
       .topnav, .social { display: none; }
       .intro { grid-template-columns: 1fr; gap: 24px; }
       .intro .photo-col { order: -1; }
-      .photo { width: 120px; height: 120px; }
+      .photo { width: 120px; height: 120px; min-height: 0; object-position: center; }
       .facts { grid-template-columns: repeat(2, 1fr); }
       .facts li:nth-child(3) { border-left: 0; }
       .facts li:nth-child(n+3) { border-top: 1px solid var(--line); }
@@ -223,8 +226,8 @@
           <a class="btn dark" href="/resume"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>View resume</a>
           <a class="btn" href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>Email</a>
           <a class="btn" href="https://wa.me/919137966960" target="_blank" rel="noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#whatsapp"/></svg>WhatsApp</a>
-          <a class="btn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#linkedin"/></svg>LinkedIn</a>
-          <a class="btn" href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg>GitHub</a>
+          <a class="iconbtn hero-ic" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="lg" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
+          <a class="iconbtn hero-ic" href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener" aria-label="GitHub" title="GitHub"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg></a>
         </div>
         <ul class="contact" aria-label="Contact details">
           <li><a href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>hamza81khan81@gmail.com</a></li>
@@ -234,8 +237,9 @@
       </div>
       <div class="photo-col">
         <picture>
-          <source srcset="hamza-khan.webp" type="image/webp">
-          <img class="photo" src="hamza-khan.jpg" alt="Hamza Khan" width="200" height="200">
+          <source media="(max-width: 860px)" srcset="hamza-khan.webp" type="image/webp">
+          <source srcset="hamza-khan-portrait.webp" type="image/webp">
+          <img class="photo" src="hamza-khan-portrait.jpg" alt="Hamza Khan" width="600" height="800">
         </picture>
       </div>
     </div>
