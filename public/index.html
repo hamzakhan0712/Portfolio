@@ -202,7 +202,14 @@
     .js .code.typing .ln.on { opacity: 1; transform: none; }
 
     /* Sections */
-    section { padding: 56px 0 0; }
+    /* Full-width bands: white, light Python blue with the code grid, and navy */
+    .band { padding: 72px 0; }
+    .band.alt { background-color: #f5f9fc; border-top: 1px solid var(--blue-line); border-bottom: 1px solid var(--blue-line);
+                background-image: linear-gradient(rgba(55, 118, 171, .06) 1px, transparent 1px),
+                                  linear-gradient(90deg, rgba(55, 118, 171, .06) 1px, transparent 1px);
+                background-size: 32px 32px; }
+    .sec-sub { font: 400 .86rem/1.5 "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--muted); margin: -6px 0 26px; }
+    .band.alt .project + .project { border-top-color: var(--blue-line); }
     h2::before { content: ">>> "; font: 500 .72em "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--py-blue); vertical-align: 2px; }
     h2 { position: relative; font-size: 1.5rem; margin: 0 0 20px; letter-spacing: -0.01em; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
     h2::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 44px; height: 3px; border-radius: 2px; background: var(--py-yellow); }
@@ -252,9 +259,12 @@
     .reach h2 { border: 0; padding: 0; margin-bottom: 8px; }
     .reach h2::after { display: none; }
 
-    footer { padding: 32px 0 44px; color: var(--muted); font-size: .88rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--ink); }
+    .site-footer { background: #081624; color: #8ea3b8; font-size: .86rem; }
+    .site-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 30px; }
+    .site-footer .who { display: inline-flex; align-items: center; gap: 10px; color: #d7e3ee; }
+    .site-footer a { color: #b8cadb; text-decoration: none; }
+    .site-footer a:hover { color: #fff; }
+    .site-footer .tm { flex-basis: 100%; margin: 0; font-size: .78rem; color: #6f8499; }
 
     /* ---------- Python navy: top bar, hero and contact (python.org style) ---------- */
     :root { --sky: #8fbde3; --navy: #10253a; --navy-deep: #0b1b2b; --navy-line: #21405c; --on-navy: #d7e3ee; --on-navy-muted: #9fb3c8; }
@@ -300,7 +310,7 @@
 
     /* How I work: the Zen of Python */
     .zen-note { margin: -6px 0 18px; color: var(--muted); font-size: .94rem; }
-    .zen-note code { font: 500 .9em "JetBrains Mono", ui-monospace, Consolas, monospace; background: var(--blue-soft);
+    .sec-sub code, .zen-note code { font: 500 .9em "JetBrains Mono", ui-monospace, Consolas, monospace; background: var(--blue-soft);
                      border: 1px solid var(--blue-line); padding: 1px 6px; border-radius: 5px; color: var(--py-blue-dark); }
     .zen { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 0; padding: 0; list-style: none; }
     .zen li { border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; background: #fff;
@@ -311,6 +321,40 @@
     .zen q::before { content: "# "; color: #94a3b8; }
     .zen p { margin: 0; }
 
+    /* Contact band (navy, like the hero) */
+    .band.navy { background-color: var(--navy); color: var(--on-navy);
+                 background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+                                   linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+                 background-size: 32px 32px; }
+    .band.navy h2 { color: #fff; border-bottom-color: var(--navy-line); }
+    .band.navy h2::before { color: var(--sky); }
+    .band.navy .sec-sub { color: var(--on-navy-muted); }
+    .band .reach { background: none; border: 0; border-radius: 0; margin: 0 auto; padding: 0 24px; }
+    .reach p.lead-sm { font-size: 1.05rem; max-width: 640px; color: var(--on-navy); }
+
+    /* skills.py: the skills as a Python dict */
+    .editor { background: #fff; border: 1px solid var(--blue-line); border-radius: 12px; overflow: hidden;
+               box-shadow: 0 18px 40px -30px rgba(15, 34, 51, .45); }
+    .editor-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 16px;
+                   background: #f3f7fb; border-bottom: 1px solid var(--blue-line); color: #4b6075; font: 500 .8rem "JetBrains Mono", ui-monospace, Consolas, monospace; }
+    .editor-bar .file { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
+    .editor-bar img { width: 14px; height: 14px; }
+    .editor-body { padding: 20px 24px 22px; }
+    .code-line { margin: 0; font: 500 .92rem/1.6 "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--ink); }
+    .code-line .v { color: var(--py-blue-dark); }
+    .editor .skills { margin: 12px 0 12px 28px; }
+    .editor .skills dt { font: 500 .88rem/1.6 "JetBrains Mono", ui-monospace, Consolas, monospace; color: #1f6f43; padding-top: 5px; }
+    .editor .skills dt::after { content: ":"; color: var(--ink); }
+
+    /* project details as code labels */
+    .project .meta { font: 500 .8rem/1.6 "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--py-blue-dark); }
+
+    /* reading progress and the current section in the nav */
+    .progress { position: fixed; top: 0; left: 0; z-index: 30; width: 100%; height: 3px; background: var(--sky);
+                 transform-origin: 0 50%; transform: scaleX(0); }
+    .topnav a.active { color: #fff; }
+    .topnav a.active svg.ic { color: var(--sky); }
+
     @media (max-width: 860px) {
       .topnav, .social { display: none; }
       .intro { grid-template-columns: 1fr; gap: 24px; }
@@ -320,15 +364,17 @@
       .py-mark.big { width: 380px; height: 380px; right: -170px; top: -70px; }
       .py-mark.small { display: none; }
       .zen { grid-template-columns: 1fr; }
+      .band { padding: 52px 0; }
+      .editor .skills { margin-left: 0; }
       .project { grid-template-columns: 1fr; gap: 18px; }
     }
     @media (max-width: 600px) {
       .wrap { padding-left: 16px; padding-right: 16px; }
+      .band .reach { padding: 0 16px; }
       .intro { padding-top: 32px; }
       .intro h1 { font-size: 2rem; }
       .skills { grid-template-columns: 1fr; gap: 4px; }
       .skills dd { margin-bottom: 12px; }
-      .reach { padding: 22px 18px; }
     }
     @media (max-width: 600px) {
       .code pre { font-size: .78rem; padding: 14px 16px 16px; overflow-x: hidden; }
@@ -340,6 +386,7 @@
     .js .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       .py-mark, .caret { animation: none; }
+      .progress { display: none; }
       .js .reveal, .js .code.typing .ln { opacity: 1; transform: none; transition: none; }
       .chip, .chip:hover, .zen li, .zen li:hover { transition: none; transform: none; }
     }
@@ -347,6 +394,7 @@
   </style>
 </head>
 <body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
   <div class="topbar">
     <div class="wrap">
       <a class="brand" href="#top"><img src="img/avatar.webp" alt="" width="32" height="32">Hamza Khan</a>
@@ -403,10 +451,12 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main>
 
-    <section id="experience" aria-labelledby="h-exp">
+    <section class="band" id="experience" aria-labelledby="h-exp">
+    <div class="wrap">
       <h2 id="h-exp">Experience</h2>
+      <p class="sec-sub"># where I've worked</p>
       <div class="job">
         <div class="job-head">
           <h3>Freelance Software Engineer</h3>
@@ -432,10 +482,13 @@
           <li>Worked directly with the founders in Berlin and reported progress to them across time zones.</li>
         </ul>
       </div>
+    </div>
     </section>
 
-    <section id="work" aria-labelledby="h-work">
+    <section class="band alt" id="work" aria-labelledby="h-work">
+    <div class="wrap">
       <h2 id="h-work">Projects</h2>
+      <p class="sec-sub"># a few things I've built</p>
 
       <article class="project">
         <div class="shot"><img src="img/skt.webp" alt="S.K Trading and Co website home page" width="960" height="404" loading="lazy"></div>
@@ -508,33 +561,48 @@
         <li><span><a href="https://logxivia.com" target="_blank" rel="noopener">Logxivia</a>, a website in English and German for a trading company in Germany</span><span class="muted">Next.js</span></li>
         <li><span><a href="https://www.tajmetals.in" target="_blank" rel="noopener">Taj Metals</a>, a product catalogue website for a metals business</span><span class="muted">Next.js</span></li>
       </ul>
+    </div>
     </section>
 
-    <section id="skills" aria-labelledby="h-skills">
+    <section class="band" id="skills" aria-labelledby="h-skills">
+    <div class="wrap">
       <h2 id="h-skills">Skills</h2>
+      <p class="sec-sub"># the tools I use day to day</p>
+      <div class="editor">
+        <div class="editor-bar"><span class="file"><img src="img/python-logo.svg" alt="" width="14" height="14">skills.py</span><span>dict</span></div>
+        <div class="editor-body">
+          <p class="code-line"><span class="v">skills</span> = {</p>
       <dl class="skills">
-        <dt>Languages</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#python"/></svg>Python</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#typescript"/></svg>TypeScript</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#javascript"/></svg>JavaScript</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-db"/></svg>SQL</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#html5"/></svg>HTML</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#css"/></svg>CSS</span></div></dd>
-        <dt>Backend</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django REST Framework</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#fastapi"/></svg>FastAPI</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#flask"/></svg>Flask</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django Channels</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-api"/></svg>REST APIs</span></div></dd>
-        <dt>Frontend</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#react"/></svg>React</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#nextdotjs"/></svg>Next.js</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#astro"/></svg>Astro</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#tailwindcss"/></svg>Tailwind CSS</span></div></dd>
-        <dt>Data</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#postgresql"/></svg>PostgreSQL</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#sqlite"/></svg>SQLite</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#duckdb"/></svg>DuckDB</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#pandas"/></svg>pandas</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-chart"/></svg>Prophet</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#elasticsearch"/></svg>Elasticsearch</span></div></dd>
-        <dt>Desktop and mobile</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#electron"/></svg>Electron</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#tauri"/></svg>Tauri</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#capacitor"/></svg>Capacitor</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#android"/></svg>Android</span></div></dd>
-        <dt>Tools and hosting</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#git"/></svg>Git</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg>GitHub</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#githubactions"/></svg>GitHub Actions</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#cloudflareworkers"/></svg>Cloudflare Workers</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#vercel"/></svg>Vercel</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-test"/></svg>Playwright</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#pytest"/></svg>pytest</span></div></dd>
+        <dt>"languages"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#python"/></svg>Python</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#typescript"/></svg>TypeScript</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#javascript"/></svg>JavaScript</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-db"/></svg>SQL</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#html5"/></svg>HTML</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#css"/></svg>CSS</span></div></dd>
+        <dt>"backend"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django REST Framework</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#fastapi"/></svg>FastAPI</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#flask"/></svg>Flask</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#django"/></svg>Django Channels</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-api"/></svg>REST APIs</span></div></dd>
+        <dt>"frontend"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#react"/></svg>React</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#nextdotjs"/></svg>Next.js</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#astro"/></svg>Astro</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#tailwindcss"/></svg>Tailwind CSS</span></div></dd>
+        <dt>"data"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#postgresql"/></svg>PostgreSQL</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#sqlite"/></svg>SQLite</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#duckdb"/></svg>DuckDB</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#pandas"/></svg>pandas</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-chart"/></svg>Prophet</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#elasticsearch"/></svg>Elasticsearch</span></div></dd>
+        <dt>"desktop_and_mobile"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#electron"/></svg>Electron</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#tauri"/></svg>Tauri</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#capacitor"/></svg>Capacitor</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#android"/></svg>Android</span></div></dd>
+        <dt>"tools"</dt><dd><div class="chips"><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#git"/></svg>Git</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg>GitHub</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#githubactions"/></svg>GitHub Actions</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#cloudflareworkers"/></svg>Cloudflare Workers</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#vercel"/></svg>Vercel</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#i-test"/></svg>Playwright</span><span class="chip"><svg class="lg" aria-hidden="true"><use href="icons.svg#pytest"/></svg>pytest</span></div></dd>
       </dl>
+          <p class="code-line">}</p>
+        </div>
+      </div>
+    </div>
     </section>
 
-    <section aria-labelledby="h-how">
+    <section class="band alt" aria-labelledby="h-how">
+    <div class="wrap">
       <h2 id="h-how">How I work</h2>
-      <p class="zen-note">Four lines from <code>import this</code>, the Zen of Python, and what they mean in my day-to-day work.</p>
+      <p class="sec-sub"># four lines from <code>import this</code>, and what they mean in my day-to-day work</p>
       <ul class="zen">
         <li><q>Now is better than never.</q><p>I take a project from the first call with the client through design, build and deployment, and keep supporting it after launch.</p></li>
         <li><q>Errors should never pass silently.</q><p>I write tests where they matter most: Playwright for the pages people use, pytest for business logic, and CI to run them.</p></li>
         <li><q>Explicit is better than implicit.</q><p>I release in versions with a changelog, so clients know exactly what changed and can update safely.</p></li>
         <li><q>Readability counts.</q><p>I keep code plain and note down important technical decisions and why, so whoever works on it next doesn't have to guess.</p></li>
       </ul>
+    </div>
     </section>
 
-    <section aria-labelledby="h-edu">
+    <section class="band" aria-labelledby="h-edu">
+    <div class="wrap">
       <h2 id="h-edu">Education</h2>
+      <p class="sec-sub"># where I studied</p>
       <div class="edu-row">
         <div><h3>B.E. in Computer Science and Engineering (Data Science)</h3><p class="muted" style="margin:0">Saraswati College of Engineering, University of Mumbai. CGPI 8.19.</p></div>
         <span class="date">2023 to 2026</span>
@@ -544,11 +612,14 @@
         <span class="date">2021 to 2023</span>
       </div>
       <p style="margin:20px 0 0">Grand Finalist at Smart India Hackathon 2025 (Ministry of Education), and 2nd place at the SCOE AVISHKAR 2025 project competition.</p>
+    </div>
     </section>
 
-    <div class="reach" id="contact">
-      <h2>Contact</h2>
-      <p>If you're hiring for a Python, backend or full-stack role, email or WhatsApp me. I'm happy to walk you through any of the code above.</p>
+    <section class="band navy" id="contact" aria-labelledby="h-contact">
+    <div class="wrap reach">
+      <h2 id="h-contact">Contact</h2>
+      <p class="sec-sub"># the quickest ways to reach me</p>
+      <p class="lead-sm">If you're hiring for a Python, backend or full-stack role, email or WhatsApp me. I'm happy to walk you through any of the code above.</p>
       <ul class="contact" aria-label="Contact details">
         <li><a href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>hamza81khan81@gmail.com</a></li>
         <li><a href="tel:+919137966960"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-phone"/></svg>+91 91379 66960</a></li>
@@ -557,11 +628,15 @@
         <li><a href="https://github.com/hamzakhan0712" target="_blank" rel="noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg>GitHub</a></li>
       </ul>
     </div>
+    </section>
   </main>
 
-  <footer class="wrap">
-    <span style="display:inline-flex;align-items:center;gap:8px"><img src="img/python-logo.svg" alt="" width="16" height="16">Hamza Khan, Thane, Maharashtra</span>
-    <span><a href="/resume">Resume</a> · <a href="mailto:hamza81khan81@gmail.com">Email</a> · <a href="tel:+919137966960">+91 91379 66960</a></span>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="who"><img src="img/python-logo.svg" alt="" width="18" height="18">Hamza Khan, Software Engineer, Thane, Maharashtra</span>
+      <span><a href="/resume">Resume</a> · <a href="mailto:hamza81khan81@gmail.com">Email</a> · <a href="tel:+919137966960">+91 91379 66960</a> · <a href="https://github.com/hamzakhan0712" target="_blank" rel="noopener">GitHub</a></span>
+      <p class="tm">"Python" and the Python logos are trademarks of the Python Software Foundation.</p>
+    </div>
   </footer>
   <script>
     (function () {
@@ -569,7 +644,7 @@
       var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       // fade sections in as they scroll into view
-      var items = document.querySelectorAll("main section, main .project, main .reach");
+      var items = document.querySelectorAll("main .band > .wrap, main .project");
       items.forEach(function (el) { el.classList.add("reveal"); });
       if (still || !("IntersectionObserver" in window)) {
         items.forEach(function (el) { el.classList.add("in"); });
@@ -578,6 +653,33 @@
           entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
         }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
         items.forEach(function (el) { io.observe(el); });
+      }
+
+      // reading progress bar
+      var bar = document.getElementById("progress");
+      if (bar && !still) {
+        var onScroll = function () {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = "scaleX(" + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ")";
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+
+      // highlight the nav link for the section on screen
+      if ("IntersectionObserver" in window) {
+        var links = {};
+        document.querySelectorAll(".topnav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var a = links[e.target.id];
+            if (a && e.isIntersecting) {
+              Object.keys(links).forEach(function (k) { links[k].classList.remove("active"); });
+              a.classList.add("active");
+            }
+          });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        Object.keys(links).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
       }
 
       // hamza.py: show the class line by line, then type the REPL command
