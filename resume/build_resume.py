@@ -153,8 +153,8 @@ h1 {{ font-size: 22pt; margin: 0; letter-spacing: .3px; }}
 .title {{ font-size: 11.5pt; color: #333; margin: 2px 0 6px; }}
 .contact {{ font-size: 9pt; color: #333; }}
 .contact a {{ white-space: nowrap; }}
-h2 {{ font-size: 10.5pt; text-transform: uppercase; letter-spacing: .8px; color: #1d3a6e;
-      border-bottom: 1px solid #c9d2e0; padding-bottom: 2px; margin: 13px 0 5px; }}
+h2 {{ font-size: 10.5pt; text-transform: uppercase; letter-spacing: .8px; color: #2b5b84;
+      border-bottom: 1px solid #d6e4f0; padding-bottom: 2px; margin: 13px 0 5px; }}
 .row {{ display: flex; justify-content: space-between; gap: 10px; }}
 .date {{ white-space: nowrap; color: #333; }}
 .muted {{ color: #555; }}
@@ -186,7 +186,7 @@ def build_pdf(path: Path):
 
 
 # ---------------------------------------------------------------- DOCX
-ACCENT = RGBColor(0x1D, 0x3A, 0x6E)
+ACCENT = RGBColor(0x2B, 0x5B, 0x84)
 
 
 def para(doc, space_after=0, space_before=0):
@@ -209,7 +209,7 @@ def heading(doc, text):
     run(p, text.upper(), bold=True, size=10.5, color=ACCENT)
     border = OxmlElement("w:pBdr")
     bottom = OxmlElement("w:bottom")
-    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "C9D2E0")):
+    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "D6E4F0")):
         bottom.set(qn(f"w:{k}"), v)
     border.append(bottom)
     p._p.get_or_add_pPr().append(border)
@@ -342,14 +342,14 @@ WEB_HEAD = """<meta name="viewport" content="width=device-width, initial-scale=1
 @media screen {
   html { background: #eef1f5; }
   body { font-size: 15px !important; line-height: 1.5 !important; }
-  .bar { position: sticky; top: 0; z-index: 2; background: rgba(255,255,255,.95); backdrop-filter: blur(6px);
+  .bar { border-top: 3px solid #3776ab; position: sticky; top: 0; z-index: 2; background: rgba(255,255,255,.95); backdrop-filter: blur(6px);
          border-bottom: 1px solid #dde3ea; }
   .bar-in { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 14px; }
-  .bar a { color: #1d3a6e; text-decoration: none; font-weight: 600; padding: 7px 12px; border-radius: 8px; }
+  .bar a { color: #2b5b84; text-decoration: none; font-weight: 600; padding: 7px 12px; border-radius: 8px; }
   .bar .back { margin-right: auto; padding-left: 0; }
   .bar .btn { border: 1px solid #c9d2e0; background: #fff; }
-  .bar .btn.primary { background: #1d3a6e; border-color: #1d3a6e; color: #fff; }
+  .bar .btn.primary { background: #2b5b84; border-color: #2b5b84; color: #fff; }
   .sheet { max-width: 860px; margin: 24px auto 48px; background: #fff; padding: 48px 56px;
            border-radius: 6px; box-shadow: 0 1px 3px rgba(16,24,40,.08), 0 8px 24px rgba(16,24,40,.06); }
   .contact a { color: #1f4f9c !important; }
