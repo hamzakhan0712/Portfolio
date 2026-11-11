@@ -55,7 +55,7 @@
         "url": "https://www.hamza.social/",
         "name": "Hamza Khan, Software Engineer",
         "isPartOf": { "@id": "https://www.hamza.social/#website" },
-        "dateModified": "2026-11-09",
+        "dateModified": "2026-11-11",
         "mainEntity": { "@id": "https://www.hamza.social/#person" }
       },
       {
@@ -153,7 +153,7 @@
 
     /* Intro */
     .intro { padding: 56px 0 36px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: stretch; }
-    .intro h1 { font-size: 2.5rem; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.02em; }
+    .intro h1, .intro .name { font-size: 2.5rem; line-height: 1.15; margin: 0 0 4px; letter-spacing: -0.02em; }
     .role { font-size: 1.15rem; color: var(--py-blue-dark); font-weight: 500; margin: 0 0 18px; }
     .intro p.lead { font-size: 1.06rem; max-width: 620px; }
     .open { font-size: .92rem; margin: 18px 0 20px; }
@@ -202,7 +202,7 @@
     .js .code.typing .ln.on { opacity: 1; transform: none; }
 
     /* Sections */
-    /* Full-width bands: white, light Python blue with the code grid, and navy */
+    /* Full-width bands inside the card: cream and light Python blue with the code grid */
     .band { padding: 72px 0; }
     .band.alt { background-color: #f5f9fc; border-top: 1px solid var(--blue-line); border-bottom: 1px solid var(--blue-line);
                 background-image: linear-gradient(rgba(55, 118, 171, .06) 1px, transparent 1px),
@@ -259,54 +259,95 @@
     .reach h2 { border: 0; padding: 0; margin-bottom: 8px; }
     .reach h2::after { display: none; }
 
-    .site-footer { background: #081624; color: #8ea3b8; font-size: .86rem; }
-    .site-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 30px; }
-    .site-footer .who { display: inline-flex; align-items: center; gap: 10px; color: #d7e3ee; }
-    .site-footer a { color: #b8cadb; text-decoration: none; }
-    .site-footer a:hover { color: #fff; }
-    .site-footer .tm { flex-basis: 100%; margin: 0; font-size: .78rem; color: #6f8499; }
+    .site-footer { background: transparent; color: var(--muted); font-size: .86rem; border-top: 1px solid var(--cream-line); }
+    .site-footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 24px; padding-bottom: 28px; }
+    .site-footer .who { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+    .site-footer a { color: var(--text); text-decoration: none; }
+    .site-footer a:hover { color: var(--accent); }
+    .site-footer .tm { flex-basis: 100%; margin: 0; font-size: .78rem; color: var(--muted); }
 
-    /* ---------- Python navy: top bar, hero and contact (python.org style) ---------- */
-    :root { --sky: #8fbde3; --navy: #10253a; --navy-deep: #0b1b2b; --navy-line: #21405c; --on-navy: #d7e3ee; --on-navy-muted: #9fb3c8; }
-    .topbar { background: var(--navy-deep); border-top: 3px solid var(--py-blue); border-bottom: 1px solid var(--navy-line); }
-    .brand, .brand:hover { color: #fff; }
-    .brand img { box-shadow: 0 0 0 2px var(--navy-deep), 0 0 0 4px var(--py-blue); }
-    .topnav a { color: var(--on-navy); }
-    .topnav a:hover { color: #fff; }
-    .topnav svg.ic { color: var(--on-navy-muted); }
-    .topnav a:hover svg.ic { color: var(--sky); }
-    .topbar .iconbtn, .hero .iconbtn { background: transparent; border-color: var(--navy-line); }
-    .topbar .iconbtn:hover, .hero .iconbtn:hover { border-color: var(--on-navy-muted); }
-    .topbar .iconbtn svg.lg, .hero .iconbtn svg.lg, .reach .contact svg.lg { filter: brightness(0) invert(1); }
+    /* ---------- One card, two sides: Python (front) and .NET (back) ---------- */
+    :root { --cream: #fffbea; --cream-line: #f1e4ae; --sky: #eaf3fb; --sky-line: #d3e3f1;
+             --net: #512bd4; --net-dark: #3b1fa3; --net-soft: #f4f0fe; --net-line: #e0d6fa; --accent: var(--py-blue-dark); }
+    html[data-side="dotnet"] { --accent: var(--net); }
+    body { background-color: #e8edf3; }
 
-    .btn.light { background: #fff; border-color: #fff; color: var(--navy-deep); font-weight: 600; }
-    .btn.light:hover { background: #e6eef6; border-color: #e6eef6; color: var(--navy-deep); }
+    .topbar { background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); border-top: 3px solid var(--accent); border-bottom: 1px solid var(--line); }
+    .topbar .wrap { max-width: 1180px; }
+    .brand img { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent); }
+    html[data-side="dotnet"] .topnav { visibility: hidden; }
+    .net-resume, html[data-side="dotnet"] .py-resume { display: none; }
+    html[data-side="dotnet"] .net-resume { display: inline-flex; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .btn.primary:hover { background: var(--py-blue); border-color: var(--py-blue); color: #fff; }
+    .back .btn.primary:hover { background: var(--net-dark); border-color: var(--net-dark); }
 
-    .hero { background-color: var(--navy); border-bottom: 0; color: var(--on-navy);
-            background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px); }
-    .hero h1 { color: #fff; }
-    .hero .role { color: var(--sky); }
-    .hero .intro p.lead { color: var(--on-navy); }
-    .hero .open { color: var(--on-navy-muted); }
-    .hero .open strong { color: #fff; }
-    .hero .btn:not(.light) { background: transparent; color: #fff; border-color: var(--navy-line); }
-    .hero .btn:not(.light):hover { background: rgba(255, 255, 255, .06); border-color: var(--on-navy-muted); }
-    .hero .contact a, .hero .contact span { color: var(--on-navy); }
-    .hero .contact a:hover { color: #fff; }
-    .hero .contact svg.ic { color: var(--sky); }
-    .py-mark { opacity: .11; }
-    .py-mark.small { opacity: .08; }
-    .photo { box-shadow: 0 28px 56px -24px rgba(0, 0, 0, .65); }
-    .code { background: #0a1724; border-color: var(--navy-line); box-shadow: 0 28px 56px -30px rgba(0, 0, 0, .7); }
-    .code-bar { background: #071320; border-color: var(--navy-line); }
+    /* era switch in the top bar */
+    .era { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: #f3f5f8; }
+    .era-btn { display: inline-flex; align-items: center; gap: 7px; border: 0; background: transparent; cursor: pointer; padding: 6px 12px;
+               border-radius: 999px; font: 600 .86rem Inter, system-ui, sans-serif; color: var(--text); }
+    .era-btn small { font: 500 .72rem "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
+    .era-btn img { width: 16px; height: 16px; }
+    .era-btn[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, .14); }
+    .era-btn[data-go="python"][aria-pressed="true"] { box-shadow: 0 1px 3px rgba(15, 23, 42, .14), inset 0 -2px 0 var(--py-yellow); }
+    .era-btn[data-go="dotnet"][aria-pressed="true"] { box-shadow: 0 1px 3px rgba(15, 23, 42, .14), inset 0 -2px 0 var(--net); }
 
-    .reach { background: var(--navy); border: 0; border-left: 4px solid var(--py-blue); color: var(--on-navy); }
-    .reach h2 { color: #fff; }
-    .reach h2::before { color: var(--sky); }
-    .reach .contact a { color: var(--on-navy); }
-    .reach .contact a:hover { color: #fff; }
-    .reach .contact svg.ic { color: var(--sky); }
+    /* the card and the flip */
+    .stage { max-width: 1180px; margin: 28px auto 56px; padding: 0 20px; perspective: 2400px; perspective-origin: 50% 420px; }  /* view the turn from the visible top of the card */
+    .flipper { display: grid; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.45, .05, .2, 1); }
+    .stage.flipped .flipper { transform: rotateY(180deg); }
+    .face { grid-area: 1 / 1; position: relative; overflow: hidden; border-radius: 24px;
+             backface-visibility: hidden; -webkit-backface-visibility: hidden;
+             box-shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 30px 60px -32px rgba(15, 34, 51, .4); }
+    .face.front { background: var(--cream); border: 1px solid var(--cream-line); }
+    .face.back { transform: rotateY(180deg); background: #fff; border: 1px solid var(--net-line); }
+    .face.gone { display: none; }
+    .turn { position: absolute; top: 16px; right: 18px; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+             border-radius: 999px; border: 1px solid var(--sky-line); background: rgba(255, 255, 255, .9); cursor: pointer;
+             font: 500 .8rem "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--py-blue-dark); }
+    .turn:hover { background: #fff; border-color: var(--py-blue); }
+    .turn img { width: 15px; height: 15px; }
+    .back .turn { border-color: var(--net-line); color: var(--net); }
+    .back .turn:hover { border-color: var(--net); }
+    .era-tag { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 3px 11px; border-radius: 999px; background: #fff;
+                border: 1px solid var(--sky-line); font: 500 .78rem "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--py-blue-dark); }
+    .era-tag img { width: 14px; height: 14px; }
+
+    /* front: light Python blue and yellow */
+    .hero { background-color: var(--sky); border-bottom: 1px solid var(--sky-line); }
+    .py-mark { opacity: .13; }
+    .py-mark.small { opacity: .1; }
+    .photo-col::before { border-color: rgba(255, 212, 59, .95); }
+    .photo { box-shadow: 0 24px 48px -24px rgba(15, 34, 51, .45); }
+    .band { background-color: var(--cream); }
+    .band.alt { background-color: var(--sky); border-color: var(--sky-line); }
+    .band.contact-band { background-color: var(--sky); border-top: 1px solid var(--sky-line); }
+
+    /* back: .NET purple */
+    .back .hero.net { background-color: var(--net-soft); border-bottom: 1px solid var(--net-line);
+                       background-image: linear-gradient(rgba(81, 43, 212, .06) 1px, transparent 1px),
+                                         linear-gradient(90deg, rgba(81, 43, 212, .06) 1px, transparent 1px);
+                       background-size: 32px 32px; }
+    .net-mark { position: absolute; z-index: 0; pointer-events: none; opacity: .09; width: 440px; height: 440px; right: -110px; top: -70px;
+                 animation: drift 18s ease-in-out infinite; }
+    .back .role { color: var(--net); }
+    .back .era-tag { border-color: var(--net-line); color: var(--net); }
+    .back .contact svg.ic { color: var(--net); }
+    .back .photo-col::before { border-color: rgba(81, 43, 212, .55); }
+    .back .band { background: #fff; }
+    .back h2::before { content: "// "; color: var(--net); }
+    .back h2::after { background: var(--net); }
+    .back .site-footer { border-top-color: var(--net-line); }
+    .back .site-footer a:hover { color: var(--net); }
+    .code.net-code { background: #1a1033; border-color: #2e1f55; }
+    .net-code .code-bar { background: #130a27; border-color: #2e1f55; }
+    .net-code .kw { color: #c9b3ff; }
+    .net-code .com { color: #8f84ad; }
+    .wip { border: 1px dashed #cbbcf5; border-radius: 14px; padding: 24px 26px; background: var(--net-soft); }
+    .wip h3 { margin-bottom: 6px; }
+    .wip p { margin: 0; }
+    .state { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; font: 600 .78rem "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--net); }
+    .state::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--net); }
 
     /* How I work: the Zen of Python */
     .zen-note { margin: -6px 0 18px; color: var(--muted); font-size: .94rem; }
@@ -321,16 +362,12 @@
     .zen q::before { content: "# "; color: #94a3b8; }
     .zen p { margin: 0; }
 
-    /* Contact band (navy, like the hero) */
-    .band.navy { background-color: var(--navy); color: var(--on-navy);
-                 background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
-                                   linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
-                 background-size: 32px 32px; }
-    .band.navy h2 { color: #fff; border-bottom-color: var(--navy-line); }
-    .band.navy h2::before { color: var(--sky); }
-    .band.navy .sec-sub { color: var(--on-navy-muted); }
+    .intro .name { padding: 0; border: 0; color: var(--ink); }
+    .intro .name::before, .intro .name::after { content: none; display: none; }
+
+    /* Contact band */
     .band .reach { background: none; border: 0; border-radius: 0; margin: 0 auto; padding: 0 24px; }
-    .reach p.lead-sm { font-size: 1.05rem; max-width: 640px; color: var(--on-navy); }
+    .reach p.lead-sm { font-size: 1.05rem; max-width: 640px; }
 
     /* skills.py: the skills as a Python dict */
     .editor { background: #fff; border: 1px solid var(--blue-line); border-radius: 12px; overflow: hidden;
@@ -350,13 +387,18 @@
     .project .meta { font: 500 .8rem/1.6 "JetBrains Mono", ui-monospace, Consolas, monospace; color: var(--py-blue-dark); }
 
     /* reading progress and the current section in the nav */
-    .progress { position: fixed; top: 0; left: 0; z-index: 30; width: 100%; height: 3px; background: var(--sky);
+    .progress { position: fixed; top: 0; left: 0; z-index: 30; width: 100%; height: 3px; background: var(--py-yellow);
                  transform-origin: 0 50%; transform: scaleX(0); }
-    .topnav a.active { color: #fff; }
-    .topnav a.active svg.ic { color: var(--sky); }
+    .topnav a.active { color: var(--py-blue-dark); }
+    .topnav a.active svg.ic { color: var(--py-blue); }
 
     @media (max-width: 860px) {
       .topnav, .social { display: none; }
+      .era-btn small { display: none; }
+      .stage { margin-top: 14px; padding: 0 10px; }
+      .face { border-radius: 16px; }
+      .turn { top: 10px; right: 10px; font-size: .74rem; padding: 5px 10px; }
+      .net-mark { width: 300px; height: 300px; right: -120px; }
       .intro { grid-template-columns: 1fr; gap: 24px; }
       .intro .photo-col { order: -1; }
       .photo { width: 120px; height: 120px; min-height: 0; object-position: center; }
@@ -372,7 +414,7 @@
       .wrap { padding-left: 16px; padding-right: 16px; }
       .band .reach { padding: 0 16px; }
       .intro { padding-top: 32px; }
-      .intro h1 { font-size: 2rem; }
+      .intro h1, .intro .name { font-size: 2rem; }
       .skills { grid-template-columns: 1fr; gap: 4px; }
       .skills dd { margin-bottom: 12px; }
     }
@@ -385,12 +427,13 @@
     .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .py-mark, .caret { animation: none; }
+      .py-mark, .net-mark, .caret { animation: none; }
+      .flipper { transition: none; }
       .progress { display: none; }
       .js .reveal, .js .code.typing .ln { opacity: 1; transform: none; transition: none; }
       .chip, .chip:hover, .zen li, .zen li:hover { transition: none; transform: none; }
     }
-    @media print { .topbar, .actions, .py-mark { display: none; } .js .reveal { opacity: 1; transform: none; } }
+    @media print { .topbar, .actions, .py-mark, .turn, .back { display: none; } .stage { perspective: none; } .js .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
@@ -404,26 +447,32 @@
         <a href="#skills"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-code"/></svg>Skills</a>
         <a href="#contact"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>Contact</a>
       </nav>
-      <div class="social">
-        <a class="iconbtn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="lg" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
-        <a class="iconbtn" href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener" aria-label="GitHub" title="GitHub"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg></a>
+      <div class="era" role="group" aria-label="Choose a side of the card">
+        <button type="button" class="era-btn" data-go="python" aria-pressed="true"><img src="img/python-logo.svg" alt="" width="16" height="16"><span>Python</span><small>2023 to 2026</small></button>
+        <button type="button" class="era-btn" data-go="dotnet" aria-pressed="false"><img src="img/dotnet-logo.svg" alt="" width="16" height="16"><span>.NET</span><small>2026 on</small></button>
       </div>
-      <a class="btn light sm" href="/resume"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>Resume</a>
+      <a class="btn primary sm resume-link net-resume" href="/resume-dotnet"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>Resume</a>
+      <a class="btn primary sm resume-link py-resume" href="/resume"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>Resume</a>
     </div>
   </div>
 
+  <main class="stage" id="stage">
+  <div class="flipper">
+  <section class="face front" id="python" aria-label="Python side, 2023 to 2026">
+  <button type="button" class="turn" data-go="dotnet"><img src="img/dotnet-logo.svg" alt="" width="15" height="15">Turn over: .NET side</button>
   <header class="hero" id="top">
     <img class="py-mark big" src="img/python-logo.svg" alt="" aria-hidden="true" width="560" height="560">
     <img class="py-mark small" src="img/python-logo.svg" alt="" aria-hidden="true" width="260" height="260">
     <div class="wrap">
     <div class="intro">
       <div>
+        <p class="era-tag"><img src="img/python-logo.svg" alt="" width="14" height="14">Python era · 2023 to 2026</p>
         <h1>Hamza Khan</h1>
         <p class="role">Software Engineer, Python and TypeScript</p>
         <p class="lead">I've spent the last two and a half years building software for small businesses in India and Germany. Most of it is Python on the backend (Django, FastAPI) with React on the front end, and one project is a billing app that runs on Windows and Android. I usually handle a project from the first call with the client to deployment, and I keep supporting it after it's live.</p>
         <p class="open"><strong>Open to:</strong> Software Engineer, Python Developer, Full-Stack Developer, Backend Developer and Django Developer roles in Mumbai, Navi Mumbai, Thane or remote.</p>
         <div class="actions">
-          <a class="btn light" href="/resume"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>View resume</a>
+          <a class="btn primary" href="/resume"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>View resume</a>
           <a class="btn" href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>Email</a>
           <a class="btn" href="https://wa.me/919137966960" target="_blank" rel="noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#whatsapp"/></svg>WhatsApp</a>
           <a class="iconbtn hero-ic" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="lg" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
@@ -451,7 +500,7 @@
     </div>
   </header>
 
-  <main>
+  <div class="front-body">
 
     <section class="band" id="experience" aria-labelledby="h-exp">
     <div class="wrap">
@@ -615,7 +664,7 @@
     </div>
     </section>
 
-    <section class="band navy" id="contact" aria-labelledby="h-contact">
+    <section class="band contact-band" id="contact" aria-labelledby="h-contact">
     <div class="wrap reach">
       <h2 id="h-contact">Contact</h2>
       <p class="sec-sub"># the quickest ways to reach me</p>
@@ -629,7 +678,7 @@
       </ul>
     </div>
     </section>
-  </main>
+  </div>
 
   <footer class="site-footer">
     <div class="wrap">
@@ -638,10 +687,111 @@
       <p class="tm">"Python" and the Python logos are trademarks of the Python Software Foundation.</p>
     </div>
   </footer>
+  </section>
+
+  <section class="face back gone" id="dotnet" aria-label=".NET side, 2026 onward" inert>
+  <button type="button" class="turn" data-go="python"><img src="img/python-logo.svg" alt="" width="15" height="15">Turn over: Python side</button>
+  <header class="hero net">
+    <img class="net-mark" src="img/dotnet-logo.svg" alt="" aria-hidden="true" width="440" height="440">
+    <div class="wrap">
+    <div class="intro">
+      <div>
+        <p class="era-tag"><img src="img/dotnet-logo.svg" alt="" width="14" height="14">.NET era · 2026 onward</p>
+        <h2 class="name">Hamza Khan</h2>
+        <p class="role">Software Engineer, C# and .NET</p>
+        <p class="lead">After graduating in 2026 I turned my focus to C# and .NET. Right now I'm building a full e-commerce web app on .NET, and this side of the card will fill in as that work ships.</p>
+        <div class="actions">
+          <a class="btn primary" href="/resume-dotnet"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-file"/></svg>View .NET resume</a>
+          <a class="btn" href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>Email</a>
+          <a class="btn" href="https://wa.me/919137966960" target="_blank" rel="noopener"><svg class="lg" aria-hidden="true"><use href="icons.svg#whatsapp"/></svg>WhatsApp</a>
+          <a class="iconbtn hero-ic" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg class="lg" aria-hidden="true"><use href="icons.svg#linkedin"/></svg></a>
+          <a class="iconbtn hero-ic" href="https://github.com/hamzakhan0712" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg class="lg" aria-hidden="true"><use href="icons.svg#github"/></svg></a>
+        </div>
+        <ul class="contact" aria-label="Contact details">
+          <li><a href="mailto:hamza81khan81@gmail.com"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-mail"/></svg>hamza81khan81@gmail.com</a></li>
+          <li><a href="tel:+919137966960"><svg class="ic" aria-hidden="true"><use href="icons.svg#i-phone"/></svg>+91 91379 66960</a></li>
+          <li><span><svg class="ic" aria-hidden="true"><use href="icons.svg#i-pin"/></svg>Thane, Maharashtra</span></li>
+        </ul>
+      </div>
+      <div class="photo-col">
+        <picture>
+          <source media="(max-width: 860px)" srcset="hamza-khan.webp" type="image/webp">
+          <source srcset="hamza-khan-portrait.webp" type="image/webp">
+          <img class="photo" src="hamza-khan-portrait.jpg" alt="Hamza Khan" width="600" height="800" loading="lazy">
+        </picture>
+      </div>
+    </div>
+    <figure class="code net-code" aria-label="A short summary written as C# code">
+      <div class="code-bar"><span class="file"><img src="img/dotnet-logo.svg" alt="" width="14" height="14">Hamza.cs</span><span>C#</span></div>
+<pre><code><span class="ln"><span class="kw">public sealed class</span> <span class="cls">Hamza</span> : <span class="cls">SoftwareEngineer</span></span><span class="ln">{</span><span class="ln">    <span class="com">// .NET era: after graduating in 2026</span></span><span class="ln">    <span class="kw">public string</span> NowBuilding => <span class="str">"an e-commerce web app on .NET"</span>;</span><span class="ln">    <span class="kw">public string</span>[] Stack => [<span class="str">"C#"</span>, <span class="str">".NET"</span>];</span><span class="ln">    <span class="kw">public bool</span> OpenToWork => <span class="kw">true</span>;</span><span class="ln">}</span></code></pre>
+    </figure>
+    </div>
+  </header>
+
+  <section class="band" aria-labelledby="h-net-now">
+    <div class="wrap">
+      <h2 id="h-net-now">In progress</h2>
+      <p class="sec-sub">// this side fills in as the work ships</p>
+      <div class="wip">
+        <p class="state">building now</p>
+        <h3>E-commerce web app on .NET</h3>
+        <p>A full e-commerce web app built with C# and .NET. A write-up, the code and a live demo will go here once it's ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span class="who"><img src="img/dotnet-logo.svg" alt="" width="18" height="18">Hamza Khan, Software Engineer, Thane, Maharashtra</span>
+      <span><a href="/resume-dotnet">.NET resume</a> · <a href="mailto:hamza81khan81@gmail.com">Email</a> · <a href="tel:+919137966960">+91 91379 66960</a> · <a href="https://github.com/hamzakhan0712" target="_blank" rel="noopener">GitHub</a></span>
+      <p class="tm">.NET is a trademark of Microsoft Corporation.</p>
+    </div>
+  </footer>
+  </section>
+  </div>
+  </main>
   <script>
     (function () {
       document.documentElement.classList.add("js");
       var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // ---- flip the card between the Python side and the .NET side
+      var stage = document.getElementById("stage");
+      var front = document.getElementById("python");
+      var back = document.getElementById("dotnet");
+      var titles = { python: document.title, dotnet: "Hamza Khan | Software Engineer, C# and .NET | Mumbai" };
+      var current = "python";
+      function setSide(side, animate) {
+        if (side !== "python" && side !== "dotnet") side = "python";
+        if (side === current) return;
+        current = side;
+        var toBack = side === "dotnet";
+        front.classList.remove("gone");
+        back.classList.remove("gone");
+        document.documentElement.setAttribute("data-side", side);
+        document.title = titles[side];
+        document.querySelectorAll(".era-btn").forEach(function (b) {
+          b.setAttribute("aria-pressed", b.getAttribute("data-go") === side ? "true" : "false");
+        });
+        if (animate) window.scrollTo(0, 0);
+        void stage.offsetWidth;  // let the browser lay out both faces before the turn starts
+        stage.classList.toggle("flipped", toBack);
+        front.inert = toBack;
+        back.inert = !toBack;
+        var hide = function () { (toBack ? front : back).classList.add("gone"); };
+        if (animate && !still) setTimeout(hide, 950); else hide();
+      }
+      document.querySelectorAll("[data-go]").forEach(function (el) {
+        el.addEventListener("click", function () {
+          var side = el.getAttribute("data-go");
+          setSide(side, true);
+          history.replaceState(null, "", "#" + side);
+        });
+      });
+      if (location.hash === "#dotnet") setSide("dotnet", false);
+      window.addEventListener("hashchange", function () {
+        if (location.hash === "#dotnet" || location.hash === "#python") setSide(location.hash.slice(1), true);
+      });
 
       // fade sections in as they scroll into view
       var items = document.querySelectorAll("main .band > .wrap, main .project");

@@ -16,7 +16,7 @@ BRANDS = [
     "python", "typescript", "javascript", "html5", "css", "django", "fastapi", "flask", "react",
     "nextdotjs", "astro", "tailwindcss", "postgresql", "sqlite", "duckdb", "pandas", "elasticsearch",
     "electron", "tauri", "capacitor", "android", "cloudflare", "cloudflareworkers", "vercel", "git",
-    "github", "githubactions", "pytest", "ollama", "whatsapp", "vite",
+    "github", "githubactions", "pytest", "ollama", "whatsapp", "vite", "dotnet",
 ]
 # Brand colours too light to read on white get the darker colour from the same brand's logo.
 COLOUR_OVERRIDES = {"duckdb": "1A1A1A"}
