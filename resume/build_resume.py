@@ -15,7 +15,7 @@ HERE = Path(__file__).parent
 EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 NAME = "Hamza Khan"
-TITLE = "Software Engineer · Python, Django, FastAPI, React"
+TITLE = "Python Backend Engineer · Django, FastAPI, PostgreSQL"
 CONTACT = [
     ("Thane, Maharashtra · open to Mumbai, Navi Mumbai, Thane or remote", None),
     ("hamza81khan81@gmail.com", "mailto:hamza81khan81@gmail.com"),
@@ -26,10 +26,11 @@ CONTACT = [
 ]
 
 SUMMARY = (
-    "Software engineer with 2.5+ years shipping production software for businesses in India and "
-    "Germany: Django and FastAPI backends, React and Next.js front ends, and an Electron and Android "
-    "billing app now on its fifth major version. I own the work end to end, from requirements and "
-    "architecture through testing, deployment and support. Looking for a software engineering role."
+    "Python backend engineer with 2.5+ years shipping production software for businesses in India and "
+    "Germany: Django and FastAPI services, PostgreSQL, SQLite and DuckDB data layers, bulk import "
+    "pipelines, role-based access and real-time updates over WebSockets. I own the work end to end, from "
+    "requirements and data modelling through testing, deployment and support. Looking for a backend or "
+    "Python engineering role."
 )
 
 EXPERIENCE = [
@@ -58,11 +59,9 @@ EXPERIENCE = [
         "meta": "Remote contract",
         "dates": "Sep 2025 – Nov 2025",
         "bullets": [
-            "Built modules of the company's internal property-management web application in Django and "
-            "Django REST Framework, covering properties, tenants, landlords, leads, rent payments and "
-            "maintenance requests.",
-            "Built staff dashboards and forms with Tailwind CSS and Flowbite, with data access scoped by "
-            "employee role.",
+            "Built backend modules and REST APIs for the company's internal property-management "
+            "application in Django and Django REST Framework.",
+            "Implemented data access scoped by employee role and the staff dashboards built on it.",
             "Worked directly with the Berlin-based founders, reporting progress and adjusting scope as needs changed.",
         ],
     },
@@ -70,33 +69,23 @@ EXPERIENCE = [
 
 PROJECTS = [
     {
-        "name": "NOVEM, e-commerce analytics platform",
-        "meta": "Python, FastAPI, DuckDB, Prophet, React, Tauri",
+        "name": "NOVEM, e-commerce analytics engine",
+        "meta": "github.com/hamzakhan0712 · Python, FastAPI, DuckDB, SQLite, pandas, Prophet",
         "bullets": [
-            "Local-first desktop app that turns store exports (CSV, Excel, Shopify, PostgreSQL) into KPIs, "
-            "RFM segments, churn and lifetime-value models and Prophet forecasts, served by ~170 endpoints "
-            "across 23 FastAPI routers.",
-            "AI copilot that answers questions about the store's own data with a local Ollama model (RAG); "
-            "customer PII is hashed on import; CI runs Ruff, pytest, ESLint and Vitest.",
-        ],
-    },
-    {
-        "name": "Key2YourHome, real-estate listings platform",
-        "meta": "key2yourhome.net · Astro, Tailwind CSS, Cloudflare Workers, D1, R2",
-        "bullets": [
-            "Static-first property site using Google Sheets as the CMS, moving in phases to Cloudflare D1 "
-            "and R2 with a private admin; Playwright tests at phone, tablet and desktop widths.",
+            "Local-first FastAPI engine (~170 endpoints across 23 routers) that turns store exports into KPIs, "
+            "RFM segments, churn and lifetime-value models and Prophet forecasts.",
+            "DuckDB for analytics, SQLite for settings and import lineage; import pipeline for CSV, Excel, "
+            "Shopify and PostgreSQL with customer PII hashed on import; local Ollama RAG assistant; CI runs Ruff and pytest.",
         ],
     },
 ]
 
 SKILLS = [
-    ("Languages", "Python, TypeScript, JavaScript, SQL, HTML, CSS"),
-    ("Backend", "Django, Django REST Framework, FastAPI, Flask, Django Channels, REST APIs"),
+    ("Languages", "Python, SQL, TypeScript, JavaScript"),
+    ("Backend", "Django, Django REST Framework, FastAPI, Flask, Django Channels, REST APIs, WebSockets"),
+    ("Databases & data", "PostgreSQL, SQLite, DuckDB, Elasticsearch, pandas, Prophet, Ollama (RAG)"),
+    ("Testing & deployment", "pytest, Playwright, Ruff, GitHub Actions, Git, Cloudflare Workers, Vercel, PyInstaller"),
     ("Frontend", "React, Next.js, Astro, Tailwind CSS"),
-    ("Data", "PostgreSQL, SQLite, DuckDB, pandas, Prophet, Elasticsearch"),
-    ("Desktop & mobile", "Electron, Tauri, Capacitor (Android)"),
-    ("Cloud & tools", "Cloudflare Workers, D1, R2, Vercel, Git, GitHub Actions, Playwright, pytest"),
 ]
 
 EDUCATION = [
@@ -111,37 +100,11 @@ ACHIEVEMENTS = [
     "2nd Place, SCOE AVISHKAR 2025 project competition, Saraswati College of Engineering, Apr 2025",
 ]
 
-
-
-# ---------------------------------------------------------------- .NET variant
-# Same experience and education; leads with the .NET focus. Nothing here claims shipped .NET work.
-DOTNET_TITLE = "Software Engineer · C#, .NET"
-DOTNET_SUMMARY = (
-    "Software engineer who has spent 2.5+ years shipping production software for businesses in India and "
-    "Germany. Since graduating in 2026 I have focused on C# and .NET, and I am currently building a full "
-    "e-commerce web app on .NET. My shipped work so far is in Python (Django, FastAPI), React and TypeScript, "
-    "taken from requirements through testing, deployment and support. Looking for a .NET or software "
-    "engineering role."
-)
-DOTNET_PROJECTS = [
-    {
-        "name": "E-commerce web app on .NET (in progress)",
-        "meta": "C#, .NET",
-        "bullets": ["Full e-commerce web app I am building after graduating; code and a live demo will be published when ready."],
-    },
-] + PROJECTS[:1]  # NOVEM: the strongest backend/data project
-DOTNET_SKILLS = [("Languages", "C#, Python, TypeScript, JavaScript, SQL, HTML, CSS")] + SKILLS[1:]
-
 VARIANTS = {
-    "python": dict(title=TITLE, summary=SUMMARY, projects=PROJECTS, skills=SKILLS, accent="2b5b84", line="d6e4f0",
-                   bar="3776ab", pdf="Hamza-Khan-Resume.pdf", docx="Hamza-Khan-Resume.docx", page="resume.html",
-                   url="https://www.hamza.social/resume", back="/", label="Python",
-                   desc="Resume of Hamza Khan, software engineer in Thane, Mumbai: Python, Django, FastAPI, React."),
-    "dotnet": dict(title=DOTNET_TITLE, summary=DOTNET_SUMMARY, projects=DOTNET_PROJECTS, skills=DOTNET_SKILLS,
-                   accent="512bd4", line="e0d6fa", bar="512bd4", pdf="Hamza-Khan-Resume-DotNet.pdf",
-                   docx="Hamza-Khan-Resume-DotNet.docx", page="resume-dotnet.html",
-                   url="https://www.hamza.social/resume-dotnet", back="/#dotnet", label=".NET",
-                   desc="Resume of Hamza Khan, software engineer in Thane, Mumbai, focused on C# and .NET."),
+    "python": dict(title=TITLE, summary=SUMMARY, projects=PROJECTS, skills=SKILLS, accent="1e3a8a", line="e2e8f0",
+                   bar="0f172a", pdf="Hamza-Khan-Resume.pdf", docx="Hamza-Khan-Resume.docx", page="resume.html",
+                   url="https://www.hamza.social/resume", back="/", label="Python Backend Engineer",
+                   desc="Resume of Hamza Khan, Python backend engineer in Thane, Mumbai: Django, FastAPI, PostgreSQL."),
 }
 
 # ---------------------------------------------------------------- PDF (via HTML)
@@ -219,7 +182,7 @@ def build_pdf(path: Path, v=None):
 
 
 # ---------------------------------------------------------------- DOCX
-ACCENT = RGBColor(0x2B, 0x5B, 0x84)
+ACCENT = RGBColor(0x1E, 0x3A, 0x8A)
 
 
 def para(doc, space_after=0, space_before=0):
@@ -242,7 +205,7 @@ def heading(doc, text, color=None):
     run(p, text.upper(), bold=True, size=10.5, color=color or ACCENT)
     border = OxmlElement("w:pBdr")
     bottom = OxmlElement("w:bottom")
-    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "D6E4F0")):
+    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "E2E8F0")):
         bottom.set(qn(f"w:{k}"), v)
     border.append(bottom)
     p._p.get_or_add_pPr().append(border)
@@ -363,7 +326,7 @@ def web_head(v):
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Hamza Khan">
-<meta property="og:title" content="Hamza Khan, Software Engineer: {v['label']} Resume">
+<meta property="og:title" content="Hamza Khan, {v['label']}: Resume">
 <meta property="og:description" content="{v['desc']}">
 <meta property="og:url" content="{v['url']}">
 <meta property="og:image" content="https://www.hamza.social/og-image.jpg">
