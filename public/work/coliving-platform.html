@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Co-living property platform | Case study | Hamza Khan</title>
+  <meta name="description" content="Case study: a Django property platform for a co-living operator, built around the bed as the unit of rent, with transactional contracts, bed invitations, scheduled rent jobs and role-based access.">
+  <link rel="canonical" href="https://www.hamza.social/work/coliving-platform">
+  <meta name="author" content="Hamza Khan">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hamza Khan">
+  <meta property="og:title" content="Co-living property platform, a case study by Hamza Khan">
+  <meta property="og:description" content="A Django platform built around the bed as the unit of rent: transactional contracts, bed invitations, scheduled rent jobs and role-based access.">
+  <meta property="og:url" content="https://www.hamza.social/work/coliving-platform">
+  <meta property="og:image" content="https://www.hamza.social/img/work/coliving/dashboard.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/hamza-khan.jpg" alt="" width="30" height="30">Hamza Khan</a>
+      <nav class="nav" aria-label="Main">
+        <a href="/#work" aria-current="page">Work</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <a class="btn small" href="/resume">Resume</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="case-head">
+      <div class="wrap">
+        <a class="crumb" href="/#work">All work</a>
+        <h1>Co-living property platform</h1>
+        <p class="lede">Property management software for an operator that rents beds, not flats. Staff see every bed, tenant and rupee of rent in one place, and tenants and landlords each get their own portal.</p>
+        <dl class="facts">
+          <div><dt>My role</dt><dd>Planning, data model and full development</dd></div>
+          <div><dt>Client</dt><dd>Co-living operator</dd></div>
+          <div><dt>Product</dt><dd>Web app with staff, tenant and landlord portals</dd></div>
+          <div><dt>Code</dt><dd>Private client code. <a href="https://initcore.in/work/initcore-realestate" target="_blank" rel="noopener">Video walkthrough</a></dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="wrap case-figure">
+      <figure class="figure">
+        <div class="dg-scroll"><svg class="dg" viewBox="0 0 640 336" role="img" aria-labelledby="t-cl">
+          <title id="t-cl">Data model: a property has rooms, a room has beds, and contracts, payments and invitations each point to one bed.</title>
+          <path class="ln" d="M200 58H230"/><path class="ln" d="M410 58H440"/>
+          <path class="ln" d="M200 284H215V165H470V136"/><path class="ln" d="M380 200V178H500V136"/><path class="ln" d="M560 200V136"/>
+          <g transform="translate(20 20)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Property</text><text class="f" x="12" y="48">id</text><text class="ty" x="168" y="48" text-anchor="end">pk</text><text class="f" x="12" y="68">name</text><text class="ty" x="168" y="68" text-anchor="end">str</text><text class="f k" x="12" y="88">landlord_id</text><text class="ty" x="168" y="88" text-anchor="end">fk</text></g>
+          <g transform="translate(230 20)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Room</text><text class="f k" x="12" y="48">property_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f" x="12" y="68">room_number</text><text class="ty" x="168" y="68" text-anchor="end">str</text><text class="f" x="12" y="88">room_type</text><text class="ty" x="168" y="88" text-anchor="end">enum</text></g>
+          <text class="note" x="230" y="134">unique (property, room_number)</text>
+          <g transform="translate(440 20)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">BedSpace</text><text class="f k" x="12" y="48">room_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f" x="12" y="68">monthly_rent</text><text class="ty" x="168" y="68" text-anchor="end">decimal</text><text class="f" x="12" y="88">deposit</text><text class="ty" x="168" y="88" text-anchor="end">decimal</text><text class="f" x="12" y="108">status</text><text class="ty" x="168" y="108" text-anchor="end">enum</text></g>
+          <g transform="translate(20 200)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Invitation</text><text class="f" x="12" y="48">token</text><text class="ty" x="168" y="48" text-anchor="end">uuid</text><text class="f" x="12" y="68">expires_at</text><text class="ty" x="168" y="68" text-anchor="end">datetime</text><text class="f k" x="12" y="88">bed_space_id</text><text class="ty" x="168" y="88" text-anchor="end">fk</text></g>
+          <g transform="translate(230 200)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Payment</text><text class="f k" x="12" y="48">tenant_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f k" x="12" y="68">bed_space_id</text><text class="ty" x="168" y="68" text-anchor="end">fk</text><text class="f" x="12" y="88">payment_type</text><text class="ty" x="168" y="88" text-anchor="end">enum</text><text class="f" x="12" y="108">status</text><text class="ty" x="168" y="108" text-anchor="end">enum</text></g>
+          <g transform="translate(440 200)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">ResidencyContract</text><text class="f k" x="12" y="48">bed_space_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f k" x="12" y="68">tenant_id</text><text class="ty" x="168" y="68" text-anchor="end">fk</text><text class="f" x="12" y="88">status</text><text class="ty" x="168" y="88" text-anchor="end">enum</text><text class="f" x="12" y="108">end_date</text><text class="ty" x="168" y="108" text-anchor="end">date</text></g>
+          <circle class="end" cx="230" cy="58" r="3.5"/><circle class="end" cx="440" cy="58" r="3.5"/><circle class="end" cx="200" cy="284" r="3.5"/><circle class="end" cx="380" cy="200" r="3.5"/><circle class="end" cx="560" cy="200" r="3.5"/>
+        </svg></div>
+        <figcaption>Core of the data model, simplified from 17 Django apps and over 45 models. The green dot marks the side that holds the foreign key.</figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap case-body">
+      <ul class="toc" aria-label="On this page">
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#built">What I built</a></li>
+        <li><a href="#decisions">Backend decisions</a></li>
+        <li><a href="#screens">Screens</a></li>
+        <li><a href="#stack">Stack</a></li>
+      </ul>
+
+      <div class="prose">
+        <section id="problem" aria-labelledby="h-problem">
+          <h2 id="h-problem">The problem</h2>
+          <p>The operator rents beds, not flats. One room can hold several tenants, a free bed and a different rent for each, and every bed has its own move-in date, deposit and agreement end date.</p>
+          <p>Spreadsheets and WhatsApp could not answer the questions that mattered each morning: which beds are free, who has paid, and which agreements are about to end.</p>
+        </section>
+
+        <section id="built" aria-labelledby="h-built">
+          <h2 id="h-built">What I built</h2>
+          <p>One Django application built around beds, with three kinds of users:</p>
+          <ul>
+            <li><strong>Staff</strong> manage properties, rooms and beds, send invitations, record rent, handle support tickets and work a leads pipeline, each limited by their role.</li>
+            <li><strong>Tenants</strong> see their agreement, amount due, total paid and next rent date.</li>
+            <li><strong>Landlords</strong> see only their own buildings, tenants, free beds and rent collected.</li>
+          </ul>
+          <ul class="outcomes" aria-label="Where it stands">
+            <li>Every bed tracked on its own: occupied, free, reserved or under repair</li>
+            <li>Rent, contracts and repair requests recorded in one place</li>
+            <li>Separate logins for the operator, tenants and landlords</li>
+          </ul>
+        </section>
+
+        <section id="decisions" aria-labelledby="h-decisions">
+          <h2 id="h-decisions">Backend decisions</h2>
+          <dl class="decisions">
+            <div><dt>The bed is the unit of rent</dt><dd>Property, room and bed are separate models. Rent, deposit and status sit on <code>BedSpace</code>, a room's occupancy is worked out from its beds, and room numbers are unique per property. Pricing a shared room bed by bed needed no special cases.</dd></div>
+            <div><dt>Contract changes are all or nothing</dt><dd>Before a tenant is assigned, the model checks that neither the bed nor the tenant already has an active contract. Creating or ending the contract and updating the bed's status then happen inside one <code>transaction.atomic</code> block, so a failure leaves no half-updated records.</dd></div>
+            <div><dt>Invitations hold a specific bed</dt><dd>Staff invite a prospect to one free bed. The invitation carries a UUID token that expires after seven days by default, and the bed is held as reserved so it cannot be offered twice. The prospect fills in their own details, and approval creates their login.</dd></div>
+            <div><dt>Permissions by module and action</dt><dd>Staff views go through decorators that call <code>has_crud_permission(user, module, action)</code>, so each role gets create, read, update and delete rights per module. Over 200 checks across the codebase use the same function. Tenant and landlord portals are limited to the user's own records.</dd></div>
+            <div><dt>Routine work runs as commands</dt><dd>Management commands generate next month's rent from recurring schedules a week before it is due, send reminders and mark overdue payments. They run daily from a scheduler and support <code>--dry-run</code>, so a change can be checked before it touches real data.</dd></div>
+            <div><dt>Data in and out</dt><dd>Payments support 15 types, such as rent, deposit and fees, across methods from UPI to cheque. Properties import from Excel, and properties, tenants, payments, leads and tickets export to CSV or Excel.</dd></div>
+          </dl>
+        </section>
+
+        <section id="screens" aria-labelledby="h-screens">
+          <h2 id="h-screens">Screens</h2>
+          <p>Shown with demo data.</p>
+          <div class="gallery">
+            <figure class="shot"><img src="/img/work/coliving/dashboard.webp" alt="Staff dashboard with income, occupancy rate, collection rate, support tickets and a monthly income chart" width="1440" height="810" loading="lazy"><figcaption>The staff dashboard: this month's income, occupancy, rent collected and open tickets.</figcaption></figure>
+            <div class="pair">
+              <figure class="shot"><img src="/img/work/coliving/beds.webp" alt="List of bed spaces with their status and rent" width="1440" height="810" loading="lazy"><figcaption>Every bed across the portfolio: occupied, free, reserved or under repair.</figcaption></figure>
+              <figure class="shot"><img src="/img/work/coliving/invite.webp" alt="Form to invite a prospect to a specific bed by email" width="1440" height="810" loading="lazy"><figcaption>Inviting a prospect to one specific bed by email.</figcaption></figure>
+            </div>
+            <div class="pair">
+              <figure class="shot"><img src="/img/work/coliving/payments.webp" alt="Payments list with collected, upcoming, pending and overdue rent" width="1440" height="810" loading="lazy"><figcaption>Payments: collected, upcoming, pending and overdue, payment by payment.</figcaption></figure>
+              <figure class="shot"><img src="/img/work/coliving/landlord.webp" alt="Landlord portal showing properties, tenants, rooms, free beds and rent collected" width="1440" height="810" loading="lazy"><figcaption>The landlord portal, limited to the landlord's own buildings.</figcaption></figure>
+            </div>
+          </div>
+        </section>
+
+        <section id="stack" aria-labelledby="h-stack">
+          <h2 id="h-stack">Stack</h2>
+          <ul class="tags" aria-label="Stack"><li>Python</li><li>Django 4.2</li><li>Django REST Framework</li><li>PostgreSQL</li><li>Gunicorn</li><li>WhiteNoise</li><li>openpyxl</li><li>SMTP email</li><li>Tailwind CSS</li><li>Flowbite</li></ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="next" aria-label="More case studies">
+      <div class="wrap">
+        <a href="/work/call-center-crm"><span>Previous</span><b>Call-center CRM</b></a>
+        <a class="fwd" href="/work/novem"><span>Next</span><b>NOVEM, e-commerce analytics engine</b></a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
+      <span><a href="/">Home</a>&nbsp;&nbsp;&nbsp;<a href="/resume">Resume</a>&nbsp;&nbsp;&nbsp;<a href="mailto:hamza81khan81@gmail.com">Email</a></span>
+    </div>
+  </footer>
+</body>
+</html>

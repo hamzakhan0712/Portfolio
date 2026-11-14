@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hamza Khan | Python Backend Engineer | Mumbai</title>
-  <meta name="description" content="Hamza Khan, Python backend engineer in Thane, Mumbai. 2.5+ years building Django and FastAPI services, PostgreSQL and DuckDB data layers, and production software for businesses in India and Germany.">
+  <meta name="description" content="Hamza Khan, Python backend engineer in Thane, Mumbai. Django and FastAPI services, PostgreSQL and DuckDB data models, and production software for businesses in India and Germany.">
   <link rel="canonical" href="https://www.hamza.social/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="Hamza Khan">
@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Hamza Khan">
   <meta property="og:locale" content="en_IN">
   <meta property="og:title" content="Hamza Khan, Python Backend Engineer">
-  <meta property="og:description" content="Python backend engineer in Thane, Mumbai. Django, FastAPI, PostgreSQL. Open to backend roles in Mumbai or remote.">
+  <meta property="og:description" content="Django and FastAPI services, PostgreSQL and DuckDB data models, and production software for real businesses. Open to backend roles in Mumbai or remote.">
   <meta property="og:url" content="https://www.hamza.social/">
   <meta property="og:image" content="https://www.hamza.social/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
   <meta property="profile:last_name" content="Khan">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Hamza Khan, Python Backend Engineer">
-  <meta name="twitter:description" content="Python backend engineer in Thane, Mumbai. Django, FastAPI, PostgreSQL. Open to backend roles in Mumbai or remote.">
+  <meta name="twitter:description" content="Django and FastAPI services, PostgreSQL and DuckDB data models, and production software for real businesses.">
   <meta name="twitter:image" content="https://www.hamza.social/og-image.jpg">
 
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -35,7 +35,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
 
   <script type="application/ld+json">
   {
@@ -55,7 +56,7 @@
         "url": "https://www.hamza.social/",
         "name": "Hamza Khan, Python Backend Engineer",
         "isPartOf": { "@id": "https://www.hamza.social/#website" },
-        "dateModified": "2026-11-13",
+        "dateModified": "2026-11-14",
         "mainEntity": { "@id": "https://www.hamza.social/#person" }
       },
       {
@@ -80,7 +81,7 @@
           { "@type": "Occupation", "name": "Django Developer" },
           { "@type": "Occupation", "name": "Software Engineer" }
         ],
-        "knowsAbout": ["Python", "Django", "Django REST Framework", "FastAPI", "PostgreSQL", "SQL", "DuckDB", "REST APIs", "WebSockets", "pandas", "pytest", "Data Science"],
+        "knowsAbout": ["Python", "Django", "Django REST Framework", "FastAPI", "PostgreSQL", "SQL", "DuckDB", "REST APIs", "WebSockets", "pandas", "pytest", "Data modelling"],
         "sameAs": [
           "https://www.linkedin.com/in/hamza-khan-3a2b0024a/",
           "https://github.com/hamzakhan0712"
@@ -89,336 +90,254 @@
     ]
   }
   </script>
-
-  <style>
-    :root {
-      --bg: #ffffff;
-      --panel: #f7f8fa;
-      --ink: #0f172a;
-      --text: #334155;
-      --muted: #64748b;
-      --line: #e2e8f0;
-      --line-strong: #cbd5e1;
-      --accent: #1e3a8a;
-      --accent-hover: #1e40af;
-      --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-    }
-    * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; scroll-padding-top: 76px; }
-    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 var(--sans); }
-    a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
-    a:hover { color: var(--accent-hover); text-decoration-color: currentColor; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
-    h1, h2, h3 { color: var(--ink); font-weight: 600; }
-    p { margin: 0 0 12px; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-    .mono { font-family: var(--mono); }
-
-    /* Header */
-    .top { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .96); border-bottom: 1px solid var(--line); }
-    .top .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
-    .brand { margin-right: auto; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: -.01em; }
-    .brand:hover { color: var(--ink); }
-    .nav { display: flex; gap: 24px; font-size: .92rem; }
-    .nav a { color: var(--text); text-decoration: none; }
-    .nav a:hover { color: var(--accent); }
-
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 6px; font-size: .92rem; font-weight: 500;
-           text-decoration: none; border: 1px solid var(--line-strong); color: var(--ink); background: #fff; white-space: nowrap; }
-    .btn:hover { border-color: var(--ink); color: var(--ink); }
-    .btn.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
-    .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .btn.sm { padding: 6px 12px; font-size: .86rem; }
-
-    /* Intro */
-    .intro { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
-    .intro-head { display: flex; align-items: center; gap: 22px; margin-bottom: 26px; }
-    .intro-head img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); flex: none; }
-    .intro h1 { font-size: 2.4rem; line-height: 1.15; letter-spacing: -.025em; margin: 0; }
-    .role { margin: 4px 0 0; font-size: 1.1rem; color: var(--muted); }
-    .lead { font-size: 1.12rem; line-height: 1.7; color: var(--text); max-width: 700px; }
-    .facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 22px 0 28px; padding: 0; list-style: none; font-size: .92rem; color: var(--muted); }
-    .facts strong { color: var(--ink); font-weight: 500; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    /* Sections */
-    section.block { padding: 64px 0; border-bottom: 1px solid var(--line); }
-    .label { display: block; margin: 0 0 6px; font: 500 .78rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-    h2 { font-size: 1.6rem; letter-spacing: -.02em; margin: 0 0 36px; }
-    h3 { font-size: 1.15rem; margin: 0; line-height: 1.35; letter-spacing: -.01em; }
-    ul.points { margin: 12px 0 0; padding-left: 20px; }
-    ul.points li { margin: 6px 0; }
-    ul.points li::marker { color: var(--line-strong); }
-
-    /* Projects */
-    .project + .project { margin-top: 56px; padding-top: 56px; border-top: 1px dashed var(--line); }
-    .p-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
-    .p-meta { color: var(--muted); font-size: .9rem; white-space: nowrap; }
-    .p-sub { color: var(--muted); margin: 4px 0 14px; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; margin: 18px 0 18px;
-             background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-    .stats div { background: var(--panel); padding: 12px 16px; }
-    .stats b { display: block; font: 500 1.15rem var(--mono); color: var(--ink); }
-    .stats span { font-size: .84rem; color: var(--muted); }
-    .flow { margin: 18px 0 4px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
-            font: .84rem/1.9 var(--mono); color: var(--text); overflow-wrap: anywhere; }
-    .flow .k { color: var(--muted); }
-    .flow i { font-style: normal; color: var(--muted); padding: 0 4px; }
-    .stack { margin: 16px 0 0; font: .84rem/1.7 var(--mono); color: var(--muted); }
-    .stack b { font-weight: 500; color: var(--ink); }
-    .links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; font-size: .94rem; font-weight: 500; }
-    .shot { margin: 22px 0 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
-    .shot img { display: block; width: 100%; height: auto; }
-    .other { margin: 56px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-    .other li { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; padding: 14px 0; border-bottom: 1px solid var(--line); }
-    .other .what { color: var(--text); }
-    .other .tech { font: .82rem var(--mono); color: var(--muted); }
-    .other-title { margin: 56px 0 0; font-size: 1rem; }
-    .other-title + .other { margin-top: 12px; }
-
-    /* Experience */
-    .job + .job { margin-top: 40px; }
-    .org { color: var(--muted); margin: 2px 0 0; }
-
-    /* Skills */
-    .skills { display: grid; grid-template-columns: 190px 1fr; margin: 0; border-top: 1px solid var(--line); }
-    .skills dt, .skills dd { padding: 14px 0; border-bottom: 1px solid var(--line); margin: 0; }
-    .skills dt { font-weight: 500; color: var(--ink); }
-    .skills dd { color: var(--text); }
-
-    /* Education */
-    .edu + .edu { margin-top: 22px; }
-    .honours { margin-top: 32px; }
-
-    /* Contact */
-    .contact { padding: 64px 0 72px; }
-    .contact p.lead { margin-bottom: 26px; }
-    .channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 32px; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-    .channels li { display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
-    .channels span { color: var(--muted); font-size: .9rem; }
-
-    footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .86rem; }
-    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 22px; padding-bottom: 28px; }
-    footer a { color: var(--muted); }
-
-    @media (max-width: 720px) {
-      .nav { display: none; }
-      .intro { padding: 44px 0 40px; }
-      .intro-head { gap: 16px; }
-      .intro-head img { width: 64px; height: 64px; }
-      .intro h1 { font-size: 1.85rem; }
-      .role { font-size: 1rem; }
-      .lead { font-size: 1.04rem; }
-      section.block { padding: 48px 0; }
-      h2 { margin-bottom: 28px; }
-      .skills { grid-template-columns: 1fr; }
-      .skills dt { padding-bottom: 2px; border-bottom: 0; }
-      .skills dd { padding-top: 0; }
-    }
-    @media (max-width: 480px) {
-      .wrap { padding: 0 16px; }
-      .p-meta { white-space: normal; }
-    }
-    @media print {
-      .top, .actions { display: none; }
-      section.block { padding: 28px 0; }
-    }
-  </style>
 </head>
 <body>
-  <header class="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
     <div class="wrap">
-      <a class="brand" href="#top">Hamza Khan</a>
-      <nav class="nav" aria-label="Sections">
+      <a class="brand" href="/"><img src="/hamza-khan.jpg" alt="" width="30" height="30">Hamza Khan</a>
+      <nav class="nav" aria-label="Main">
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="btn sm" href="/resume">Resume</a>
+      <a class="btn small" href="/resume">Resume</a>
     </div>
   </header>
 
-  <main id="top">
-    <section class="intro" aria-label="Introduction">
+  <main id="main">
+    <section class="hero" aria-labelledby="h-hero">
       <div class="wrap">
-        <div class="intro-head">
-          <img src="hamza-khan.jpg" alt="Hamza Khan" width="480" height="480" fetchpriority="high">
-          <div>
-            <h1>Hamza Khan</h1>
-            <p class="role">Python Backend Engineer</p>
-          </div>
-        </div>
-        <p class="lead">I build backend systems in Python: Django and FastAPI services, the PostgreSQL, SQLite and DuckDB layers under them, and the import pipelines, background work and access rules that keep them correct. For the last two and a half years I have shipped and supported production software for businesses in India and Germany, from the first requirements call through deployment.</p>
-        <ul class="facts">
-          <li><strong>2.5+ years</strong> in production work</li>
-          <li><strong>Thane, Mumbai</strong>, open to on-site or remote</li>
-          <li><strong>B.E. Computer Science</strong> (Data Science), 2026</li>
-        </ul>
+        <p class="who">
+          <img src="/hamza-khan.jpg" alt="Portrait of Hamza Khan" width="52" height="52" fetchpriority="high">
+          <span><strong>Hamza Khan</strong>Python backend engineer, Thane, Mumbai</span>
+        </p>
+        <h1 id="h-hero">I build the backend of business software: the data model, the APIs and the rules that keep it correct.</h1>
+        <p class="lede">For two and a half years I have shipped Django and FastAPI systems that businesses in India and Germany use every day, from rent and invoicing to sales teams and analytics. I take a project from the first requirements call to deployment, and I support it after launch.</p>
+        <p class="status">Open to backend and Python engineering roles, in Mumbai or remote</p>
         <div class="actions">
-          <a class="btn primary" href="/resume">View resume</a>
-          <a class="btn" href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a>
+          <a class="btn primary" href="#work">See case studies</a>
+          <a class="btn" href="/resume">View resume</a>
           <a class="btn" href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener">LinkedIn</a>
         </div>
       </div>
     </section>
 
-    <section class="block" id="work" aria-labelledby="h-work">
+    <section class="section" id="work" aria-labelledby="h-work">
       <div class="wrap">
-        <span class="label">Selected work</span>
-        <h2 id="h-work">Projects</h2>
+        <div class="section-head">
+          <h2 id="h-work">Selected work</h2>
+          <p>Three systems, each shown by the part I designed: the data model, the architecture or the access rules.</p>
+        </div>
 
-        <article class="project">
-          <div class="p-head">
-            <h3>NOVEM, e-commerce analytics engine</h3>
-            <span class="p-meta">Personal product · 2026</span>
+        <article class="work">
+          <div>
+            <p class="kind">Client project, Django web app</p>
+            <h3><a href="/work/coliving-platform">Co-living property platform</a></h3>
+            <p class="summary">Property management for an operator that rents beds, not flats. Every bed has its own rent, deposit, status and contract, and tenants and landlords get their own portals.</p>
+            <ul class="proof">
+              <li>17 Django apps and over 45 models, built around the bed as the unit of rent.</li>
+              <li>Contracts created inside a transaction, with checks that stop a bed or a tenant having two active contracts.</li>
+              <li>Recurring rent, reminders and overdue status run as scheduled management commands.</li>
+            </ul>
+            <ul class="tags" aria-label="Stack"><li>Django</li><li>Django REST Framework</li><li>PostgreSQL</li><li>Gunicorn</li></ul>
+            <a class="read" href="/work/coliving-platform">Read the case study</a>
           </div>
-          <p class="p-sub">Local-first analytics for small online stores. Runs fully offline on the owner's laptop.</p>
-          <p>A FastAPI engine that takes a store's sales exports and turns them into KPIs, customer segments, forecasts and plain-language findings. The engine runs as a local HTTP service inside a Tauri desktop app, which starts it, waits for the port and shuts it down gracefully.</p>
-          <div class="stats">
-            <div><b>~170</b><span>REST endpoints</span></div>
-            <div><b>23</b><span>FastAPI routers</span></div>
-            <div><b>2</b><span>stores: DuckDB + SQLite</span></div>
-            <div><b>5</b><span>import sources</span></div>
-          </div>
-          <ul class="points">
-            <li>Split storage by workload: DuckDB for analytical tables scoped by <code class="mono">store_id</code>, SQLite for settings, import lineage, sessions and encrypted connector credentials.</li>
-            <li>Import pipeline for CSV, Excel, Google Sheets, the Shopify Admin API and PostgreSQL, with customer PII hashed (SHA-256) before anything is stored.</li>
-            <li>RFM segmentation, churn and lifetime value (BG/NBD, Gamma-Gamma), Prophet forecasts with a fallback when it is unavailable, and z-score anomaly detection.</li>
-            <li>Question answering over the store's own data with a local Ollama model (RAG), falling back to rule-based answers when no model is running.</li>
-            <li>Engine frozen with PyInstaller for the installer. CI runs Ruff and pytest on the engine, ESLint and Vitest on the UI.</li>
-          </ul>
-          <div class="flow" aria-label="Import pipeline"><span class="k">import:</span> parse<i>→</i>detect schema<i>→</i>map columns<i>→</i>clean<i>→</i>mask PII<i>→</i>score quality<i>→</i>merge</div>
-          <p class="stack"><b>Python</b> · FastAPI · DuckDB · SQLite · pandas · Prophet · lifetimes · Ollama · pytest · Tauri</p>
-          <div class="links">
-            <a href="https://github.com/hamzakhan0712/Novem---E-Commerce-Intelligence-Platform" target="_blank" rel="noopener">Source on GitHub</a>
-          </div>
-          <figure class="shot"><img src="img/novem.webp" alt="NOVEM dashboard showing revenue, orders and a 30-day trend" width="960" height="487" loading="lazy"></figure>
+          <figure class="figure">
+            <div class="dg-scroll"><svg class="dg" viewBox="0 0 640 336" role="img" aria-labelledby="t-cl">
+              <title id="t-cl">Data model: a property has rooms, a room has beds, and contracts, payments and invitations each point to one bed.</title>
+              <path class="ln" d="M200 58H230"/><path class="ln" d="M410 58H440"/>
+              <path class="ln" d="M200 284H215V165H470V136"/><path class="ln" d="M380 200V178H500V136"/><path class="ln" d="M560 200V136"/>
+              <g transform="translate(20 20)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Property</text><text class="f" x="12" y="48">id</text><text class="ty" x="168" y="48" text-anchor="end">pk</text><text class="f" x="12" y="68">name</text><text class="ty" x="168" y="68" text-anchor="end">str</text><text class="f k" x="12" y="88">landlord_id</text><text class="ty" x="168" y="88" text-anchor="end">fk</text></g>
+              <g transform="translate(230 20)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Room</text><text class="f k" x="12" y="48">property_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f" x="12" y="68">room_number</text><text class="ty" x="168" y="68" text-anchor="end">str</text><text class="f" x="12" y="88">room_type</text><text class="ty" x="168" y="88" text-anchor="end">enum</text></g>
+              <text class="note" x="230" y="134">unique (property, room_number)</text>
+              <g transform="translate(440 20)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">BedSpace</text><text class="f k" x="12" y="48">room_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f" x="12" y="68">monthly_rent</text><text class="ty" x="168" y="68" text-anchor="end">decimal</text><text class="f" x="12" y="88">deposit</text><text class="ty" x="168" y="88" text-anchor="end">decimal</text><text class="f" x="12" y="108">status</text><text class="ty" x="168" y="108" text-anchor="end">enum</text></g>
+              <g transform="translate(20 200)"><rect class="box" width="180" height="96" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Invitation</text><text class="f" x="12" y="48">token</text><text class="ty" x="168" y="48" text-anchor="end">uuid</text><text class="f" x="12" y="68">expires_at</text><text class="ty" x="168" y="68" text-anchor="end">datetime</text><text class="f k" x="12" y="88">bed_space_id</text><text class="ty" x="168" y="88" text-anchor="end">fk</text></g>
+              <g transform="translate(230 200)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">Payment</text><text class="f k" x="12" y="48">tenant_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f k" x="12" y="68">bed_space_id</text><text class="ty" x="168" y="68" text-anchor="end">fk</text><text class="f" x="12" y="88">payment_type</text><text class="ty" x="168" y="88" text-anchor="end">enum</text><text class="f" x="12" y="108">status</text><text class="ty" x="168" y="108" text-anchor="end">enum</text></g>
+              <g transform="translate(440 200)"><rect class="box" width="180" height="116" rx="6"/><path class="hd" d="M1 7a6 6 0 0 1 6-6h166a6 6 0 0 1 6 6v20H1z"/><path class="sep" d="M0 27.5H180"/><text class="t" x="12" y="19">ResidencyContract</text><text class="f k" x="12" y="48">bed_space_id</text><text class="ty" x="168" y="48" text-anchor="end">fk</text><text class="f k" x="12" y="68">tenant_id</text><text class="ty" x="168" y="68" text-anchor="end">fk</text><text class="f" x="12" y="88">status</text><text class="ty" x="168" y="88" text-anchor="end">enum</text><text class="f" x="12" y="108">end_date</text><text class="ty" x="168" y="108" text-anchor="end">date</text></g>
+              <circle class="end" cx="230" cy="58" r="3.5"/><circle class="end" cx="440" cy="58" r="3.5"/><circle class="end" cx="200" cy="284" r="3.5"/><circle class="end" cx="380" cy="200" r="3.5"/><circle class="end" cx="560" cy="200" r="3.5"/>
+            </svg></div>
+            <figcaption>Core of the data model, simplified. Rent, deposit and status live on the bed, so a shared room can hold beds at different prices.</figcaption>
+          </figure>
         </article>
 
-        <article class="project">
-          <div class="p-head">
-            <h3>Call-center CRM</h3>
-            <span class="p-meta">Client project · 2024</span>
+        <article class="work">
+          <div>
+            <p class="kind">Personal product, open source</p>
+            <h3><a href="/work/novem">NOVEM, e-commerce analytics engine</a></h3>
+            <p class="summary">A local-first analytics engine for small online stores. It turns sales exports into KPIs, customer segments, forecasts and plain-language findings, with nothing leaving the owner's laptop.</p>
+            <ul class="proof">
+              <li>FastAPI engine with about 170 endpoints across 23 routers.</li>
+              <li>DuckDB for analytical tables, SQLite for app state, split by workload.</li>
+              <li>Import pipeline for five source types, with customer PII hashed before it is stored.</li>
+            </ul>
+            <ul class="tags" aria-label="Stack"><li>FastAPI</li><li>DuckDB</li><li>SQLite</li><li>pandas</li><li>Prophet</li><li>pytest</li></ul>
+            <a class="read" href="/work/novem">Read the case study</a>
           </div>
-          <p class="p-sub">Lead, call and payment management for an outbound sales team.</p>
-          <p>A Django and PostgreSQL application covering the whole sales flow: importing leads, assigning them to agents, logging calls, recording payments and issuing GST invoices.</p>
-          <ul class="points">
-            <li>CSV and Excel lead import with column mapping and duplicate checks, plus a full change history on every lead.</li>
-            <li>Role-scoped querysets for admins, team leaders and agents: the same views, each user only ever sees their own data.</li>
-            <li>Attendance derived from login sessions, and a live break monitor pushed to supervisors over WebSockets with Django Channels.</li>
-            <li>GST invoice PDFs issued from recorded payments.</li>
-          </ul>
-          <p class="stack"><b>Python</b> · Django · PostgreSQL · Django Channels · pandas</p>
-          <div class="links"><span style="color:var(--muted);font-weight:400">Private client code, happy to walk through it on a call</span></div>
-          <figure class="shot"><img src="img/crm.webp" alt="Call-center CRM dashboard with sales figures" width="960" height="434" loading="lazy"></figure>
+          <figure class="figure">
+            <div class="dg-scroll"><svg class="dg" viewBox="0 0 640 340" role="img" aria-labelledby="t-nv">
+              <title id="t-nv">Architecture: a Tauri shell runs the React UI, which calls a local FastAPI engine over HTTP. The engine stores analytics in DuckDB and app state in SQLite, reads from five import sources and asks a local Ollama model for answers.</title>
+              <defs><marker id="ah-nv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6f8279"/></marker></defs>
+              <rect class="box" x="150" y="10" width="340" height="80" rx="8"/><text class="t" x="166" y="32">Tauri shell</text><text class="ty" x="474" y="32" text-anchor="end">Rust</text>
+              <rect class="inner" x="166" y="42" width="308" height="36" rx="5"/><text class="f" x="320" y="64" text-anchor="middle">React UI</text>
+              <path class="arrow" d="M320 90V126" marker-end="url(#ah-nv)"/><text class="note" x="330" y="112">HTTP, localhost only</text>
+              <rect class="box" x="150" y="130" width="340" height="200" rx="8"/><path class="hd" d="M151 138a7 7 0 0 1 7-7h324a7 7 0 0 1 7 7v62H151z"/>
+              <text class="t" x="166" y="152">FastAPI engine</text><text class="f" x="166" y="172">23 routers, ~170 endpoints</text><text class="f" x="166" y="190">import pipeline, models, RAG</text>
+              <rect class="inner" x="166" y="210" width="150" height="104" rx="5"/><text class="t" x="180" y="232">DuckDB</text><text class="f" x="180" y="254">orders, customers</text><text class="f" x="180" y="272">products, ad spend</text><text class="f k" x="180" y="294">scoped by store_id</text>
+              <rect class="inner" x="324" y="210" width="150" height="104" rx="5"/><text class="t" x="338" y="232">SQLite</text><text class="f" x="338" y="254">settings, sessions</text><text class="f" x="338" y="272">import lineage</text><text class="f" x="338" y="294">encrypted creds</text>
+              <rect class="box" x="10" y="140" width="110" height="132" rx="8"/><text class="t" x="22" y="162">Sources</text><text class="f" x="22" y="184">CSV</text><text class="f" x="22" y="202">Excel</text><text class="f" x="22" y="220">Sheets</text><text class="f" x="22" y="238">Shopify</text><text class="f" x="22" y="256">PostgreSQL</text>
+              <path class="arrow" d="M120 206H146" marker-end="url(#ah-nv)"/>
+              <rect class="box" x="520" y="186" width="110" height="80" rx="8"/><text class="t" x="532" y="208">Ollama</text><text class="f" x="532" y="230">local LLM</text><text class="f" x="532" y="248">RAG answers</text>
+              <path class="arrow" d="M490 226H516" marker-end="url(#ah-nv)"/>
+            </svg></div>
+            <figcaption>How the pieces fit. The engine ships inside the installer, frozen with PyInstaller, and the shell starts and stops it.</figcaption>
+          </figure>
         </article>
 
-        <h3 class="other-title">Other client work</h3>
-        <ul class="other">
-          <li><span class="what"><a href="https://github.com/InitCore006/shtrading-releases" target="_blank" rel="noopener">S.K Trading billing system</a>, GST invoices and challans on SQLite for Windows and Android, in daily use since launch (v5.2)</span><span class="tech">TypeScript · SQLite</span></li>
-          <li><span class="what"><a href="https://key2yourhome.net" target="_blank" rel="noopener">Key2YourHome</a>, property listings backed by a Google Sheet, moving to Cloudflare D1 and R2 with a private admin</span><span class="tech">Astro · Cloudflare Workers</span></li>
-          <li><span class="what"><a href="https://logxivia.com" target="_blank" rel="noopener">Logxivia</a>, an English and German site for a trading company in Germany</span><span class="tech">Next.js</span></li>
-          <li><span class="what"><a href="https://www.tajmetals.in" target="_blank" rel="noopener">Taj Metals</a>, a product catalogue for a metals business</span><span class="tech">Next.js</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="block" id="experience" aria-labelledby="h-exp">
-      <div class="wrap">
-        <span class="label">Career</span>
-        <h2 id="h-exp">Experience</h2>
-
-        <div class="job">
-          <div class="p-head">
-            <h3>Freelance Software Engineer</h3>
-            <span class="p-meta">Apr 2024 – Present</span>
+        <article class="work">
+          <div>
+            <p class="kind">Client project, Django web app</p>
+            <h3><a href="/work/call-center-crm">Call-center CRM</a></h3>
+            <p class="summary">Lead, call and payment management for an outbound sales team, from importing lead lists to issuing GST invoices.</p>
+            <ul class="proof">
+              <li>One set of views for admins, team leaders and agents, with each role's data scoped in the query.</li>
+              <li>CSV and Excel import with column mapping, duplicate checks and a change history on every lead.</li>
+              <li>A live break monitor pushed to supervisors over WebSockets with Django Channels.</li>
+            </ul>
+            <ul class="tags" aria-label="Stack"><li>Django</li><li>PostgreSQL</li><li>Django Channels</li><li>pandas</li></ul>
+            <a class="read" href="/work/call-center-crm">Read the case study</a>
           </div>
-          <p class="org">Self-employed, Mumbai · clients in India and Germany</p>
-          <ul class="points">
-            <li>Scoped, built, deployed and maintained software for six small businesses and two academic conference websites.</li>
-            <li>Designed Django and PostgreSQL backends with role-based access, bulk data import, server-side PDF generation and real-time updates over WebSockets.</li>
-            <li>Owned delivery end to end: requirements with the client, data modelling, testing (pytest, Playwright), deployment and ongoing support.</li>
-          </ul>
-        </div>
+          <figure class="figure">
+            <ul class="scope" aria-label="Lead visibility by role">
+              <li><span class="role">Admin</span><span class="q">Lead.objects<b>.all()</b></span></li>
+              <li><span class="role">Team leader</span><span class="q">Lead.objects<b>.filter(team=user.team)</b></span></li>
+              <li><span class="role">Agent</span><span class="q">Lead.objects<b>.filter(assigned_to=user)</b></span></li>
+            </ul>
+            <ol class="pipe" aria-label="Lead import steps">
+              <li>upload</li><li>map columns</li><li>dedupe</li><li>create leads</li><li>log history</li>
+            </ol>
+            <figcaption>Simplified view of how each role's leads are scoped, and the steps a lead file goes through on import.</figcaption>
+          </figure>
+        </article>
 
-        <div class="job">
-          <div class="p-head">
-            <h3>Full Stack Developer</h3>
-            <span class="p-meta">Sep 2025 – Nov 2025</span>
-          </div>
-          <p class="org">Brandenbed Living Spaces UG, Berlin · remote contract</p>
-          <ul class="points">
-            <li>Built backend modules and REST APIs for the company's internal property-management application in Django and Django REST Framework.</li>
-            <li>Implemented data access scoped by employee role and the staff dashboards that sit on top of it.</li>
-            <li>Worked directly with the founders, reporting progress and adjusting scope across time zones.</li>
+        <div class="other">
+          <h3>Other client work</h3>
+          <ul>
+            <li><span><a href="https://github.com/InitCore006/shtrading-releases" target="_blank" rel="noopener">S.K Trading billing system</a>, GST invoices and challans on SQLite for Windows and Android, in daily use since launch and now on version 5.2</span><span class="stack">TypeScript, SQLite, Electron</span></li>
+            <li><span><a href="https://key2yourhome.net" target="_blank" rel="noopener">Key2YourHome</a>, property listings run from a Google Sheet, moving to Cloudflare D1 and R2 with a private admin</span><span class="stack">Astro, Cloudflare Workers</span></li>
+            <li><span><a href="https://logxivia.com" target="_blank" rel="noopener">Logxivia</a>, an English and German website for a trading company in Germany</span><span class="stack">Next.js</span></li>
+            <li><span><a href="https://www.tajmetals.in" target="_blank" rel="noopener">Taj Metals</a>, a product catalogue for a metals business</span><span class="stack">Next.js</span></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="block" id="skills" aria-labelledby="h-skills">
+    <section class="section" id="approach" aria-labelledby="h-approach">
       <div class="wrap">
-        <span class="label">Toolkit</span>
-        <h2 id="h-skills">Skills</h2>
-        <dl class="skills">
-          <dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript</dd>
-          <dt>Backend</dt><dd>Django, Django REST Framework, FastAPI, Flask, Django Channels, REST API design, WebSockets</dd>
-          <dt>Databases</dt><dd>PostgreSQL, SQLite, DuckDB, Elasticsearch</dd>
-          <dt>Data</dt><dd>pandas, Prophet, lifetimes, RAG with local LLMs (Ollama)</dd>
-          <dt>Testing &amp; quality</dt><dd>pytest, Playwright, Ruff, GitHub Actions</dd>
-          <dt>Deployment</dt><dd>Cloudflare Workers, D1, R2, Vercel, PyInstaller, Git</dd>
-          <dt>Frontend</dt><dd>React, Next.js, Astro, Tailwind CSS (enough to ship the UI my APIs serve)</dd>
+        <div class="section-head">
+          <h2 id="h-approach">How I build backends</h2>
+          <p>The habits that show up in every project above.</p>
+        </div>
+        <dl class="principles">
+          <div><dt>Model the business before the screens</dt><dd>The co-living platform rents beds, so the bed carries the rent, deposit and status. Getting that unit right first kept every later feature simple.</dd></div>
+          <div><dt>Make bad states hard to save</dt><dd>Unique constraints, checks before writes and <code>transaction.atomic</code> blocks, so the app refuses a second active contract on the same bed.</dd></div>
+          <div><dt>Scope data where it is queried</dt><dd>Access rules live in querysets and permission checks, not in templates, so every new view starts from the same rules.</dd></div>
+          <div><dt>Automate the routine work</dt><dd>Recurring rent, reminders and status updates run as management commands with dry-run flags, so they can be tested before they touch real data.</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="block" id="education" aria-labelledby="h-edu">
+    <section class="section" id="experience" aria-labelledby="h-exp">
       <div class="wrap">
-        <span class="label">Background</span>
-        <h2 id="h-edu">Education</h2>
-        <div class="edu">
-          <div class="p-head">
-            <h3>B.E. Computer Science and Engineering (Data Science)</h3>
-            <span class="p-meta">2023 – 2026</span>
-          </div>
-          <p class="org">Saraswati College of Engineering, University of Mumbai · CGPI 8.19</p>
-        </div>
-        <div class="edu">
-          <div class="p-head">
-            <h3>Diploma in Computer Engineering</h3>
-            <span class="p-meta">2021 – 2023</span>
-          </div>
-          <p class="org">Abdul Razzaq Kalsekar Polytechnic, MSBTE · First Class</p>
-        </div>
-        <ul class="points honours">
-          <li>Grand Finalist, Smart India Hackathon 2025 (Software Edition), Ministry of Education</li>
-          <li>2nd Place, SCOE AVISHKAR 2025 project competition</li>
-        </ul>
+        <div class="section-head"><h2 id="h-exp">Experience</h2></div>
+        <ol class="timeline">
+          <li>
+            <span class="when">Apr 2024 to present</span>
+            <div>
+              <h3>Freelance Software Engineer</h3>
+              <p class="where">Self-employed, Mumbai. Clients in India and Germany.</p>
+              <ul>
+                <li>Scoped, built, deployed and maintained software for six small businesses and two academic conference websites.</li>
+                <li>Designed Django and PostgreSQL backends with role-based access, bulk data import, server-side PDFs and real-time updates over WebSockets.</li>
+                <li>Owned delivery end to end: requirements with the client, data modelling, testing with pytest and Playwright, deployment and support.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">Sep 2025 to Nov 2025</span>
+            <div>
+              <h3>Full Stack Developer</h3>
+              <p class="where">Brandenbed Living Spaces UG, Berlin. Remote contract.</p>
+              <ul>
+                <li>Built backend modules and REST APIs for the company's internal property-management application in Django and Django REST Framework.</li>
+                <li>Implemented data access scoped by employee role, and the staff dashboards built on it.</li>
+                <li>Worked directly with the founders, reporting progress and adjusting scope across time zones.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="h-skills">
+      <div class="wrap">
+        <div class="section-head"><h2 id="h-skills">Skills</h2></div>
+        <dl class="skills">
+          <dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript</dd>
+          <dt>Backend</dt><dd>Django, Django REST Framework, FastAPI, Flask, Django Channels, REST API design, WebSockets</dd>
+          <dt>Databases</dt><dd>PostgreSQL, SQLite, DuckDB, Elasticsearch</dd>
+          <dt>Data</dt><dd>pandas, Prophet, lifetimes, RAG with local LLMs through Ollama</dd>
+          <dt>Testing and quality</dt><dd>pytest, Playwright, Ruff, GitHub Actions</dd>
+          <dt>Deployment</dt><dd>Gunicorn, WhiteNoise, Cloudflare Workers, D1, R2, Vercel, PyInstaller, Git</dd>
+          <dt>Frontend</dt><dd>React, Next.js, Astro, Tailwind CSS, enough to ship the screens my APIs serve</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="h-edu">
+      <div class="wrap">
+        <div class="section-head"><h2 id="h-edu">Education and recognition</h2></div>
+        <ol class="timeline">
+          <li>
+            <span class="when">2023 to 2026</span>
+            <div><h3>B.E. Computer Science and Engineering (Data Science)</h3><p class="where">Saraswati College of Engineering, University of Mumbai. CGPI 8.19.</p></div>
+          </li>
+          <li>
+            <span class="when">2021 to 2023</span>
+            <div><h3>Diploma in Computer Engineering</h3><p class="where">Abdul Razzaq Kalsekar Polytechnic, MSBTE. First Class.</p></div>
+          </li>
+          <li>
+            <span class="when">2025</span>
+            <div><h3>Grand Finalist, Smart India Hackathon (Software Edition)</h3><p class="where">Ministry of Education. Also 2nd place at the SCOE AVISHKAR project competition.</p></div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <section class="contact" id="contact" aria-labelledby="h-contact">
       <div class="wrap">
-        <span class="label">Contact</span>
-        <h2 id="h-contact">Get in touch</h2>
-        <p class="lead">I'm looking for a backend or Python engineering role in Mumbai, Navi Mumbai, Thane or remote. Email is the fastest way to reach me.</p>
+        <h2 id="h-contact">Looking for a backend engineer? I'd like to hear about the role.</h2>
+        <p class="lede">Email is the quickest way to reach me, and I'm happy to walk through any of the code above on a call.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:hamza81khan81@gmail.com">Email me</a>
+          <a class="btn" href="/resume">View resume</a>
+        </div>
         <ul class="channels">
           <li><span>Email</span><a href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a></li>
-          <li><span>Phone / WhatsApp</span><a href="tel:+919137966960">+91 91379 66960</a></li>
+          <li><span>Phone and WhatsApp</span><a href="tel:+919137966960">+91 91379 66960</a></li>
           <li><span>GitHub</span><a href="https://github.com/hamzakhan0712" target="_blank" rel="noopener">hamzakhan0712</a></li>
-          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="noopener">hamza-khan</a></li>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="noopener">Hamza Khan</a></li>
         </ul>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-foot">
     <div class="wrap">
-      <span>Hamza Khan · Python Backend Engineer · Thane, Maharashtra</span>
-      <span><a href="/resume">Resume</a> · <a href="https://github.com/hamzakhan0712/Portfolio" target="_blank" rel="noopener">Site source</a></span>
+      <span>Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
+      <span><a href="/resume">Resume</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/hamzakhan0712/Portfolio" target="_blank" rel="noopener">Site source</a></span>
     </div>
   </footer>
 </body>

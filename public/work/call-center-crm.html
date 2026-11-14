@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Call-center CRM | Case study | Hamza Khan</title>
+  <meta name="description" content="Case study: a Django and PostgreSQL CRM for an outbound sales team, with role-scoped data, lead import with column mapping and duplicate checks, and a live break monitor over WebSockets.">
+  <link rel="canonical" href="https://www.hamza.social/work/call-center-crm">
+  <meta name="author" content="Hamza Khan">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hamza Khan">
+  <meta property="og:title" content="Call-center CRM, a case study by Hamza Khan">
+  <meta property="og:description" content="A Django and PostgreSQL CRM with role-scoped data, lead import and a live break monitor over WebSockets.">
+  <meta property="og:url" content="https://www.hamza.social/work/call-center-crm">
+  <meta property="og:image" content="https://www.hamza.social/img/work/crm/dashboard.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/hamza-khan.jpg" alt="" width="30" height="30">Hamza Khan</a>
+      <nav class="nav" aria-label="Main">
+        <a href="/#work" aria-current="page">Work</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <a class="btn small" href="/resume">Resume</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="case-head">
+      <div class="wrap">
+        <a class="crumb" href="/#work">All work</a>
+        <h1>Call-center CRM</h1>
+        <p class="lede">A Django application for an outbound sales team that covers the whole sales flow: importing lead lists, assigning leads to agents, logging calls, recording payments and issuing GST invoices.</p>
+        <dl class="facts">
+          <div><dt>My role</dt><dd>Sole developer, requirements to support</dd></div>
+          <div><dt>Client</dt><dd>Outbound sales team, 2024</dd></div>
+          <div><dt>Product</dt><dd>Web app for admins, team leaders and agents</dd></div>
+          <div><dt>Code</dt><dd>Private client code, walkthrough on request</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="wrap case-figure">
+      <figure class="figure">
+        <ul class="scope" aria-label="Lead visibility by role">
+          <li><span class="role">Admin</span><span class="q">Lead.objects<b>.all()</b></span></li>
+          <li><span class="role">Team leader</span><span class="q">Lead.objects<b>.filter(team=user.team)</b></span></li>
+          <li><span class="role">Agent</span><span class="q">Lead.objects<b>.filter(assigned_to=user)</b></span></li>
+        </ul>
+        <ol class="pipe" aria-label="Lead import steps">
+          <li>upload</li><li>map columns</li><li>dedupe</li><li>create leads</li><li>log history</li>
+        </ol>
+        <figcaption>Simplified view of how each role's leads are scoped, and the steps a lead file goes through on import.</figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap case-body">
+      <ul class="toc" aria-label="On this page">
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#decisions">Backend decisions</a></li>
+        <li><a href="#screens">Screens</a></li>
+        <li><a href="#stack">Stack</a></li>
+      </ul>
+
+      <div class="prose">
+        <section id="problem" aria-labelledby="h-problem">
+          <h2 id="h-problem">The problem</h2>
+          <p>An outbound sales team needed one system for its whole sales flow. Lead lists arrive as CSV and Excel files in different layouts, agents work through them by phone, and closed sales end in payments and GST invoices.</p>
+          <p>Admins, team leaders and agents needed the same tools, but each should only see the leads they are responsible for, and supervisors needed a live view of breaks.</p>
+        </section>
+
+        <section id="decisions" aria-labelledby="h-decisions">
+          <h2 id="h-decisions">Backend decisions</h2>
+          <dl class="decisions">
+            <div><dt>One set of views, scoped per role</dt><dd>Admins, team leaders and agents use the same pages. The difference is in the queryset: each role's view starts from a filter on the user, so access does not depend on which template a page renders.</dd></div>
+            <div><dt>Imports that accept messy files</dt><dd>Lead files are read with pandas, and the user maps their columns to the CRM's fields. Rows that match an existing lead are flagged as duplicates instead of being created twice.</dd></div>
+            <div><dt>A history on every lead</dt><dd>Every change to a lead is recorded, so a team leader can see who changed a status or reassigned a lead, and when.</dd></div>
+            <div><dt>Attendance from data the app already has</dt><dd>Attendance is worked out from login sessions, so agents have no separate check-in step.</dd></div>
+            <div><dt>Live updates over WebSockets</dt><dd>A break monitor shows supervisors, in real time, who is on a break. It is pushed over WebSockets with Django Channels rather than polled.</dd></div>
+            <div><dt>Invoices from recorded payments</dt><dd>Payments are recorded against leads, and GST invoice PDFs are issued from those records.</dd></div>
+          </dl>
+        </section>
+
+        <section id="screens" aria-labelledby="h-screens">
+          <h2 id="h-screens">Screens</h2>
+          <div class="gallery">
+            <figure class="shot"><img src="/img/work/crm/dashboard.webp" alt="CRM dashboard with sales figures, team leader totals and a monthly sales chart" width="960" height="434" loading="lazy"><figcaption>The admin dashboard: sales reports, totals by team leader and the month's sales.</figcaption></figure>
+          </div>
+        </section>
+
+        <section id="stack" aria-labelledby="h-stack">
+          <h2 id="h-stack">Stack</h2>
+          <ul class="tags" aria-label="Stack"><li>Python</li><li>Django</li><li>PostgreSQL</li><li>Django Channels</li><li>WebSockets</li><li>pandas</li></ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="next" aria-label="More case studies">
+      <div class="wrap">
+        <a href="/work/novem"><span>Previous</span><b>NOVEM, e-commerce analytics engine</b></a>
+        <a class="fwd" href="/work/coliving-platform"><span>Next</span><b>Co-living property platform</b></a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
+      <span><a href="/">Home</a>&nbsp;&nbsp;&nbsp;<a href="/resume">Resume</a>&nbsp;&nbsp;&nbsp;<a href="mailto:hamza81khan81@gmail.com">Email</a></span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.hamza.social/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <image:image><image:loc>https://www.hamza.social/hamza-khan.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.hamza.social/resume</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hamza.social/work/coliving-platform</loc>
+    <lastmod>2026-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hamza.social/work/novem</loc>
+    <lastmod>2026-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.hamza.social/work/call-center-crm</loc>
+    <lastmod>2026-11-14</lastmod>
   </url>
 </urlset>

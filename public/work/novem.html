@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOVEM, e-commerce analytics engine | Case study | Hamza Khan</title>
+  <meta name="description" content="Case study: NOVEM, a local-first analytics engine built with FastAPI, DuckDB and SQLite. About 170 endpoints, a privacy-first import pipeline, customer models, forecasts and a local LLM assistant.">
+  <link rel="canonical" href="https://www.hamza.social/work/novem">
+  <meta name="author" content="Hamza Khan">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Hamza Khan">
+  <meta property="og:title" content="NOVEM, a case study by Hamza Khan">
+  <meta property="og:description" content="A local-first FastAPI analytics engine with DuckDB and SQLite, a privacy-first import pipeline and a local LLM assistant.">
+  <meta property="og:url" content="https://www.hamza.social/work/novem">
+  <meta property="og:image" content="https://www.hamza.social/img/work/novem/dashboard.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/hamza-khan.jpg" alt="" width="30" height="30">Hamza Khan</a>
+      <nav class="nav" aria-label="Main">
+        <a href="/#work" aria-current="page">Work</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <a class="btn small" href="/resume">Resume</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="case-head">
+      <div class="wrap">
+        <a class="crumb" href="/#work">All work</a>
+        <h1>NOVEM, e-commerce analytics engine</h1>
+        <p class="lede">A local-first analytics engine for small online stores. Point it at the exports you already have, and it profiles, segments, forecasts and explains, all on your own laptop, with no account and nothing uploaded.</p>
+        <dl class="facts">
+          <div><dt>My role</dt><dd>Sole developer, design to release</dd></div>
+          <div><dt>Type</dt><dd>Personal product, 2026</dd></div>
+          <div><dt>Product</dt><dd>Windows desktop app with a Python engine</dd></div>
+          <div><dt>Code</dt><dd><a href="https://github.com/hamzakhan0712/Novem---E-Commerce-Intelligence-Platform" target="_blank" rel="noopener">Source on GitHub</a></dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="wrap case-figure">
+      <figure class="figure">
+        <div class="dg-scroll"><svg class="dg" viewBox="0 0 640 340" role="img" aria-labelledby="t-nv">
+          <title id="t-nv">Architecture: a Tauri shell runs the React UI, which calls a local FastAPI engine over HTTP. The engine stores analytics in DuckDB and app state in SQLite, reads from five import sources and asks a local Ollama model for answers.</title>
+          <defs><marker id="ah-nv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6f8279"/></marker></defs>
+          <rect class="box" x="150" y="10" width="340" height="80" rx="8"/><text class="t" x="166" y="32">Tauri shell</text><text class="ty" x="474" y="32" text-anchor="end">Rust</text>
+          <rect class="inner" x="166" y="42" width="308" height="36" rx="5"/><text class="f" x="320" y="64" text-anchor="middle">React UI</text>
+          <path class="arrow" d="M320 90V126" marker-end="url(#ah-nv)"/><text class="note" x="330" y="112">HTTP, localhost only</text>
+          <rect class="box" x="150" y="130" width="340" height="200" rx="8"/><path class="hd" d="M151 138a7 7 0 0 1 7-7h324a7 7 0 0 1 7 7v62H151z"/>
+          <text class="t" x="166" y="152">FastAPI engine</text><text class="f" x="166" y="172">23 routers, ~170 endpoints</text><text class="f" x="166" y="190">import pipeline, models, RAG</text>
+          <rect class="inner" x="166" y="210" width="150" height="104" rx="5"/><text class="t" x="180" y="232">DuckDB</text><text class="f" x="180" y="254">orders, customers</text><text class="f" x="180" y="272">products, ad spend</text><text class="f k" x="180" y="294">scoped by store_id</text>
+          <rect class="inner" x="324" y="210" width="150" height="104" rx="5"/><text class="t" x="338" y="232">SQLite</text><text class="f" x="338" y="254">settings, sessions</text><text class="f" x="338" y="272">import lineage</text><text class="f" x="338" y="294">encrypted creds</text>
+          <rect class="box" x="10" y="140" width="110" height="132" rx="8"/><text class="t" x="22" y="162">Sources</text><text class="f" x="22" y="184">CSV</text><text class="f" x="22" y="202">Excel</text><text class="f" x="22" y="220">Sheets</text><text class="f" x="22" y="238">Shopify</text><text class="f" x="22" y="256">PostgreSQL</text>
+          <path class="arrow" d="M120 206H146" marker-end="url(#ah-nv)"/>
+          <rect class="box" x="520" y="186" width="110" height="80" rx="8"/><text class="t" x="532" y="208">Ollama</text><text class="f" x="532" y="230">local LLM</text><text class="f" x="532" y="248">RAG answers</text>
+          <path class="arrow" d="M490 226H516" marker-end="url(#ah-nv)"/>
+        </svg></div>
+        <figcaption>How the pieces fit. Everything runs on the owner's machine, and the engine only listens on localhost.</figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap case-body">
+      <ul class="toc" aria-label="On this page">
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#built">What I built</a></li>
+        <li><a href="#decisions">Backend decisions</a></li>
+        <li><a href="#screens">Screens</a></li>
+        <li><a href="#stack">Stack</a></li>
+      </ul>
+
+      <div class="prose">
+        <section id="problem" aria-labelledby="h-problem">
+          <h2 id="h-problem">The problem</h2>
+          <p>Small store owners sit in an awkward gap. The analytics built into Shopify or WooCommerce stop at "revenue went down". Enterprise BI is priced for teams that already have an analyst, and open-source data tools assume you can write SQL and run a warehouse.</p>
+          <p>So decisions about stock, pricing and ad spend get made from a spreadsheet export and a hunch. NOVEM is aimed at that gap.</p>
+        </section>
+
+        <section id="built" aria-labelledby="h-built">
+          <h2 id="h-built">What I built</h2>
+          <p>A Python engine that does the data work, wrapped in a desktop app so a store owner can install it like any other program.</p>
+          <ul>
+            <li><strong>Customers:</strong> RFM segments, churn risk and lifetime value, cohort retention.</li>
+            <li><strong>Products:</strong> revenue breakdowns, market-basket rules and stock-out analysis.</li>
+            <li><strong>Insights:</strong> findings ranked by impact, anomaly detection and a revenue breakdown that explains why a number moved.</li>
+            <li><strong>Forecasts</strong> for revenue, orders, customers and order value, and a reports builder with PDF output.</li>
+          </ul>
+          <ul class="outcomes" aria-label="Scale">
+            <li>About 170 endpoints across 23 FastAPI routers</li>
+            <li>Five import sources, one pipeline</li>
+            <li>Ships as a single Windows installer</li>
+          </ul>
+        </section>
+
+        <section id="decisions" aria-labelledby="h-decisions">
+          <h2 id="h-decisions">Backend decisions</h2>
+          <dl class="decisions">
+            <div><dt>Two databases, split by workload</dt><dd>Analytical tables such as orders, customers, products and ad spend live in DuckDB, which is built for scans and aggregations. Everything transactional, such as settings, import history and lineage, sessions and encrypted connector credentials, lives in SQLite. All analytical rows are scoped by <code>store_id</code>, so several stores stay isolated in one install.</dd></div>
+            <div><dt>The engine is a managed local service</dt><dd>In development, uvicorn and Vite run side by side. In a release, the engine is frozen with PyInstaller and shipped inside the installer. The Tauri shell starts it as a child process, waits for its port to accept connections, and asks it to shut down cleanly on exit.</dd></div>
+            <div><dt>Privacy by default on import</dt><dd>Every source goes through the same steps: parse, detect the schema, map columns, clean and normalise channels, mask PII, score quality, then merge. Customer emails and names are SHA-256 hashed on import, so the raw values are never stored.</dd></div>
+            <div><dt>Models with fallbacks</dt><dd>Lifetime value uses BG/NBD and Gamma-Gamma through <code>lifetimes</code>, baskets use Apriori, and anomalies use z-scores. Forecasts use Prophet and fall back to a linear trend when Prophet is not available, so a missing dependency degrades the feature instead of breaking the endpoint.</dd></div>
+            <div><dt>An assistant that works offline</dt><dd>Questions are answered with retrieval over a cached summary of the store's own data, using a local Ollama model. When Ollama is not running, the engine falls back to rule-based answers instead of an error.</dd></div>
+            <div><dt>Quality gates in CI</dt><dd>CI runs Ruff and pytest on the engine, and ESLint and Vitest on the interface.</dd></div>
+          </dl>
+        </section>
+
+        <section id="screens" aria-labelledby="h-screens">
+          <h2 id="h-screens">Screens</h2>
+          <p>Shown with the generated sample dataset.</p>
+          <div class="gallery">
+            <figure class="shot"><img src="/img/work/novem/dashboard.webp" alt="NOVEM dashboard with revenue, orders, customers and average order value against the previous period, and a trend chart" width="1440" height="731" loading="lazy"><figcaption>Dashboard: revenue, orders, customers and order value against the previous period.</figcaption></figure>
+            <div class="pair">
+              <figure class="shot"><img src="/img/work/novem/insights.webp" alt="Insights page with a business health score, anomalies and a feed of findings" width="1440" height="736" loading="lazy"><figcaption>Insights: a health score, anomalies and findings with their causes.</figcaption></figure>
+              <figure class="shot"><img src="/img/work/novem/forecast.webp" alt="Forecast chart with confidence bands" width="1440" height="731" loading="lazy"><figcaption>Forecasts with confidence bands.</figcaption></figure>
+            </div>
+            <figure class="shot"><img src="/img/work/novem/copilot.webp" alt="Chat assistant answering a question about the store's data" width="1440" height="729" loading="lazy"><figcaption>The assistant, answering from the store's own data with a local model.</figcaption></figure>
+          </div>
+        </section>
+
+        <section id="stack" aria-labelledby="h-stack">
+          <h2 id="h-stack">Stack</h2>
+          <ul class="tags" aria-label="Stack"><li>Python</li><li>FastAPI</li><li>uvicorn</li><li>DuckDB</li><li>SQLite</li><li>pandas</li><li>Prophet</li><li>lifetimes</li><li>mlxtend</li><li>ReportLab</li><li>Ollama</li><li>pytest</li><li>Ruff</li><li>PyInstaller</li><li>React</li><li>TypeScript</li><li>Tauri</li></ul>
+        </section>
+      </div>
+    </div>
+
+    <nav class="next" aria-label="More case studies">
+      <div class="wrap">
+        <a href="/work/coliving-platform"><span>Previous</span><b>Co-living property platform</b></a>
+        <a class="fwd" href="/work/call-center-crm"><span>Next</span><b>Call-center CRM</b></a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
+      <span><a href="/">Home</a>&nbsp;&nbsp;&nbsp;<a href="/resume">Resume</a>&nbsp;&nbsp;&nbsp;<a href="mailto:hamza81khan81@gmail.com">Email</a></span>
+    </div>
+  </footer>
+</body>
+</html>
