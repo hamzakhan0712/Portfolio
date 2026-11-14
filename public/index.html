@@ -120,8 +120,12 @@
         <div class="actions">
           <a class="btn primary" href="#work">See case studies</a>
           <a class="btn" href="/resume">View resume</a>
-          <a class="btn" href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener">GitHub</a>
         </div>
+        <ul class="quick" aria-label="Contact and profiles">
+          <li><a href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a></li>
+          <li><a href="https://github.com/hamzakhan0712" target="_blank" rel="me noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="me noopener">LinkedIn</a></li>
+        </ul>
       </div>
     </section>
 
@@ -223,8 +227,9 @@
         </article>
 
         <div class="other">
-          <h3>Other client work</h3>
+          <h3>Other work</h3>
           <ul>
+            <li><span><a href="https://github.com/hamzakhan0712/FlaskSearch-API" target="_blank" rel="noopener">FlaskSearch-API</a>, a small Flask API with Elasticsearch full-text search across several fields, and document indexing through a POST endpoint</span><span class="stack">Flask, Elasticsearch</span></li>
             <li><span><a href="https://github.com/InitCore006/shtrading-releases" target="_blank" rel="noopener">S.K Trading billing system</a>, GST invoices and challans on SQLite for Windows and Android, in daily use since launch and now on version 5.2</span><span class="stack">TypeScript, SQLite, Electron</span></li>
             <li><span><a href="https://key2yourhome.net" target="_blank" rel="noopener">Key2YourHome</a>, property listings run from a Google Sheet, moving to Cloudflare D1 and R2 with a private admin</span><span class="stack">Astro, Cloudflare Workers</span></li>
             <li><span><a href="https://logxivia.com" target="_blank" rel="noopener">Logxivia</a>, an English and German website for a trading company in Germany</span><span class="stack">Next.js</span></li>
@@ -326,7 +331,8 @@
         </div>
         <ul class="channels">
           <li><span>Email</span><a href="mailto:hamza81khan81@gmail.com">hamza81khan81@gmail.com</a></li>
-          <li><span>Phone and WhatsApp</span><a href="tel:+919137966960">+91 91379 66960</a></li>
+          <li><span>Phone</span><a href="tel:+919137966960">+91 91379 66960</a></li>
+          <li><span>WhatsApp</span><a href="https://wa.me/919137966960" target="_blank" rel="noopener">Message on WhatsApp</a></li>
           <li><span>GitHub</span><a href="https://github.com/hamzakhan0712" target="_blank" rel="noopener">hamzakhan0712</a></li>
           <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/hamza-khan-3a2b0024a/" target="_blank" rel="noopener">Hamza Khan</a></li>
         </ul>
@@ -336,9 +342,27 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <span>Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
+      <span>© 2026 Hamza Khan, Python backend engineer in Thane, Maharashtra</span>
       <span><a href="/resume">Resume</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/hamzakhan0712/Portfolio" target="_blank" rel="noopener">Site source</a></span>
     </div>
   </footer>
+  <script>
+    // Underline the nav link for the section in view.
+    (function () {
+      var links = document.querySelectorAll('.nav a[href^="#"]');
+      if (!('IntersectionObserver' in window) || !links.length) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          var a = byId[e.target.id];
+          if (a) a.setAttribute('aria-current', 'true');
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    })();
+  </script>
 </body>
 </html>

@@ -69,6 +69,15 @@ EXPERIENCE = [
 
 PROJECTS = [
     {
+        "name": "Co-living property platform",
+        "meta": "Client project · Python, Django, Django REST Framework, PostgreSQL",
+        "bullets": [
+            "Property management built around the bed as the unit of rent (17 Django apps, 45+ models): contracts "
+            "created in atomic transactions, expiring invitation tokens that reserve a bed, per-module CRUD "
+            "permissions, tenant and landlord portals, and scheduled commands for recurring rent and reminders.",
+        ],
+    },
+    {
         "name": "NOVEM, e-commerce analytics engine",
         "meta": "github.com/hamzakhan0712 · Python, FastAPI, DuckDB, SQLite, pandas, Prophet",
         "bullets": [

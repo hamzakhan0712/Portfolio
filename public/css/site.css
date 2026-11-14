@@ -38,7 +38,7 @@ code { font: 0.86em var(--mono); background: var(--surface); border: 1px solid v
 .brand img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
 .nav { display: flex; gap: 26px; font-size: 0.94rem; }
 .nav a { color: var(--text); text-decoration: none; }
-.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); }
+.nav a:hover, .nav a[aria-current] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); }
 
 /* ---------- Buttons ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
@@ -50,15 +50,18 @@ code { font: 0.86em var(--mono); background: var(--surface); border: 1px solid v
 .btn.small { min-height: 36px; padding: 0 14px; font-size: 0.9rem; }
 
 /* ---------- Home: hero ---------- */
-.hero { padding: 96px 0 88px; }
-.who { display: flex; align-items: center; gap: 14px; margin: 0 0 28px; color: var(--muted); font-size: 0.98rem; }
+.hero { padding: 48px 0 72px; }
+.who { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; color: var(--muted); font-size: 0.98rem; }
 .who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); }
 .who strong { display: block; color: var(--ink); font-weight: 600; font-size: 1.02rem; }
 .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 17em; font-weight: 600; }
-.hero .lede { margin: 26px 0 0; max-width: 40em; font-size: 1.14rem; line-height: 1.7; }
-.status { display: inline-flex; align-items: center; gap: 9px; margin: 28px 0 0; font-size: 0.95rem; color: var(--ink); }
-.status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 4px #dcf3e5; }
-.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.hero .lede { margin: 20px 0 0; max-width: 40em; font-size: 1.14rem; line-height: 1.7; }
+.quick { display: flex; flex-wrap: wrap; gap: 6px 24px; margin: 20px 0 0; padding: 0; list-style: none; font-size: 0.95rem; }
+.quick a { color: var(--text); }
+.quick a:hover { color: var(--accent); }
+.status { display: inline-flex; align-items: center; gap: 9px; margin: 22px 0 0; font-size: 0.95rem; color: var(--ink); }
+.status::before { content: ""; flex: none; width: 9px; height: 9px; border-radius: 50%; background: #1f9d55; box-shadow: 0 0 0 4px #dcf3e5; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 
 /* ---------- Sections ---------- */
 .section { padding: 88px 0; border-top: 1px solid var(--rule); }
@@ -152,7 +155,7 @@ code { font: 0.86em var(--mono); background: var(--surface); border: 1px solid v
 .contact { padding: 96px 0; border-top: 1px solid var(--rule); background: var(--surface); }
 .contact h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); line-height: 1.15; letter-spacing: -0.025em; max-width: 16em; }
 .contact .lede { margin: 18px 0 0; max-width: 36em; font-size: 1.1rem; }
-.channels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 48px 0 0; padding: 0; list-style: none; }
+.channels { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin: 48px 0 0; padding: 0; list-style: none; }
 .channels li { border-top: 2px solid var(--ink); padding-top: 12px; }
 .channels span { display: block; color: var(--muted); font-size: 0.88rem; margin-bottom: 4px; }
 .channels a { color: var(--ink); font-weight: 500; overflow-wrap: anywhere; }
@@ -222,7 +225,9 @@ code { font: 0.86em var(--mono); background: var(--surface); border: 1px solid v
   .figure:has(.dg-scroll) figcaption::before { content: "Swipe sideways to see the whole diagram. "; color: var(--ink); }
   .site-head .wrap { flex-wrap: wrap; gap: 0 18px; padding-top: 10px; padding-bottom: 10px; }
   .nav { order: 3; width: 100%; gap: 20px; padding-top: 8px; overflow-x: auto; }
-  .hero { padding: 56px 0 64px; }
+  .hero { padding: 28px 0 56px; }
+  .hero h1 { font-size: 1.95rem; }
+  .hero .lede { font-size: 1.05rem; }
   .section, .contact { padding: 64px 0; }
   .section-head { margin-bottom: 36px; }
   .work + .work { margin-top: 56px; padding-top: 56px; }
